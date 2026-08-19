@@ -1,0 +1,36 @@
+/* GOODNESS OS — brand tokens. Single source of truth for colour, type and space. */
+:root {
+  --gs-green: #4dc86a;
+  --gs-green-deep: #1b7a34;
+  --gs-green-forest: #145a28;
+  --gs-gradient: linear-gradient(135deg, #4dc86a 0%, #1b7a34 100%);
+  --gs-blue: #1565c0;
+  --gs-blue-light: #1976d2;
+  --gs-ink: #0d0d0d;
+  --gs-ink-70: #4b5563;
+  --gs-ink-50: #6b7280;
+  --gs-ink-40: #9ca3af;
+  --gs-amber: #ff7a28;
+  --gs-purple: #6b21a8;
+  --gs-red: #b3261e;
+
+  --gs-paper: #ffffff;
+  --gs-mist: #f7f9f8;
+  --gs-green-wash: #f0faf3;
+  --gs-blue-wash: #e8f0fc;
+  --gs-line: rgba(0, 0, 0, 0.09);
+  --gs-line-soft: rgba(0, 0, 0, 0.05);
+
+  --gs-radius-sm: 8px;
+  --gs-radius: 14px;
+  --gs-radius-lg: 22px;
+  --gs-radius-pill: 999px;
+
+  --gs-shadow-sm: 0 2px 10px rgba(0, 0, 0, 0.05);
+  --gs-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  --gs-shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.14);
+
+  --gs-font: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  --gs-max: 1200px;
+  --gs-nav-h: 72px;
+}
