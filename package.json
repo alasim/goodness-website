@@ -1,0 +1,16 @@
+{
+  "name": "goodness-society",
+  "private": true,
+  "type": "module",
+  "description": "Goodness Society — GOODNESS OS: prototype design source, TanStack Start app and Supabase backend.",
+  "scripts": {
+    "gen:seed": "node scripts/generate-seed.mjs",
+    "db:verify": "node scripts/verify-schema.mjs",
+    "app:dev": "npm --prefix app run dev",
+    "app:build": "npm --prefix app run build",
+    "app:test": "npm --prefix app run test"
+  },
+  "devDependencies": {
+    "@electric-sql/pglite": "^0.3.0"
+  }
+}

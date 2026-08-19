@@ -1,0 +1,3686 @@
+{
+  "organisations": [
+    {
+      "id": "org-goodness-society",
+      "name": "Goodness Society",
+      "slug": "goodness-society",
+      "tagline": "Together for a Better Tomorrow",
+      "registrationRef": "Government-registered non-profit"
+    }
+  ],
+  "countries": [
+    {
+      "id": "ctry-bd",
+      "organisationId": "org-goodness-society",
+      "name": "Bangladesh",
+      "iso2": "BD",
+      "currencyCode": "BDT",
+      "currencySymbol": "৳",
+      "locale": "en-BD",
+      "isDefault": true
+    }
+  ],
+  "programs": [
+    {
+      "slug": "education-career-readiness",
+      "name": "Education & Career Readiness",
+      "shortName": "Education & Careers",
+      "summary": null,
+      "color": "#1B7A34",
+      "bgColor": "#f0faf3",
+      "lightColor": "#4DC86A",
+      "sortOrder": 0,
+      "isOperations": false
+    },
+    {
+      "slug": "ai-digital-skills",
+      "name": "AI & Digital Skills Development",
+      "shortName": "AI & Digital Skills",
+      "summary": null,
+      "color": "#1565C0",
+      "bgColor": "#e8f0fc",
+      "lightColor": "#1976D2",
+      "sortOrder": 1,
+      "isOperations": false
+    },
+    {
+      "slug": "youth-empowerment",
+      "name": "Youth Empowerment",
+      "shortName": "Youth Empowerment",
+      "summary": null,
+      "color": "#1B7A34",
+      "bgColor": "#f0faf3",
+      "lightColor": "#4DC86A",
+      "sortOrder": 2,
+      "isOperations": false
+    },
+    {
+      "slug": "community-development",
+      "name": "Community Development",
+      "shortName": "Community Development",
+      "summary": null,
+      "color": "#1565C0",
+      "bgColor": "#e8f0fc",
+      "lightColor": "#1976D2",
+      "sortOrder": 3,
+      "isOperations": false
+    },
+    {
+      "slug": "innovation-social-good",
+      "name": "Innovation for Social Good",
+      "shortName": "Innovation",
+      "summary": null,
+      "color": "#6B21A8",
+      "bgColor": "#f5f0ff",
+      "lightColor": "#9333EA",
+      "sortOrder": 4,
+      "isOperations": false
+    },
+    {
+      "slug": "operations",
+      "name": "Operations & Administration",
+      "shortName": "Operations",
+      "summary": "Running the organisation — the overhead every honest ledger shows.",
+      "color": "#4B5563",
+      "bgColor": "#f7f9f8",
+      "lightColor": "#9CA3AF",
+      "sortOrder": 90,
+      "isOperations": true
+    }
+  ],
+  "projects": [
+    {
+      "id": "prj-career-launch-2026",
+      "programSlug": "education-career-readiness",
+      "chapterId": null,
+      "name": "Career Launch 2026",
+      "year": 2026,
+      "summary": null
+    },
+    {
+      "id": "prj-digital-bangladesh-skills-drive",
+      "programSlug": "ai-digital-skills",
+      "chapterId": null,
+      "name": "Digital Bangladesh Skills Drive",
+      "year": 2026,
+      "summary": null
+    },
+    {
+      "id": "prj-youth-futures-2026",
+      "programSlug": "youth-empowerment",
+      "chapterId": null,
+      "name": "Youth Futures 2026",
+      "year": 2026,
+      "summary": null
+    },
+    {
+      "id": "prj-khulna-ward-scorecard-2026",
+      "programSlug": "community-development",
+      "chapterId": null,
+      "name": "Khulna Ward Scorecard 2026",
+      "year": 2026,
+      "summary": null
+    },
+    {
+      "id": "prj-open-impact-tools",
+      "programSlug": "innovation-social-good",
+      "chapterId": null,
+      "name": "Open Impact Tools",
+      "year": 2026,
+      "summary": null
+    },
+    {
+      "id": "prj-running-the-organisation",
+      "programSlug": "operations",
+      "chapterId": null,
+      "name": "Running the organisation",
+      "year": 2026,
+      "summary": null
+    }
+  ],
+  "chapters": [
+    {
+      "id": "chp-dhaka",
+      "countryId": "ctry-bd",
+      "parentId": null,
+      "name": "Goodness Dhaka",
+      "slug": "goodness-dhaka",
+      "type": "district",
+      "status": "active",
+      "city": "Dhaka",
+      "division": "Dhaka",
+      "sinceLabel": "Jan 2024",
+      "coverage": [
+        "Dhaka",
+        "Gazipur",
+        "Narayanganj",
+        "Mymensingh"
+      ],
+      "story": "The founding chapter — where Goodness started and where national programmes are piloted.",
+      "campusNote": null,
+      "standardsDone": 6,
+      "standardsTotal": 6
+    },
+    {
+      "id": "chp-du",
+      "countryId": "ctry-bd",
+      "parentId": "chp-dhaka",
+      "name": "Goodness University of Dhaka",
+      "slug": "goodness-university-of-dhaka",
+      "type": "university",
+      "status": "active",
+      "city": "Dhaka",
+      "division": "Dhaka",
+      "sinceLabel": "Feb 2026",
+      "coverage": [],
+      "story": "Our first university chapter — students, faculty and campus venues powering Career Launch.",
+      "campusNote": "26 campus volunteers · 210 service hours via the University of Dhaka Career Club partnership",
+      "standardsDone": 5,
+      "standardsTotal": 6
+    },
+    {
+      "id": "chp-chattogram",
+      "countryId": "ctry-bd",
+      "parentId": null,
+      "name": "Goodness Chattogram",
+      "slug": "goodness-chattogram",
+      "type": "district",
+      "status": "active",
+      "city": "Chattogram",
+      "division": "Chattogram",
+      "sinceLabel": "Jun 2024",
+      "coverage": [
+        "Chattogram",
+        "Cox's Bazar",
+        "Cumilla"
+      ],
+      "story": "Port-city chapter focused on career readiness and digital certification cohorts.",
+      "campusNote": null,
+      "standardsDone": 6,
+      "standardsTotal": 6
+    },
+    {
+      "id": "chp-sylhet",
+      "countryId": "ctry-bd",
+      "parentId": null,
+      "name": "Goodness Sylhet",
+      "slug": "goodness-sylhet",
+      "type": "district",
+      "status": "active",
+      "city": "Sylhet",
+      "division": "Sylhet",
+      "sinceLabel": "Mar 2025",
+      "coverage": [
+        "Sylhet"
+      ],
+      "story": "Flood-response and community development — our fastest mobilising chapter.",
+      "campusNote": null,
+      "standardsDone": 6,
+      "standardsTotal": 6
+    },
+    {
+      "id": "chp-rajshahi",
+      "countryId": "ctry-bd",
+      "parentId": null,
+      "name": "Goodness Rajshahi",
+      "slug": "goodness-rajshahi",
+      "type": "district",
+      "status": "active",
+      "city": "Rajshahi",
+      "division": "Rajshahi",
+      "sinceLabel": "Sep 2025",
+      "coverage": [
+        "Rajshahi",
+        "Bogura",
+        "Rangpur",
+        "Dinajpur"
+      ],
+      "story": "Youth bootcamps and micro-grants across the north-west.",
+      "campusNote": null,
+      "standardsDone": 6,
+      "standardsTotal": 6
+    },
+    {
+      "id": "chp-khulna",
+      "countryId": "ctry-bd",
+      "parentId": null,
+      "name": "Goodness Khulna",
+      "slug": "goodness-khulna",
+      "type": "district",
+      "status": "active",
+      "city": "Khulna",
+      "division": "Khulna",
+      "sinceLabel": "Jan 2026",
+      "coverage": [
+        "Khulna",
+        "Jashore",
+        "Barishal"
+      ],
+      "story": "Community scorecards and ward-level development in the south-west.",
+      "campusNote": null,
+      "standardsDone": 4,
+      "standardsTotal": 6
+    },
+    {
+      "id": "chp-cumilla",
+      "countryId": "ctry-bd",
+      "parentId": null,
+      "name": "Goodness Cumilla",
+      "slug": "goodness-cumilla",
+      "type": "district",
+      "status": "forming",
+      "city": "Cumilla",
+      "division": "Chattogram",
+      "sinceLabel": "Aug 2026",
+      "coverage": [],
+      "story": "Community interest confirmed — leadership team being established with support from Goodness Chattogram.",
+      "campusNote": null,
+      "standardsDone": 2,
+      "standardsTotal": 6
+    }
+  ],
+  "chapterGoals": [
+    {
+      "id": "c79af4bd-2d62-5d73-94ee-1e55329ead7d",
+      "chapterId": "chp-dhaka",
+      "label": "People supported",
+      "metric": "people",
+      "target": 800,
+      "periodLabel": "2026"
+    },
+    {
+      "id": "ca9691c0-3884-51cf-84aa-60e108c28e08",
+      "chapterId": "chp-dhaka",
+      "label": "Verified service hours",
+      "metric": "hours",
+      "target": 600,
+      "periodLabel": "2026"
+    },
+    {
+      "id": "5a624a80-0090-5ae5-99ec-6562ce411cb0",
+      "chapterId": "chp-dhaka",
+      "label": "Missions run",
+      "metric": "missions",
+      "target": 12,
+      "periodLabel": "2026"
+    },
+    {
+      "id": "f7b49d4b-03fd-5039-bc19-3c143aba590b",
+      "chapterId": "chp-dhaka",
+      "label": "Active partners",
+      "metric": "partners",
+      "target": 5,
+      "periodLabel": "2026"
+    },
+    {
+      "id": "ea7d1e3d-ef71-5258-9266-1acca45fa24a",
+      "chapterId": "chp-du",
+      "label": "Students reached on campus",
+      "metric": "people",
+      "target": 500,
+      "periodLabel": "2026"
+    },
+    {
+      "id": "a4d076af-f624-5183-a14e-59767aab818d",
+      "chapterId": "chp-du",
+      "label": "Campus missions",
+      "metric": "missions",
+      "target": 6,
+      "periodLabel": "2026"
+    },
+    {
+      "id": "e81e3add-6829-5a8f-97fc-4225d246bc2d",
+      "chapterId": "chp-chattogram",
+      "label": "People supported",
+      "metric": "people",
+      "target": 300,
+      "periodLabel": "2026"
+    },
+    {
+      "id": "68a83503-6957-5491-8ce5-2713a6a00539",
+      "chapterId": "chp-chattogram",
+      "label": "Verified service hours",
+      "metric": "hours",
+      "target": 400,
+      "periodLabel": "2026"
+    },
+    {
+      "id": "f33608f8-ff9b-5fb8-890b-acaee3d250b3",
+      "chapterId": "chp-chattogram",
+      "label": "Missions run",
+      "metric": "missions",
+      "target": 8,
+      "periodLabel": "2026"
+    },
+    {
+      "id": "71d927a7-6a5a-5f46-bbee-1a0a6926f140",
+      "chapterId": "chp-sylhet",
+      "label": "People supported",
+      "metric": "people",
+      "target": 400,
+      "periodLabel": "2026"
+    },
+    {
+      "id": "a2e66f0e-f6e9-560d-9018-1ea55e579028",
+      "chapterId": "chp-sylhet",
+      "label": "Missions run",
+      "metric": "missions",
+      "target": 10,
+      "periodLabel": "2026"
+    },
+    {
+      "id": "6f35bac0-e5fb-517b-af08-9addfd0260b9",
+      "chapterId": "chp-sylhet",
+      "label": "Active partners",
+      "metric": "partners",
+      "target": 2,
+      "periodLabel": "2026"
+    },
+    {
+      "id": "a314ee38-7cef-5caf-b228-aa357c3b5f5a",
+      "chapterId": "chp-rajshahi",
+      "label": "People supported",
+      "metric": "people",
+      "target": 300,
+      "periodLabel": "2026"
+    },
+    {
+      "id": "83b24494-c6f0-51a3-a66e-177790197871",
+      "chapterId": "chp-rajshahi",
+      "label": "Verified service hours",
+      "metric": "hours",
+      "target": 350,
+      "periodLabel": "2026"
+    },
+    {
+      "id": "e75fcc75-6de3-5d2d-8aaa-dc5cd4998f94",
+      "chapterId": "chp-khulna",
+      "label": "People supported",
+      "metric": "people",
+      "target": 250,
+      "periodLabel": "2026"
+    },
+    {
+      "id": "1eda7f59-a932-5901-9b3b-1868329c9a0c",
+      "chapterId": "chp-khulna",
+      "label": "Missions run",
+      "metric": "missions",
+      "target": 6,
+      "periodLabel": "2026"
+    }
+  ],
+  "profiles": [
+    {
+      "id": "8e684a3a-15d1-5999-abfc-7e4156191505",
+      "userId": null,
+      "slug": "nusrat-j",
+      "fullName": "Nusrat Jahan",
+      "initials": "NJ",
+      "avatarColor": "green",
+      "roleTitle": "AI Skills Trainer",
+      "programSlug": "ai-digital-skills",
+      "city": "Dhaka",
+      "chapterId": "chp-dhaka",
+      "joinedMonth": "Jan 2024",
+      "quote": "Teaching someone to use AI tools is like handing them a superpower they never knew existed.",
+      "bio": "Nusrat is a machine learning engineer at a fintech company who spends her weekends training underserved youth in AI literacy. She has facilitated over 20 workshops and personally mentored 14 participants into tech jobs.",
+      "skills": [
+        "Machine Learning",
+        "Prompt Engineering",
+        "Facilitation",
+        "Python"
+      ],
+      "impactStat": "240+",
+      "impactLabel": "Students trained",
+      "level": "Team Lead",
+      "featured": true,
+      "status": "active",
+      "certificateEnabled": true,
+      "goodnessId": "GS-1000",
+      "baselineMissions": 26,
+      "baselineHours": 104,
+      "baselinePeople": 240,
+      "baselinePrograms": 2,
+      "email": null,
+      "phone": null,
+      "address": null,
+      "emergencyContact": null,
+      "idDocumentRef": null,
+      "adminNotes": null
+    },
+    {
+      "id": "63ea6191-db78-5a42-b8f4-208fc3972d7f",
+      "userId": null,
+      "slug": "tanvir-a",
+      "fullName": "Tanvir Ahmed",
+      "initials": "TA",
+      "avatarColor": "blue",
+      "roleTitle": "Career Readiness Coach",
+      "programSlug": "education-career-readiness",
+      "city": "Chattogram",
+      "chapterId": "chp-chattogram",
+      "joinedMonth": "Feb 2024",
+      "quote": "Every CV I review is someone's dream waiting to be unlocked.",
+      "bio": "Tanvir is a senior HR professional with 10 years of experience in talent acquisition. He runs bi-weekly mock interview sessions and has helped over 60 graduates land their first formal employment.",
+      "skills": [
+        "Career Coaching",
+        "CV Writing",
+        "Interviewing",
+        "HR"
+      ],
+      "impactStat": "68",
+      "impactLabel": "Job placements",
+      "level": "Senior Volunteer",
+      "featured": false,
+      "status": "active",
+      "certificateEnabled": true,
+      "goodnessId": "GS-1017",
+      "baselineMissions": 13,
+      "baselineHours": 65,
+      "baselinePeople": 68,
+      "baselinePrograms": 2,
+      "email": null,
+      "phone": null,
+      "address": null,
+      "emergencyContact": null,
+      "idDocumentRef": null,
+      "adminNotes": null
+    },
+    {
+      "id": "ca4edc48-13a1-51e1-b9fe-d4ff4d8bbb2c",
+      "userId": null,
+      "slug": "sadia-i",
+      "fullName": "Sadia Islam",
+      "initials": "SI",
+      "avatarColor": "green",
+      "roleTitle": "Youth Bootcamp Facilitator",
+      "programSlug": "youth-empowerment",
+      "city": "Rajshahi",
+      "chapterId": "chp-rajshahi",
+      "joinedMonth": "Mar 2024",
+      "quote": "Young people don't need saving — they need space, resources, and someone who believes in them.",
+      "bio": "Sadia is a social entrepreneur and founder of a women-led cooperative. She designs and facilitates weekend bootcamps focused on financial literacy and confidence-building for young women aged 16–25.",
+      "skills": [
+        "Facilitation",
+        "Financial Literacy",
+        "Public Speaking",
+        "Community Organizing"
+      ],
+      "impactStat": "3",
+      "impactLabel": "Bootcamps delivered",
+      "level": "Volunteer",
+      "featured": false,
+      "status": "active",
+      "certificateEnabled": false,
+      "goodnessId": "GS-1034",
+      "baselineMissions": 18,
+      "baselineHours": 108,
+      "baselinePeople": 114,
+      "baselinePrograms": 3,
+      "email": null,
+      "phone": null,
+      "address": null,
+      "emergencyContact": null,
+      "idDocumentRef": null,
+      "adminNotes": null
+    },
+    {
+      "id": "872953d6-4328-53d2-b461-5770bf522614",
+      "userId": null,
+      "slug": "rakibul-h",
+      "fullName": "Rakibul Hasan",
+      "initials": "RH",
+      "avatarColor": "blue",
+      "roleTitle": "Community Liaison",
+      "programSlug": "community-development",
+      "city": "Khulna",
+      "chapterId": "chp-khulna",
+      "joinedMonth": "Mar 2024",
+      "quote": "Real change doesn't come from outside a community. It comes from within it.",
+      "bio": "Rakibul is a civil engineer and local government adviser who helps Goodness Society identify, scope, and execute community development projects in underserved areas of Khulna district.",
+      "skills": [
+        "Project Management",
+        "Community Engagement",
+        "Civil Engineering",
+        "Stakeholder Relations"
+      ],
+      "impactStat": "2",
+      "impactLabel": "Projects launched",
+      "level": "Volunteer",
+      "featured": false,
+      "status": "active",
+      "certificateEnabled": true,
+      "goodnessId": "GS-1051",
+      "baselineMissions": 22,
+      "baselineHours": 88,
+      "baselinePeople": 151,
+      "baselinePrograms": 1,
+      "email": null,
+      "phone": null,
+      "address": null,
+      "emergencyContact": null,
+      "idDocumentRef": null,
+      "adminNotes": null
+    },
+    {
+      "id": "97af410c-ad7e-5b9d-a4e3-d1d2c508fd21",
+      "userId": null,
+      "slug": "mehedi-h",
+      "fullName": "Mehedi Hasan",
+      "initials": "MH",
+      "avatarColor": "teal",
+      "roleTitle": "Software Developer",
+      "programSlug": "innovation-social-good",
+      "city": "Sylhet",
+      "chapterId": "chp-sylhet",
+      "joinedMonth": "Apr 2024",
+      "quote": "The best code I've ever written was for a cause — not a client.",
+      "bio": "Mehedi is a full-stack developer who contributes to open-source civic tech tools built under the Innovation for Social Good program. She led the development of the organization's public impact dashboard.",
+      "skills": [
+        "React",
+        "Node.js",
+        "Open Source",
+        "UX Design"
+      ],
+      "impactStat": "1",
+      "impactLabel": "Product shipped",
+      "level": "Team Lead",
+      "featured": false,
+      "status": "active",
+      "certificateEnabled": true,
+      "goodnessId": "GS-1068",
+      "baselineMissions": 22,
+      "baselineHours": 110,
+      "baselinePeople": 188,
+      "baselinePrograms": 2,
+      "email": null,
+      "phone": null,
+      "address": null,
+      "emergencyContact": null,
+      "idDocumentRef": null,
+      "adminNotes": null
+    },
+    {
+      "id": "33a7ee5d-9a62-5339-a286-4991d7b8c8f0",
+      "userId": null,
+      "slug": "imran-k",
+      "fullName": "Imran Kabir",
+      "initials": "IK",
+      "avatarColor": "green",
+      "roleTitle": "No-Code Automation Trainer",
+      "programSlug": "ai-digital-skills",
+      "city": "Rangpur",
+      "chapterId": "chp-rajshahi",
+      "joinedMonth": "Apr 2024",
+      "quote": "You don't need to code to automate your work. I'm proof of that.",
+      "bio": "Imran is a business process consultant who teaches entrepreneurs how to use no-code tools like Zapier, Notion, and Make to automate their daily workflows — freeing up time to focus on what matters.",
+      "skills": [
+        "No-Code",
+        "Automation",
+        "Zapier",
+        "Business Process"
+      ],
+      "impactStat": "85",
+      "impactLabel": "Professionals trained",
+      "level": "Volunteer",
+      "featured": false,
+      "status": "active",
+      "certificateEnabled": false,
+      "goodnessId": "GS-1085",
+      "baselineMissions": 14,
+      "baselineHours": 84,
+      "baselinePeople": 85,
+      "baselinePrograms": 3,
+      "email": null,
+      "phone": null,
+      "address": null,
+      "emergencyContact": null,
+      "idDocumentRef": null,
+      "adminNotes": null
+    },
+    {
+      "id": "e4147d85-5631-565a-9312-098c232992dc",
+      "userId": null,
+      "slug": "farhana-a",
+      "fullName": "Farhana Akter",
+      "initials": "FA",
+      "avatarColor": "blue",
+      "roleTitle": "Mock Interview Coach",
+      "programSlug": "education-career-readiness",
+      "city": "Barishal",
+      "chapterId": "chp-khulna",
+      "joinedMonth": "May 2024",
+      "quote": "Confidence is the most underrated skill on any resume.",
+      "bio": "Farhana is a communications manager who volunteers every Saturday running one-on-one mock interviews. She focuses on communication clarity, body language, and storytelling in interviews.",
+      "skills": [
+        "Coaching",
+        "Communication",
+        "Storytelling",
+        "Interview Prep"
+      ],
+      "impactStat": "112",
+      "impactLabel": "Mock interviews done",
+      "level": "Volunteer",
+      "featured": false,
+      "status": "active",
+      "certificateEnabled": true,
+      "goodnessId": "GS-1102",
+      "baselineMissions": 17,
+      "baselineHours": 68,
+      "baselinePeople": 112,
+      "baselinePrograms": 1,
+      "email": null,
+      "phone": null,
+      "address": null,
+      "emergencyContact": null,
+      "idDocumentRef": null,
+      "adminNotes": null
+    },
+    {
+      "id": "0c55edf0-5fd2-54ce-b45f-04b9ba5f6f38",
+      "userId": null,
+      "slug": "sabbir-r",
+      "fullName": "Sabbir Rahman",
+      "initials": "SR",
+      "avatarColor": "green",
+      "roleTitle": "Mentorship Circle Lead",
+      "programSlug": "youth-empowerment",
+      "city": "Dhaka",
+      "chapterId": "chp-dhaka",
+      "joinedMonth": "May 2024",
+      "quote": "A mentor's job isn't to give answers — it's to ask better questions.",
+      "bio": "Sabbir is a product manager at a leading Dhaka-based startup who leads a monthly mentorship circle for 15 young professionals. His circle has grown a waitlist of over 80 people.",
+      "skills": [
+        "Mentorship",
+        "Product Management",
+        "Leadership",
+        "Networking"
+      ],
+      "impactStat": "15",
+      "impactLabel": "Mentees guided",
+      "level": "Senior Volunteer",
+      "featured": false,
+      "status": "active",
+      "certificateEnabled": true,
+      "goodnessId": "GS-1119",
+      "baselineMissions": 21,
+      "baselineHours": 105,
+      "baselinePeople": 139,
+      "baselinePrograms": 2,
+      "email": null,
+      "phone": null,
+      "address": null,
+      "emergencyContact": null,
+      "idDocumentRef": null,
+      "adminNotes": null
+    },
+    {
+      "id": "bc3b0dec-7d04-5f3e-92e0-59c600ccd3d9",
+      "userId": null,
+      "slug": "anika-t",
+      "fullName": "Anika Tabassum",
+      "initials": "AT",
+      "avatarColor": "teal",
+      "roleTitle": "Research Partner",
+      "programSlug": "innovation-social-good",
+      "city": "Mymensingh",
+      "chapterId": "chp-dhaka",
+      "joinedMonth": "Jun 2024",
+      "quote": "Data without context is just noise. My job is to find the signal.",
+      "bio": "Anika is a PhD researcher in public health who partners with Goodness Society to design impact measurement frameworks and analyse community well-being data for annual reports.",
+      "skills": [
+        "Research",
+        "Data Analysis",
+        "Public Health",
+        "Report Writing"
+      ],
+      "impactStat": "4",
+      "impactLabel": "Impact reports co-authored",
+      "level": "Volunteer",
+      "featured": false,
+      "status": "active",
+      "certificateEnabled": false,
+      "goodnessId": "GS-1136",
+      "baselineMissions": 21,
+      "baselineHours": 126,
+      "baselinePeople": 176,
+      "baselinePrograms": 3,
+      "email": null,
+      "phone": null,
+      "address": null,
+      "emergencyContact": null,
+      "idDocumentRef": null,
+      "adminNotes": null
+    },
+    {
+      "id": "2d37b34f-aea4-5bb5-b887-be4dc621d372",
+      "userId": null,
+      "slug": "shakib-m",
+      "fullName": "Shakib Mahmud",
+      "initials": "SM",
+      "avatarColor": "blue",
+      "roleTitle": "Data Collector",
+      "programSlug": "community-development",
+      "city": "Cumilla",
+      "chapterId": "chp-chattogram",
+      "joinedMonth": "Jun 2024",
+      "quote": "Every number in our reports represents a real person. I never forget that.",
+      "bio": "Shakib is a sociology graduate who leads field data collection in Cumilla district, designing survey instruments and coordinating community well-being assessments with local stakeholders.",
+      "skills": [
+        "Field Research",
+        "Survey Design",
+        "Community Relations",
+        "SPSS"
+      ],
+      "impactStat": "340",
+      "impactLabel": "Households surveyed",
+      "level": "Team Lead",
+      "featured": false,
+      "status": "active",
+      "certificateEnabled": true,
+      "goodnessId": "GS-1153",
+      "baselineMissions": 35,
+      "baselineHours": 140,
+      "baselinePeople": 340,
+      "baselinePrograms": 1,
+      "email": null,
+      "phone": null,
+      "address": null,
+      "emergencyContact": null,
+      "idDocumentRef": null,
+      "adminNotes": null
+    },
+    {
+      "id": "5d6ced7c-fb99-58e7-bc22-cc2666ec2e63",
+      "userId": null,
+      "slug": "nadia-s",
+      "fullName": "Nadia Sultana",
+      "initials": "NS",
+      "avatarColor": "green",
+      "roleTitle": "Curriculum Designer",
+      "programSlug": "education-career-readiness",
+      "city": "Bogura",
+      "chapterId": "chp-rajshahi",
+      "joinedMonth": "Jul 2024",
+      "quote": "Good curriculum doesn't just teach skills — it changes how people see themselves.",
+      "bio": "Nadia is an instructional designer with 8 years of experience building e-learning content. She leads the redesign of Goodness Society's career readiness curriculum to meet current employer expectations.",
+      "skills": [
+        "Curriculum Design",
+        "Instructional Design",
+        "E-learning",
+        "Assessment"
+      ],
+      "impactStat": "2",
+      "impactLabel": "Curricula rebuilt",
+      "level": "Senior Volunteer",
+      "featured": false,
+      "status": "active",
+      "certificateEnabled": true,
+      "goodnessId": "GS-1170",
+      "baselineMissions": 16,
+      "baselineHours": 80,
+      "baselinePeople": 90,
+      "baselinePrograms": 2,
+      "email": null,
+      "phone": null,
+      "address": null,
+      "emergencyContact": null,
+      "idDocumentRef": null,
+      "adminNotes": null
+    },
+    {
+      "id": "4f18bc22-f979-57fd-bcc8-647ac8af89a4",
+      "userId": null,
+      "slug": "arif-c",
+      "fullName": "Arif Chowdhury",
+      "initials": "AC",
+      "avatarColor": "teal",
+      "roleTitle": "UX Designer",
+      "programSlug": "innovation-social-good",
+      "city": "Dhaka",
+      "chapterId": "chp-dhaka",
+      "joinedMonth": "Aug 2024",
+      "quote": "Every interface I design has to be usable by someone who has never used the internet before.",
+      "bio": "Arif is a product designer who ensures that all digital tools built under the Innovation program are accessible, intuitive, and appropriate for low-literacy users in underserved communities.",
+      "skills": [
+        "UX Design",
+        "Figma",
+        "Accessibility",
+        "User Research"
+      ],
+      "impactStat": "3",
+      "impactLabel": "Products designed",
+      "level": "Volunteer",
+      "featured": false,
+      "status": "active",
+      "certificateEnabled": false,
+      "goodnessId": "GS-1187",
+      "baselineMissions": 20,
+      "baselineHours": 120,
+      "baselinePeople": 127,
+      "baselinePrograms": 3,
+      "email": null,
+      "phone": null,
+      "address": null,
+      "emergencyContact": null,
+      "idDocumentRef": null,
+      "adminNotes": null
+    },
+    {
+      "id": "0d735c5d-ed84-5c80-a4ca-f61ffab239d3",
+      "userId": null,
+      "slug": "tasnim-h",
+      "fullName": "Tasnim Haque",
+      "initials": "TH",
+      "avatarColor": "blue",
+      "roleTitle": "Youth Micro-Grant Evaluator",
+      "programSlug": "youth-empowerment",
+      "city": "Narayanganj",
+      "chapterId": "chp-dhaka",
+      "joinedMonth": "Aug 2024",
+      "quote": "Some of the best business ideas I've ever seen came from teenagers with ৳50,000 budgets.",
+      "bio": "Tasnim is an investor and startup advisor who evaluates youth micro-grant applications, providing written feedback to every applicant regardless of outcome — because she believes feedback is a gift.",
+      "skills": [
+        "Business Evaluation",
+        "Startup Advisory",
+        "Mentorship",
+        "Finance"
+      ],
+      "impactStat": "24",
+      "impactLabel": "Grants evaluated",
+      "level": "Volunteer",
+      "featured": false,
+      "status": "active",
+      "certificateEnabled": true,
+      "goodnessId": "GS-1204",
+      "baselineMissions": 20,
+      "baselineHours": 80,
+      "baselinePeople": 164,
+      "baselinePrograms": 1,
+      "email": null,
+      "phone": null,
+      "address": null,
+      "emergencyContact": null,
+      "idDocumentRef": null,
+      "adminNotes": null
+    },
+    {
+      "id": "594536bf-f83d-57ef-bad7-225c11555e6d",
+      "userId": null,
+      "slug": "rashedul-a",
+      "fullName": "Rashedul Alam",
+      "initials": "RA",
+      "avatarColor": "green",
+      "roleTitle": "AI Literacy Facilitator",
+      "programSlug": "ai-digital-skills",
+      "city": "Cox's Bazar",
+      "chapterId": "chp-chattogram",
+      "joinedMonth": "Sep 2024",
+      "quote": "AI isn't coming for our jobs — but people who understand AI might.",
+      "bio": "Rashedul teaches AI awareness sessions to market traders and small business owners in Cox's Bazar, helping them understand and use simple AI tools to improve their operations.",
+      "skills": [
+        "AI Literacy",
+        "Adult Education",
+        "Bangla Language",
+        "Business Training"
+      ],
+      "impactStat": "160",
+      "impactLabel": "Business owners reached",
+      "level": "Senior Volunteer",
+      "featured": false,
+      "status": "active",
+      "certificateEnabled": true,
+      "goodnessId": "GS-1221",
+      "baselineMissions": 20,
+      "baselineHours": 100,
+      "baselinePeople": 160,
+      "baselinePrograms": 2,
+      "email": null,
+      "phone": null,
+      "address": null,
+      "emergencyContact": null,
+      "idDocumentRef": null,
+      "adminNotes": null
+    },
+    {
+      "id": "b438a36d-bc76-5533-8a6f-6bda7863a932",
+      "userId": null,
+      "slug": "sumaiya-k",
+      "fullName": "Sumaiya Khatun",
+      "initials": "SK",
+      "avatarColor": "blue",
+      "roleTitle": "Event Organiser",
+      "programSlug": "community-development",
+      "city": "Jashore",
+      "chapterId": "chp-khulna",
+      "joinedMonth": "Oct 2024",
+      "quote": "A well-run community event can shift the entire energy of a neighbourhood.",
+      "bio": "Sumaiya coordinates logistics for all community development events in Jashore district — from site selection to vendor management to post-event impact documentation.",
+      "skills": [
+        "Event Management",
+        "Logistics",
+        "Volunteer Coordination",
+        "Budgeting"
+      ],
+      "impactStat": "6",
+      "impactLabel": "Events organised",
+      "level": "Team Lead",
+      "featured": false,
+      "status": "active",
+      "certificateEnabled": false,
+      "goodnessId": "GS-1238",
+      "baselineMissions": 15,
+      "baselineHours": 90,
+      "baselinePeople": 78,
+      "baselinePrograms": 3,
+      "email": null,
+      "phone": null,
+      "address": null,
+      "emergencyContact": null,
+      "idDocumentRef": null,
+      "adminNotes": null
+    },
+    {
+      "id": "aa401f30-232e-54ce-b073-796d45f28b1e",
+      "userId": null,
+      "slug": "jubayer-k",
+      "fullName": "Jubayer Karim",
+      "initials": "JK",
+      "avatarColor": "teal",
+      "roleTitle": "Portfolio Lab Mentor",
+      "programSlug": "education-career-readiness",
+      "city": "Gazipur",
+      "chapterId": "chp-dhaka",
+      "joinedMonth": "Oct 2024",
+      "quote": "Your portfolio is your autobiography. Make it worth reading.",
+      "bio": "Jubayer is a senior graphic designer who runs weekly Portfolio Lab sessions helping young creatives build compelling portfolios that get them noticed by agencies and hiring managers.",
+      "skills": [
+        "Graphic Design",
+        "Portfolio Building",
+        "Adobe Suite",
+        "Personal Branding"
+      ],
+      "impactStat": "38",
+      "impactLabel": "Portfolios built",
+      "level": "Volunteer",
+      "featured": false,
+      "status": "active",
+      "certificateEnabled": true,
+      "goodnessId": "GS-1255",
+      "baselineMissions": 12,
+      "baselineHours": 48,
+      "baselinePeople": 38,
+      "baselinePrograms": 1,
+      "email": null,
+      "phone": null,
+      "address": null,
+      "emergencyContact": null,
+      "idDocumentRef": null,
+      "adminNotes": null
+    },
+    {
+      "id": "de9916fc-e315-5c23-a78f-f4699f315195",
+      "userId": null,
+      "slug": "maliha-z",
+      "fullName": "Maliha Zaman",
+      "initials": "MZ",
+      "avatarColor": "green",
+      "roleTitle": "Social Innovation Advisor",
+      "programSlug": "innovation-social-good",
+      "city": "Dinajpur",
+      "chapterId": "chp-rajshahi",
+      "joinedMonth": "Nov 2024",
+      "quote": "The best social innovations aren't built in boardrooms — they're built in communities.",
+      "bio": "Maliha has spent 12 years working in international development across South Asia. She advises the Innovation team on strategy, impact measurement, and stakeholder alignment.",
+      "skills": [
+        "Social Innovation",
+        "Strategy",
+        "International Development",
+        "Impact Measurement"
+      ],
+      "impactStat": "2",
+      "impactLabel": "Innovations advised",
+      "level": "Senior Volunteer",
+      "featured": false,
+      "status": "active",
+      "certificateEnabled": true,
+      "goodnessId": "GS-1272",
+      "baselineMissions": 19,
+      "baselineHours": 95,
+      "baselinePeople": 152,
+      "baselinePrograms": 2,
+      "email": null,
+      "phone": null,
+      "address": null,
+      "emergencyContact": null,
+      "idDocumentRef": null,
+      "adminNotes": null
+    },
+    {
+      "id": "fc62d6ff-8574-5c93-ac00-58ca854feb38",
+      "userId": null,
+      "slug": "asif-m",
+      "fullName": "Asif Mahmud",
+      "initials": "AM",
+      "avatarColor": "blue",
+      "roleTitle": "Civic Engagement Trainer",
+      "programSlug": "community-development",
+      "city": "Dhaka",
+      "chapterId": "chp-dhaka",
+      "joinedMonth": "Nov 2024",
+      "quote": "Most people don't vote because nobody ever explained why it matters. That's what I fix.",
+      "bio": "Asif is a lawyer and civic education advocate who designs and delivers workshops helping communities understand their rights, civic responsibilities, and how to engage with local government.",
+      "skills": [
+        "Civic Education",
+        "Law",
+        "Public Speaking",
+        "Community Organizing"
+      ],
+      "impactStat": "500+",
+      "impactLabel": "People civically trained",
+      "level": "Volunteer",
+      "featured": false,
+      "status": "active",
+      "certificateEnabled": false,
+      "goodnessId": "GS-1289",
+      "baselineMissions": 44,
+      "baselineHours": 264,
+      "baselinePeople": 500,
+      "baselinePrograms": 3,
+      "email": null,
+      "phone": null,
+      "address": null,
+      "emergencyContact": null,
+      "idDocumentRef": null,
+      "adminNotes": null
+    }
+  ],
+  "memberRoles": [
+    {
+      "id": "6a4c582c-5161-5aff-a461-916d6e686b46",
+      "profileId": "8e684a3a-15d1-5999-abfc-7e4156191505",
+      "role": "chapter_lead",
+      "chapterId": "chp-dhaka"
+    },
+    {
+      "id": "c76b0d68-5e24-5b21-b198-31d2d46f3a33",
+      "profileId": "0c55edf0-5fd2-54ce-b45f-04b9ba5f6f38",
+      "role": "team_lead",
+      "chapterId": "chp-dhaka"
+    },
+    {
+      "id": "7dc78d2a-a555-502f-9ebb-11c3c946fbd2",
+      "profileId": "4f18bc22-f979-57fd-bcc8-647ac8af89a4",
+      "role": "team_lead",
+      "chapterId": "chp-dhaka"
+    },
+    {
+      "id": "e2eb9d07-a5aa-536d-956f-5984576ee250",
+      "profileId": "fc62d6ff-8574-5c93-ac00-58ca854feb38",
+      "role": "volunteer",
+      "chapterId": "chp-dhaka"
+    },
+    {
+      "id": "877c6372-6a02-527f-904f-448124c7c0b0",
+      "profileId": "b438a36d-bc76-5533-8a6f-6bda7863a932",
+      "role": "chapter_lead",
+      "chapterId": "chp-du"
+    },
+    {
+      "id": "7ec35bc9-f997-594b-9819-110b8f87b15a",
+      "profileId": "63ea6191-db78-5a42-b8f4-208fc3972d7f",
+      "role": "chapter_lead",
+      "chapterId": "chp-chattogram"
+    },
+    {
+      "id": "b6d9c997-969e-5220-bd97-b3ce93ad3971",
+      "profileId": "2d37b34f-aea4-5bb5-b887-be4dc621d372",
+      "role": "team_lead",
+      "chapterId": "chp-chattogram"
+    },
+    {
+      "id": "55343ab4-90f7-5ccf-8f8d-0c075bf366c6",
+      "profileId": "97af410c-ad7e-5b9d-a4e3-d1d2c508fd21",
+      "role": "chapter_lead",
+      "chapterId": "chp-sylhet"
+    },
+    {
+      "id": "3deff8a9-36c7-58f6-9779-e952aa2b5816",
+      "profileId": "e4147d85-5631-565a-9312-098c232992dc",
+      "role": "team_lead",
+      "chapterId": "chp-sylhet"
+    },
+    {
+      "id": "fe16f598-8bd7-5851-a005-f34c36ef02d2",
+      "profileId": "ca4edc48-13a1-51e1-b9fe-d4ff4d8bbb2c",
+      "role": "chapter_lead",
+      "chapterId": "chp-rajshahi"
+    },
+    {
+      "id": "6261606b-2873-5d76-ad64-a7516c96d876",
+      "profileId": "5d6ced7c-fb99-58e7-bc22-cc2666ec2e63",
+      "role": "team_lead",
+      "chapterId": "chp-rajshahi"
+    },
+    {
+      "id": "ee5425c2-8890-5b1e-9554-4a42b3fea78c",
+      "profileId": "872953d6-4328-53d2-b461-5770bf522614",
+      "role": "chapter_lead",
+      "chapterId": "chp-khulna"
+    }
+  ],
+  "credentials": [
+    {
+      "id": "crd-gs-vol-2024-0100",
+      "profileId": "8e684a3a-15d1-5999-abfc-7e4156191505",
+      "ref": "GS-VOL-2024-0100",
+      "title": "Certificate of Volunteer Service",
+      "programSlug": "ai-digital-skills",
+      "serviceSummary": "104 verified service hours across 26 missions",
+      "issuedLabel": "Jan 2024",
+      "status": "valid",
+      "downloadEnabled": true,
+      "revokedReason": null
+    },
+    {
+      "id": "crd-gs-crd-2024-0400",
+      "profileId": "8e684a3a-15d1-5999-abfc-7e4156191505",
+      "ref": "GS-CRD-2024-0400",
+      "title": "AI Literacy Trainer",
+      "programSlug": "ai-digital-skills",
+      "serviceSummary": "Facilitator credential — AI & Digital Skills Development",
+      "issuedLabel": "Sep 2024",
+      "status": "valid",
+      "downloadEnabled": true,
+      "revokedReason": null
+    },
+    {
+      "id": "crd-gs-crd-2024-0700",
+      "profileId": "8e684a3a-15d1-5999-abfc-7e4156191505",
+      "ref": "GS-CRD-2024-0700",
+      "title": "Volunteer Leadership",
+      "programSlug": "ai-digital-skills",
+      "serviceSummary": "Leadership credential — team coordination and mission delivery",
+      "issuedLabel": "Nov 2024",
+      "status": "valid",
+      "downloadEnabled": true,
+      "revokedReason": null
+    },
+    {
+      "id": "crd-gs-vol-2024-0103",
+      "profileId": "63ea6191-db78-5a42-b8f4-208fc3972d7f",
+      "ref": "GS-VOL-2024-0103",
+      "title": "Certificate of Volunteer Service",
+      "programSlug": "education-career-readiness",
+      "serviceSummary": "65 verified service hours across 13 missions",
+      "issuedLabel": "Feb 2024",
+      "status": "valid",
+      "downloadEnabled": true,
+      "revokedReason": null
+    },
+    {
+      "id": "crd-gs-vol-2024-0106",
+      "profileId": "ca4edc48-13a1-51e1-b9fe-d4ff4d8bbb2c",
+      "ref": "GS-VOL-2024-0106",
+      "title": "Certificate of Volunteer Service",
+      "programSlug": "youth-empowerment",
+      "serviceSummary": "108 verified service hours across 18 missions",
+      "issuedLabel": "Mar 2024",
+      "status": "valid",
+      "downloadEnabled": false,
+      "revokedReason": null
+    },
+    {
+      "id": "crd-gs-vol-2024-0109",
+      "profileId": "872953d6-4328-53d2-b461-5770bf522614",
+      "ref": "GS-VOL-2024-0109",
+      "title": "Certificate of Volunteer Service",
+      "programSlug": "community-development",
+      "serviceSummary": "88 verified service hours across 22 missions",
+      "issuedLabel": "Mar 2024",
+      "status": "valid",
+      "downloadEnabled": true,
+      "revokedReason": null
+    },
+    {
+      "id": "crd-gs-vol-2024-0112",
+      "profileId": "97af410c-ad7e-5b9d-a4e3-d1d2c508fd21",
+      "ref": "GS-VOL-2024-0112",
+      "title": "Certificate of Volunteer Service",
+      "programSlug": "innovation-social-good",
+      "serviceSummary": "110 verified service hours across 22 missions",
+      "issuedLabel": "Apr 2024",
+      "status": "valid",
+      "downloadEnabled": true,
+      "revokedReason": null
+    },
+    {
+      "id": "crd-gs-crd-2024-0704",
+      "profileId": "97af410c-ad7e-5b9d-a4e3-d1d2c508fd21",
+      "ref": "GS-CRD-2024-0704",
+      "title": "Volunteer Leadership",
+      "programSlug": "innovation-social-good",
+      "serviceSummary": "Leadership credential — team coordination and mission delivery",
+      "issuedLabel": "Nov 2024",
+      "status": "valid",
+      "downloadEnabled": true,
+      "revokedReason": null
+    },
+    {
+      "id": "crd-gs-vol-2024-0115",
+      "profileId": "33a7ee5d-9a62-5339-a286-4991d7b8c8f0",
+      "ref": "GS-VOL-2024-0115",
+      "title": "Certificate of Volunteer Service",
+      "programSlug": "ai-digital-skills",
+      "serviceSummary": "84 verified service hours across 14 missions",
+      "issuedLabel": "Apr 2024",
+      "status": "valid",
+      "downloadEnabled": false,
+      "revokedReason": null
+    },
+    {
+      "id": "crd-gs-crd-2024-0405",
+      "profileId": "33a7ee5d-9a62-5339-a286-4991d7b8c8f0",
+      "ref": "GS-CRD-2024-0405",
+      "title": "AI Literacy Trainer",
+      "programSlug": "ai-digital-skills",
+      "serviceSummary": "Facilitator credential — AI & Digital Skills Development",
+      "issuedLabel": "Sep 2024",
+      "status": "valid",
+      "downloadEnabled": false,
+      "revokedReason": null
+    },
+    {
+      "id": "crd-gs-vol-2024-0118",
+      "profileId": "e4147d85-5631-565a-9312-098c232992dc",
+      "ref": "GS-VOL-2024-0118",
+      "title": "Certificate of Volunteer Service",
+      "programSlug": "education-career-readiness",
+      "serviceSummary": "68 verified service hours across 17 missions",
+      "issuedLabel": "May 2024",
+      "status": "valid",
+      "downloadEnabled": true,
+      "revokedReason": null
+    },
+    {
+      "id": "crd-gs-vol-2024-0121",
+      "profileId": "0c55edf0-5fd2-54ce-b45f-04b9ba5f6f38",
+      "ref": "GS-VOL-2024-0121",
+      "title": "Certificate of Volunteer Service",
+      "programSlug": "youth-empowerment",
+      "serviceSummary": "105 verified service hours across 21 missions",
+      "issuedLabel": "May 2024",
+      "status": "valid",
+      "downloadEnabled": true,
+      "revokedReason": null
+    },
+    {
+      "id": "crd-gs-vol-2024-0124",
+      "profileId": "bc3b0dec-7d04-5f3e-92e0-59c600ccd3d9",
+      "ref": "GS-VOL-2024-0124",
+      "title": "Certificate of Volunteer Service",
+      "programSlug": "innovation-social-good",
+      "serviceSummary": "126 verified service hours across 21 missions",
+      "issuedLabel": "Jun 2024",
+      "status": "valid",
+      "downloadEnabled": false,
+      "revokedReason": null
+    },
+    {
+      "id": "crd-gs-vol-2024-0127",
+      "profileId": "2d37b34f-aea4-5bb5-b887-be4dc621d372",
+      "ref": "GS-VOL-2024-0127",
+      "title": "Certificate of Volunteer Service",
+      "programSlug": "community-development",
+      "serviceSummary": "140 verified service hours across 35 missions",
+      "issuedLabel": "Jun 2024",
+      "status": "valid",
+      "downloadEnabled": true,
+      "revokedReason": null
+    },
+    {
+      "id": "crd-gs-crd-2024-0709",
+      "profileId": "2d37b34f-aea4-5bb5-b887-be4dc621d372",
+      "ref": "GS-CRD-2024-0709",
+      "title": "Volunteer Leadership",
+      "programSlug": "community-development",
+      "serviceSummary": "Leadership credential — team coordination and mission delivery",
+      "issuedLabel": "Nov 2024",
+      "status": "valid",
+      "downloadEnabled": true,
+      "revokedReason": null
+    },
+    {
+      "id": "crd-gs-vol-2024-0130",
+      "profileId": "5d6ced7c-fb99-58e7-bc22-cc2666ec2e63",
+      "ref": "GS-VOL-2024-0130",
+      "title": "Certificate of Volunteer Service",
+      "programSlug": "education-career-readiness",
+      "serviceSummary": "80 verified service hours across 16 missions",
+      "issuedLabel": "Jul 2024",
+      "status": "valid",
+      "downloadEnabled": true,
+      "revokedReason": null
+    },
+    {
+      "id": "crd-gs-vol-2024-0133",
+      "profileId": "4f18bc22-f979-57fd-bcc8-647ac8af89a4",
+      "ref": "GS-VOL-2024-0133",
+      "title": "Certificate of Volunteer Service",
+      "programSlug": "innovation-social-good",
+      "serviceSummary": "120 verified service hours across 20 missions",
+      "issuedLabel": "Aug 2024",
+      "status": "valid",
+      "downloadEnabled": false,
+      "revokedReason": null
+    },
+    {
+      "id": "crd-gs-vol-2024-0136",
+      "profileId": "0d735c5d-ed84-5c80-a4ca-f61ffab239d3",
+      "ref": "GS-VOL-2024-0136",
+      "title": "Certificate of Volunteer Service",
+      "programSlug": "youth-empowerment",
+      "serviceSummary": "80 verified service hours across 20 missions",
+      "issuedLabel": "Aug 2024",
+      "status": "valid",
+      "downloadEnabled": true,
+      "revokedReason": null
+    },
+    {
+      "id": "crd-gs-vol-2024-0139",
+      "profileId": "594536bf-f83d-57ef-bad7-225c11555e6d",
+      "ref": "GS-VOL-2024-0139",
+      "title": "Certificate of Volunteer Service",
+      "programSlug": "ai-digital-skills",
+      "serviceSummary": "100 verified service hours across 20 missions",
+      "issuedLabel": "Sep 2024",
+      "status": "valid",
+      "downloadEnabled": true,
+      "revokedReason": null
+    },
+    {
+      "id": "crd-gs-crd-2024-0413",
+      "profileId": "594536bf-f83d-57ef-bad7-225c11555e6d",
+      "ref": "GS-CRD-2024-0413",
+      "title": "AI Literacy Trainer",
+      "programSlug": "ai-digital-skills",
+      "serviceSummary": "Facilitator credential — AI & Digital Skills Development",
+      "issuedLabel": "Sep 2024",
+      "status": "valid",
+      "downloadEnabled": true,
+      "revokedReason": null
+    },
+    {
+      "id": "crd-gs-vol-2024-0142",
+      "profileId": "b438a36d-bc76-5533-8a6f-6bda7863a932",
+      "ref": "GS-VOL-2024-0142",
+      "title": "Certificate of Volunteer Service",
+      "programSlug": "community-development",
+      "serviceSummary": "90 verified service hours across 15 missions",
+      "issuedLabel": "Oct 2024",
+      "status": "valid",
+      "downloadEnabled": false,
+      "revokedReason": null
+    },
+    {
+      "id": "crd-gs-crd-2024-0714",
+      "profileId": "b438a36d-bc76-5533-8a6f-6bda7863a932",
+      "ref": "GS-CRD-2024-0714",
+      "title": "Volunteer Leadership",
+      "programSlug": "community-development",
+      "serviceSummary": "Leadership credential — team coordination and mission delivery",
+      "issuedLabel": "Nov 2024",
+      "status": "valid",
+      "downloadEnabled": false,
+      "revokedReason": null
+    },
+    {
+      "id": "crd-gs-vol-2024-0145",
+      "profileId": "aa401f30-232e-54ce-b073-796d45f28b1e",
+      "ref": "GS-VOL-2024-0145",
+      "title": "Certificate of Volunteer Service",
+      "programSlug": "education-career-readiness",
+      "serviceSummary": "48 verified service hours across 12 missions",
+      "issuedLabel": "Oct 2024",
+      "status": "valid",
+      "downloadEnabled": true,
+      "revokedReason": null
+    },
+    {
+      "id": "crd-gs-vol-2024-0148",
+      "profileId": "de9916fc-e315-5c23-a78f-f4699f315195",
+      "ref": "GS-VOL-2024-0148",
+      "title": "Certificate of Volunteer Service",
+      "programSlug": "innovation-social-good",
+      "serviceSummary": "95 verified service hours across 19 missions",
+      "issuedLabel": "Nov 2024",
+      "status": "valid",
+      "downloadEnabled": true,
+      "revokedReason": null
+    },
+    {
+      "id": "crd-gs-vol-2024-0151",
+      "profileId": "fc62d6ff-8574-5c93-ac00-58ca854feb38",
+      "ref": "GS-VOL-2024-0151",
+      "title": "Certificate of Volunteer Service",
+      "programSlug": "community-development",
+      "serviceSummary": "264 verified service hours across 44 missions",
+      "issuedLabel": "Nov 2024",
+      "status": "valid",
+      "downloadEnabled": false,
+      "revokedReason": null
+    }
+  ],
+  "chapterTeam": [
+    {
+      "id": "2a327d14-0724-5aef-9edf-18e805803236",
+      "chapterId": "chp-dhaka",
+      "profileId": "8e684a3a-15d1-5999-abfc-7e4156191505",
+      "personName": null,
+      "role": "Chapter Lead",
+      "sinceLabel": "Jan 2026",
+      "untilLabel": null
+    },
+    {
+      "id": "689e060e-ef42-5a59-a47d-96f64a6bcbcf",
+      "chapterId": "chp-dhaka",
+      "profileId": "0c55edf0-5fd2-54ce-b45f-04b9ba5f6f38",
+      "personName": null,
+      "role": "Operations Lead",
+      "sinceLabel": "Mar 2026",
+      "untilLabel": null
+    },
+    {
+      "id": "76322b73-e8e3-55d9-a81c-7a4e8c61fb48",
+      "chapterId": "chp-dhaka",
+      "profileId": "4f18bc22-f979-57fd-bcc8-647ac8af89a4",
+      "personName": null,
+      "role": "People Lead",
+      "sinceLabel": "Mar 2026",
+      "untilLabel": null
+    },
+    {
+      "id": "0a5106d9-a843-5efb-84a7-0af14b4a43e7",
+      "chapterId": "chp-dhaka",
+      "profileId": "fc62d6ff-8574-5c93-ac00-58ca854feb38",
+      "personName": null,
+      "role": "Finance & Trust contact",
+      "sinceLabel": "Jun 2026",
+      "untilLabel": null
+    },
+    {
+      "id": "c7fd8254-b43e-5b42-a83d-0f2678a4be6f",
+      "chapterId": "chp-dhaka",
+      "profileId": null,
+      "personName": "Tanvir Ahmed",
+      "role": "Founding Chapter Lead",
+      "sinceLabel": "2024–2025",
+      "untilLabel": "2024–2025"
+    },
+    {
+      "id": "eacd86d9-9b52-5b44-b21e-ce0d9891f143",
+      "chapterId": "chp-du",
+      "profileId": "b438a36d-bc76-5533-8a6f-6bda7863a932",
+      "personName": null,
+      "role": "Campus Lead",
+      "sinceLabel": "Feb 2026",
+      "untilLabel": null
+    },
+    {
+      "id": "326aca9d-cb73-5740-b9d5-45feb42f182c",
+      "chapterId": "chp-chattogram",
+      "profileId": "63ea6191-db78-5a42-b8f4-208fc3972d7f",
+      "personName": null,
+      "role": "Chapter Lead",
+      "sinceLabel": "Jun 2024",
+      "untilLabel": null
+    },
+    {
+      "id": "d2feefd5-418f-5617-a00b-0e15d50b646c",
+      "chapterId": "chp-chattogram",
+      "profileId": "2d37b34f-aea4-5bb5-b887-be4dc621d372",
+      "personName": null,
+      "role": "Operations Lead",
+      "sinceLabel": "Jan 2026",
+      "untilLabel": null
+    },
+    {
+      "id": "25eec689-1f1a-59ee-9e71-316239e87cbc",
+      "chapterId": "chp-sylhet",
+      "profileId": "97af410c-ad7e-5b9d-a4e3-d1d2c508fd21",
+      "personName": null,
+      "role": "Chapter Lead",
+      "sinceLabel": "Mar 2025",
+      "untilLabel": null
+    },
+    {
+      "id": "1f30449c-03fe-54fa-8b4c-309cc05e8f2f",
+      "chapterId": "chp-sylhet",
+      "profileId": "e4147d85-5631-565a-9312-098c232992dc",
+      "personName": null,
+      "role": "People Lead",
+      "sinceLabel": "Feb 2026",
+      "untilLabel": null
+    },
+    {
+      "id": "e462e297-cc3a-5702-826a-e5add9b9db50",
+      "chapterId": "chp-rajshahi",
+      "profileId": "ca4edc48-13a1-51e1-b9fe-d4ff4d8bbb2c",
+      "personName": null,
+      "role": "Chapter Lead",
+      "sinceLabel": "Sep 2025",
+      "untilLabel": null
+    },
+    {
+      "id": "2da9cea3-7751-599b-8674-5ae8e7a3245c",
+      "chapterId": "chp-rajshahi",
+      "profileId": "5d6ced7c-fb99-58e7-bc22-cc2666ec2e63",
+      "personName": null,
+      "role": "Operations Lead",
+      "sinceLabel": "Apr 2026",
+      "untilLabel": null
+    },
+    {
+      "id": "37ad9363-089d-5fa8-a247-567740beca6c",
+      "chapterId": "chp-khulna",
+      "profileId": "872953d6-4328-53d2-b461-5770bf522614",
+      "personName": null,
+      "role": "Chapter Lead",
+      "sinceLabel": "Jan 2026",
+      "untilLabel": null
+    }
+  ],
+  "missions": [
+    {
+      "id": "msn-dhaka-digital-01",
+      "title": "Teach Digital Skills to 30 Students",
+      "programSlug": "ai-digital-skills",
+      "projectId": null,
+      "chapterId": "chp-dhaka",
+      "scope": "chapter",
+      "venue": "Mirpur Community Centre, Dhaka",
+      "dateLabel": "Sat 29 Aug 2026",
+      "timeLabel": "10:00 AM – 3:00 PM",
+      "startsAt": null,
+      "hours": 5,
+      "impactTarget": "30 students complete foundational AI training",
+      "summary": "A one-day foundation workshop introducing school students to practical AI tools, safe internet use, and basic digital productivity.",
+      "status": "open",
+      "priority": "normal",
+      "participation": "onsite",
+      "leadProfileId": "8e684a3a-15d1-5999-abfc-7e4156191505",
+      "leadName": "Nusrat Jahan",
+      "seedFilled": 5,
+      "published": true
+    },
+    {
+      "id": "msn-ctg-career-01",
+      "title": "CV Clinic & Mock Interviews",
+      "programSlug": "education-career-readiness",
+      "projectId": null,
+      "chapterId": "chp-chattogram",
+      "scope": "chapter",
+      "venue": "Agrabad Public Library, Chattogram",
+      "dateLabel": "Sat 5 Sep 2026",
+      "timeLabel": "9:30 AM – 1:30 PM",
+      "startsAt": null,
+      "hours": 4,
+      "impactTarget": "60 graduates leave with a reviewed CV and interview feedback",
+      "summary": "Rotating one-to-one sessions where volunteers review CVs and run short mock interviews with recent graduates.",
+      "status": "open",
+      "priority": "normal",
+      "participation": "onsite",
+      "leadProfileId": "63ea6191-db78-5a42-b8f4-208fc3972d7f",
+      "leadName": "Tanvir Ahmed",
+      "seedFilled": 6,
+      "published": true
+    },
+    {
+      "id": "msn-sylhet-flood-01",
+      "title": "Flood Relief Packing Drive",
+      "programSlug": "community-development",
+      "projectId": null,
+      "chapterId": "chp-sylhet",
+      "scope": "chapter",
+      "venue": "GS Warehouse, Zindabazar, Sylhet",
+      "dateLabel": "Sun 30 Aug 2026",
+      "timeLabel": "8:00 AM – 12:00 PM",
+      "startsAt": null,
+      "hours": 4,
+      "impactTarget": "400 family relief packs prepared and dispatched",
+      "summary": "Urgent packing and dispatch of dry food, water purification tablets, and hygiene kits for flood-affected families in Sunamganj.",
+      "status": "open",
+      "priority": "urgent",
+      "participation": "onsite",
+      "leadProfileId": "97af410c-ad7e-5b9d-a4e3-d1d2c508fd21",
+      "leadName": "Mehedi Hasan",
+      "seedFilled": 32,
+      "published": true
+    },
+    {
+      "id": "msn-remote-design-01",
+      "title": "Design Campaign Materials (Remote)",
+      "programSlug": "innovation-social-good",
+      "projectId": null,
+      "chapterId": null,
+      "scope": "chapter",
+      "venue": "Remote — work from anywhere",
+      "dateLabel": "Flexible · complete by 12 Sep 2026",
+      "timeLabel": "Est. 4 hours total",
+      "startsAt": null,
+      "hours": 4,
+      "impactTarget": "Full campaign kit for the youth education drive",
+      "summary": "Design social posts, a leaflet, and a banner for an upcoming education campaign. Brand kit and copy provided.",
+      "status": "open",
+      "priority": "normal",
+      "participation": "remote",
+      "leadProfileId": "4f18bc22-f979-57fd-bcc8-647ac8af89a4",
+      "leadName": "Arif Chowdhury",
+      "seedFilled": 1,
+      "published": true
+    },
+    {
+      "id": "msn-rajshahi-youth-01",
+      "title": "Youth Skills Bootcamp — Day 1",
+      "programSlug": "youth-empowerment",
+      "projectId": null,
+      "chapterId": "chp-rajshahi",
+      "scope": "chapter",
+      "venue": "Rajshahi University Auditorium",
+      "dateLabel": "Fri 11 Sep 2026",
+      "timeLabel": "9:00 AM – 4:00 PM",
+      "startsAt": null,
+      "hours": 7,
+      "impactTarget": "80 young people complete financial literacy module",
+      "summary": "Opening day of the weekend bootcamp covering financial literacy, communication, and confidence building for ages 16–25.",
+      "status": "open",
+      "priority": "normal",
+      "participation": "onsite",
+      "leadProfileId": "ca4edc48-13a1-51e1-b9fe-d4ff4d8bbb2c",
+      "leadName": "Sadia Islam",
+      "seedFilled": 9,
+      "published": true
+    },
+    {
+      "id": "msn-khulna-community-01",
+      "title": "Community Needs Assessment Survey",
+      "programSlug": "community-development",
+      "projectId": null,
+      "chapterId": "chp-khulna",
+      "scope": "chapter",
+      "venue": "Rupsha ward, Khulna",
+      "dateLabel": "Sat 22 Aug 2026",
+      "timeLabel": "9:00 AM – 2:00 PM",
+      "startsAt": null,
+      "hours": 5,
+      "impactTarget": "150 households surveyed for the ward scorecard",
+      "summary": "Door-to-door structured survey collecting health, education, and livelihood indicators for the annual community scorecard.",
+      "status": "completed",
+      "priority": "normal",
+      "participation": "onsite",
+      "leadProfileId": "872953d6-4328-53d2-b461-5770bf522614",
+      "leadName": "Rakibul Hasan",
+      "seedFilled": 12,
+      "published": true
+    }
+  ],
+  "missionRoles": [
+    {
+      "id": "msn-dhaka-digital-01-role-1",
+      "missionId": "msn-dhaka-digital-01",
+      "role": "Trainer",
+      "need": 2,
+      "skills": [
+        "Facilitation",
+        "AI Literacy"
+      ],
+      "sortOrder": 0
+    },
+    {
+      "id": "msn-dhaka-digital-01-role-2",
+      "missionId": "msn-dhaka-digital-01",
+      "role": "Photographer",
+      "need": 1,
+      "skills": [
+        "Photography"
+      ],
+      "sortOrder": 1
+    },
+    {
+      "id": "msn-dhaka-digital-01-role-3",
+      "missionId": "msn-dhaka-digital-01",
+      "role": "Support Volunteer",
+      "need": 3,
+      "skills": [],
+      "sortOrder": 2
+    },
+    {
+      "id": "msn-ctg-career-01-role-1",
+      "missionId": "msn-ctg-career-01",
+      "role": "CV Reviewer",
+      "need": 4,
+      "skills": [
+        "CV Writing",
+        "HR"
+      ],
+      "sortOrder": 0
+    },
+    {
+      "id": "msn-ctg-career-01-role-2",
+      "missionId": "msn-ctg-career-01",
+      "role": "Mock Interview Coach",
+      "need": 3,
+      "skills": [
+        "Coaching",
+        "Communication"
+      ],
+      "sortOrder": 1
+    },
+    {
+      "id": "msn-ctg-career-01-role-3",
+      "missionId": "msn-ctg-career-01",
+      "role": "Registration Desk",
+      "need": 2,
+      "skills": [],
+      "sortOrder": 2
+    },
+    {
+      "id": "msn-sylhet-flood-01-role-1",
+      "missionId": "msn-sylhet-flood-01",
+      "role": "Packing Volunteer",
+      "need": 30,
+      "skills": [],
+      "sortOrder": 0
+    },
+    {
+      "id": "msn-sylhet-flood-01-role-2",
+      "missionId": "msn-sylhet-flood-01",
+      "role": "Logistics Coordinator",
+      "need": 4,
+      "skills": [
+        "Logistics"
+      ],
+      "sortOrder": 1
+    },
+    {
+      "id": "msn-sylhet-flood-01-role-3",
+      "missionId": "msn-sylhet-flood-01",
+      "role": "Data Collector",
+      "need": 6,
+      "skills": [
+        "Survey Design"
+      ],
+      "sortOrder": 2
+    },
+    {
+      "id": "msn-remote-design-01-role-1",
+      "missionId": "msn-remote-design-01",
+      "role": "Graphic Designer",
+      "need": 2,
+      "skills": [
+        "Graphic Design",
+        "Figma"
+      ],
+      "sortOrder": 0
+    },
+    {
+      "id": "msn-remote-design-01-role-2",
+      "missionId": "msn-remote-design-01",
+      "role": "Copy Reviewer",
+      "need": 1,
+      "skills": [
+        "Communication"
+      ],
+      "sortOrder": 1
+    },
+    {
+      "id": "msn-rajshahi-youth-01-role-1",
+      "missionId": "msn-rajshahi-youth-01",
+      "role": "Bootcamp Facilitator",
+      "need": 4,
+      "skills": [
+        "Facilitation",
+        "Financial Literacy"
+      ],
+      "sortOrder": 0
+    },
+    {
+      "id": "msn-rajshahi-youth-01-role-2",
+      "missionId": "msn-rajshahi-youth-01",
+      "role": "Youth Mentor",
+      "need": 6,
+      "skills": [
+        "Mentorship"
+      ],
+      "sortOrder": 1
+    },
+    {
+      "id": "msn-rajshahi-youth-01-role-3",
+      "missionId": "msn-rajshahi-youth-01",
+      "role": "Support Volunteer",
+      "need": 4,
+      "skills": [],
+      "sortOrder": 2
+    },
+    {
+      "id": "msn-khulna-community-01-role-1",
+      "missionId": "msn-khulna-community-01",
+      "role": "Field Surveyor",
+      "need": 10,
+      "skills": [
+        "Field Research"
+      ],
+      "sortOrder": 0
+    },
+    {
+      "id": "msn-khulna-community-01-role-2",
+      "missionId": "msn-khulna-community-01",
+      "role": "Community Liaison",
+      "need": 2,
+      "skills": [
+        "Community Engagement"
+      ],
+      "sortOrder": 1
+    }
+  ],
+  "impactRecords": [
+    {
+      "id": "imp-khulna-survey-2026",
+      "missionId": "msn-khulna-community-01",
+      "programSlug": "community-development",
+      "projectId": "prj-khulna-ward-scorecard-2026",
+      "chapterId": "chp-khulna",
+      "title": "Community Needs Assessment — Rupsha ward",
+      "projectLabel": "Khulna Ward Scorecard 2026",
+      "dateLabel": "Aug 2026",
+      "published": true,
+      "unit": "households",
+      "unitLabel": "households surveyed",
+      "primaryValue": 162,
+      "beneficiaries": 150,
+      "measurementDueLabel": null
+    },
+    {
+      "id": "imp-career-bootcamp-2026",
+      "missionId": null,
+      "programSlug": "education-career-readiness",
+      "projectId": "prj-career-launch-2026",
+      "chapterId": "chp-dhaka",
+      "title": "Career Bootcamp — Dhaka Cohort 01",
+      "projectLabel": "Career Launch 2026",
+      "dateLabel": "Jun 2026",
+      "published": true,
+      "unit": "people",
+      "unitLabel": "people supported",
+      "primaryValue": 120,
+      "beneficiaries": 120,
+      "measurementDueLabel": null
+    },
+    {
+      "id": "imp-ai-literacy-2026",
+      "missionId": null,
+      "programSlug": "ai-digital-skills",
+      "projectId": "prj-digital-bangladesh-skills-drive",
+      "chapterId": null,
+      "title": "AI Literacy Workshops — 8 districts",
+      "projectLabel": "Digital Bangladesh Skills Drive",
+      "dateLabel": "May 2026",
+      "published": true,
+      "unit": "people",
+      "unitLabel": "people supported",
+      "primaryValue": 486,
+      "beneficiaries": 486,
+      "measurementDueLabel": null
+    },
+    {
+      "id": "imp-youth-bootcamp-2026",
+      "missionId": null,
+      "programSlug": "youth-empowerment",
+      "projectId": "prj-youth-futures-2026",
+      "chapterId": "chp-rajshahi",
+      "title": "Youth Skills Bootcamp — Rajshahi",
+      "projectLabel": "Youth Futures 2026",
+      "dateLabel": "Apr 2026",
+      "published": true,
+      "unit": "youth",
+      "unitLabel": "young people supported",
+      "primaryValue": 201,
+      "beneficiaries": 201,
+      "measurementDueLabel": null
+    },
+    {
+      "id": "imp-innovation-lab-2026",
+      "missionId": null,
+      "programSlug": "innovation-social-good",
+      "projectId": "prj-open-impact-tools",
+      "chapterId": "chp-dhaka",
+      "title": "Tech for Good Lab — first cohort",
+      "projectLabel": "Open Impact Tools",
+      "dateLabel": "Jul 2026",
+      "published": true,
+      "unit": "tools",
+      "unitLabel": "tools deployed",
+      "primaryValue": 2,
+      "beneficiaries": 86,
+      "measurementDueLabel": null
+    },
+    {
+      "id": "imp-ai-cohort-nov-2026",
+      "missionId": null,
+      "programSlug": "ai-digital-skills",
+      "projectId": "prj-digital-bangladesh-skills-drive",
+      "chapterId": "chp-chattogram",
+      "title": "Digital Skills Certification — Cohort 04",
+      "projectLabel": "Digital Bangladesh Skills Drive",
+      "dateLabel": "Aug 2026",
+      "published": true,
+      "unit": "people",
+      "unitLabel": "people supported",
+      "primaryValue": 80,
+      "beneficiaries": 80,
+      "measurementDueLabel": null
+    },
+    {
+      "id": "imp-dhaka-draft-2026",
+      "missionId": null,
+      "programSlug": "ai-digital-skills",
+      "projectId": "prj-digital-bangladesh-skills-drive",
+      "chapterId": "chp-dhaka",
+      "title": "School Digital Corner — Mirpur (draft)",
+      "projectLabel": "Digital Bangladesh Skills Drive",
+      "dateLabel": "Aug 2026",
+      "published": false,
+      "unit": "students",
+      "unitLabel": "students supported",
+      "primaryValue": 30,
+      "beneficiaries": 30,
+      "measurementDueLabel": null
+    }
+  ],
+  "impactOutputs": [
+    {
+      "id": "1e74bf06-637d-5001-9a6b-abe43a87698b",
+      "recordId": "imp-khulna-survey-2026",
+      "label": "Households surveyed",
+      "value": 162,
+      "target": 150,
+      "sortOrder": 0
+    },
+    {
+      "id": "d771ac07-5712-5525-a95d-9be4a9d08a39",
+      "recordId": "imp-khulna-survey-2026",
+      "label": "Volunteer hours contributed",
+      "value": 60,
+      "target": 60,
+      "sortOrder": 1
+    },
+    {
+      "id": "a215b8cc-b88b-58bd-9f9f-992ae3d77726",
+      "recordId": "imp-khulna-survey-2026",
+      "label": "Ward scorecards produced",
+      "value": 1,
+      "target": 1,
+      "sortOrder": 2
+    },
+    {
+      "id": "145c537a-d654-52a6-9778-506f725dce0d",
+      "recordId": "imp-career-bootcamp-2026",
+      "label": "Participants enrolled",
+      "value": 120,
+      "target": 120,
+      "sortOrder": 0
+    },
+    {
+      "id": "ea5cfcdd-a631-51c3-bec1-781abd704034",
+      "recordId": "imp-career-bootcamp-2026",
+      "label": "Participants completed",
+      "value": 104,
+      "target": 110,
+      "sortOrder": 1
+    },
+    {
+      "id": "cfbac856-5544-5d2c-81d5-0a7f95df3364",
+      "recordId": "imp-career-bootcamp-2026",
+      "label": "CVs reviewed",
+      "value": 118,
+      "target": 120,
+      "sortOrder": 2
+    },
+    {
+      "id": "9f74a1b1-8030-532f-94dc-2b33ba825e9b",
+      "recordId": "imp-career-bootcamp-2026",
+      "label": "Mock interviews delivered",
+      "value": 96,
+      "target": 90,
+      "sortOrder": 3
+    },
+    {
+      "id": "5fa9ffe0-ec12-524c-a943-004d1a19a998",
+      "recordId": "imp-ai-literacy-2026",
+      "label": "Workshops delivered",
+      "value": 22,
+      "target": 20,
+      "sortOrder": 0
+    },
+    {
+      "id": "da546461-c78b-5f44-aaa4-7c28d97480eb",
+      "recordId": "imp-ai-literacy-2026",
+      "label": "Participants trained",
+      "value": 486,
+      "target": 450,
+      "sortOrder": 1
+    },
+    {
+      "id": "4f5071bc-4c65-5ac0-a276-ff4158bd4d64",
+      "recordId": "imp-ai-literacy-2026",
+      "label": "Districts reached",
+      "value": 8,
+      "target": 6,
+      "sortOrder": 2
+    },
+    {
+      "id": "bffb7874-e24c-58b1-9a8c-eab5623e8967",
+      "recordId": "imp-youth-bootcamp-2026",
+      "label": "Young people attending",
+      "value": 201,
+      "target": 180,
+      "sortOrder": 0
+    },
+    {
+      "id": "6ca4a21a-cd15-534d-a4f5-19e75bb3f64a",
+      "recordId": "imp-youth-bootcamp-2026",
+      "label": "Financial literacy modules run",
+      "value": 6,
+      "target": 6,
+      "sortOrder": 1
+    },
+    {
+      "id": "7fb6ad55-b501-50fa-9a69-b0d19c016a4a",
+      "recordId": "imp-youth-bootcamp-2026",
+      "label": "Micro-grants awarded",
+      "value": 12,
+      "target": 15,
+      "sortOrder": 2
+    },
+    {
+      "id": "4e4fbe4e-22d6-5dbd-a8d5-a8efaf4c9041",
+      "recordId": "imp-innovation-lab-2026",
+      "label": "Prototypes built",
+      "value": 5,
+      "target": 4,
+      "sortOrder": 0
+    },
+    {
+      "id": "98f2bcbc-9736-5be2-a455-56450c28472c",
+      "recordId": "imp-innovation-lab-2026",
+      "label": "Open-source tools published",
+      "value": 2,
+      "target": 2,
+      "sortOrder": 1
+    },
+    {
+      "id": "86c9bd88-92bf-53a0-98b5-67564e24d04a",
+      "recordId": "imp-innovation-lab-2026",
+      "label": "Contributors involved",
+      "value": 31,
+      "target": 25,
+      "sortOrder": 2
+    },
+    {
+      "id": "ab327685-d9d2-5a5c-b730-b2c5584adeed",
+      "recordId": "imp-ai-cohort-nov-2026",
+      "label": "Participants enrolled",
+      "value": 80,
+      "target": 80,
+      "sortOrder": 0
+    },
+    {
+      "id": "6c00d64b-c28b-5516-87d0-1ae5487d06e8",
+      "recordId": "imp-ai-cohort-nov-2026",
+      "label": "Participants certified",
+      "value": 71,
+      "target": 70,
+      "sortOrder": 1
+    },
+    {
+      "id": "930fae0a-0e91-533e-964c-b5f030e5b49d",
+      "recordId": "imp-ai-cohort-nov-2026",
+      "label": "Training hours delivered",
+      "value": 240,
+      "target": 240,
+      "sortOrder": 2
+    },
+    {
+      "id": "98c5197c-6559-5df0-97c1-d1ab49c12fc0",
+      "recordId": "imp-dhaka-draft-2026",
+      "label": "Students attending",
+      "value": 30,
+      "target": 30,
+      "sortOrder": 0
+    },
+    {
+      "id": "ea79fe0d-413d-5f02-be71-a98f5858c6b8",
+      "recordId": "imp-dhaka-draft-2026",
+      "label": "Devices set up",
+      "value": 6,
+      "target": 8,
+      "sortOrder": 1
+    }
+  ],
+  "impactOutcomes": [
+    {
+      "id": "ae66b952-7b8a-5ddc-91d1-95a573f7c085",
+      "recordId": "imp-khulna-survey-2026",
+      "label": "Priority needs formally documented",
+      "value": 4,
+      "basis": "observed",
+      "note": "Water access, girls' schooling, drainage, waste collection",
+      "evidenceLabel": "Ward council minutes",
+      "dueLabel": null,
+      "sortOrder": 0
+    },
+    {
+      "id": "3ee61c64-fd5b-5bc5-98ac-75570384a7d9",
+      "recordId": "imp-khulna-survey-2026",
+      "label": "Council commitments secured",
+      "value": 2,
+      "basis": "verified",
+      "note": "Ward council agreed to fund drainage repair and a waste pickup route",
+      "evidenceLabel": "Ward council minutes",
+      "dueLabel": null,
+      "sortOrder": 1
+    },
+    {
+      "id": "942c398e-f08d-5358-a58e-b274c09d45f0",
+      "recordId": "imp-career-bootcamp-2026",
+      "label": "Interviewed within 90 days",
+      "value": 73,
+      "basis": "self-reported",
+      "note": "70% of those who completed the programme, from the exit survey",
+      "evidenceLabel": "Cohort exit survey",
+      "dueLabel": null,
+      "sortOrder": 0
+    },
+    {
+      "id": "c2c9022e-51a9-5f3c-a9bc-4cc61af64bb1",
+      "recordId": "imp-career-bootcamp-2026",
+      "label": "Secured employment",
+      "value": 29,
+      "basis": "verified",
+      "note": "Confirmed by employer letter or contract copy",
+      "evidenceLabel": "Employer confirmation letters (29)",
+      "dueLabel": null,
+      "sortOrder": 1
+    },
+    {
+      "id": "fba97077-8280-563d-9450-5d0ee938809d",
+      "recordId": "imp-career-bootcamp-2026",
+      "label": "Progressed to further study",
+      "value": 11,
+      "basis": "self-reported",
+      "note": "Diploma or certification programmes",
+      "evidenceLabel": "Cohort exit survey",
+      "dueLabel": null,
+      "sortOrder": 2
+    },
+    {
+      "id": "4c51cb74-63e7-5447-bbcd-da62c2267d20",
+      "recordId": "imp-ai-literacy-2026",
+      "label": "Using AI tools weekly after 60 days",
+      "value": 214,
+      "basis": "self-reported",
+      "note": "44% of participants, from the 60-day follow-up survey",
+      "evidenceLabel": "60-day follow-up survey data",
+      "dueLabel": null,
+      "sortOrder": 0
+    },
+    {
+      "id": "af5526c8-1fcf-590a-9ea6-b9192ef5d6f6",
+      "recordId": "imp-ai-literacy-2026",
+      "label": "Small businesses automating a task",
+      "value": 63,
+      "basis": "observed",
+      "note": "Recorded during follow-up interviews",
+      "evidenceLabel": "Business interview recordings",
+      "dueLabel": null,
+      "sortOrder": 1
+    },
+    {
+      "id": "a1d0d11d-bc80-57e6-b4d7-39830db6f1a4",
+      "recordId": "imp-ai-literacy-2026",
+      "label": "Participants now volunteering as trainers",
+      "value": 9,
+      "basis": "verified",
+      "note": "Listed on the public volunteer directory",
+      "evidenceLabel": "Volunteer records",
+      "dueLabel": null,
+      "sortOrder": 2
+    },
+    {
+      "id": "0d3b14bb-cada-59e6-9e95-ca9152de32a8",
+      "recordId": "imp-youth-bootcamp-2026",
+      "label": "Opened a first savings account",
+      "value": 88,
+      "basis": "verified",
+      "note": "Confirmed against partner bank onboarding records",
+      "evidenceLabel": "Partner bank onboarding list",
+      "dueLabel": null,
+      "sortOrder": 0
+    },
+    {
+      "id": "d4ba32bc-08eb-5828-b943-9a1965c48e92",
+      "recordId": "imp-youth-bootcamp-2026",
+      "label": "Micro-grant ventures still trading at 6 months",
+      "value": 9,
+      "basis": "observed",
+      "note": "Of 12 funded, ৳50,000 average grant",
+      "evidenceLabel": "6-month venture check-in notes",
+      "dueLabel": null,
+      "sortOrder": 1
+    },
+    {
+      "id": "33f937c4-fc29-5a18-b712-a5dcfc0607a2",
+      "recordId": "imp-youth-bootcamp-2026",
+      "label": "Joined a mentorship circle",
+      "value": 46,
+      "basis": "verified",
+      "note": "Continuing engagement beyond the bootcamp",
+      "evidenceLabel": "Bootcamp attendance register",
+      "dueLabel": null,
+      "sortOrder": 2
+    },
+    {
+      "id": "849e0847-fbf5-5bda-8ead-864b1839f008",
+      "recordId": "imp-innovation-lab-2026",
+      "label": "Tools in active use by partner NGOs",
+      "value": 2,
+      "basis": "verified",
+      "note": "Impact dashboard and volunteer attendance tool",
+      "evidenceLabel": "Partner adoption confirmations",
+      "dueLabel": null,
+      "sortOrder": 0
+    },
+    {
+      "id": "38d13651-9339-5487-a3de-2f98ab92a05b",
+      "recordId": "imp-innovation-lab-2026",
+      "label": "People served through deployed tools",
+      "value": 86,
+      "basis": "observed",
+      "note": "Counted from tool usage logs, not estimated",
+      "evidenceLabel": "Usage log extracts",
+      "dueLabel": null,
+      "sortOrder": 1
+    },
+    {
+      "id": "3681f3c9-569b-5bf0-b6b9-9b7e2c0d3971",
+      "recordId": "imp-ai-cohort-nov-2026",
+      "label": "Employment outcome at 90 days",
+      "value": null,
+      "basis": "pending",
+      "note": "Measurement due 30 Nov 2026 — we do not publish an outcome before we can measure it",
+      "evidenceLabel": "Follow-up survey scheduled",
+      "dueLabel": null,
+      "sortOrder": 0
+    },
+    {
+      "id": "e9ab555b-7891-5a62-ada6-6c71c2a0bb74",
+      "recordId": "imp-dhaka-draft-2026",
+      "label": "Students continuing weekly sessions",
+      "value": null,
+      "basis": "pending",
+      "note": "First follow-up scheduled for Oct 2026",
+      "evidenceLabel": "Session log",
+      "dueLabel": null,
+      "sortOrder": 0
+    }
+  ],
+  "impactEvidence": [
+    {
+      "id": "9ec1b2dd-4f00-596d-b561-83045a44b7d7",
+      "recordId": "imp-khulna-survey-2026",
+      "label": "Signed survey sheets (162)",
+      "kind": "document",
+      "verified": true,
+      "sortOrder": 0
+    },
+    {
+      "id": "b6dc04dd-5faa-5263-be4d-7f3c3af85f02",
+      "recordId": "imp-khulna-survey-2026",
+      "label": "Field photographs",
+      "kind": "photo",
+      "verified": true,
+      "sortOrder": 1
+    },
+    {
+      "id": "695022b5-2e95-5468-8a9e-c4fe6953c431",
+      "recordId": "imp-khulna-survey-2026",
+      "label": "Ward council minutes",
+      "kind": "document",
+      "verified": true,
+      "sortOrder": 2
+    },
+    {
+      "id": "56a8fc1f-fa3b-52d0-b3b2-86c48ba07b97",
+      "recordId": "imp-khulna-survey-2026",
+      "label": "Scorecard PDF",
+      "kind": "report",
+      "verified": false,
+      "sortOrder": 3
+    },
+    {
+      "id": "0de10db9-5316-586b-b22b-6e9a7b371d19",
+      "recordId": "imp-career-bootcamp-2026",
+      "label": "Attendance register",
+      "kind": "document",
+      "verified": true,
+      "sortOrder": 0
+    },
+    {
+      "id": "74b02b09-80bc-5ce1-b766-7a2e748c8b5d",
+      "recordId": "imp-career-bootcamp-2026",
+      "label": "Employer confirmation letters (29)",
+      "kind": "document",
+      "verified": true,
+      "sortOrder": 1
+    },
+    {
+      "id": "14b3215b-769d-5903-a146-0a7081d09d83",
+      "recordId": "imp-career-bootcamp-2026",
+      "label": "Completion certificates issued",
+      "kind": "document",
+      "verified": true,
+      "sortOrder": 2
+    },
+    {
+      "id": "d0cbce49-c7a0-5e95-bdb7-e41d991a1dd0",
+      "recordId": "imp-career-bootcamp-2026",
+      "label": "Cohort exit survey",
+      "kind": "report",
+      "verified": true,
+      "sortOrder": 3
+    },
+    {
+      "id": "0671a9f4-321b-54ee-918d-a486d0d0de55",
+      "recordId": "imp-ai-literacy-2026",
+      "label": "Workshop sign-in sheets",
+      "kind": "document",
+      "verified": true,
+      "sortOrder": 0
+    },
+    {
+      "id": "632e2cf5-0436-56ec-bbc5-98e68690457c",
+      "recordId": "imp-ai-literacy-2026",
+      "label": "60-day follow-up survey data",
+      "kind": "report",
+      "verified": true,
+      "sortOrder": 1
+    },
+    {
+      "id": "29e149d9-c83f-542b-b2d1-c6833fa3862a",
+      "recordId": "imp-ai-literacy-2026",
+      "label": "Session photographs",
+      "kind": "photo",
+      "verified": true,
+      "sortOrder": 2
+    },
+    {
+      "id": "4914dfec-3041-56f5-95f7-ac5f75743956",
+      "recordId": "imp-ai-literacy-2026",
+      "label": "Volunteer records",
+      "kind": "document",
+      "verified": true,
+      "sortOrder": 3
+    },
+    {
+      "id": "f0f79aad-e73f-5943-97b2-e1529d10a20e",
+      "recordId": "imp-ai-literacy-2026",
+      "label": "Business interview recordings",
+      "kind": "document",
+      "verified": false,
+      "sortOrder": 4
+    },
+    {
+      "id": "203aea70-0828-510a-95bd-99538446338e",
+      "recordId": "imp-youth-bootcamp-2026",
+      "label": "Bootcamp attendance register",
+      "kind": "document",
+      "verified": true,
+      "sortOrder": 0
+    },
+    {
+      "id": "98432591-1805-5339-b241-e1964ecd87a3",
+      "recordId": "imp-youth-bootcamp-2026",
+      "label": "Grant disbursement receipts",
+      "kind": "document",
+      "verified": true,
+      "sortOrder": 1
+    },
+    {
+      "id": "c77971f7-4210-5995-acbb-53f1cbfc3743",
+      "recordId": "imp-youth-bootcamp-2026",
+      "label": "Partner bank onboarding list",
+      "kind": "document",
+      "verified": true,
+      "sortOrder": 2
+    },
+    {
+      "id": "9358e48e-9f04-5b6e-8cf7-678b8963a5ce",
+      "recordId": "imp-youth-bootcamp-2026",
+      "label": "6-month venture check-in notes",
+      "kind": "report",
+      "verified": false,
+      "sortOrder": 3
+    },
+    {
+      "id": "a6a439df-942f-51a2-afc5-1f7e1160527b",
+      "recordId": "imp-innovation-lab-2026",
+      "label": "Public repositories",
+      "kind": "document",
+      "verified": true,
+      "sortOrder": 0
+    },
+    {
+      "id": "ba469817-3b49-5a91-b525-7f7b984cdcfb",
+      "recordId": "imp-innovation-lab-2026",
+      "label": "Partner adoption confirmations",
+      "kind": "document",
+      "verified": true,
+      "sortOrder": 1
+    },
+    {
+      "id": "51bba3b1-4463-5dd5-8421-1cf30739c260",
+      "recordId": "imp-innovation-lab-2026",
+      "label": "Usage log extracts",
+      "kind": "report",
+      "verified": false,
+      "sortOrder": 2
+    },
+    {
+      "id": "4b6d72ed-de6a-5492-a337-e18ea8a36d3d",
+      "recordId": "imp-ai-cohort-nov-2026",
+      "label": "Attendance register",
+      "kind": "document",
+      "verified": true,
+      "sortOrder": 0
+    },
+    {
+      "id": "a29f9877-be99-59d7-a262-2d016e6e42dc",
+      "recordId": "imp-ai-cohort-nov-2026",
+      "label": "Certificates issued (71)",
+      "kind": "document",
+      "verified": true,
+      "sortOrder": 1
+    },
+    {
+      "id": "721bc817-9abb-5647-ba44-604a7f756a9b",
+      "recordId": "imp-ai-cohort-nov-2026",
+      "label": "Follow-up survey scheduled",
+      "kind": "report",
+      "verified": false,
+      "sortOrder": 2
+    },
+    {
+      "id": "0003ad87-160e-5764-b301-d0c91cd592e5",
+      "recordId": "imp-dhaka-draft-2026",
+      "label": "Session log",
+      "kind": "document",
+      "verified": false,
+      "sortOrder": 0
+    },
+    {
+      "id": "377e4c71-4c3e-5d74-9348-ac153003678d",
+      "recordId": "imp-dhaka-draft-2026",
+      "label": "Setup photographs",
+      "kind": "photo",
+      "verified": false,
+      "sortOrder": 1
+    }
+  ],
+  "partners": [
+    {
+      "id": "ptr-brightworks",
+      "slug": "brightworks-bangladesh-ltd",
+      "name": "BrightWorks Bangladesh Ltd",
+      "kind": "Corporate sponsorship",
+      "tier": "Strategic Impact Partner",
+      "stage": "active",
+      "sinceLabel": "Jun 2026",
+      "renewalLabel": "Jun 2027",
+      "contact": "Farid Hossain, Head of CSR",
+      "story": "Building digital opportunity for young Bangladeshis — practical AI skills, verified certifications, and pathways into work.",
+      "goalLabel": "Support 1,000 young people with digital skills",
+      "goalTarget": 1000,
+      "committed": 2500000,
+      "currency": "BDT",
+      "districts": [
+        "Dhaka",
+        "Chattogram"
+      ],
+      "discloseFunding": true,
+      "employeesParticipated": 9,
+      "employeesHours": 62,
+      "employeesSessions": 3,
+      "logoPath": null
+    },
+    {
+      "id": "ptr-rahman-foundation",
+      "slug": "rahman-family-foundation",
+      "name": "Rahman Family Foundation",
+      "kind": "Restricted grant",
+      "tier": "Impact Partner",
+      "stage": "active",
+      "sinceLabel": "Aug 2026",
+      "renewalLabel": "Aug 2027",
+      "contact": "Grants office",
+      "story": "Funding career readiness for graduates across Dhaka division.",
+      "goalLabel": "500 graduates through Career Launch",
+      "goalTarget": 500,
+      "committed": 2500000,
+      "currency": "BDT",
+      "districts": [
+        "Dhaka"
+      ],
+      "discloseFunding": false,
+      "employeesParticipated": 0,
+      "employeesHours": 0,
+      "employeesSessions": 0,
+      "logoPath": null
+    },
+    {
+      "id": "ptr-delta",
+      "slug": "delta-textiles-csr",
+      "name": "Delta Textiles CSR",
+      "kind": "CSR partnership",
+      "tier": "Impact Partner",
+      "stage": "active",
+      "sinceLabel": "Jul 2026",
+      "renewalLabel": "Jul 2027",
+      "contact": "CSR desk",
+      "story": "Backing youth micro-grants and bootcamps in Rajshahi.",
+      "goalLabel": "200 young people through skills bootcamps",
+      "goalTarget": 200,
+      "committed": 900000,
+      "currency": "BDT",
+      "districts": [
+        "Rajshahi"
+      ],
+      "discloseFunding": false,
+      "employeesParticipated": 4,
+      "employeesHours": 18,
+      "employeesSessions": 1,
+      "logoPath": null
+    },
+    {
+      "id": "ptr-nagorik",
+      "slug": "nagorik-trust",
+      "name": "Nagorik Trust",
+      "kind": "Grant",
+      "tier": "Impact Partner",
+      "stage": "active",
+      "sinceLabel": "Jul 2026",
+      "renewalLabel": "Jan 2027",
+      "contact": "Programme officer",
+      "story": "Community-led development in Khulna and Sylhet.",
+      "goalLabel": "3 community projects delivered",
+      "goalTarget": 3,
+      "committed": 1200000,
+      "currency": "BDT",
+      "districts": [
+        "Khulna",
+        "Sylhet"
+      ],
+      "discloseFunding": false,
+      "employeesParticipated": 0,
+      "employeesHours": 0,
+      "employeesSessions": 0,
+      "logoPath": null
+    },
+    {
+      "id": "ptr-techhub",
+      "slug": "techhub-dhaka",
+      "name": "TechHub Dhaka",
+      "kind": "Corporate sponsorship + in-kind",
+      "tier": "Founding Partner",
+      "stage": "renewal",
+      "sinceLabel": "Jun 2024",
+      "renewalLabel": "Oct 2026",
+      "contact": "Partnerships team",
+      "story": "Our longest-running technology partner — powering the Tech for Good Lab since 2024.",
+      "goalLabel": "2 open-source tools in the field",
+      "goalTarget": 2,
+      "committed": 600000,
+      "currency": "BDT",
+      "districts": [
+        "Dhaka"
+      ],
+      "discloseFunding": true,
+      "employeesParticipated": 12,
+      "employeesHours": 96,
+      "employeesSessions": 5,
+      "logoPath": null
+    },
+    {
+      "id": "ptr-dhaka-university",
+      "slug": "university-of-dhaka-career-club",
+      "name": "University of Dhaka Career Club",
+      "kind": "Institutional partner — venue, faculty & participants (in-kind)",
+      "tier": "Knowledge Partner",
+      "stage": "active",
+      "sinceLabel": "Feb 2026",
+      "renewalLabel": "Feb 2027",
+      "contact": "Faculty adviser",
+      "story": "No cash changes hands — the university contributes venues, faculty time, and student participation.",
+      "goalLabel": "Reach 500 students through campus programmes",
+      "goalTarget": 500,
+      "committed": 0,
+      "currency": "BDT",
+      "districts": [
+        "Dhaka"
+      ],
+      "discloseFunding": true,
+      "employeesParticipated": 26,
+      "employeesHours": 210,
+      "employeesSessions": 7,
+      "logoPath": null
+    },
+    {
+      "id": "ptr-prospect-bank",
+      "slug": "eastern-capital-bank",
+      "name": "Eastern Capital Bank",
+      "kind": "Prospect — CSR partnership",
+      "tier": "Prospect",
+      "stage": "proposal",
+      "sinceLabel": "—",
+      "renewalLabel": "—",
+      "contact": "Head of Sustainability",
+      "story": "",
+      "goalLabel": "Proposal: Mock Interview Days with employee volunteers",
+      "goalTarget": 0,
+      "committed": 0,
+      "currency": "BDT",
+      "districts": [
+        "Dhaka"
+      ],
+      "discloseFunding": false,
+      "employeesParticipated": 0,
+      "employeesHours": 0,
+      "employeesSessions": 0,
+      "logoPath": null
+    }
+  ],
+  "partnerPrograms": [
+    {
+      "partnerId": "ptr-brightworks",
+      "programSlug": "ai-digital-skills"
+    },
+    {
+      "partnerId": "ptr-brightworks",
+      "programSlug": "education-career-readiness"
+    },
+    {
+      "partnerId": "ptr-rahman-foundation",
+      "programSlug": "education-career-readiness"
+    },
+    {
+      "partnerId": "ptr-delta",
+      "programSlug": "youth-empowerment"
+    },
+    {
+      "partnerId": "ptr-nagorik",
+      "programSlug": "community-development"
+    },
+    {
+      "partnerId": "ptr-techhub",
+      "programSlug": "innovation-social-good"
+    },
+    {
+      "partnerId": "ptr-techhub",
+      "programSlug": "ai-digital-skills"
+    },
+    {
+      "partnerId": "ptr-dhaka-university",
+      "programSlug": "education-career-readiness"
+    },
+    {
+      "partnerId": "ptr-dhaka-university",
+      "programSlug": "youth-empowerment"
+    },
+    {
+      "partnerId": "ptr-prospect-bank",
+      "programSlug": "education-career-readiness"
+    }
+  ],
+  "partnerInkind": [
+    {
+      "id": "44f1a088-d6f2-548f-bed9-718c003e2275",
+      "partnerId": "ptr-brightworks",
+      "label": "Training venue, Gulshan (12 sessions)",
+      "estValue": 300000
+    },
+    {
+      "id": "a6e1eb9a-b9d6-5887-88ea-d4c33a2c9265",
+      "partnerId": "ptr-techhub",
+      "label": "Co-working space for Tech for Good Lab",
+      "estValue": 240000
+    },
+    {
+      "id": "f62d9f08-f514-5ba1-bd4b-cf9818ee110a",
+      "partnerId": "ptr-techhub",
+      "label": "Cloud credits",
+      "estValue": 90000
+    },
+    {
+      "id": "3d6ae27f-9799-57d6-83ed-4c1653a44289",
+      "partnerId": "ptr-dhaka-university",
+      "label": "Auditorium & classrooms for bootcamps",
+      "estValue": 350000
+    },
+    {
+      "id": "4813f1df-6493-5918-9531-d55e928ca379",
+      "partnerId": "ptr-dhaka-university",
+      "label": "Faculty mentoring hours",
+      "estValue": 120000
+    }
+  ],
+  "partnerCommitments": [
+    {
+      "id": "c8f20724-ff07-5a0a-a8c6-ec3f2ba4f62e",
+      "partnerId": "ptr-brightworks",
+      "side": "goodness",
+      "label": "Digital-skills cohorts delivered",
+      "done": 3,
+      "total": 4,
+      "unit": null,
+      "note": null,
+      "sortOrder": 0
+    },
+    {
+      "id": "f3c49609-cfca-5c82-bfcb-8570010e5c12",
+      "partnerId": "ptr-brightworks",
+      "side": "goodness",
+      "label": "Quarterly impact reports",
+      "done": 2,
+      "total": 4,
+      "unit": null,
+      "note": null,
+      "sortOrder": 1
+    },
+    {
+      "id": "d261458f-cbbd-5dda-8bbb-71df43b327e6",
+      "partnerId": "ptr-brightworks",
+      "side": "goodness",
+      "label": "90-day outcome measurement",
+      "done": null,
+      "total": null,
+      "unit": null,
+      "note": "Next due 30 Nov 2026",
+      "sortOrder": 2
+    },
+    {
+      "id": "9b4d4ecc-ad69-5b61-9206-52aa5ddffed8",
+      "partnerId": "ptr-brightworks",
+      "side": "partner",
+      "label": "Funding commitment received",
+      "done": 15,
+      "total": 25,
+      "unit": "L",
+      "note": null,
+      "sortOrder": 0
+    },
+    {
+      "id": "54ba3cd2-1b4a-5e6e-88d3-115cb7f9a928",
+      "partnerId": "ptr-brightworks",
+      "side": "partner",
+      "label": "Employee volunteers",
+      "done": 9,
+      "total": 20,
+      "unit": null,
+      "note": null,
+      "sortOrder": 1
+    },
+    {
+      "id": "9d188416-8804-5a7c-bb6a-531fd1f254b0",
+      "partnerId": "ptr-brightworks",
+      "side": "partner",
+      "label": "Training venue sessions",
+      "done": 8,
+      "total": 12,
+      "unit": null,
+      "note": null,
+      "sortOrder": 2
+    }
+  ],
+  "partnerTimeline": [
+    {
+      "id": "2c694024-240d-5262-8ca3-e206a7690085",
+      "partnerId": "ptr-brightworks",
+      "dateLabel": "18 Aug 2026",
+      "happenedOn": null,
+      "kind": "evidence",
+      "text": "Attendance registers checked for Cohort 04 — 71 certificates issued"
+    },
+    {
+      "id": "872ae03f-acc3-51d7-8fe7-36f5bcacc4c3",
+      "partnerId": "ptr-brightworks",
+      "dateLabel": "12 Aug 2026",
+      "happenedOn": null,
+      "kind": "money",
+      "text": "Second instalment received — ৳15.0L of ৳25.0L commitment"
+    },
+    {
+      "id": "b3dad2dd-1034-54bd-a147-bbfed315ea9b",
+      "partnerId": "ptr-brightworks",
+      "dateLabel": "02 Aug 2026",
+      "happenedOn": null,
+      "kind": "mission",
+      "text": "Digital Skills Certification Cohort 04 completed in Chattogram"
+    },
+    {
+      "id": "44a69df0-43e9-598a-9509-17a5c138f3e1",
+      "partnerId": "ptr-brightworks",
+      "dateLabel": "14 Jul 2026",
+      "happenedOn": null,
+      "kind": "people",
+      "text": "6 BrightWorks employees volunteered at the Dhaka AI workshop"
+    },
+    {
+      "id": "3998b572-5d45-5498-90c4-c0271d1e0772",
+      "partnerId": "ptr-brightworks",
+      "dateLabel": "28 Jun 2026",
+      "happenedOn": null,
+      "kind": "money",
+      "text": "৳5.0L allocated to the Digital Bangladesh Skills Drive"
+    },
+    {
+      "id": "58a54de1-8ed1-5c02-8ce4-9c7624b78cee",
+      "partnerId": "ptr-brightworks",
+      "dateLabel": "15 Jun 2026",
+      "happenedOn": null,
+      "kind": "start",
+      "text": "Partnership signed — ৳25.0L committed over 12 months"
+    },
+    {
+      "id": "48936777-7d62-59c5-85d6-13cd2a2c674c",
+      "partnerId": "ptr-rahman-foundation",
+      "dateLabel": "05 Aug 2026",
+      "happenedOn": null,
+      "kind": "money",
+      "text": "Grant received in full — ৳25.0L, restricted to Education & Career Readiness"
+    },
+    {
+      "id": "c6980dda-bde1-569d-86df-89863c0a55cb",
+      "partnerId": "ptr-rahman-foundation",
+      "dateLabel": "01 Aug 2026",
+      "happenedOn": null,
+      "kind": "start",
+      "text": "Grant agreement signed with quarterly reporting"
+    },
+    {
+      "id": "0d372b6e-bcb1-5932-b674-634c31e29288",
+      "partnerId": "ptr-delta",
+      "dateLabel": "20 Jul 2026",
+      "happenedOn": null,
+      "kind": "money",
+      "text": "৳9.0L received for Youth Futures 2026"
+    },
+    {
+      "id": "c78117c1-0106-5ad2-bae8-4555835fb002",
+      "partnerId": "ptr-nagorik",
+      "dateLabel": "08 Jul 2026",
+      "happenedOn": null,
+      "kind": "money",
+      "text": "৳12.0L received for community development work"
+    },
+    {
+      "id": "941e52cf-907c-56ae-a9b3-a77322f50d7a",
+      "partnerId": "ptr-techhub",
+      "dateLabel": "18 Jun 2026",
+      "happenedOn": null,
+      "kind": "money",
+      "text": "2026 sponsorship received — ৳6.0L"
+    },
+    {
+      "id": "5f0fa0fa-5822-5159-ad13-54c288f4e3e6",
+      "partnerId": "ptr-techhub",
+      "dateLabel": "05 Jun 2026",
+      "happenedOn": null,
+      "kind": "people",
+      "text": "TechHub engineers mentored the Innovation Sprint"
+    },
+    {
+      "id": "47d1ba4f-94bb-5bb8-8973-b404b2278faa",
+      "partnerId": "ptr-dhaka-university",
+      "dateLabel": "11 Aug 2026",
+      "happenedOn": null,
+      "kind": "people",
+      "text": "26 student volunteers completed the Career Launch support missions"
+    },
+    {
+      "id": "03a98084-e254-54a1-b1d1-3828649dda52",
+      "partnerId": "ptr-dhaka-university",
+      "dateLabel": "02 Feb 2026",
+      "happenedOn": null,
+      "kind": "start",
+      "text": "MoU signed — venue and faculty support for 2026"
+    },
+    {
+      "id": "8adde975-d567-5e70-869a-f259c1009e06",
+      "partnerId": "ptr-prospect-bank",
+      "dateLabel": "14 Aug 2026",
+      "happenedOn": null,
+      "kind": "note",
+      "text": "Proposal sent — Career Launch co-funding + employee volunteering"
+    }
+  ],
+  "partnerEmployeeSessions": [
+    {
+      "id": "fa716701-4f7b-5bb3-8449-ba62593bc9e0",
+      "partnerId": "ptr-brightworks",
+      "missionId": null,
+      "people": 9,
+      "hours": 62,
+      "dateLabel": "Jun 2026"
+    },
+    {
+      "id": "923fa575-92d9-531d-80a4-ec08534ad753",
+      "partnerId": "ptr-delta",
+      "missionId": null,
+      "people": 4,
+      "hours": 18,
+      "dateLabel": "Jul 2026"
+    },
+    {
+      "id": "d39dad01-4321-5a82-ad44-db3c9baf66c4",
+      "partnerId": "ptr-techhub",
+      "missionId": null,
+      "people": 12,
+      "hours": 96,
+      "dateLabel": "Jun 2024"
+    },
+    {
+      "id": "28e997ca-73bc-5411-9e30-06ee06be7201",
+      "partnerId": "ptr-dhaka-university",
+      "missionId": null,
+      "people": 26,
+      "hours": 210,
+      "dateLabel": "Feb 2026"
+    }
+  ],
+  "opportunities": [
+    {
+      "id": "opp-ai-500",
+      "title": "AI skills for 500 young people",
+      "programSlug": "ai-digital-skills",
+      "chapterId": null,
+      "whereLabel": "Dhaka · Chattogram",
+      "urgent": false,
+      "target": 1800000,
+      "secured": 1140000,
+      "seeking": [
+        "Lead Partner — ৳10L+",
+        "Supporting partners — ৳2L+",
+        "20 employee volunteers"
+      ],
+      "expected": [
+        "500 learners complete foundation training",
+        "400 certifications",
+        "90-day follow-up measured and published"
+      ],
+      "note": "Contributions join the funding pool for this initiative; results are reported collectively with evidence.",
+      "open": true
+    },
+    {
+      "id": "opp-sylhet-floods",
+      "title": "Rebuild learning access after the Sylhet floods",
+      "programSlug": "community-development",
+      "chapterId": null,
+      "whereLabel": "Sylhet division",
+      "urgent": true,
+      "target": 1200000,
+      "secured": 380000,
+      "seeking": [
+        "Relief partners — any amount",
+        "In-kind: school supplies, transport"
+      ],
+      "expected": [
+        "400 family relief packs",
+        "6 learning spaces restored",
+        "Household recovery tracked on the ward scorecard"
+      ],
+      "note": "Urgent — packing missions are already scheduled and waiting on funding.",
+      "open": true
+    },
+    {
+      "id": "opp-career-rajshahi",
+      "title": "Career Launch — Rajshahi",
+      "programSlug": "education-career-readiness",
+      "chapterId": null,
+      "whereLabel": "Rajshahi",
+      "urgent": false,
+      "target": 950000,
+      "secured": 250000,
+      "seeking": [
+        "Anchor partner — ৳5L",
+        "Mock-interview employee volunteers"
+      ],
+      "expected": [
+        "250 graduating students coached",
+        "CVs and mock interviews for all participants",
+        "Employment outcomes measured at 90 days"
+      ],
+      "note": "Extends the Dhaka cohort model whose outcomes are already published.",
+      "open": true
+    },
+    {
+      "id": "opp-open-tools",
+      "title": "Open Impact Tools — close the funding gap",
+      "programSlug": "innovation-social-good",
+      "chapterId": null,
+      "whereLabel": "Dhaka · remote",
+      "urgent": false,
+      "target": 800000,
+      "secured": 560000,
+      "seeking": [
+        "Technology partner — ৳2.4L",
+        "In-kind: cloud hosting, design time"
+      ],
+      "expected": [
+        "2 open-source tools maintained in the field",
+        "Partner NGOs onboarded",
+        "Usage logged, not estimated"
+      ],
+      "note": "This is the same ৳2.4L gap shown on the Trust Ledger's Innovation fund.",
+      "open": true
+    }
+  ],
+  "funds": [
+    {
+      "id": "fnd-education",
+      "programSlug": "education-career-readiness",
+      "chapterId": null,
+      "projectLabel": "Career Launch 2026",
+      "budget": 2200000,
+      "allocated": 2200000,
+      "currency": "BDT"
+    },
+    {
+      "id": "fnd-digital",
+      "programSlug": "ai-digital-skills",
+      "chapterId": null,
+      "projectLabel": "Digital Bangladesh Skills Drive",
+      "budget": 1450000,
+      "allocated": 1450000,
+      "currency": "BDT"
+    },
+    {
+      "id": "fnd-youth",
+      "programSlug": "youth-empowerment",
+      "chapterId": null,
+      "projectLabel": "Youth Futures 2026",
+      "budget": 850000,
+      "allocated": 850000,
+      "currency": "BDT"
+    },
+    {
+      "id": "fnd-community",
+      "programSlug": "community-development",
+      "chapterId": null,
+      "projectLabel": "Khulna Ward Scorecard 2026",
+      "budget": 1000000,
+      "allocated": 1000000,
+      "currency": "BDT"
+    },
+    {
+      "id": "fnd-innovation",
+      "programSlug": "innovation-social-good",
+      "chapterId": null,
+      "projectLabel": "Open Impact Tools",
+      "budget": 800000,
+      "allocated": 560000,
+      "currency": "BDT"
+    },
+    {
+      "id": "fnd-operations",
+      "programSlug": "operations",
+      "chapterId": null,
+      "projectLabel": "Running the organisation",
+      "budget": 620000,
+      "allocated": 620000,
+      "currency": "BDT"
+    }
+  ],
+  "donations": [
+    {
+      "id": "don-2026-041",
+      "donorName": "BrightWorks Bangladesh Ltd",
+      "donorProfileId": null,
+      "partnerId": "ptr-brightworks",
+      "kind": "Corporate",
+      "amount": 1500000,
+      "currency": "BDT",
+      "donatedOn": null,
+      "dateLabel": "12 Aug 2026",
+      "method": "Bank transfer",
+      "restrictedProgramSlug": "ai-digital-skills",
+      "restrictedChapterId": null,
+      "receiptRef": "GS-RCP-2026-0041",
+      "acknowledged": true
+    },
+    {
+      "id": "don-2026-040",
+      "donorName": "Rahman Family Foundation",
+      "donorProfileId": null,
+      "partnerId": "ptr-rahman-foundation",
+      "kind": "Foundation",
+      "amount": 2500000,
+      "currency": "BDT",
+      "donatedOn": null,
+      "dateLabel": "05 Aug 2026",
+      "method": "Bank transfer",
+      "restrictedProgramSlug": "education-career-readiness",
+      "restrictedChapterId": null,
+      "receiptRef": "GS-RCP-2026-0040",
+      "acknowledged": true
+    },
+    {
+      "id": "don-2026-039",
+      "donorName": "Tasnim Haque",
+      "donorProfileId": "0d735c5d-ed84-5c80-a4ca-f61ffab239d3",
+      "partnerId": null,
+      "kind": "Individual",
+      "amount": 50000,
+      "currency": "BDT",
+      "donatedOn": null,
+      "dateLabel": "02 Aug 2026",
+      "method": "bKash",
+      "restrictedProgramSlug": null,
+      "restrictedChapterId": null,
+      "receiptRef": "GS-RCP-2026-0039",
+      "acknowledged": true
+    },
+    {
+      "id": "don-2026-038",
+      "donorName": "Anonymous donor",
+      "donorProfileId": null,
+      "partnerId": null,
+      "kind": "Individual",
+      "amount": 25000,
+      "currency": "BDT",
+      "donatedOn": null,
+      "dateLabel": "28 Jul 2026",
+      "method": "bKash",
+      "restrictedProgramSlug": null,
+      "restrictedChapterId": null,
+      "receiptRef": "GS-RCP-2026-0038",
+      "acknowledged": false
+    },
+    {
+      "id": "don-2026-037",
+      "donorName": "Delta Textiles CSR",
+      "donorProfileId": null,
+      "partnerId": "ptr-delta",
+      "kind": "Corporate",
+      "amount": 900000,
+      "currency": "BDT",
+      "donatedOn": null,
+      "dateLabel": "20 Jul 2026",
+      "method": "Cheque",
+      "restrictedProgramSlug": "youth-empowerment",
+      "restrictedChapterId": null,
+      "receiptRef": "GS-RCP-2026-0037",
+      "acknowledged": true
+    },
+    {
+      "id": "don-2026-036",
+      "donorName": "Nagorik Trust",
+      "donorProfileId": null,
+      "partnerId": "ptr-nagorik",
+      "kind": "Foundation",
+      "amount": 1200000,
+      "currency": "BDT",
+      "donatedOn": null,
+      "dateLabel": "08 Jul 2026",
+      "method": "Bank transfer",
+      "restrictedProgramSlug": "community-development",
+      "restrictedChapterId": null,
+      "receiptRef": "GS-RCP-2026-0036",
+      "acknowledged": true
+    },
+    {
+      "id": "don-2026-035",
+      "donorName": "Arif Chowdhury",
+      "donorProfileId": "4f18bc22-f979-57fd-bcc8-647ac8af89a4",
+      "partnerId": null,
+      "kind": "Individual",
+      "amount": 15000,
+      "currency": "BDT",
+      "donatedOn": null,
+      "dateLabel": "01 Jul 2026",
+      "method": "Card",
+      "restrictedProgramSlug": null,
+      "restrictedChapterId": null,
+      "receiptRef": "GS-RCP-2026-0035",
+      "acknowledged": true
+    },
+    {
+      "id": "don-2026-034",
+      "donorName": "TechHub Dhaka",
+      "donorProfileId": null,
+      "partnerId": "ptr-techhub",
+      "kind": "Corporate",
+      "amount": 600000,
+      "currency": "BDT",
+      "donatedOn": null,
+      "dateLabel": "18 Jun 2026",
+      "method": "Bank transfer",
+      "restrictedProgramSlug": "innovation-social-good",
+      "restrictedChapterId": null,
+      "receiptRef": "GS-RCP-2026-0034",
+      "acknowledged": true
+    }
+  ],
+  "expenses": [
+    {
+      "id": "exp-2026-118",
+      "fundId": "fnd-education",
+      "item": "Venue hire — Career Bootcamp, 4 weeks",
+      "amount": 420000,
+      "spentOn": null,
+      "dateLabel": "10 Jun 2026",
+      "payee": "Dhaka Community Hall",
+      "status": "approved",
+      "approvedByLabel": "Executive Director",
+      "approvedBy": null,
+      "approvedAt": null,
+      "missionId": null,
+      "impactRecordId": "imp-career-bootcamp-2026"
+    },
+    {
+      "id": "exp-2026-117",
+      "fundId": "fnd-education",
+      "item": "Trainer stipends (6 trainers)",
+      "amount": 360000,
+      "spentOn": null,
+      "dateLabel": "12 Jun 2026",
+      "payee": "6 payees",
+      "status": "approved",
+      "approvedByLabel": "Executive Director",
+      "approvedBy": null,
+      "approvedAt": null,
+      "missionId": null,
+      "impactRecordId": "imp-career-bootcamp-2026"
+    },
+    {
+      "id": "exp-2026-116",
+      "fundId": "fnd-education",
+      "item": "Printed workbooks (120 sets)",
+      "amount": 96000,
+      "spentOn": null,
+      "dateLabel": "02 Jun 2026",
+      "payee": "Nabin Press",
+      "status": "approved",
+      "approvedByLabel": "Programs Lead",
+      "approvedBy": null,
+      "approvedAt": null,
+      "missionId": null,
+      "impactRecordId": "imp-career-bootcamp-2026"
+    },
+    {
+      "id": "exp-2026-115",
+      "fundId": "fnd-digital",
+      "item": "Laptops for training labs (8 units)",
+      "amount": 640000,
+      "spentOn": null,
+      "dateLabel": "22 May 2026",
+      "payee": "Byte Solutions",
+      "status": "approved",
+      "approvedByLabel": "Executive Director",
+      "approvedBy": null,
+      "approvedAt": null,
+      "missionId": null,
+      "impactRecordId": "imp-ai-literacy-2026"
+    },
+    {
+      "id": "exp-2026-114",
+      "fundId": "fnd-digital",
+      "item": "Workshop travel — 8 districts",
+      "amount": 186000,
+      "spentOn": null,
+      "dateLabel": "28 May 2026",
+      "payee": "Various",
+      "status": "approved",
+      "approvedByLabel": "Programs Lead",
+      "approvedBy": null,
+      "approvedAt": null,
+      "missionId": null,
+      "impactRecordId": "imp-ai-literacy-2026"
+    },
+    {
+      "id": "exp-2026-113",
+      "fundId": "fnd-youth",
+      "item": "Micro-grants disbursed (12 ventures)",
+      "amount": 600000,
+      "spentOn": null,
+      "dateLabel": "18 Apr 2026",
+      "payee": "12 grantees",
+      "status": "approved",
+      "approvedByLabel": "Executive Director",
+      "approvedBy": null,
+      "approvedAt": null,
+      "missionId": null,
+      "impactRecordId": "imp-youth-bootcamp-2026"
+    },
+    {
+      "id": "exp-2026-112",
+      "fundId": "fnd-youth",
+      "item": "Bootcamp catering, Rajshahi",
+      "amount": 118000,
+      "spentOn": null,
+      "dateLabel": "15 Apr 2026",
+      "payee": "Padma Caterers",
+      "status": "approved",
+      "approvedByLabel": "Programs Lead",
+      "approvedBy": null,
+      "approvedAt": null,
+      "missionId": "msn-rajshahi-youth-01",
+      "impactRecordId": "imp-youth-bootcamp-2026"
+    },
+    {
+      "id": "exp-2026-111",
+      "fundId": "fnd-community",
+      "item": "Survey materials & field kits",
+      "amount": 74000,
+      "spentOn": null,
+      "dateLabel": "18 Aug 2026",
+      "payee": "Rupsha Supplies",
+      "status": "approved",
+      "approvedByLabel": "Programs Lead",
+      "approvedBy": null,
+      "approvedAt": null,
+      "missionId": "msn-khulna-community-01",
+      "impactRecordId": "imp-khulna-survey-2026"
+    },
+    {
+      "id": "exp-2026-110",
+      "fundId": "fnd-community",
+      "item": "Flood relief packs (400 families)",
+      "amount": 520000,
+      "spentOn": null,
+      "dateLabel": "26 Aug 2026",
+      "payee": "Sylhet Wholesale",
+      "status": "pending",
+      "approvedByLabel": null,
+      "approvedBy": null,
+      "approvedAt": null,
+      "missionId": "msn-sylhet-flood-01",
+      "impactRecordId": null
+    },
+    {
+      "id": "exp-2026-109",
+      "fundId": "fnd-innovation",
+      "item": "Cloud hosting, 12 months",
+      "amount": 144000,
+      "spentOn": null,
+      "dateLabel": "05 Jul 2026",
+      "payee": "CloudBD",
+      "status": "approved",
+      "approvedByLabel": "Executive Director",
+      "approvedBy": null,
+      "approvedAt": null,
+      "missionId": null,
+      "impactRecordId": "imp-innovation-lab-2026"
+    },
+    {
+      "id": "exp-2026-104",
+      "fundId": "fnd-innovation",
+      "item": "Prototype hardware — sensors & tablets",
+      "amount": 96000,
+      "spentOn": null,
+      "dateLabel": "14 Jul 2026",
+      "payee": "Byte Solutions",
+      "status": "approved",
+      "approvedByLabel": "Programs Lead",
+      "approvedBy": null,
+      "approvedAt": null,
+      "missionId": null,
+      "impactRecordId": "imp-innovation-lab-2026"
+    },
+    {
+      "id": "exp-2026-108",
+      "fundId": "fnd-innovation",
+      "item": "Designer contract — accessibility audit",
+      "amount": 90000,
+      "spentOn": null,
+      "dateLabel": "12 Jul 2026",
+      "payee": "Arif Chowdhury",
+      "status": "pending",
+      "approvedByLabel": null,
+      "approvedBy": null,
+      "approvedAt": null,
+      "missionId": null,
+      "impactRecordId": null
+    },
+    {
+      "id": "exp-2026-107",
+      "fundId": "fnd-operations",
+      "item": "Office rent, Q3",
+      "amount": 270000,
+      "spentOn": null,
+      "dateLabel": "01 Jul 2026",
+      "payee": "Gulshan Properties",
+      "status": "approved",
+      "approvedByLabel": "Executive Director",
+      "approvedBy": null,
+      "approvedAt": null,
+      "missionId": null,
+      "impactRecordId": null
+    },
+    {
+      "id": "exp-2026-106",
+      "fundId": "fnd-operations",
+      "item": "Accounting & audit fees",
+      "amount": 165000,
+      "spentOn": null,
+      "dateLabel": "20 Jun 2026",
+      "payee": "Hoque & Co.",
+      "status": "approved",
+      "approvedByLabel": "Executive Director",
+      "approvedBy": null,
+      "approvedAt": null,
+      "missionId": null,
+      "impactRecordId": null
+    },
+    {
+      "id": "exp-2026-105",
+      "fundId": "fnd-operations",
+      "item": "Platform & communications tools",
+      "amount": 82000,
+      "spentOn": null,
+      "dateLabel": "08 Jun 2026",
+      "payee": "Various SaaS",
+      "status": "approved",
+      "approvedByLabel": "Programs Lead",
+      "approvedBy": null,
+      "approvedAt": null,
+      "missionId": null,
+      "impactRecordId": null
+    }
+  ],
+  "expenseEvidence": [
+    {
+      "id": "4256e32b-9971-5c22-ad97-9f3bba8ac8b5",
+      "expenseId": "exp-2026-118",
+      "label": "Invoice DCH-4471",
+      "checked": true
+    },
+    {
+      "id": "b011ad47-e9f3-5a55-b7de-b76eb3844d16",
+      "expenseId": "exp-2026-118",
+      "label": "Bank debit advice",
+      "checked": true
+    },
+    {
+      "id": "43a11cee-7596-5829-921e-1fd5c3dfaff1",
+      "expenseId": "exp-2026-117",
+      "label": "Signed stipend register",
+      "checked": true
+    },
+    {
+      "id": "3aa39a2f-ce9a-58af-b0c8-05471ed1361c",
+      "expenseId": "exp-2026-117",
+      "label": "Bank transfer list",
+      "checked": true
+    },
+    {
+      "id": "445c84af-7aaf-5816-8e39-676238f553fa",
+      "expenseId": "exp-2026-116",
+      "label": "Invoice NP-2213",
+      "checked": true
+    },
+    {
+      "id": "fd3f01a0-2280-5b94-b966-8ce07cde685a",
+      "expenseId": "exp-2026-116",
+      "label": "Delivery note",
+      "checked": false
+    },
+    {
+      "id": "90c36569-f5af-51d9-85b7-66be7205db1c",
+      "expenseId": "exp-2026-115",
+      "label": "Invoice BS-8891",
+      "checked": true
+    },
+    {
+      "id": "d44c08dd-ce15-5ab1-a0e5-ea247b1713a4",
+      "expenseId": "exp-2026-115",
+      "label": "Asset register entry",
+      "checked": true
+    },
+    {
+      "id": "b865b0db-c242-5f5b-b088-1891f320afc3",
+      "expenseId": "exp-2026-115",
+      "label": "Delivery photographs",
+      "checked": true
+    },
+    {
+      "id": "cf456cd5-0776-5e37-8be2-27d308372c24",
+      "expenseId": "exp-2026-114",
+      "label": "Travel claim forms",
+      "checked": true
+    },
+    {
+      "id": "b3e226f3-3a72-57d8-bcbc-8bba920318a9",
+      "expenseId": "exp-2026-114",
+      "label": "Ticket copies",
+      "checked": false
+    },
+    {
+      "id": "2a5b2780-7d62-5e96-a263-b30a72b646ed",
+      "expenseId": "exp-2026-113",
+      "label": "Grant agreements (12)",
+      "checked": true
+    },
+    {
+      "id": "2f26cb33-5bd5-55c3-bbea-9806edd05d16",
+      "expenseId": "exp-2026-113",
+      "label": "Disbursement receipts",
+      "checked": true
+    },
+    {
+      "id": "26ce2686-3773-57a4-9cfb-27f99defd3b2",
+      "expenseId": "exp-2026-112",
+      "label": "Invoice PC-331",
+      "checked": true
+    },
+    {
+      "id": "0805ba92-1f41-54ca-8141-2438934c9cdf",
+      "expenseId": "exp-2026-111",
+      "label": "Invoice RS-129",
+      "checked": true
+    },
+    {
+      "id": "4c3c361f-b992-560e-b0ac-2b1e4b15b1b3",
+      "expenseId": "exp-2026-111",
+      "label": "Field photographs",
+      "checked": true
+    },
+    {
+      "id": "ffc31859-d11e-5442-806b-13577f22b096",
+      "expenseId": "exp-2026-110",
+      "label": "Quotation SW-902",
+      "checked": false
+    },
+    {
+      "id": "5723c0b4-91ca-550b-84d3-9f1beacfd08f",
+      "expenseId": "exp-2026-109",
+      "label": "Annual invoice CB-7712",
+      "checked": true
+    },
+    {
+      "id": "7ba1f2fd-4047-510c-9f62-d7ee2b2e6cda",
+      "expenseId": "exp-2026-108",
+      "label": "Contract draft",
+      "checked": false
+    },
+    {
+      "id": "d7a4e60e-9ce2-5832-bfe2-c2c3a8c85f15",
+      "expenseId": "exp-2026-107",
+      "label": "Lease agreement",
+      "checked": true
+    },
+    {
+      "id": "0d1634c0-a19a-5022-9f76-5e1feede05a5",
+      "expenseId": "exp-2026-107",
+      "label": "Rent receipt Q3",
+      "checked": true
+    },
+    {
+      "id": "57eb0f85-2aeb-57a2-82b1-44622c7ed0e3",
+      "expenseId": "exp-2026-106",
+      "label": "Invoice HC-556",
+      "checked": true
+    },
+    {
+      "id": "131ddf44-f3a7-50bd-93f1-16d085debebe",
+      "expenseId": "exp-2026-106",
+      "label": "Audit engagement letter",
+      "checked": true
+    },
+    {
+      "id": "bd62ec9b-56c4-5501-b6c0-c5c933793ef0",
+      "expenseId": "exp-2026-105",
+      "label": "Card statements",
+      "checked": true
+    },
+    {
+      "id": "07942415-c142-5b88-ad49-4721e1a0b101",
+      "expenseId": "exp-2026-105",
+      "label": "Vendor receipts",
+      "checked": false
+    }
+  ],
+  "announcements": [
+    {
+      "id": "fb7728aa-9c88-5d9a-94c1-96049a6448f3",
+      "title": "Goodness Standards check-in — Q3",
+      "body": "Every chapter reviews its six standards this quarter. Chapter Control shows where you stand; HQ reviews anything below 4/6 with you, not at you.",
+      "audience": "network",
+      "chapterId": null,
+      "createdBy": null
+    },
+    {
+      "id": "84782c39-0f2d-5f73-8f1a-25a30ef957ce",
+      "title": "Evidence before publication",
+      "body": "An impact record can be published while evidence is still being checked — but the record must say so. Publication and verification are separate promises.",
+      "audience": "network",
+      "chapterId": null,
+      "createdBy": null
+    }
+  ],
+  "assignments": [],
+  "commitments": [],
+  "commitmentContributions": [],
+  "applications": [],
+  "chapterRequests": [],
+  "chapterProposals": [],
+  "auditEvents": []
+}
