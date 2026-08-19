@@ -41,18 +41,18 @@ Each phase is independently reviewable and lands as its own commit.
 
 | # | Phase | Scope | Status |
 |---|-------|-------|--------|
-| P0 | Foundations | Goal doc, `app/` scaffold (Vite/React/TS/Router), brand design system, app shell | ✅ built |
-| P1 | Supabase backend | `supabase/` schema migrations, RBAC + RLS, audit, public views, seed generated from prototype data | ✅ built |
-| P2 | Data layer | Typed DB types, dual driver (Supabase ↔ seeded local), TanStack Query hooks, derived metrics ported from `gs-os.js` | ✅ built |
-| P3 | Public experience | Home, About, Programs, Volunteers directory, Goodness Passport, Verify, Transparency | ✅ built |
-| P4 | Mission engine | Mission board, mission detail, claim role / withdraw / check-in / submit completion | ✅ built |
-| P5 | Impact & Trust | Public impact records, Trust Ledger money chain with drill-down | ✅ built |
-| P6 | Auth & member | Supabase auth, profile linking, My Goodness, my missions, Goodness Commitment | ✅ built |
-| P7 | Partners & capital | Fund Impact marketplace, Partner Room, public Partner Profile | ✅ built |
-| P8 | Network | Chapters directory, chapter page, My Chapter, Start a chapter | ✅ built |
-| P9 | Mission Control | Admin portal: overview, people, applications, missions, attendance, impact, money, partners, network, audit | ✅ built |
-| P10 | Share Studio | Locked-data card engine + PNG export for the core card families | ✅ built |
-| P11 | Hardening | Tests, CI, deployment config, runbook | ✅ built |
+| P0 | Foundations | Goal doc, `app/` scaffold (Vite/React/TS/Router), brand design system, app shell | 🔨 in progress |
+| P1 | Supabase backend | `supabase/` schema migrations, RBAC + RLS, audit, public views, seed generated from prototype data | ⏳ planned |
+| P2 | Data layer | Typed DB types, dual driver (Supabase ↔ seeded local), TanStack Query hooks, derived metrics ported from `gs-os.js` | ⏳ planned |
+| P3 | Public experience | Home, About, Programs, Volunteers directory, Goodness Passport, Verify, Transparency | ⏳ planned |
+| P4 | Mission engine | Mission board, mission detail, claim role / withdraw / check-in / submit completion | ⏳ planned |
+| P5 | Impact & Trust | Public impact records, Trust Ledger money chain with drill-down | ⏳ planned |
+| P6 | Auth & member | Supabase auth, profile linking, My Goodness, my missions, Goodness Commitment | ⏳ planned |
+| P7 | Partners & capital | Fund Impact marketplace, Partner Room, public Partner Profile | ⏳ planned |
+| P8 | Network | Chapters directory, chapter page, My Chapter, Start a chapter | ⏳ planned |
+| P9 | Mission Control | Admin portal: overview, people, applications, missions, attendance, impact, money, partners, network, audit | ⏳ planned |
+| P10 | Share Studio | Locked-data card engine + PNG export for the core card families | ⏳ planned |
+| P11 | Hardening | Tests, CI, deployment config, runbook | ⏳ planned |
 
 ## Backend shape (P1 summary)
 Organisation → Country → Chapter (district/university/community, self-parenting hierarchy) at the top;
