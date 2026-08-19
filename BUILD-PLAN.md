@@ -1,7 +1,7 @@
 # GOODNESS OS — Product Build Plan (prototype → real product)
 
 **Goal (single sentence):** turn the confirmed GOODNESS OS prototype (static `.dc.html` pages + a
-localStorage store) into a production-shaped product — a React + TypeScript application backed by a
+localStorage store) into a production-shaped product — a TanStack Start (React + TypeScript, SSR) application backed by a
 Supabase (Postgres) instance — where every number on every public page is computed from one governed
 database, and where volunteers, members, chapter leads, partners and HQ admins each get the surface
 they need.
@@ -30,7 +30,7 @@ they need.
 ## Repository layout after this build
 ```
 /                      prototype design source (.dc.html, *-data.js, gs-os.js) — kept, read-only
-/app                   React + TypeScript + Vite application
+/app                   TanStack Start (React + TypeScript) application
 /supabase              migrations, seed, config, functions — the backend as code
 /scripts               seed generation (prototype JS -> SQL), helper tooling
 BUILD-PLAN.md          this file (phase status is updated as work lands)
@@ -41,7 +41,7 @@ Each phase is independently reviewable and lands as its own commit.
 
 | # | Phase | Scope | Status |
 |---|-------|-------|--------|
-| P0 | Foundations | Goal doc, `app/` scaffold (Vite/React/TS/Router), brand design system, app shell | 🔨 in progress |
+| P0 | Foundations | Goal doc, `app/` scaffold (TanStack Start/React 19/TS), brand design system, app shell, route skeleton | ✅ built |
 | P1 | Supabase backend | `supabase/` schema migrations, RBAC + RLS, audit, public views, seed generated from prototype data | ⏳ planned |
 | P2 | Data layer | Typed DB types, dual driver (Supabase ↔ seeded local), TanStack Query hooks, derived metrics ported from `gs-os.js` | ⏳ planned |
 | P3 | Public experience | Home, About, Programs, Volunteers directory, Goodness Passport, Verify, Transparency | ⏳ planned |
@@ -54,6 +54,13 @@ Each phase is independently reviewable and lands as its own commit.
 | P10 | Share Studio | Locked-data card engine + PNG export for the core card families | ⏳ planned |
 | P11 | Hardening | Tests, CI, deployment config, runbook | ⏳ planned |
 
+## Framework decision (owner call, P0)
+The app is built on **TanStack Start** rather than a plain Vite SPA: the public surfaces (Home,
+Impact, Trust Ledger, chapter pages, partner profiles, credential verification and every Share
+Studio deep link) are pages the movement wants indexed and shareable, so server rendering, per-route
+`head` metadata and server functions matter more here than SPA simplicity. File-based routing keeps
+each of the ~21 surfaces in its own route module.
+
 ## Backend shape (P1 summary)
 Organisation → Country → Chapter (district/university/community, self-parenting hierarchy) at the top;
 People (`profiles`) hold private data and are exposed publicly only through `public_volunteers`;
@@ -64,7 +71,7 @@ carry the money chain; Partners → Partner commitments → Opportunities carry 
 
 ## Running it
 ```bash
-cd app && npm install && npm run dev          # runs on seeded local driver with no backend
+cd app && npm install && npm run dev          # SSR dev server, seeded local driver, no backend needed
 npx supabase link --project-ref <ref>         # then, for the real thing
 npx supabase db push && npx supabase db seed  # schema + prototype content
 ```
