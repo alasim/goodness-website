@@ -1,32 +1,40 @@
-# start-app
+# Goodness Society — GOODNESS OS
 
-A minimal TanStack Start app with one route and plain CSS.
+The operating system for organized goodness: verified volunteers, real missions, measured impact,
+and a public trust ledger. This repository holds three layers.
 
-```bash
-npm install
-npm run dev
-```
+| Layer | Path | What it is |
+|-------|------|------------|
+| Design source | `*.dc.html`, `*-data.js`, `gs-os.js` | The confirmed prototype — the visual and product source of truth |
+| Application | [`app/`](app/README.md) | TanStack Start (React + TypeScript, SSR) product |
+| Backend | [`supabase/`](supabase/README.md) | Postgres schema, row level security, seed — as code |
 
-Edit `src/routes/index.tsx` to get started. Add route files under
-`src/routes`; TanStack Router updates `src/routeTree.gen.ts` for you.
+Start with [`GOODNESS-OS.md`](GOODNESS-OS.md) for the product vision and wave roadmap, and
+[`BUILD-PLAN.md`](BUILD-PLAN.md) for how the prototype was turned into this product, phase by phase.
 
-Build the production app with:
-
-```bash
-npm run build
-```
-
-## Deploy with Nitro
-
-This project uses Nitro as a generic server adapter, so it can run on any Node-compatible host.
+## Quick start
 
 ```bash
-npm run build
-node dist/server/index.mjs
+# the product, with no backend required
+cd app && npm install && npm run dev      # http://localhost:3000
+
+# check the database schema without Docker or a network
+npm install && npm run db:verify
+
+# regenerate the seed after editing the prototype data modules
+npm run gen:seed
 ```
 
-The build output is a self-contained Node server. To deploy, push the `dist/` directory to your host (Render, Fly.io, your own VPS, etc.) and run the server command above.
+## Two drivers, one model
+The app runs identically on a seeded local record and on a live Supabase project. `buildOS()` turns
+either into the same model, so capacity, verified hours, fund positions, chapter rollups and partner
+figures are computed the same way in both. That is what keeps a chapter number and a national number
+from ever disagreeing.
 
-For host-specific presets (Vercel, Netlify, Cloudflare, AWS Lambda, etc.) and tuning, see https://v3.nitro.build/deploy.
-
-
+## What is enforced, not just displayed
+- Personal contact details, addresses, identity references and administrative notes are absent from
+  the public passport view — the public surface cannot read them.
+- A volunteer can move their own participation forward to *contribution submitted*, never to
+  *hours verified*; only a team lead or HQ can do that.
+- Approving or reversing an expense goes through an audited database function.
+- Impact records separate publication from evidence verification, and say which is which.
