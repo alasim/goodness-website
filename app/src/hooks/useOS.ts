@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
 import { buildOS } from '../data/os'
+import { hasSupabase } from '../lib/env'
+import { baseDataset, readOverlay } from '../data/local'
 import type { OSModel } from '../data/os'
 import { loadDataset } from '../data/source'
-import { readOverlay } from '../data/local'
 
 /**
  * The whole product reads from here.
@@ -29,6 +30,9 @@ export function useOS(): {
     queryKey: ['os', tick],
     queryFn: async () => buildOS(await loadDataset({ withOverlay: tick > 0 })),
     staleTime: Infinity,
+    // On the local driver the seed is already in the bundle, so the server can render the real
+    // page instead of a spinner — public pages have to be indexable and shareable.
+    initialData: hasSupabase ? undefined : () => buildOS(baseDataset()),
   })
 
   return {
