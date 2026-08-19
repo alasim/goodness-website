@@ -150,12 +150,7 @@
       "city": "Dhaka",
       "division": "Dhaka",
       "sinceLabel": "Jan 2024",
-      "coverage": [
-        "Dhaka",
-        "Gazipur",
-        "Narayanganj",
-        "Mymensingh"
-      ],
+      "coverage": ["Dhaka", "Gazipur", "Narayanganj", "Mymensingh"],
       "story": "The founding chapter — where Goodness started and where national programmes are piloted.",
       "campusNote": null,
       "standardsDone": 6,
@@ -189,11 +184,7 @@
       "city": "Chattogram",
       "division": "Chattogram",
       "sinceLabel": "Jun 2024",
-      "coverage": [
-        "Chattogram",
-        "Cox's Bazar",
-        "Cumilla"
-      ],
+      "coverage": ["Chattogram", "Cox's Bazar", "Cumilla"],
       "story": "Port-city chapter focused on career readiness and digital certification cohorts.",
       "campusNote": null,
       "standardsDone": 6,
@@ -210,9 +201,7 @@
       "city": "Sylhet",
       "division": "Sylhet",
       "sinceLabel": "Mar 2025",
-      "coverage": [
-        "Sylhet"
-      ],
+      "coverage": ["Sylhet"],
       "story": "Flood-response and community development — our fastest mobilising chapter.",
       "campusNote": null,
       "standardsDone": 6,
@@ -229,12 +218,7 @@
       "city": "Rajshahi",
       "division": "Rajshahi",
       "sinceLabel": "Sep 2025",
-      "coverage": [
-        "Rajshahi",
-        "Bogura",
-        "Rangpur",
-        "Dinajpur"
-      ],
+      "coverage": ["Rajshahi", "Bogura", "Rangpur", "Dinajpur"],
       "story": "Youth bootcamps and micro-grants across the north-west.",
       "campusNote": null,
       "standardsDone": 6,
@@ -251,11 +235,7 @@
       "city": "Khulna",
       "division": "Khulna",
       "sinceLabel": "Jan 2026",
-      "coverage": [
-        "Khulna",
-        "Jashore",
-        "Barishal"
-      ],
+      "coverage": ["Khulna", "Jashore", "Barishal"],
       "story": "Community scorecards and ward-level development in the south-west.",
       "campusNote": null,
       "standardsDone": 4,
@@ -462,12 +442,7 @@
       "joinedMonth": "Feb 2024",
       "quote": "Every CV I review is someone's dream waiting to be unlocked.",
       "bio": "Tanvir is a senior HR professional with 10 years of experience in talent acquisition. He runs bi-weekly mock interview sessions and has helped over 60 graduates land their first formal employment.",
-      "skills": [
-        "Career Coaching",
-        "CV Writing",
-        "Interviewing",
-        "HR"
-      ],
+      "skills": ["Career Coaching", "CV Writing", "Interviewing", "HR"],
       "impactStat": "68",
       "impactLabel": "Job placements",
       "level": "Senior Volunteer",
@@ -576,12 +551,7 @@
       "joinedMonth": "Apr 2024",
       "quote": "The best code I've ever written was for a cause — not a client.",
       "bio": "Mehedi is a full-stack developer who contributes to open-source civic tech tools built under the Innovation for Social Good program. She led the development of the organization's public impact dashboard.",
-      "skills": [
-        "React",
-        "Node.js",
-        "Open Source",
-        "UX Design"
-      ],
+      "skills": ["React", "Node.js", "Open Source", "UX Design"],
       "impactStat": "1",
       "impactLabel": "Product shipped",
       "level": "Team Lead",
@@ -614,12 +584,7 @@
       "joinedMonth": "Apr 2024",
       "quote": "You don't need to code to automate your work. I'm proof of that.",
       "bio": "Imran is a business process consultant who teaches entrepreneurs how to use no-code tools like Zapier, Notion, and Make to automate their daily workflows — freeing up time to focus on what matters.",
-      "skills": [
-        "No-Code",
-        "Automation",
-        "Zapier",
-        "Business Process"
-      ],
+      "skills": ["No-Code", "Automation", "Zapier", "Business Process"],
       "impactStat": "85",
       "impactLabel": "Professionals trained",
       "level": "Volunteer",
@@ -652,12 +617,7 @@
       "joinedMonth": "May 2024",
       "quote": "Confidence is the most underrated skill on any resume.",
       "bio": "Farhana is a communications manager who volunteers every Saturday running one-on-one mock interviews. She focuses on communication clarity, body language, and storytelling in interviews.",
-      "skills": [
-        "Coaching",
-        "Communication",
-        "Storytelling",
-        "Interview Prep"
-      ],
+      "skills": ["Coaching", "Communication", "Storytelling", "Interview Prep"],
       "impactStat": "112",
       "impactLabel": "Mock interviews done",
       "level": "Volunteer",
@@ -842,12 +802,7 @@
       "joinedMonth": "Aug 2024",
       "quote": "Every interface I design has to be usable by someone who has never used the internet before.",
       "bio": "Arif is a product designer who ensures that all digital tools built under the Innovation program are accessible, intuitive, and appropriate for low-literacy users in underserved communities.",
-      "skills": [
-        "UX Design",
-        "Figma",
-        "Accessibility",
-        "User Research"
-      ],
+      "skills": ["UX Design", "Figma", "Accessibility", "User Research"],
       "impactStat": "3",
       "impactLabel": "Products designed",
       "level": "Volunteer",
@@ -1730,10 +1685,7 @@
       "missionId": "msn-dhaka-digital-01",
       "role": "Trainer",
       "need": 2,
-      "skills": [
-        "Facilitation",
-        "AI Literacy"
-      ],
+      "skills": ["Facilitation", "AI Literacy"],
       "sortOrder": 0
     },
     {
@@ -1741,9 +1693,7 @@
       "missionId": "msn-dhaka-digital-01",
       "role": "Photographer",
       "need": 1,
-      "skills": [
-        "Photography"
-      ],
+      "skills": ["Photography"],
       "sortOrder": 1
     },
     {
@@ -1759,10 +1709,7 @@
       "missionId": "msn-ctg-career-01",
       "role": "CV Reviewer",
       "need": 4,
-      "skills": [
-        "CV Writing",
-        "HR"
-      ],
+      "skills": ["CV Writing", "HR"],
       "sortOrder": 0
     },
     {
@@ -1770,10 +1717,7 @@
       "missionId": "msn-ctg-career-01",
       "role": "Mock Interview Coach",
       "need": 3,
-      "skills": [
-        "Coaching",
-        "Communication"
-      ],
+      "skills": ["Coaching", "Communication"],
       "sortOrder": 1
     },
     {
@@ -1797,9 +1741,7 @@
       "missionId": "msn-sylhet-flood-01",
       "role": "Logistics Coordinator",
       "need": 4,
-      "skills": [
-        "Logistics"
-      ],
+      "skills": ["Logistics"],
       "sortOrder": 1
     },
     {
@@ -1807,9 +1749,7 @@
       "missionId": "msn-sylhet-flood-01",
       "role": "Data Collector",
       "need": 6,
-      "skills": [
-        "Survey Design"
-      ],
+      "skills": ["Survey Design"],
       "sortOrder": 2
     },
     {
@@ -1817,10 +1757,7 @@
       "missionId": "msn-remote-design-01",
       "role": "Graphic Designer",
       "need": 2,
-      "skills": [
-        "Graphic Design",
-        "Figma"
-      ],
+      "skills": ["Graphic Design", "Figma"],
       "sortOrder": 0
     },
     {
@@ -1828,9 +1765,7 @@
       "missionId": "msn-remote-design-01",
       "role": "Copy Reviewer",
       "need": 1,
-      "skills": [
-        "Communication"
-      ],
+      "skills": ["Communication"],
       "sortOrder": 1
     },
     {
@@ -1838,10 +1773,7 @@
       "missionId": "msn-rajshahi-youth-01",
       "role": "Bootcamp Facilitator",
       "need": 4,
-      "skills": [
-        "Facilitation",
-        "Financial Literacy"
-      ],
+      "skills": ["Facilitation", "Financial Literacy"],
       "sortOrder": 0
     },
     {
@@ -1849,9 +1781,7 @@
       "missionId": "msn-rajshahi-youth-01",
       "role": "Youth Mentor",
       "need": 6,
-      "skills": [
-        "Mentorship"
-      ],
+      "skills": ["Mentorship"],
       "sortOrder": 1
     },
     {
@@ -1867,9 +1797,7 @@
       "missionId": "msn-khulna-community-01",
       "role": "Field Surveyor",
       "need": 10,
-      "skills": [
-        "Field Research"
-      ],
+      "skills": ["Field Research"],
       "sortOrder": 0
     },
     {
@@ -1877,9 +1805,7 @@
       "missionId": "msn-khulna-community-01",
       "role": "Community Liaison",
       "need": 2,
-      "skills": [
-        "Community Engagement"
-      ],
+      "skills": ["Community Engagement"],
       "sortOrder": 1
     }
   ],
@@ -2552,10 +2478,7 @@
       "goalTarget": 1000,
       "committed": 2500000,
       "currency": "BDT",
-      "districts": [
-        "Dhaka",
-        "Chattogram"
-      ],
+      "districts": ["Dhaka", "Chattogram"],
       "discloseFunding": true,
       "employeesParticipated": 9,
       "employeesHours": 62,
@@ -2577,9 +2500,7 @@
       "goalTarget": 500,
       "committed": 2500000,
       "currency": "BDT",
-      "districts": [
-        "Dhaka"
-      ],
+      "districts": ["Dhaka"],
       "discloseFunding": false,
       "employeesParticipated": 0,
       "employeesHours": 0,
@@ -2601,9 +2522,7 @@
       "goalTarget": 200,
       "committed": 900000,
       "currency": "BDT",
-      "districts": [
-        "Rajshahi"
-      ],
+      "districts": ["Rajshahi"],
       "discloseFunding": false,
       "employeesParticipated": 4,
       "employeesHours": 18,
@@ -2625,10 +2544,7 @@
       "goalTarget": 3,
       "committed": 1200000,
       "currency": "BDT",
-      "districts": [
-        "Khulna",
-        "Sylhet"
-      ],
+      "districts": ["Khulna", "Sylhet"],
       "discloseFunding": false,
       "employeesParticipated": 0,
       "employeesHours": 0,
@@ -2650,9 +2566,7 @@
       "goalTarget": 2,
       "committed": 600000,
       "currency": "BDT",
-      "districts": [
-        "Dhaka"
-      ],
+      "districts": ["Dhaka"],
       "discloseFunding": true,
       "employeesParticipated": 12,
       "employeesHours": 96,
@@ -2674,9 +2588,7 @@
       "goalTarget": 500,
       "committed": 0,
       "currency": "BDT",
-      "districts": [
-        "Dhaka"
-      ],
+      "districts": ["Dhaka"],
       "discloseFunding": true,
       "employeesParticipated": 26,
       "employeesHours": 210,
@@ -2698,9 +2610,7 @@
       "goalTarget": 0,
       "committed": 0,
       "currency": "BDT",
-      "districts": [
-        "Dhaka"
-      ],
+      "districts": ["Dhaka"],
       "discloseFunding": false,
       "employeesParticipated": 0,
       "employeesHours": 0,
@@ -3059,10 +2969,7 @@
       "urgent": false,
       "target": 950000,
       "secured": 250000,
-      "seeking": [
-        "Anchor partner — ৳5L",
-        "Mock-interview employee volunteers"
-      ],
+      "seeking": ["Anchor partner — ৳5L", "Mock-interview employee volunteers"],
       "expected": [
         "250 graduating students coached",
         "CVs and mock interviews for all participants",

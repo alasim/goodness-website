@@ -201,10 +201,20 @@ comment on view public.public_volunteers is
   'Public passport surface. Phone, email, address, ID references and admin notes are absent by design.';
 
 create view public.public_credentials as
-select c.id, c.ref, c.title, c.program_slug, c.service_summary, c.issued_label, c.status,
-       c.download_enabled, p.full_name as issued_to, p.slug as volunteer_slug
+select c.id, c.profile_id, c.ref, c.title, c.program_slug, c.service_summary, c.issued_label,
+       c.status, c.download_enabled, p.full_name as issued_to, p.slug as volunteer_slug
 from public.credentials c
 join public.profiles p on p.id = c.profile_id;
+
+-- Capacity has to be public — "5 of 6 filled" is the whole point of a mission board — but who
+-- filled a place is not public. This view carries the count without carrying the person.
+create view public.public_assignments as
+select a.id, a.mission_id, a.mission_role_id, a.state
+from public.assignments a
+where a.state <> 'withdrawn';
+
+comment on view public.public_assignments is
+  'Anonymous participation rows: enough to compute capacity, never enough to identify a volunteer.';
 
 create view public.public_donations as
 select d.id, d.donor_name, d.kind, d.amount, d.currency, d.date_label, d.donated_on,
@@ -255,7 +265,8 @@ $$;
 
 grant usage on schema public to anon, authenticated;
 grant select on public.public_volunteers, public.public_credentials, public.public_donations,
-                public.public_partners, public.commitment_stats to anon, authenticated;
+                public.public_partners, public.public_assignments, public.commitment_stats
+  to anon, authenticated;
 grant execute on function public.verify_credential(text) to anon, authenticated;
 grant execute on function public.rhythm_per_30(public.commitment_rhythm) to anon, authenticated;
 grant execute on function public.verified_hours(uuid) to anon, authenticated;
