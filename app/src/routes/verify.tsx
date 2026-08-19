@@ -6,7 +6,7 @@ import { PageHero } from '../components/PageHero'
 import { Pill, Section } from '../components/ui'
 
 export const Route = createFileRoute('/verify')({
-  validateSearch: (search: Record<string, unknown>) => ({
+  validateSearch: (search: Record<string, unknown>): { ref?: string } => ({
     ref: typeof search.ref === 'string' ? search.ref : undefined,
   }),
   head: () => ({
