@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+  body { margin: 0; background: #fafafa; font-family: 'Plus Jakarta Sans', system-ui, sans-serif; }
+  a { color: #1B7A34; } a:hover { color: #4DC86A; }
+</style>
+</helmet>
+<div data-screen-label="Mission Detail" style="color: #0D0D0D; padding-top: 72px;">
+  <dc-import name="SiteNav" active="missions" hint-size="100%,72px"></dc-import>
+  <div style="max-width: 1080px; margin: 0 auto; padding: 28px 24px 96px;">
+    <a href="Missions.dc.html" style="display: inline-flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 700; text-decoration: none; margin-bottom: 20px;">&#8592; All missions</a>
+    <section style="position: relative; background: #0D0D0D; border-radius: 24px; overflow: hidden; padding: 36px 40px; margin-bottom: 20px;">
+      <svg style="position: absolute; top: 0; right: 0; opacity: 0.08; pointer-events: none;" width="400" height="270" viewBox="0 0 600 400" fill="none">
+        <circle cx="220" cy="180" r="160" stroke="#4DC86A" stroke-width="44" fill="none"></circle>
+        <path d="M370 180 C390 180 420 200 430 240 C445 295 420 350 370 370 C310 395 240 370 210 320" stroke="#4DC86A" stroke-width="44" fill="none" stroke-linecap="round"></path>
+      </svg>
+      <div style="position: relative;">
+        <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 16px; flex-wrap: wrap;">
+          <span style="display: {{ m.urgentDisp }}; align-items: center; padding: 4px 12px; border-radius: 999px; font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em; background: #E65100; color: #ffffff;">Urgent</span>
+          <span style="padding: 4px 12px; border-radius: 999px; font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em; background: {{ m.statusBg }}; color: {{ m.statusColor }};">{{ m.statusLabel }}</span>
+          <span style="display: {{ m.remoteDisp }}; align-items: center; padding: 4px 12px; border-radius: 999px; font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em; background: rgba(21,101,192,0.9); color: #ffffff;">Remote</span>
+          <span style="display: inline-flex; align-items: center; gap: 6px; padding: 4px 12px; border-radius: 999px; font-size: 10px; font-weight: 700; background: rgba(255,255,255,0.1); color: {{ m.light }};"><span style="width: 6px; height: 6px; border-radius: 50%; background: {{ m.light }};"></span>{{ m.program }}</span>
+          <span style="font-size: 12px; color: rgba(255,255,255,0.45);">{{ m.chapter }} Chapter</span>
+        </div>
+        <h1 style="margin: 0 0 16px; color: #ffffff; font-weight: 800; font-size: clamp(30px, 4vw, 44px); line-height: 1.1; letter-spacing: -0.02em; max-width: 720px;">{{ m.title }}</h1>
+        <p style="margin: 0 0 24px; color: rgba(255,255,255,0.65); font-size: 16px; line-height: 1.65; max-width: 640px;">{{ m.summary }}</p>
+        <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.12); border-radius: 14px; overflow: hidden;">
+          <div style="background: rgba(255,255,255,0.05); padding: 16px 20px;"><div style="font-size: 11px; color: rgba(255,255,255,0.45); margin-bottom: 4px;">When</div><div style="font-size: 14px; font-weight: 700; color: #ffffff;">{{ m.date }}</div><div style="font-size: 12px; color: rgba(255,255,255,0.5);">{{ m.time }}</div></div>
+          <div style="background: rgba(255,255,255,0.05); padding: 16px 20px;"><div style="font-size: 11px; color: rgba(255,255,255,0.45); margin-bottom: 4px;">Where</div><div style="font-size: 14px; font-weight: 700; color: #ffffff; line-height: 1.35;">{{ m.venue }}</div></div>
+          <div style="background: rgba(255,255,255,0.05); padding: 16px 20px;"><div style="font-size: 11px; color: rgba(255,255,255,0.45); margin-bottom: 4px;">Service hours</div><div style="font-size: 20px; font-weight: 800; color: #4DC86A;">{{ m.hours }}</div><div style="font-size: 12px; color: rgba(255,255,255,0.5);">Added on verification</div></div>
+          <div style="background: rgba(255,255,255,0.05); padding: 16px 20px;"><div style="font-size: 11px; color: rgba(255,255,255,0.45); margin-bottom: 4px;">Mission lead</div><div style="font-size: 14px; font-weight: 700; color: #ffffff;">{{ m.lead }}</div></div>
+        </div>
+      </div>
+    </section>
+    <div style="display: grid; grid-template-columns: 1.25fr 0.75fr; gap: 20px; align-items: start;">
+      <div style="display: flex; flex-direction: column; gap: 20px;">
+        <section style="background: #ffffff; border: 1px solid rgba(0,0,0,0.08); border-radius: 20px; padding: 26px;">
+          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px; flex-wrap: wrap; gap: 8px;">
+            <h2 style="margin: 0; font-size: 12px; text-transform: uppercase; letter-spacing: 0.2em; color: #9CA3AF; font-weight: 800;">Roles needed</h2>
+            <span style="font-size: 12px; font-weight: 700; color: {{ m.spotsColor }};">{{ m.fillLabel }}</span>
+          </div>
+          <div style="height: 8px; border-radius: 999px; background: #f0f1f3; overflow: hidden; margin-bottom: 20px;"><div style="height: 100%; border-radius: 999px; background: linear-gradient(90deg, {{ m.light }}, {{ m.color }}); width: {{ m.pctW }};"></div></div>
+          <div style="display: flex; flex-direction: column; gap: 10px;">
+            <sc-for list="{{ roles }}" as="r" hint-placeholder-count="3">
+              <div style="display: flex; align-items: center; gap: 14px; border: 1px solid {{ r.border }}; background: {{ r.rowBg }}; border-radius: 14px; padding: 16px 18px;">
+                <div style="flex: 1; min-width: 0;">
+                  <div style="font-size: 14px; font-weight: 700;">{{ r.role }}</div>
+                  <div style="font-size: 12px; color: #6B7280; margin-top: 2px;">{{ r.skillNote }}</div>
+                </div>
+                <div style="text-align: right; flex-shrink: 0;">
+                  <div style="font-size: 13px; font-weight: 800; color: {{ r.countColor }};">{{ r.countLabel }}</div>
+                  <div style="font-size: 11px; color: #9CA3AF;">positions</div>
+                </div>
+                <button onClick="{{ r.claim }}" style="padding: 9px 18px; border-radius: 999px; border: {{ r.btnBorder }}; background: {{ r.btnBg }}; color: {{ r.btnColor }}; font-size: 12px; font-weight: 700; font-family: inherit; cursor: {{ r.btnCursor }}; flex-shrink: 0;">{{ r.btnLabel }}</button>
+              </div>
+            </sc-for>
+          </div>
+        </section>
+        <section style="display: {{ reportDisp }}; background: #f8fdf9; border: 1px solid rgba(27,122,52,0.22); border-radius: 20px; padding: 26px; flex-direction: column;">
+          <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 16px; flex-wrap: wrap;">
+            <h2 style="margin: 0; font-size: 12px; text-transform: uppercase; letter-spacing: 0.2em; color: #1B7A34; font-weight: 800;">Impact report</h2>
+            <span style="padding: 2px 10px; border-radius: 999px; font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; background: {{ rep.chipBg }}; color: {{ rep.chipColor }};">{{ rep.chipLabel }}</span>
+            <span style="font-size: 12px; color: #6B7280;">{{ rep.people }} people supported · published record</span>
+          </div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px;">
+            <div>
+              <div style="font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.14em; color: #9CA3AF; margin-bottom: 10px;">Delivered</div>
+              <div style="display: flex; flex-direction: column; gap: 8px;">
+                <sc-for list="{{ rep.outputs }}" as="o" hint-placeholder-count="3">
+                  <div style="display: flex; align-items: center; justify-content: space-between; gap: 10px; font-size: 12.5px;">
+                    <span style="color: #374151;">{{ o.label }}</span>
+                    <span style="font-weight: 800; color: {{ o.color }}; white-space: nowrap;">{{ o.valueLabel }}</span>
+                  </div>
+                </sc-for>
+              </div>
+            </div>
+            <div>
+              <div style="font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.14em; color: #1B7A34; margin-bottom: 10px;">What changed</div>
+              <div style="display: flex; flex-direction: column; gap: 10px;">
+                <sc-for list="{{ rep.outcomes }}" as="oc" hint-placeholder-count="2">
+                  <div style="display: flex; align-items: flex-start; gap: 10px;">
+                    <span style="font-size: 18px; font-weight: 800; color: #1B7A34; min-width: 38px; line-height: 1.2;">{{ oc.value }}</span>
+                    <span style="font-size: 12.5px; color: #374151; line-height: 1.45;">{{ oc.label }}</span>
+                  </div>
+                </sc-for>
+              </div>
+            </div>
+          </div>
+          <a href="Impact.dc.html" style="margin-top: 18px; font-size: 13px; font-weight: 700; text-decoration: none;">See the full impact record &#8594;</a>
+        </section>
+        <section style="background: #ffffff; border: 1px solid rgba(0,0,0,0.08); border-radius: 20px; padding: 26px;">
+          <h2 style="margin: 0 0 12px; font-size: 12px; text-transform: uppercase; letter-spacing: 0.2em; color: #9CA3AF; font-weight: 800;">Impact target</h2>
+          <p style="margin: 0 0 18px; font-size: 16px; font-weight: 600; line-height: 1.5;">{{ m.impactTarget }}</p>
+          <div style="border-top: 1px solid rgba(0,0,0,0.06); padding-top: 18px;">
+            <h2 style="margin: 0 0 12px; font-size: 12px; text-transform: uppercase; letter-spacing: 0.2em; color: #9CA3AF; font-weight: 800;">Team joined ({{ teamCount }})</h2>
+            <div style="display: {{ noTeamDisp }}; font-size: 13px; color: #9CA3AF;">No one from the platform has claimed a role yet. Be the first.</div>
+            <div style="display: flex; flex-direction: column; gap: 8px;">
+              <sc-for list="{{ team }}" as="t" hint-placeholder-count="0">
+                <div style="display: flex; align-items: center; gap: 12px; padding: 10px 12px; border: 1px solid rgba(0,0,0,0.07); border-radius: 12px;">
+                  <div style="width: 32px; height: 32px; border-radius: 28%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 11px; font-weight: 800; color: #ffffff; background: {{ t.grad }};">{{ t.initials }}</div>
+                  <div style="flex: 1; min-width: 0;">
+                    <div style="font-size: 13px; font-weight: 700;">{{ t.name }}</div>
+                    <div style="font-size: 11px; color: #9CA3AF;">{{ t.role }}</div>
+                  </div>
+                  <span style="padding: 3px 10px; border-radius: 999px; font-size: 10px; font-weight: 800; text-transform: uppercase; background: {{ t.chipBg }}; color: {{ t.chipColor }};">{{ t.stateLabel }}</span>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+        </section>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 20px;">
+        <section style="background: #ffffff; border: 1px solid rgba(0,0,0,0.08); border-radius: 20px; padding: 26px;">
+          <h2 style="margin: 0 0 14px; font-size: 12px; text-transform: uppercase; letter-spacing: 0.2em; color: #9CA3AF; font-weight: 800;">Your place on this mission</h2>
+          <div style="display: {{ signedOutDisp }}; flex-direction: column; gap: 12px;">
+            <p style="margin: 0; font-size: 13px; color: #6B7280; line-height: 1.6;">Sign in to My Goodness to claim a role. Your verified hours land on your Goodness Passport automatically.</p>
+            <a href="My Goodness.dc.html" style="text-align: center; padding: 12px 0; border-radius: 999px; color: #ffffff; font-size: 13px; font-weight: 700; text-decoration: none; background: linear-gradient(135deg, #4DC86A 0%, #1B7A34 100%);">Sign in to join &#8594;</a>
+          </div>
+          <div style="display: {{ notJoinedDisp }}; flex-direction: column; gap: 12px;">
+            <div style="display: flex; align-items: center; gap: 12px;">
+              <div style="width: 38px; height: 38px; border-radius: 28%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 13px; font-weight: 800; color: #ffffff; background: {{ me.grad }};">{{ me.initials }}</div>
+              <div><div style="font-size: 13px; font-weight: 700;">{{ me.name }}</div><div style="font-size: 11px; color: #9CA3AF;">{{ me.goodnessId }}</div></div>
+            </div>
+            <p style="margin: 0; font-size: 13px; color: #6B7280; line-height: 1.6;">Pick a role on the left to join this mission.</p>
+          </div>
+          <div style="display: {{ joinedDisp }}; flex-direction: column; gap: 14px;">
+            <div style="display: flex; align-items: center; gap: 10px; padding: 12px 14px; border-radius: 12px; background: #f0faf3; border: 1px solid rgba(27,122,52,0.2);">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1B7A34" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0;"><path d="M20 6 9 17l-5-5"></path></svg>
+              <div><div style="font-size: 13px; font-weight: 800; color: #1B7A34;">You're on this mission</div><div style="font-size: 11px; color: #6B7280;">Role: {{ myRole }} &#183; {{ myStateNote }}</div></div>
+            </div>
+            <div style="display: {{ checkInDisp }}; flex-direction: column; gap: 12px;">
+              <div style="display: {{ qrDisp }}; border: 1px solid rgba(0,0,0,0.08); border-radius: 14px; padding: 16px; flex-direction: column; align-items: center; gap: 10px;">
+                <div style="font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.14em; color: #9CA3AF;">Check-in code</div>
+                <div style="width: 132px; height: 132px; background: #ffffff;">{{ qr }}</div>
+                <div style="font-size: 11px; color: #9CA3AF; text-align: center; line-height: 1.5;">Show this to your mission lead on the day, or tap below.</div>
+              </div>
+              <div style="display: {{ remoteNoteDisp }}; border: 1px solid rgba(21,101,192,0.2); background: #e8f0fc; border-radius: 14px; padding: 14px 16px; flex-direction: column; gap: 4px;">
+                <div style="font-size: 12px; font-weight: 800; color: #1565C0;">Remote contribution</div>
+                <div style="font-size: 11.5px; color: #374151; line-height: 1.55;">No check-in needed. Start when you're ready, then submit your completion for verification.</div>
+              </div>
+              <button onClick="{{ checkIn }}" style="padding: 13px 0; border-radius: 999px; border: none; color: #ffffff; font-size: 14px; font-weight: 800; font-family: inherit; cursor: pointer; background: linear-gradient(135deg, #4DC86A 0%, #1B7A34 100%);" style-hover="opacity: 0.9;">{{ startLabel }}</button>
+            </div>
+            <button onClick="{{ complete }}" style="display: {{ completeDisp }}; padding: 13px 0; border-radius: 999px; border: none; color: #ffffff; font-size: 14px; font-weight: 800; font-family: inherit; cursor: pointer; background: linear-gradient(135deg, #4DC86A 0%, #1B7A34 100%);" style-hover="opacity: 0.9;">Submit completion</button>
+            <div style="display: {{ awaitingDisp }}; padding: 12px 14px; border-radius: 12px; background: #fff3e0; border: 1px solid rgba(230,81,0,0.2); font-size: 12px; color: #E65100; font-weight: 600; line-height: 1.5;">Your contribution has been submitted for verification. Once your team lead verifies it, {{ m.hours }} hours are added to your passport.</div>
+            <div style="display: {{ verifiedDisp }}; padding: 12px 14px; border-radius: 12px; background: #f0faf3; border: 1px solid rgba(27,122,52,0.2); font-size: 12px; color: #1B7A34; font-weight: 700; line-height: 1.5;">Hours verified &#183; +{{ m.hours }} service hours on your passport.</div>
+            <button onClick="{{ askLeave }}" style="display: {{ leaveDisp }}; padding: 10px 0; border-radius: 999px; border: 1px solid rgba(0,0,0,0.12); background: #ffffff; color: #6B7280; font-size: 12px; font-weight: 700; font-family: inherit; cursor: pointer;">Leave mission</button>
+            <div style="display: {{ confirmDisp }}; flex-direction: column; gap: 10px; padding: 14px 16px; border-radius: 12px; border: 1px solid rgba(212,24,61,0.25); background: #fdf3f5;">
+              <div style="font-size: 12.5px; font-weight: 700; color: #0D0D0D;">Leave this mission?</div>
+              <div style="font-size: 11.5px; color: #6B7280; line-height: 1.55;">Your position becomes available to another volunteer straight away.</div>
+              <div style="display: flex; gap: 8px;">
+                <button onClick="{{ leave }}" style="flex: 1; padding: 9px 0; border-radius: 999px; border: none; background: #d4183d; color: #ffffff; font-size: 12px; font-weight: 800; font-family: inherit; cursor: pointer;">Yes, leave</button>
+                <button onClick="{{ cancelLeave }}" style="flex: 1; padding: 9px 0; border-radius: 999px; border: 1px solid rgba(0,0,0,0.12); background: #ffffff; color: #6B7280; font-size: 12px; font-weight: 700; font-family: inherit; cursor: pointer;">Keep my place</button>
+              </div>
+            </div>
+            <div style="display: {{ lockedNoteDisp }}; font-size: 11px; color: #9CA3AF; line-height: 1.5;">You've checked in, so this place can no longer be released from here. Speak to {{ m.lead }} if plans change.</div>
+          </div>
+        </section>
+        <section style="background: #ffffff; border: 1px solid rgba(0,0,0,0.08); border-radius: 20px; padding: 26px;">
+          <h2 style="margin: 0 0 14px; font-size: 12px; text-transform: uppercase; letter-spacing: 0.2em; color: #9CA3AF; font-weight: 800;">How it works</h2>
+          <div style="display: flex; flex-direction: column; gap: 14px;">
+            <sc-for list="{{ steps }}" as="st" hint-placeholder-count="4">
+              <div style="display: flex; align-items: flex-start; gap: 12px;">
+                <div style="width: 24px; height: 24px; border-radius: 30%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 11px; font-weight: 800; color: {{ st.numColor }}; background: {{ st.numBg }};">{{ st.n }}</div>
+                <div>
+                  <div style="font-size: 13px; font-weight: 700; color: {{ st.textColor }};">{{ st.title }}</div>
+                  <div style="font-size: 11px; color: #9CA3AF; line-height: 1.5;">{{ st.note }}</div>
+                </div>
+              </div>
+            </sc-for>
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+  <dc-import name="SiteFooter" hint-size="100%,420px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { missions: null, os: null, impact: null, confirmLeave: false };
+  load() {
+    import("./gs-os.js").then((m) => { this.gs = m; return Promise.all([m.loadMissions(), m.loadOS(), m.loadImpact()]); })
+      .then(([missions, os, impact]) => this.setState({ missions, os, impact }));
+  }
+  componentDidMount() { this.load(); }
+  qrGrid(seed) {
+    const n = 21, cells = [];
+    let h = 2166136261;
+    for (let i = 0; i < seed.length; i++) { h ^= seed.charCodeAt(i); h = Math.imul(h, 16777619); }
+    const rnd = () => { h ^= h << 13; h ^= h >>> 17; h ^= h << 5; return (h >>> 0) / 4294967296; };
+    const finder = (r, c) => {
+      for (const [r0, c0] of [[0, 0], [0, n - 7], [n - 7, 0]]) {
+        if (r >= r0 && r < r0 + 7 && c >= c0 && c < c0 + 7) {
+          return Math.max(Math.abs(r - (r0 + 3)), Math.abs(c - (c0 + 3))) === 1 ? "off" : "on";
+        }
+      }
+      return null;
+    };
+    for (let r = 0; r < n; r++) for (let c = 0; c < n; c++) {
+      const f = finder(r, c);
+      if (f ? f === "on" : rnd() > 0.52) cells.push(React.createElement("rect", { key: r + "-" + c, x: c, y: r, width: 1, height: 1, fill: "#0D0D0D" }));
+    }
+    return React.createElement("svg", { width: "100%", height: "100%", viewBox: "0 0 " + n + " " + n, shapeRendering: "crispEdges", style: { display: "block" } }, cells);
+  }
+  renderVals() {
+    const s = this.state;
+    const blankM = { title: "", summary: "", program: "", chapter: "", venue: "", date: "", time: "", hours: "", lead: "", impactTarget: "", statusLabel: "", statusBg: "#f0faf3", statusColor: "#1B7A34", color: "#1B7A34", light: "#4DC86A", fillLabel: "", spotsColor: "#1B7A34", pctW: "0%" };
+    const blankMe = { name: "", initials: "", goodnessId: "", grad: "" };
+    const idle = { m: blankM, me: blankMe, roles: [], team: [], teamCount: "0", noTeamDisp: "none", steps: [], qr: null,
+      signedOutDisp: "none", notJoinedDisp: "none", joinedDisp: "none", checkInDisp: "none", completeDisp: "none",
+      awaitingDisp: "none", verifiedDisp: "none", leaveDisp: "none", myRole: "", myStateNote: "",
+      qrDisp: "none", remoteNoteDisp: "none", startLabel: "", confirmDisp: "none", lockedNoteDisp: "none",
+      reportDisp: "none", rep: { people: "", chipLabel: "", chipBg: "#f0faf3", chipColor: "#1B7A34", outputs: [], outcomes: [] },
+      checkIn: () => {}, complete: () => {}, leave: () => {}, askLeave: () => {}, cancelLeave: () => {} };
+    if (!s.missions || !s.os) return idle;
+    const os = s.os;
+    const id = new URLSearchParams(location.search).get("id") || s.missions[0].id;
+    const raw = s.missions.find((x) => x.id === id) || s.missions[0];
+    const c = os.programColors[raw.programSlug] || os.programColors["education-career-readiness"];
+    const done = raw.state === "completed";
+    const m = { ...raw, color: c.color, light: c.light,
+      statusLabel: done ? "Completed" : raw.state === "full" ? "Full" : "Open \u00B7 " + raw.spotsLeft + " position" + (raw.spotsLeft === 1 ? "" : "s") + " left",
+      statusBg: done ? "rgba(255,255,255,0.12)" : raw.state === "full" ? "rgba(21,101,192,0.9)" : "#4DC86A",
+      statusColor: done ? "rgba(255,255,255,0.7)" : "#ffffff",
+      urgentDisp: raw.urgent ? "inline-flex" : "none",
+      remoteDisp: raw.remote ? "inline-flex" : "none",
+      fillLabel: raw.filled + " / " + raw.need + " filled",
+      spotsColor: done || raw.spotsLeft === 0 ? "#9CA3AF" : "#1B7A34",
+      pctW: raw.pct + "%" };
+    const rec = (s.impact || []).find((r) => r.missionId === raw.id && r.published) || null;
+    const meId = this.gs.readMe();
+    const meRaw = meId ? os.volunteers.find((v) => v.id === meId) : null;
+    const me = meRaw ? { name: meRaw.name, initials: meRaw.initials, goodnessId: meRaw.goodnessId, grad: os.avatarGradients[meRaw.avatarColor] } : blankMe;
+    const mine = meRaw ? raw.assignments.find((a) => a.volunteerId === meId) : null;
+    const st = mine ? mine.state : null;
+    const roleCounts = {};
+    raw.assignments.forEach((a) => { roleCounts[a.role] = (roleCounts[a.role] || 0) + 1; });
+    const notes = { joined: raw.remote ? "Not started yet" : "Not checked in yet", checkedin: raw.remote ? "Contribution in progress" : "Checked in", completed: "Contribution submitted", verified: "Hours verified" };
+    const stepState = (key) => {
+      const order = ["joined", "checkedin", "completed", "verified"];
+      const at = st ? order.indexOf(st) : -1;
+      const i = order.indexOf(key);
+      return i <= at;
+    };
+    return {
+      m, me,
+      roles: (raw.roles || []).map((r) => {
+        const isMine = mine && mine.role === r.role;
+        const claimed = roleCounts[r.role] || 0;
+        const full = claimed >= r.need;
+        const locked = mine && mine.state !== "joined";
+        const canSwitch = meRaw && mine && !isMine && !done && !full && !locked;
+        const canJoin = meRaw && !mine && !done && !full;
+        const active = canJoin || canSwitch;
+        return { role: r.role,
+          skillNote: r.skills && r.skills.length ? "Helpful skills: " + r.skills.join(", ") : "Open to everyone \u2014 no specific skills needed",
+          countLabel: claimed + " / " + r.need,
+          countColor: full ? "#9CA3AF" : "#1B7A34",
+          border: isMine ? "1px solid rgba(27,122,52,0.35)" : "1px solid rgba(0,0,0,0.07)",
+          rowBg: isMine ? "#f0faf3" : "#ffffff",
+          btnLabel: isMine ? "Your role" : done ? "Closed" : full ? "Full" : !meRaw ? "Sign in" : canSwitch ? "Change to this" : mine ? "Locked" : "Claim role",
+          btnBg: active ? "linear-gradient(135deg, #4DC86A 0%, #1B7A34 100%)" : "#ffffff",
+          btnColor: active ? "#ffffff" : "#9CA3AF",
+          btnBorder: active ? "1px solid transparent" : "1px solid rgba(0,0,0,0.12)",
+          btnCursor: active ? "pointer" : "default",
+          claim: () => {
+            if (!meRaw) { location.href = "My Goodness.dc.html"; return; }
+            if (!active) return;
+            const switching = !!mine;
+            this.gs.joinMission(raw.id, meId, r.role);
+            this.gs.logAudit(meRaw.name + (switching ? " changed role on \u201C" : " joined \u201C") + raw.title + "\u201D to " + r.role);
+            this.load();
+          } };
+      }),
+      team: raw.assignments.map((a) => {
+        const v = os.volunteers.find((x) => x.id === a.volunteerId);
+        return { name: v ? v.name : "Volunteer", initials: v ? v.initials : "GS", role: a.role,
+          grad: v ? os.avatarGradients[v.avatarColor] : "linear-gradient(135deg, #4DC86A 0%, #1B7A34 100%)",
+          stateLabel: a.state === "verified" ? "Hours verified" : a.state === "completed" ? "Submitted" : a.state === "checkedin" ? (raw.remote ? "In progress" : "Checked in") : "Joined",
+          chipBg: a.state === "verified" ? "#f0faf3" : a.state === "completed" ? "#fff3e0" : "#e8f0fc",
+          chipColor: a.state === "verified" ? "#1B7A34" : a.state === "completed" ? "#E65100" : "#1565C0" };
+      }),
+      teamCount: String(raw.assignments.length),
+      noTeamDisp: raw.assignments.length === 0 ? "block" : "none",
+      steps: [
+        { n: "1", title: "Joined", note: "You've claimed a role on this mission." },
+        { n: "2", title: raw.remote ? "Contribution started" : "Checked in", note: raw.remote ? "Begin your remote contribution." : "Scan or tap to record your attendance." },
+        { n: "3", title: "Contribution submitted", note: "Confirm you finished your part." },
+        { n: "4", title: "Hours verified", note: "Your team lead confirms \u2014 hours post to your passport." },
+      ].map((x, i) => {
+        const key = ["joined", "checkedin", "completed", "verified"][i];
+        const on = stepState(key);
+        return { ...x, numBg: on ? "linear-gradient(135deg, #4DC86A 0%, #1B7A34 100%)" : "#f0f1f3", numColor: on ? "#ffffff" : "#9CA3AF", textColor: on ? "#0D0D0D" : "#6B7280" };
+      }),
+      qr: this.qrGrid(raw.id + "|" + (meId || "guest")),
+      signedOutDisp: !meRaw ? "flex" : "none",
+      notJoinedDisp: meRaw && !mine ? "flex" : "none",
+      joinedDisp: mine ? "flex" : "none",
+      checkInDisp: st === "joined" ? "flex" : "none",
+      reportDisp: rec ? "flex" : "none",
+      rep: rec ? {
+        people: (rec.beneficiaries || 0).toLocaleString(),
+        chipLabel: rec.verification === "verified" ? "Evidence verified" : rec.verification === "partial" ? "Evidence " + rec.evidenceVerified + "/" + rec.evidenceTotal + " verified" : "Evidence pending",
+        chipBg: rec.verification === "verified" ? "#e6f4ea" : rec.verification === "partial" ? "#fff3e0" : "#eef0f3",
+        chipColor: rec.verification === "verified" ? "#1B7A34" : rec.verification === "partial" ? "#E65100" : "#6B7280",
+        outputs: rec.outputs.map((o) => ({ label: o.label,
+          valueLabel: o.target ? o.value.toLocaleString() + " / " + o.target.toLocaleString() + " \u00B7 " + Math.round((o.value / o.target) * 100) + "%" : o.value.toLocaleString(),
+          color: !o.target || o.value >= o.target ? "#1B7A34" : "#E65100" })),
+        outcomes: rec.outcomes.map((oc) => ({ label: oc.label, value: oc.value == null ? "\u2014" : oc.value.toLocaleString() })),
+      } : { people: "", chipLabel: "", chipBg: "#f0faf3", chipColor: "#1B7A34", outputs: [], outcomes: [] },
+      qrDisp: st === "joined" && !raw.remote ? "flex" : "none",
+      remoteNoteDisp: st === "joined" && raw.remote ? "flex" : "none",
+      startLabel: raw.remote ? "Start contribution" : "Check in now",
+      completeDisp: st === "checkedin" ? "block" : "none",
+      awaitingDisp: st === "completed" ? "block" : "none",
+      verifiedDisp: st === "verified" ? "block" : "none",
+      leaveDisp: st === "joined" && !s.confirmLeave ? "block" : "none",
+      confirmDisp: st === "joined" && s.confirmLeave ? "flex" : "none",
+      lockedNoteDisp: st === "checkedin" ? "block" : "none",
+      myRole: mine ? mine.role : "",
+      myStateNote: st ? notes[st] : "",
+      checkIn: () => {
+        this.gs.setAssignmentState(raw.id, meId, "checkedin");
+        this.gs.logAudit(meRaw.name + (raw.remote ? " started their remote contribution on \u201C" : " checked in to \u201C") + raw.title + "\u201D");
+        this.load();
+      },
+      complete: () => { this.gs.setAssignmentState(raw.id, meId, "completed", raw.hours); this.gs.logAudit(meRaw.name + " submitted their contribution on \u201C" + raw.title + "\u201D \u2014 awaiting verification"); this.load(); },
+      askLeave: () => this.setState({ confirmLeave: true }),
+      cancelLeave: () => this.setState({ confirmLeave: false }),
+      leave: () => {
+        this.gs.leaveMission(raw.id, meId);
+        this.gs.logAudit(meRaw.name + " left \u201C" + raw.title + "\u201D \u2014 position released");
+        this.setState({ confirmLeave: false });
+        this.load();
+      },
+    };
+  }
+}
+</script>
+</body>
+</html>

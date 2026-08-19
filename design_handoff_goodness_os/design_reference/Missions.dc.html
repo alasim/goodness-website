@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+  body { margin: 0; background: #ffffff; font-family: 'Plus Jakarta Sans', system-ui, sans-serif; }
+  a { color: #1B7A34; } a:hover { color: #4DC86A; }
+</style>
+</helmet>
+<div data-screen-label="Missions" style="color: #0D0D0D; padding-top: 72px;">
+  <dc-import name="SiteNav" active="missions" hint-size="100%,72px"></dc-import>
+  <section style="position: relative; background: #ffffff; padding: 56px 0 40px; overflow: hidden;">
+    <svg style="position: absolute; top: 0; right: 0; opacity: 0.05; pointer-events: none;" width="520" height="360" viewBox="0 0 600 400" fill="none">
+      <circle cx="220" cy="180" r="160" stroke="#4DC86A" stroke-width="44" fill="none"></circle>
+      <path d="M370 180 C390 180 420 200 430 240 C445 295 420 350 370 370 C310 395 240 370 210 320" stroke="#4DC86A" stroke-width="44" fill="none" stroke-linecap="round"></path>
+      <line x1="220" y1="180" x2="380" y2="180" stroke="#4DC86A" stroke-width="44" stroke-linecap="round"></line>
+    </svg>
+    <div style="position: relative; max-width: 1280px; margin: 0 auto; padding: 0 24px;">
+      <span style="display: inline-flex; align-items: center; padding: 6px 16px; border-radius: 999px; color: #ffffff; font-size: 13px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; background: linear-gradient(135deg, #4DC86A 0%, #1B7A34 100%); margin-bottom: 28px;">Live Now</span>
+      <div style="display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 40px; align-items: end;">
+        <h1 style="margin: 0; font-size: clamp(42px, 5.6vw, 74px); line-height: 1.03; letter-spacing: -0.02em;"><span style="font-weight: 300;">Do one</span><br><span style="font-weight: 800; color: #1B7A34;">meaningful thing</span></h1>
+        <div>
+          <p style="margin: 0 0 20px; font-size: 18px; color: #6B7280; line-height: 1.65;">You don't have to join an organisation to make a difference today. Pick a mission, claim a role, show up. Your verified hours build from there.</p>
+          <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+            <a href="Volunteer.dc.html" style="display: inline-flex; align-items: center; gap: 8px; padding: 13px 24px; border-radius: 999px; color: #ffffff; font-weight: 700; font-size: 14px; text-decoration: none; background: linear-gradient(135deg, #4DC86A 0%, #1B7A34 100%);" style-hover="opacity: 0.9;">Become a volunteer</a>
+            <a href="My Goodness.dc.html" style="display: inline-flex; align-items: center; gap: 8px; padding: 13px 24px; border-radius: 999px; font-weight: 700; font-size: 14px; color: #0D0D0D; text-decoration: none; background: rgba(0,0,0,0.05);" style-hover="background: rgba(0,0,0,0.1);">My missions</a>
+          </div>
+        </div>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: rgba(0,0,0,0.08); border-radius: 16px; overflow: hidden; border: 1px solid rgba(0,0,0,0.08); margin-top: 40px;">
+        <div style="background: #ffffff; padding: 18px 22px;"><div style="font-weight: 800; font-size: 22px; color: #1B7A34;">{{ statOpen }}</div><div style="font-size: 12px; color: #6B7280; margin-top: 2px;">Open missions</div></div>
+        <div style="background: #ffffff; padding: 18px 22px;"><div style="font-weight: 800; font-size: 22px; color: #1B7A34;">{{ statSpots }}</div><div style="font-size: 12px; color: #6B7280; margin-top: 2px;">Positions to fill</div></div>
+        <div style="background: #ffffff; padding: 18px 22px;"><div style="font-weight: 800; font-size: 22px; color: #1B7A34;">{{ statChapters }}</div><div style="font-size: 12px; color: #6B7280; margin-top: 2px;">Chapters active</div></div>
+        <div style="background: #ffffff; padding: 18px 22px;"><div style="font-weight: 800; font-size: 22px; color: #1B7A34;">{{ statHours }}</div><div style="font-size: 12px; color: #6B7280; margin-top: 2px;">Volunteer hours open to claim</div></div>
+      </div>
+    </div>
+  </section>
+  <section style="padding: 40px 0 96px; background: #fafafa; border-top: 1px solid rgba(0,0,0,0.05);">
+    <div style="max-width: 1280px; margin: 0 auto; padding: 0 24px;">
+      <div style="display: flex; gap: 16px; margin-bottom: 24px; flex-wrap: wrap; align-items: center;">
+        <input value="{{ q }}" onInput="{{ setQ }}" placeholder="Search missions, venue, role&#8230;" style="flex: 1; min-width: 240px; max-width: 360px; box-sizing: border-box; padding: 11px 20px; border-radius: 999px; border: 1px solid rgba(0,0,0,0.1); background: #ffffff; font-size: 14px; font-family: inherit; outline: none;" style-focus="border-color: #1B7A34;">
+        <div style="display: flex; align-items: center; gap: 6px; flex-wrap: wrap;">
+          <sc-for list="{{ chips }}" as="c" hint-placeholder-count="7">
+            <button onClick="{{ c.pick }}" style="padding: 8px 14px; border-radius: 999px; font-size: 12px; font-weight: 700; white-space: nowrap; cursor: pointer; font-family: inherit; background: {{ c.bg }}; color: {{ c.color }}; border: {{ c.border }};">{{ c.label }}</button>
+          </sc-for>
+        </div>
+      </div>
+      <p style="margin: 0 0 20px; font-size: 12px; color: #9CA3AF; font-weight: 500;">{{ resultCount }}</p>
+      <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(360px, 1fr)); gap: 20px;">
+        <sc-for list="{{ list }}" as="m" hint-placeholder-count="6">
+          <a href="{{ m.href }}" style="text-decoration: none; color: inherit; background: #ffffff; border: 1px solid rgba(0,0,0,0.08); border-top: 3px solid {{ m.accent }}; border-radius: 16px; padding: 24px; display: flex; flex-direction: column; gap: 14px;" style-hover="box-shadow: 0 12px 32px rgba(0,0,0,0.1); transform: translateY(-3px);">
+            <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+              <span style="display: {{ m.urgentDisp }}; align-items: center; padding: 3px 10px; border-radius: 999px; font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; background: #E65100; color: #ffffff;">Urgent</span>
+              <span style="padding: 3px 10px; border-radius: 999px; font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; background: {{ m.statusBg }}; color: {{ m.statusColor }};">{{ m.statusLabel }}</span>
+              <span style="display: {{ m.remoteDisp }}; align-items: center; padding: 3px 10px; border-radius: 999px; font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; background: #e8f0fc; color: #1565C0;">Remote</span>
+              <span style="display: inline-flex; align-items: center; gap: 6px; padding: 3px 10px; border-radius: 999px; font-size: 10px; font-weight: 700; background: {{ m.bg }}; color: {{ m.color }};"><span style="width: 6px; height: 6px; border-radius: 50%; background: {{ m.light }};"></span>{{ m.programShort }}</span>
+            </div>
+            <h2 style="margin: 0; font-size: 19px; font-weight: 800; line-height: 1.25; letter-spacing: -0.01em;">{{ m.title }}</h2>
+            <div style="display: flex; flex-direction: column; gap: 5px; font-size: 13px; color: #6B7280;">
+              <div>&#128205; {{ m.venue }}</div>
+              <div>&#128197; {{ m.date }} &#183; {{ m.time }}</div>
+            </div>
+            <p style="margin: 0; font-size: 13px; color: #374151; line-height: 1.6;">{{ m.summary }}</p>
+            <div style="margin-top: auto;">
+              <div style="display: flex; align-items: center; justify-content: space-between; font-size: 12px; font-weight: 700; margin-bottom: 6px;">
+                <span>{{ m.fillLabel }}</span>
+                <span style="color: {{ m.spotsColor }};">{{ m.spotsLabel }}</span>
+              </div>
+              <div style="height: 8px; border-radius: 999px; background: #f0f1f3; overflow: hidden;"><div style="height: 100%; border-radius: 999px; background: linear-gradient(90deg, {{ m.light }}, {{ m.color }}); width: {{ m.pctW }};"></div></div>
+            </div>
+            <div style="display: flex; align-items: center; justify-content: space-between; padding-top: 12px; border-top: 1px solid rgba(0,0,0,0.06);">
+              <span style="font-size: 12px; color: #9CA3AF;">{{ m.hoursLabel }}</span>
+              <span style="font-size: 13px; font-weight: 700; color: {{ m.color }};">{{ m.ctaLabel }} &#8594;</span>
+            </div>
+          </a>
+        </sc-for>
+      </div>
+      <div style="display: {{ emptyDisp }}; flex-direction: column; align-items: center; text-align: center; padding: 72px 0;">
+        <p style="margin: 0 0 4px; font-weight: 700;">No missions match that</p>
+        <p style="margin: 0; font-size: 14px; color: #6B7280;">Try another search or clear the filters.</p>
+      </div>
+    </div>
+  </section>
+  <dc-import name="SiteFooter" hint-size="100%,420px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { q: "", filter: "all", missions: null, colors: null };
+  componentDidMount() {
+    import("./gs-os.js").then((m) => Promise.all([m.loadMissions(), m.loadOS()]))
+      .then(([missions, os]) => this.setState({ missions, colors: os.programColors }));
+  }
+  renderVals() {
+    const s = this.state;
+    if (!s.missions) return { q: "", setQ: () => {}, chips: [], list: [], resultCount: "Loading missions\u2026", emptyDisp: "none", statOpen: "\u2014", statSpots: "\u2014", statChapters: "\u2014", statHours: "\u2014" };
+    const colors = s.colors;
+    const deco = (m) => {
+      const c = colors[m.programSlug] || colors["education-career-readiness"];
+      const done = m.state === "completed", full = m.state === "full";
+      return { ...m, color: c.color, bg: c.bg, light: c.light,
+        accent: done ? "#D1D5DB" : m.urgent ? "#E65100" : c.light,
+        programShort: m.program.split(" ").slice(0, 3).join(" "),
+        urgentDisp: m.urgent ? "inline-flex" : "none",
+        remoteDisp: m.remote ? "inline-flex" : "none",
+        statusLabel: done ? "Completed" : full ? "Full" : "Open \u00B7 " + m.spotsLeft + " left",
+        statusBg: done ? "#f0f1f3" : full ? "#e8f0fc" : "#f0faf3",
+        statusColor: done ? "#6B7280" : full ? "#1565C0" : "#1B7A34",
+        fillLabel: m.filled + " / " + m.need + " positions filled",
+        spotsLabel: done ? "Closed" : full ? "Full" : m.spotsLeft + " left",
+        spotsColor: done || full ? "#9CA3AF" : m.urgent ? "#E65100" : "#1B7A34",
+        pctW: m.pct + "%",
+        hoursLabel: m.hours + " service hours \u00B7 " + (m.remote ? "Remote" : m.chapter),
+        ctaLabel: done ? "View report" : "View mission",
+        href: "Mission Detail.dc.html?id=" + m.id };
+    };
+    const chapters = [...new Set(s.missions.filter((m) => !m.remote).map((m) => m.chapter))];
+    const filters = [{ label: "All missions", key: "all" }, { label: "Open now", key: "open" }, { label: "Urgent", key: "urgent" }, { label: "Remote", key: "remote" }]
+      .concat(chapters.map((ch) => ({ label: ch, key: "ch:" + ch })));
+    const q = s.q.toLowerCase();
+    const list = s.missions.filter((m) => {
+      const f = s.filter;
+      const mf = f === "all" ? true
+        : f === "open" ? m.state === "open"
+        : f === "urgent" ? m.urgent
+        : f === "remote" ? m.remote
+        : m.chapter === f.slice(3);
+      const ms = !q || m.title.toLowerCase().includes(q) || m.venue.toLowerCase().includes(q) || m.program.toLowerCase().includes(q)
+        || (m.roles || []).some((r) => r.role.toLowerCase().includes(q));
+      return mf && ms;
+    }).map(deco);
+    const open = s.missions.filter((m) => m.state === "open");
+    return {
+      q: s.q, setQ: (e) => this.setState({ q: e.target.value }),
+      chips: filters.map((f) => {
+        const on = s.filter === f.key;
+        return { label: f.label,
+          bg: on ? "linear-gradient(135deg, #4DC86A 0%, #1B7A34 100%)" : "#ffffff",
+          color: on ? "#ffffff" : "#6B7280",
+          border: on ? "1px solid transparent" : "1px solid rgba(0,0,0,0.08)",
+          pick: () => this.setState({ filter: f.key }) };
+      }),
+      list,
+      resultCount: list.length + " mission" + (list.length !== 1 ? "s" : "") + (q ? " matching \u201C" + s.q + "\u201D" : ""),
+      emptyDisp: list.length === 0 ? "flex" : "none",
+      statOpen: String(open.length),
+      statSpots: String(open.reduce((n, m) => n + m.spotsLeft, 0)),
+      statChapters: String(new Set(open.map((m) => m.chapter)).size),
+      statHours: String(open.reduce((n, m) => n + m.hours * m.spotsLeft, 0)),
+    };
+  }
+}
+</script>
+</body>
+</html>

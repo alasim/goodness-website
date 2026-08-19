@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+  body { margin: 0; background: #fafafa; font-family: 'Plus Jakarta Sans', system-ui, sans-serif; }
+  a { color: #1B7A34; } a:hover { color: #4DC86A; }
+</style>
+</helmet>
+<div data-screen-label="Goodness Passport" style="color: #0D0D0D; padding-top: 72px;">
+  <dc-import name="SiteNav" active="volunteers" hint-size="100%,72px"></dc-import>
+  <div style="max-width: 1080px; margin: 0 auto; padding: 32px 24px 96px;">
+    <a href="Volunteers.dc.html" style="display: inline-flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 700; text-decoration: none; margin-bottom: 20px;">&#8592; All volunteers</a>
+    <section style="position: relative; background: #0D0D0D; border-radius: 24px; overflow: hidden; padding: 40px; margin-bottom: 24px;">
+      <svg style="position: absolute; top: 0; right: 0; opacity: 0.08; pointer-events: none;" width="420" height="280" viewBox="0 0 600 400" fill="none">
+        <circle cx="220" cy="180" r="160" stroke="#4DC86A" stroke-width="44" fill="none"></circle>
+        <path d="M370 180 C390 180 420 200 430 240 C445 295 420 350 370 370 C310 395 240 370 210 320" stroke="#4DC86A" stroke-width="44" fill="none" stroke-linecap="round"></path>
+      </svg>
+      <div style="position: relative; display: grid; grid-template-columns: auto 1fr auto; gap: 32px; align-items: center;">
+        <div style="position: relative;">
+          <div style="width: 120px; height: 120px; border-radius: 28%; display: flex; align-items: center; justify-content: center; color: #ffffff; font-weight: 800; font-size: 38px; background: {{ v.grad }};">{{ v.initials }}</div>
+          <div style="position: absolute; bottom: -8px; right: -8px; display: flex; align-items: center; gap: 4px; padding: 4px 10px; border-radius: 999px; font-size: 10px; font-weight: 800; color: #ffffff; background: linear-gradient(135deg, #4DC86A 0%, #1B7A34 100%); border: 2px solid #0D0D0D;">&#10003; Verified</div>
+        </div>
+        <div>
+          <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px; flex-wrap: wrap;">
+            <span style="display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px; border-radius: 999px; font-size: 10px; font-weight: 700; background: {{ v.bg }}; color: {{ v.color }};"><span style="width: 6px; height: 6px; border-radius: 50%; background: {{ v.light }};"></span>{{ v.program }}</span>
+            <span style="color: rgba(255,255,255,0.45); font-size: 12px;">{{ v.chapter }}</span>
+            <span style="color: rgba(255,255,255,0.45); font-size: 12px;">&#183; Since {{ v.joinedMonth }}</span>
+            <span style="display: {{ sustainDisp }}; align-items: center; gap: 5px; padding: 3px 10px; border-radius: 999px; font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; background: rgba(77,200,106,0.18); color: #4DC86A; border: 1px solid rgba(77,200,106,0.4);">Sustaining Member &#10003; {{ sustainSince }}</span>
+          </div>
+          <h1 style="margin: 0 0 4px; color: #ffffff; font-weight: 800; font-size: 37px; letter-spacing: -0.015em; line-height: 1.1;">{{ v.name }}</h1>
+          <p style="margin: 0 0 14px; font-weight: 700; font-size: 15px; color: {{ v.light }};">{{ v.role }}</p>
+          <blockquote style="margin: 0; color: rgba(255,255,255,0.65); font-weight: 300; font-style: italic; line-height: 1.6; max-width: 520px; font-size: 14px;">&#8220;{{ v.quote }}&#8221;</blockquote>
+        </div>
+        <div style="display: flex; flex-direction: column; align-items: flex-end; gap: 10px; flex-shrink: 0; text-align: right;">
+          <div style="font-size: 10px; font-weight: 800; letter-spacing: 0.25em; text-transform: uppercase; color: rgba(255,255,255,0.35);">Goodness Passport</div>
+          <div style="font-size: 13px; font-weight: 700; color: rgba(255,255,255,0.7); font-variant-numeric: tabular-nums;">{{ v.goodnessId }}</div>
+          <div style="padding: 6px 14px; border-radius: 999px; font-size: 12px; font-weight: 800; color: #0D0D0D; background: #ffffff;">{{ v.level }}</div>
+        </div>
+      </div>
+      <div style="position: relative; display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: rgba(255,255,255,0.12); border-radius: 14px; overflow: hidden; margin-top: 32px; border: 1px solid rgba(255,255,255,0.12);">
+        <div style="background: rgba(255,255,255,0.05); padding: 16px 20px;"><div style="font-size: 24px; font-weight: 800; color: #ffffff;">{{ v.missions }}</div><div style="font-size: 11px; color: rgba(255,255,255,0.45); margin-top: 2px;">Missions</div></div>
+        <div style="background: rgba(255,255,255,0.05); padding: 16px 20px;"><div style="font-size: 24px; font-weight: 800; color: #4DC86A;">{{ v.hours }}</div><div style="font-size: 11px; color: rgba(255,255,255,0.45); margin-top: 2px;">Verified service hours</div></div>
+        <div style="background: rgba(255,255,255,0.05); padding: 16px 20px;"><div style="font-size: 24px; font-weight: 800; color: #ffffff;">{{ v.programsCount }}</div><div style="font-size: 11px; color: rgba(255,255,255,0.45); margin-top: 2px;">Programs</div></div>
+        <div style="background: rgba(255,255,255,0.05); padding: 16px 20px;"><div style="font-size: 24px; font-weight: 800; color: #ffffff;">{{ v.impactStat }}</div><div style="font-size: 11px; color: rgba(255,255,255,0.45); margin-top: 2px;">{{ v.impactLabel }}</div></div>
+      </div>
+    </section>
+    <div style="display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 24px; align-items: start;">
+      <div style="display: flex; flex-direction: column; gap: 24px;">
+        <section style="background: #ffffff; border: 1px solid rgba(0,0,0,0.08); border-radius: 20px; padding: 28px;">
+          <h2 style="margin: 0 0 12px; font-size: 12px; text-transform: uppercase; letter-spacing: 0.2em; color: #9CA3AF; font-weight: 800;">About</h2>
+          <p style="margin: 0; font-size: 14px; color: #374151; line-height: 1.7;">{{ v.bio }}</p>
+          <h2 style="margin: 24px 0 12px; font-size: 12px; text-transform: uppercase; letter-spacing: 0.2em; color: #9CA3AF; font-weight: 800;">Skills</h2>
+          <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+            <sc-for list="{{ v.skills }}" as="s" hint-placeholder-count="4">
+              <span style="padding: 6px 14px; border-radius: 999px; font-size: 12px; font-weight: 600; background: {{ v.bg }}; color: {{ v.color }};">{{ s }}</span>
+            </sc-for>
+          </div>
+        </section>
+        <section style="background: #ffffff; border: 1px solid rgba(0,0,0,0.08); border-radius: 20px; padding: 28px;">
+          <h2 style="margin: 0 0 4px; font-size: 12px; text-transform: uppercase; letter-spacing: 0.2em; color: #9CA3AF; font-weight: 800;">Downloads</h2>
+          <p style="margin: 0 0 20px; font-size: 12px; color: #9CA3AF;">Official branded assets for {{ v.firstName }} &#8212; issued and controlled by Goodness Society.</p>
+          <div style="display: flex; flex-direction: column; gap: 12px;">
+            <div style="display: {{ certOnDisp }}; align-items: center; gap: 16px; border: 1px solid rgba(27,122,52,0.25); background: #f0faf3; border-radius: 14px; padding: 16px 20px;">
+              <div style="width: 44px; height: 44px; border-radius: 28%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; background: linear-gradient(135deg, #4DC86A 0%, #1B7A34 100%);"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"></circle><path d="M15.5 13 17 22l-5-3-5 3 1.5-9"></path></svg></div>
+              <div style="flex: 1;">
+                <div style="font-weight: 700; font-size: 14px;">Certificate of Volunteer Service</div>
+                <div style="font-size: 12px; color: #6B7280; margin-top: 2px;">Ref {{ v.certRef }} &#183; issued &amp; enabled by admin</div>
+              </div>
+              <button onClick="{{ downloadCert }}" style="padding: 10px 20px; border-radius: 999px; border: none; color: #ffffff; font-size: 13px; font-weight: 700; font-family: inherit; cursor: pointer; background: linear-gradient(135deg, #4DC86A 0%, #1B7A34 100%);" style-hover="opacity: 0.9;">Open &amp; download</button>
+            </div>
+            <div style="display: {{ certOffDisp }}; align-items: center; gap: 16px; border: 1px dashed rgba(0,0,0,0.15); background: #fafafa; border-radius: 14px; padding: 16px 20px;">
+              <div style="width: 44px; height: 44px; border-radius: 28%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; background: #ececf0;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#9CA3AF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg></div>
+              <div style="flex: 1;">
+                <div style="font-weight: 700; font-size: 14px; color: #6B7280;">Certificate of Volunteer Service</div>
+                <div style="font-size: 12px; color: #9CA3AF; margin-top: 2px;">Not yet issued &#8212; becomes available once enabled by the admin team</div>
+              </div>
+              <span style="padding: 6px 14px; border-radius: 999px; font-size: 11px; font-weight: 800; color: #9CA3AF; background: #ececf0; text-transform: uppercase; letter-spacing: 0.08em;">Locked</span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 16px; border: 1px solid rgba(0,0,0,0.08); background: #ffffff; border-radius: 14px; padding: 16px 20px;">
+              <div style="width: 44px; height: 44px; border-radius: 28%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; background: #0D0D0D;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#4DC86A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><path d="m8.6 13.5 6.8 4"></path><path d="m15.4 6.5-6.8 4"></path></svg></div>
+              <div style="flex: 1;">
+                <div style="font-weight: 700; font-size: 14px;">Share this moment</div>
+                <div style="font-size: 12px; color: #6B7280; margin-top: 2px;">Cards pre-filled from live verified records &#8212; numbers locked, never typed</div>
+              </div>
+              <a href="Share Studio.dc.html" style="padding: 10px 20px; border-radius: 999px; border: 1px solid rgba(0,0,0,0.15); color: #0D0D0D; background: #ffffff; font-size: 13px; font-weight: 700; text-decoration: none; flex-shrink: 0;" style-hover="border-color: #1B7A34; color: #1B7A34;">Open Share Studio &#8594;</a>
+            </div>
+            <div style="display: flex; gap: 6px; flex-wrap: wrap; align-items: center;">
+              <span style="font-size: 10px; font-weight: 800; letter-spacing: 0.1em; color: #9CA3AF;">QUICK CARDS:</span>
+              <a href="Share Studio.dc.html?card=identity" style="padding: 6px 12px; border-radius: 999px; background: #f0faf3; border: 1px solid rgba(27,122,52,0.25); color: #1B7A34; font-size: 11px; font-weight: 700; text-decoration: none;">My identity</a>
+              <a href="Share Studio.dc.html?card=hours" style="padding: 6px 12px; border-radius: 999px; background: #f0faf3; border: 1px solid rgba(27,122,52,0.25); color: #1B7A34; font-size: 11px; font-weight: 700; text-decoration: none;">Hour milestone</a>
+              <a href="Share Studio.dc.html?card=missions" style="padding: 6px 12px; border-radius: 999px; background: #f0faf3; border: 1px solid rgba(27,122,52,0.25); color: #1B7A34; font-size: 11px; font-weight: 700; text-decoration: none;">Mission milestone</a>
+              <a href="Share Studio.dc.html?card=credential" style="padding: 6px 12px; border-radius: 999px; background: #f0faf3; border: 1px solid rgba(27,122,52,0.25); color: #1B7A34; font-size: 11px; font-weight: 700; text-decoration: none;">Credential</a>
+              <a href="Share Studio.dc.html?card=year-me" style="padding: 6px 12px; border-radius: 999px; background: #f0faf3; border: 1px solid rgba(27,122,52,0.25); color: #1B7A34; font-size: 11px; font-weight: 700; text-decoration: none;">My Year in Goodness</a>
+            </div>
+          </div>
+        </section>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 24px;">
+        <section style="background: #ffffff; border: 1px solid rgba(0,0,0,0.08); border-radius: 20px; padding: 28px;">
+          <h2 style="margin: 0 0 16px; font-size: 12px; text-transform: uppercase; letter-spacing: 0.2em; color: #9CA3AF; font-weight: 800;">Journey</h2>
+          <div style="display: flex; flex-direction: column; gap: 0;">
+            <sc-for list="{{ journey }}" as="j" hint-placeholder-count="4">
+              <div style="display: flex; align-items: flex-start; gap: 12px;">
+                <div style="display: flex; flex-direction: column; align-items: center;">
+                  <div style="width: 14px; height: 14px; border-radius: 50%; border: 2px solid {{ j.ring }}; background: {{ j.fill }}; flex-shrink: 0;"></div>
+                  <div style="width: 2px; height: 28px; background: {{ j.line }};"></div>
+                </div>
+                <div style="margin-top: -2px; padding-bottom: 12px;">
+                  <div style="font-size: 13px; font-weight: {{ j.weight }}; color: {{ j.textColor }};">{{ j.label }}</div>
+                  <div style="font-size: 11px; color: #9CA3AF;">{{ j.note }}</div>
+                </div>
+              </div>
+            </sc-for>
+          </div>
+        </section>
+        <section style="background: #ffffff; border: 1px solid rgba(0,0,0,0.08); border-radius: 20px; padding: 28px;">
+          <h2 style="margin: 0 0 16px; font-size: 12px; text-transform: uppercase; letter-spacing: 0.2em; color: #9CA3AF; font-weight: 800;">Credentials</h2>
+          <div style="display: flex; flex-direction: column; gap: 12px;">
+            <sc-for list="{{ creds }}" as="c" hint-placeholder-count="2">
+              <div style="display: flex; align-items: center; gap: 12px; padding: 12px 14px; border: 1px solid rgba(0,0,0,0.07); border-radius: 12px;">
+                <div style="width: 34px; height: 34px; border-radius: 30%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; background: {{ c.iconBg }}; color: {{ c.iconColor }};"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></div>
+                <div style="flex: 1; min-width: 0;">
+                  <div style="font-size: 13px; font-weight: 700; line-height: 1.3;">{{ c.title }}</div>
+                  <div style="font-size: 11px; color: #9CA3AF; font-variant-numeric: tabular-nums;">{{ c.ref }} &#183; {{ c.issued }}</div>
+                </div>
+                <a href="{{ c.verifyHref }}" style="padding: 3px 10px; border-radius: 999px; font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; text-decoration: none; background: {{ c.chipBg }}; color: {{ c.chipColor }};">{{ c.statusLabel }}</a>
+              </div>
+            </sc-for>
+          </div>
+        </section>
+        <a href="Volunteer.dc.html" style="display: flex; align-items: center; justify-content: center; gap: 8px; padding: 16px 0; border-radius: 999px; color: #ffffff; font-weight: 700; font-size: 15px; text-decoration: none; background: {{ v.band }};" style-hover="opacity: 0.9;">Volunteer like {{ v.firstName }} <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></a>
+      </div>
+    </div>
+  </div>
+  <dc-import name="SiteFooter" hint-size="100%,420px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { os: null };
+  componentDidMount() {
+    import("./gs-os.js").then((m) => { this.gs = m; return Promise.all([m.loadOS(), m.loadNetwork()]); }).then(([os, net]) => {
+      const id = new URLSearchParams(location.search).get("id") || os.volunteers[0].id;
+      this.setState({ os, net, commit: this.gs.getCommitment(id) });
+    });
+  }
+  renderVals() {
+    const os = this.state.os;
+    const blankV = { name: "", firstName: "", role: "", program: "", quote: "", bio: "", skills: [], initials: "", city: "", chapter: "", joinedMonth: "", goodnessId: "", level: "", missions: "", hours: "", people: "", programsCount: "", impactStat: "", impactLabel: "", certRef: "", color: "#1B7A34", bg: "#f0faf3", light: "#4DC86A", grad: "linear-gradient(135deg, #4DC86A 0%, #1B7A34 100%)", band: "linear-gradient(135deg, #4DC86A 0%, #1B7A34 100%)" };
+    if (!os) return { v: blankV, journey: [], creds: [], certOnDisp: "none", certOffDisp: "none", sustainDisp: "none", sustainSince: "", downloadCert: () => {}, makeCard: () => {} };
+    const id = new URLSearchParams(location.search).get("id") || os.volunteers[0].id;
+    const raw = os.volunteers.find((x) => x.id === id) || os.volunteers[0];
+    const c = os.programColors[raw.programSlug] || os.programColors["education-career-readiness"];
+    const net = this.state.net;
+    const commit = this.state.commit;
+    const chId = net ? net.chapterOfVolunteer(raw) : null;
+    const ch = chId && net ? net.chapters.find((x) => x.id === chId) : null;
+    const teamRole = ch ? (ch.team.find((t) => t.volunteerId === raw.id) || {}).role : null;
+    const v = { ...raw,
+      chapter: ch ? ch.name + (teamRole ? " \u00B7 " + teamRole : "") : "National network",
+      firstName: raw.name.split(" ")[0], color: c.color, bg: c.bg, light: c.light,
+      grad: os.avatarGradients[raw.avatarColor], band: "linear-gradient(135deg, " + c.light + " 0%, " + c.color + " 100%)" };
+    const journey = os.levels.map((label, i) => {
+      const reached = i <= raw.levelIndex, current = i === raw.levelIndex;
+      return { label,
+        note: current ? "Current level" : reached ? "Completed" : "Next step",
+        ring: reached ? "#1B7A34" : "#D1D5DB",
+        fill: current ? "#1B7A34" : reached ? "#4DC86A" : "#ffffff",
+        line: i < os.levels.length - 1 ? (i < raw.levelIndex ? "#4DC86A" : "#E5E7EB") : "transparent",
+        weight: current ? "800" : "600",
+        textColor: reached ? "#0D0D0D" : "#9CA3AF" };
+    });
+    const creds = raw.credentials.map((cr) => ({ ...cr,
+      statusLabel: cr.status === "valid" ? "Valid" : "Revoked",
+      chipBg: cr.status === "valid" ? "#f0faf3" : "#fdecec",
+      chipColor: cr.status === "valid" ? "#1B7A34" : "#d4183d",
+      iconBg: cr.status === "valid" ? "#f0faf3" : "#fdecec",
+      iconColor: cr.status === "valid" ? "#1B7A34" : "#d4183d",
+      verifyHref: "Verify.dc.html?ref=" + encodeURIComponent(cr.ref) }));
+    return {
+      v, journey, creds,
+      sustainDisp: commit && commit.badge && commit.status !== "ended" ? "inline-flex" : "none",
+      sustainSince: commit ? "\u00B7 since " + commit.since : "",
+      certOnDisp: raw.certEnabled ? "flex" : "none",
+      certOffDisp: raw.certEnabled ? "none" : "flex",
+      downloadCert: () => {
+        const now = new Date();
+        const dd = String(now.getDate()).padStart(2, "0"), mm = String(now.getMonth() + 1).padStart(2, "0");
+        try {
+          localStorage.setItem("gs-cert-fields", JSON.stringify({
+            name: raw.name, program: raw.program, period: "Since " + raw.joinedMonth,
+            hours: raw.hours + " hours", date: dd + " / " + mm + " / " + now.getFullYear(),
+            ref: raw.certRef.replace("GS-VOL-", ""), sign: "", signFont: "'Great Vibes', cursive",
+          }));
+        } catch (e) {}
+        location.href = "Volunteer Certificate.dc.html";
+      },
+      makeCard: () => {
+        try {
+          const prev = JSON.parse(localStorage.getItem("gs-social-cards") || "{}");
+          localStorage.setItem("gs-social-cards", JSON.stringify({ ...prev, vName: raw.name, vRole: raw.role, vProgram: raw.program, vQuote: raw.quote.slice(0, 118) }));
+        } catch (e) {}
+        location.href = "Social Cards.dc.html";
+      },
+    };
+  }
+}
+</script>
+</body>
+</html>

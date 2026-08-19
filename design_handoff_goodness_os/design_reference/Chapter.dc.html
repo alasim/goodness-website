@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+  body { margin: 0; background: #fafafa; font-family: 'Plus Jakarta Sans', system-ui, sans-serif; }
+  a { color: #1B7A34; } a:hover { color: #4DC86A; }
+</style>
+</helmet>
+<div data-screen-label="Chapter" style="color: #0D0D0D; padding-top: 72px;">
+  <dc-import name="SiteNav" active="chapters" hint-size="100%,72px"></dc-import>
+  <div style="max-width: 1120px; margin: 0 auto; padding: 28px 24px 88px;">
+    <a href="Chapters.dc.html" style="display: inline-flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 700; text-decoration: none; margin-bottom: 20px;">&#8592; All chapters</a>
+    <section style="position: relative; background: #0D0D0D; border-radius: 24px; overflow: hidden; padding: 36px 40px; margin-bottom: 20px;">
+      <svg style="position: absolute; top: 0; right: 0; opacity: 0.07; pointer-events: none;" width="400" height="270" viewBox="0 0 600 400" fill="none">
+        <circle cx="220" cy="180" r="160" stroke="#4DC86A" stroke-width="44" fill="none"></circle>
+        <path d="M370 180 C390 180 420 200 430 240 C445 295 420 350 370 370 C310 395 240 370 210 320" stroke="#4DC86A" stroke-width="44" fill="none" stroke-linecap="round"></path>
+      </svg>
+      <div style="position: relative;">
+        <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 14px; flex-wrap: wrap;">
+          <span style="padding: 4px 12px; border-radius: 999px; font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em; background: {{ c.typeBg }}; color: {{ c.typeColor }};">{{ c.typeLabel }}</span>
+          <span style="display: {{ c.formingDisp }}; padding: 4px 12px; border-radius: 999px; font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em; background: #E65100; color: #ffffff;">Forming</span>
+          <span style="display: {{ c.parentDisp }}; font-size: 12px; color: rgba(255,255,255,0.5);">under {{ c.parentName }}</span>
+          <span style="font-size: 12px; color: rgba(255,255,255,0.45);">&#183; since {{ c.since }}</span>
+        </div>
+        <h1 style="margin: 0 0 10px; color: #ffffff; font-weight: 800; font-size: clamp(30px, 4vw, 44px); letter-spacing: -0.02em;">{{ c.name }}</h1>
+        <p style="margin: 0 0 24px; color: rgba(255,255,255,0.65); font-size: 15px; line-height: 1.65; max-width: 640px;">{{ c.story }}</p>
+        <div style="display: {{ c.statsDisp }}; grid-template-columns: repeat(5, 1fr); gap: 1px; background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.12); border-radius: 14px; overflow: hidden;">
+          <div style="background: rgba(255,255,255,0.05); padding: 15px 18px;"><div style="font-size: 21px; font-weight: 800; color: #ffffff;">{{ c.members }}</div><div style="font-size: 10.5px; color: rgba(255,255,255,0.45); margin-top: 2px;">Members</div></div>
+          <div style="background: rgba(255,255,255,0.05); padding: 15px 18px;"><div style="font-size: 21px; font-weight: 800; color: #4DC86A;">{{ c.hours }}</div><div style="font-size: 10.5px; color: rgba(255,255,255,0.45); margin-top: 2px;">Verified hours</div></div>
+          <div style="background: rgba(255,255,255,0.05); padding: 15px 18px;"><div style="font-size: 21px; font-weight: 800; color: #ffffff;">{{ c.people }}</div><div style="font-size: 10.5px; color: rgba(255,255,255,0.45); margin-top: 2px;">People supported</div></div>
+          <div style="background: rgba(255,255,255,0.05); padding: 15px 18px;"><div style="font-size: 21px; font-weight: 800; color: #ffffff;">{{ c.partners }}</div><div style="font-size: 10.5px; color: rgba(255,255,255,0.45); margin-top: 2px;">Local partners</div></div>
+          <div style="background: rgba(255,255,255,0.05); padding: 15px 18px;"><div style="font-size: 21px; font-weight: 800; color: #ffffff;">{{ c.deployed }}</div><div style="font-size: 10.5px; color: rgba(255,255,255,0.45); margin-top: 2px;">Deployed locally</div></div>
+        </div>
+        <div style="display: {{ c.formingDisp }}; margin-top: 6px; padding: 14px 18px; border-radius: 12px; background: rgba(230,81,0,0.15); border: 1px solid rgba(230,81,0,0.4); color: #FFB74D; font-size: 13px; font-weight: 600;">Forming &#183; Goodness standards {{ c.standards }} complete &#183; supported by {{ c.mentorNote }}</div>
+      </div>
+    </section>
+    <div style="display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 20px; align-items: start;">
+      <div style="display: flex; flex-direction: column; gap: 20px;">
+        <section style="display: {{ needsDisp }}; background: #ffffff; border: 1px solid rgba(0,0,0,0.08); border-radius: 20px; padding: 26px; flex-direction: column;">
+          <h2 style="margin: 0 0 4px; font-size: 12px; text-transform: uppercase; letter-spacing: 0.2em; color: #E65100; font-weight: 800;">Needed now</h2>
+          <p style="margin: 0 0 14px; font-size: 12px; color: #9CA3AF;">How you can help this chapter this week.</p>
+          <div style="display: flex; flex-direction: column; gap: 10px;">
+            <sc-for list="{{ needs }}" as="n" hint-placeholder-count="3">
+              <a href="{{ n.href }}" style="display: flex; align-items: center; gap: 12px; padding: 13px 16px; border: 1px solid rgba(0,0,0,0.07); border-radius: 12px; text-decoration: none; color: inherit;" style-hover="border-color: rgba(27,122,52,0.35);">
+                <span style="width: 30px; height: 30px; border-radius: 28%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 13px; background: {{ n.bg }}; color: {{ n.color }};">{{ n.icon }}</span>
+                <div style="flex: 1; min-width: 0;">
+                  <div style="font-size: 13px; font-weight: 700;">{{ n.title }}</div>
+                  <div style="font-size: 11.5px; color: #6B7280;">{{ n.note }}</div>
+                </div>
+                <span style="font-size: 12px; font-weight: 700; color: #1B7A34; flex-shrink: 0;">&#8594;</span>
+              </a>
+            </sc-for>
+          </div>
+        </section>
+        <section style="background: #ffffff; border: 1px solid rgba(0,0,0,0.08); border-radius: 20px; padding: 26px;">
+          <h2 style="margin: 0 0 14px; font-size: 12px; text-transform: uppercase; letter-spacing: 0.2em; color: #9CA3AF; font-weight: 800;">Missions in {{ c.city }}</h2>
+          <div style="display: {{ noMissionsDisp }}; font-size: 13px; color: #9CA3AF;">No missions listed here yet.</div>
+          <div style="display: flex; flex-direction: column; gap: 10px;">
+            <sc-for list="{{ missions }}" as="m" hint-placeholder-count="2">
+              <a href="{{ m.href }}" style="display: flex; align-items: center; gap: 14px; padding: 14px 16px; border: 1px solid rgba(0,0,0,0.07); border-radius: 14px; text-decoration: none; color: inherit;" style-hover="box-shadow: 0 6px 18px rgba(0,0,0,0.07);">
+                <span style="padding: 3px 10px; border-radius: 999px; font-size: 10px; font-weight: 800; text-transform: uppercase; background: {{ m.stBg }}; color: {{ m.stColor }}; flex-shrink: 0;">{{ m.stLabel }}</span>
+                <div style="flex: 1; min-width: 0;">
+                  <div style="font-size: 13.5px; font-weight: 700;">{{ m.title }}</div>
+                  <div style="font-size: 11.5px; color: #6B7280; margin-top: 2px;">{{ m.meta }}</div>
+                </div>
+                <span style="font-size: 12px; font-weight: 700; color: #1B7A34; flex-shrink: 0;">View &#8594;</span>
+              </a>
+            </sc-for>
+          </div>
+        </section>
+        <section style="background: #ffffff; border: 1px solid rgba(0,0,0,0.08); border-radius: 20px; padding: 26px;">
+          <h2 style="margin: 0 0 14px; font-size: 12px; text-transform: uppercase; letter-spacing: 0.2em; color: #9CA3AF; font-weight: 800;">Published impact from this chapter</h2>
+          <div style="display: {{ noImpactDisp }}; font-size: 13px; color: #9CA3AF;">No published impact records yet &#8212; nothing is invented before it's measured.</div>
+          <div style="display: flex; flex-direction: column; gap: 10px;">
+            <sc-for list="{{ impact }}" as="r" hint-placeholder-count="1">
+              <a href="Impact.dc.html" style="display: flex; align-items: center; gap: 14px; padding: 14px 16px; border: 1px solid rgba(0,0,0,0.07); border-radius: 14px; text-decoration: none; color: inherit;" style-hover="box-shadow: 0 6px 18px rgba(0,0,0,0.07);">
+                <div style="flex: 1; min-width: 0;">
+                  <div style="font-size: 13.5px; font-weight: 700;">{{ r.title }}</div>
+                  <div style="font-size: 11.5px; color: #6B7280; margin-top: 2px;">{{ r.meta }}</div>
+                </div>
+                <span style="font-size: 12px; font-weight: 700; color: #1B7A34; flex-shrink: 0;">Record &#8594;</span>
+              </a>
+            </sc-for>
+          </div>
+        </section>
+        <section style="display: {{ storiesDisp }}; background: #f8fdf9; border: 1px solid rgba(27,122,52,0.2); border-radius: 20px; padding: 26px; flex-direction: column;">
+          <h2 style="margin: 0 0 14px; font-size: 12px; text-transform: uppercase; letter-spacing: 0.2em; color: #1B7A34; font-weight: 800;">From this chapter</h2>
+          <div style="display: flex; flex-direction: column; gap: 10px;">
+            <sc-for list="{{ stories }}" as="st" hint-placeholder-count="2">
+              <div style="display: flex; align-items: flex-start; gap: 10px;">
+                <span style="width: 8px; height: 8px; border-radius: 50%; background: #4DC86A; margin-top: 5px; flex-shrink: 0;"></span>
+                <span style="font-size: 13px; color: #374151; line-height: 1.55;">{{ st }}</span>
+              </div>
+            </sc-for>
+          </div>
+        </section>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 20px;">
+        <section style="background: #ffffff; border: 1px solid rgba(0,0,0,0.08); border-radius: 20px; padding: 26px;">
+          <div style="display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 14px;"><h2 style="margin: 0; font-size: 12px; text-transform: uppercase; letter-spacing: 0.2em; color: #9CA3AF; font-weight: 800;">Chapter team</h2><a href="Chapter Control.dc.html" style="font-size: 11px; font-weight: 700; text-decoration: none;">Lead? Chapter Control &#8599;</a></div>
+          <div style="display: {{ noTeamDisp }}; font-size: 13px; color: #9CA3AF;">Leadership team being established.</div>
+          <div style="display: flex; flex-direction: column; gap: 10px;">
+            <sc-for list="{{ team }}" as="t" hint-placeholder-count="3">
+              <a href="{{ t.href }}" style="display: flex; align-items: center; gap: 12px; padding: 10px 12px; border: 1px solid rgba(0,0,0,0.07); border-radius: 12px; text-decoration: none; color: inherit;" style-hover="border-color: rgba(27,122,52,0.35);">
+                <div style="width: 36px; height: 36px; border-radius: 28%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 12px; font-weight: 800; color: #ffffff; background: {{ t.grad }};">{{ t.initials }}</div>
+                <div style="flex: 1; min-width: 0;">
+                  <div style="font-size: 13px; font-weight: 700;">{{ t.name }}</div>
+                  <div style="font-size: 11px; color: #9CA3AF;">{{ t.role }} &#183; since {{ t.since }}</div>
+                </div>
+              </a>
+            </sc-for>
+          </div>
+          <div style="display: {{ historyDisp }}; margin-top: 12px; padding-top: 12px; border-top: 1px solid rgba(0,0,0,0.06); font-size: 11.5px; color: #9CA3AF;">{{ historyLine }}</div>
+        </section>
+        <section style="display: {{ goalsDisp }}; background: #ffffff; border: 1px solid rgba(0,0,0,0.08); border-radius: 20px; padding: 26px; flex-direction: column;">
+          <h2 style="margin: 0 0 14px; font-size: 12px; text-transform: uppercase; letter-spacing: 0.2em; color: #9CA3AF; font-weight: 800;">2026 goals</h2>
+          <div style="display: flex; flex-direction: column; gap: 14px;">
+            <sc-for list="{{ goals }}" as="g" hint-placeholder-count="3">
+              <div>
+                <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 10px; margin-bottom: 5px;">
+                  <span style="font-size: 12.5px; font-weight: 600;">{{ g.label }}</span>
+                  <span style="font-size: 12.5px; font-weight: 800; color: #1B7A34;">{{ g.progress }}</span>
+                </div>
+                <div style="height: 8px; border-radius: 999px; background: #f0f1f3; overflow: hidden;"><div style="height: 100%; border-radius: 999px; background: linear-gradient(90deg, #4DC86A, #1B7A34); width: {{ g.w }};"></div></div>
+              </div>
+            </sc-for>
+          </div>
+        </section>
+        <section style="background: #ffffff; border: 1px solid rgba(0,0,0,0.08); border-radius: 20px; padding: 26px;">
+          <h2 style="margin: 0 0 14px; font-size: 12px; text-transform: uppercase; letter-spacing: 0.2em; color: #9CA3AF; font-weight: 800;">Partners powering {{ c.shortName }}</h2>
+          <div style="display: {{ noPartnersDisp }}; font-size: 13px; color: #9CA3AF;">No local partners yet &#8212; be the first.</div>
+          <div style="display: flex; flex-direction: column; gap: 8px;">
+            <sc-for list="{{ partners }}" as="p" hint-placeholder-count="2">
+              <a href="{{ p.href }}" style="display: flex; align-items: center; gap: 10px; padding: 10px 12px; border: 1px solid rgba(0,0,0,0.07); border-radius: 12px; text-decoration: none; color: inherit;" style-hover="border-color: rgba(27,122,52,0.35);">
+                <span style="width: 28px; height: 28px; border-radius: 28%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 10px; font-weight: 800; color: #ffffff; background: linear-gradient(135deg, #1976D2 0%, #1565C0 100%);">{{ p.initials }}</span>
+                <div style="flex: 1; min-width: 0;">
+                  <div style="font-size: 12.5px; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">{{ p.name }}</div>
+                  <div style="font-size: 10.5px; color: #9CA3AF;">{{ p.tier }}</div>
+                </div>
+              </a>
+            </sc-for>
+          </div>
+          <a href="Fund Impact.dc.html" style="display: inline-block; margin-top: 12px; font-size: 12px; font-weight: 800; text-decoration: none;">Help fund {{ c.shortName }} &#8594;</a>
+        </section>
+        <button onClick="{{ joinAction }}" style="display: {{ joinBtnDisp }}; text-align: center; padding: 15px 0; border-radius: 999px; border: none; color: #ffffff; font-size: 14px; font-weight: 800; font-family: inherit; cursor: pointer; background: linear-gradient(135deg, #4DC86A 0%, #1B7A34 100%); width: 100%;" style-hover="opacity: 0.9;">{{ joinLabel }} &#8594;</button>
+        <div style="display: {{ joinedDisp }}; padding: 14px 16px; border-radius: 999px; background: #f0faf3; border: 1px solid rgba(27,122,52,0.3); text-align: center; font-size: 13px; font-weight: 800; color: #1B7A34;">{{ joinedLabel }}</div>
+        <a href="{{ joinHref }}" style="display: {{ joinLinkDisp }}; text-align: center; padding: 15px 0; border-radius: 999px; color: #ffffff; font-size: 14px; font-weight: 800; text-decoration: none; background: linear-gradient(135deg, #4DC86A 0%, #1B7A34 100%);" style-hover="opacity: 0.9;">{{ joinLabel }} &#8594;</a>
+        <p style="margin: 0; font-size: 11px; color: #9CA3AF; line-height: 1.6;">Your primary chapter is where you belong organisationally &#8212; you can still join missions anywhere in Goodness.</p>
+      </div>
+    </div>
+  </div>
+  <dc-import name="SiteFooter" hint-size="100%,420px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { net: null, os: null, justJoined: false };
+  componentDidMount() {
+    import("./gs-os.js").then((m) => { this.gs = m; return Promise.all([m.loadNetwork(), m.loadOS()]); })
+      .then(([net, os]) => this.setState({ net, os }));
+  }
+  short(n) {
+    const v = Number(n || 0);
+    if (v >= 100000) return "\u09F3" + (v / 100000).toFixed(1) + "L";
+    return "\u09F3" + v.toLocaleString();
+  }
+  renderVals() {
+    const s = this.state, net = s.net;
+    const blank = { name: "", story: "", city: "", since: "", shortName: "", typeLabel: "", typeBg: "#f0faf3", typeColor: "#1B7A34", formingDisp: "none", parentDisp: "none", parentName: "", statsDisp: "none", members: "", hours: "", people: "", partners: "", deployed: "", standards: "", mentorNote: "" };
+    if (!net) return { c: blank, needs: [], needsDisp: "none", missions: [], noMissionsDisp: "none", impact: [], noImpactDisp: "none", stories: [], storiesDisp: "none", team: [], noTeamDisp: "none", historyDisp: "none", historyLine: "", goals: [], goalsDisp: "none", partners: [], noPartnersDisp: "none", joinHref: "#", joinLabel: "Join this chapter", joinBtnDisp: "none", joinLinkDisp: "none", joinedDisp: "none", joinedLabel: "", joinAction: () => {} };
+    const id = new URLSearchParams(location.search).get("id") || "chp-dhaka";
+    const raw = net.chapters.find((x) => x.id === id) || net.chapters[0];
+    const meId = this.gs ? this.gs.readMe() : null;
+    const meRaw = meId && s.os ? s.os.volunteers.find((v) => v.id === meId) : null;
+    const isMine = meRaw ? net.chapterOfVolunteer(meRaw) === raw.id : false;
+    const parent = raw.parentId ? net.chapters.find((x) => x.id === raw.parentId) : null;
+    const forming = raw.status === "forming";
+    const openMissions = raw.missions.filter((m) => m.state === "open");
+    const needs = [];
+    openMissions.forEach((m) => {
+      (m.roles || []).forEach((r) => {
+        const claimed = m.assignments.filter((a) => a.role === r.role).length;
+        const left = r.need - claimed - Math.round((m.seedFilled || 0) / (m.roles.length || 1));
+        if (left > 0 && needs.length < 3) needs.push({ title: left + " \u00D7 " + r.role, note: m.title, icon: "\u2665", bg: "#f0faf3", color: "#1B7A34", href: "Mission Detail.dc.html?id=" + m.id });
+      });
+    });
+    const gap = raw.partners.length === 0 || forming;
+    if (needs.length < 3 && !forming) needs.push({ title: "Local partner", note: "Fund or resource " + raw.name + "'s next initiative", icon: "\u09F3", bg: "#e8f0fc", color: "#1565C0", href: "Partner.dc.html#build" });
+    const stories = [];
+    if (raw.hours >= 500) stories.push(raw.name + " crossed " + raw.hours.toLocaleString() + " verified volunteer hours.");
+    raw.impact.slice(0, 1).forEach((r) => stories.push(r.title + " \u2014 " + (r.beneficiaries || 0) + " people supported, evidence " + r.evidenceVerified + "/" + r.evidenceTotal + " verified."));
+    raw.team.slice(0, 1).forEach((t) => stories.push(t.volunteer.name + " has been " + t.role + " since " + t.since + "."));
+    return {
+      c: { ...blank, ...raw,
+        shortName: raw.name.replace("Goodness ", ""),
+        typeLabel: raw.type === "university" ? "University chapter" : "District chapter",
+        typeBg: raw.type === "university" ? "#e8f0fc" : "#4DC86A",
+        typeColor: raw.type === "university" ? "#1565C0" : "#0D3B1A",
+        formingDisp: forming ? "inline-flex" : "none",
+        parentDisp: parent ? "inline" : "none",
+        parentName: parent ? parent.name : "",
+        statsDisp: forming ? "none" : "grid",
+        members: raw.type === "university" ? "26" : String(raw.memberCount),
+        hours: raw.type === "university" ? "210" : raw.hours.toLocaleString(),
+        people: raw.people.toLocaleString(),
+        partners: String(raw.partners.length),
+        deployed: this.short(raw.deployed),
+        standards: raw.standards.done + " / " + raw.standards.total,
+        mentorNote: "Goodness Chattogram" },
+      needs, needsDisp: needs.length ? "flex" : "none",
+      missions: raw.missions.map((m) => ({ title: m.title, href: "Mission Detail.dc.html?id=" + m.id,
+        meta: m.date + " \u00B7 " + m.filled + "/" + m.need + " roles filled \u00B7 " + m.hours + " service hours",
+        stLabel: m.state === "completed" ? "Completed" : m.state === "full" ? "Full" : m.urgent ? "Urgent" : "Open",
+        stBg: m.state === "completed" ? "#f0f1f3" : m.urgent ? "#fff3e0" : m.state === "full" ? "#e8f0fc" : "#f0faf3",
+        stColor: m.state === "completed" ? "#6B7280" : m.urgent ? "#E65100" : m.state === "full" ? "#1565C0" : "#1B7A34" })),
+      noMissionsDisp: raw.missions.length ? "none" : "block",
+      impact: raw.impact.map((r) => ({ title: r.title,
+        meta: (r.primaryValue != null ? r.primaryValue.toLocaleString() : r.beneficiaries) + " " + (r.unitLabel || "people supported") + " \u00B7 evidence " + r.evidenceVerified + "/" + r.evidenceTotal + " verified" })),
+      noImpactDisp: raw.impact.length ? "none" : "block",
+      stories, storiesDisp: stories.length ? "flex" : "none",
+      team: raw.team.map((t) => ({ name: t.volunteer.name, role: t.role, since: t.since,
+        initials: t.volunteer.initials, grad: s.os.avatarGradients[t.volunteer.avatarColor],
+        href: "Volunteer Profile.dc.html?id=" + t.volunteer.id })),
+      noTeamDisp: raw.team.length ? "none" : "block",
+      historyDisp: (raw.leadershipHistory || []).length ? "block" : "none",
+      historyLine: (raw.leadershipHistory || []).map((h) => h.name + " \u2014 " + h.role + " (" + h.period + ")").join(" \u00B7 "),
+      goals: raw.goals.map((g) => ({ label: g.label, progress: g.current.toLocaleString() + " / " + g.target.toLocaleString(), w: g.pct + "%" })),
+      goalsDisp: raw.goals.length ? "flex" : "none",
+      partners: raw.partners.map((p) => ({ name: p.name, tier: p.tier,
+        initials: p.name.split(" ").filter((w) => /^[A-Z]/.test(w)).map((w) => w[0]).join("").slice(0, 2).toUpperCase(),
+        href: "Partner Profile.dc.html?id=" + p.id })),
+      noPartnersDisp: raw.partners.length ? "none" : "block",
+      joinHref: forming ? "Volunteer.dc.html" : "My Goodness.dc.html",
+      joinLabel: s.justJoined ? "Welcome to " + raw.name : (forming ? "Help form this chapter" : (meRaw ? "Make this my chapter" : "Join " + raw.name)),
+      joinBtnDisp: meRaw && !forming && !isMine && !s.justJoined ? "block" : "none",
+      joinLinkDisp: (!meRaw || forming) && !s.justJoined ? "block" : "none",
+      joinedDisp: (isMine || s.justJoined) && !forming ? "block" : "none",
+      joinedLabel: s.justJoined ? "You now belong to " + raw.name + " \u2713" : "This is your chapter \u2713",
+      joinAction: () => {
+        if (!meRaw) { location.href = "My Goodness.dc.html"; return; }
+        this.gs.setMyChapter(meRaw.id, raw.id);
+        this.gs.logAudit(meRaw.name + " set their primary chapter to " + raw.name);
+        this.setState({ justJoined: true });
+      },
+    };
+  }
+}
+</script>
+</body>
+</html>

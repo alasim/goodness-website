@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+  body { margin: 0; background: #ffffff; font-family: 'Plus Jakarta Sans', system-ui, sans-serif; }
+  a { color: #1B7A34; } a:hover { color: #4DC86A; }
+</style>
+</helmet>
+<div data-screen-label="Transparency" style="color: #0D0D0D; padding-top: 72px;">
+  <dc-import name="SiteNav" active="transparency" hint-size="100%,72px"></dc-import>
+  <section style="position: relative; background: #ffffff; padding: 64px 0 80px; overflow: hidden;">
+    <svg style="position: absolute; top: -40px; right: -40px; transform: rotate(25deg); opacity: 0.05; pointer-events: none;" width="400" height="400" viewBox="0 0 400 400" fill="none"><defs><linearGradient id="thsq" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#4DC86A"></stop><stop offset="100%" stop-color="#1B7A34"></stop></linearGradient></defs><rect x="16" y="16" width="368" height="368" rx="80" fill="url(#thsq)"></rect></svg>
+    <div style="max-width: 1280px; margin: 0 auto; padding: 0 24px;">
+      <span style="display: inline-flex; align-items: center; padding: 6px 16px; border-radius: 999px; color: #ffffff; font-size: 13px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; background: linear-gradient(135deg, #4DC86A 0%, #1B7A34 100%); margin-bottom: 32px;">Our Open Books</span>
+      <div style="max-width: 760px;">
+        <h1 style="margin: 0 0 24px; font-size: clamp(40px, 5vw, 67px); line-height: 1.05; letter-spacing: -0.02em;"><span style="font-weight: 800;">Nothing to hide.</span><br><span style="font-weight: 300;">Everything to show.</span></h1>
+        <p style="margin: 0; font-size: 18px; color: #6B7280; line-height: 1.65; max-width: 580px;">We publish every financial figure, every impact metric, and every milestone. This page is our commitment to accountability &#8212; updated quarterly.</p>
+      </div>
+    </div>
+  </section>
+  <section style="padding: 48px 0; background: #fafafa; border-top: 1px solid rgba(0,0,0,0.05); border-bottom: 1px solid rgba(0,0,0,0.05);">
+    <div style="max-width: 1280px; margin: 0 auto; padding: 0 24px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px;">
+      <div style="background: #ffffff; border-radius: 16px; border: 1px solid rgba(0,0,0,0.08); padding: 24px;"><p style="margin: 0 0 8px; font-size: 12px; color: #6B7280;">Total Raised (2024, audited)</p><p style="margin: 0; font-size: 30px; font-weight: 800;">&#2547;24.5M</p><p style="margin: 4px 0 0; font-size: 12px; color: #6B7280;">Across 2 funding rounds</p></div>
+      <div style="background: #ffffff; border-radius: 16px; border: 1px solid rgba(0,0,0,0.08); padding: 24px;"><p style="margin: 0 0 8px; font-size: 12px; color: #6B7280;">Total Spent (2024, audited)</p><p style="margin: 0; font-size: 30px; font-weight: 800;">&#2547;21.8M</p><p style="margin: 4px 0 0; font-size: 12px; color: #6B7280;">89% utilisation rate</p></div>
+      <div style="background: #ffffff; border-radius: 16px; border: 1px solid rgba(0,0,0,0.08); padding: 24px;"><p style="margin: 0 0 8px; font-size: 12px; color: #6B7280;">Overhead Ratio (2024, audited)</p><p style="margin: 0; font-size: 30px; font-weight: 800; color: #1B7A34;">11%</p><p style="margin: 4px 0 0; font-size: 12px; color: #6B7280;">Below 15% benchmark</p></div>
+      <div style="background: #ffffff; border-radius: 16px; border: 1px solid rgba(0,0,0,0.08); padding: 24px;"><p style="margin: 0 0 8px; font-size: 12px; color: #6B7280;">People Supported</p><p style="margin: 0; font-size: 30px; font-weight: 800;">{{ livesVal }}</p><p style="margin: 4px 0 0; font-size: 12px; color: #6B7280;">Backed by published impact records</p></div>
+    </div>
+  </section>
+  <section style="padding: 80px 0; background: #ffffff;">
+    <div style="max-width: 1280px; margin: 0 auto; padding: 0 24px; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 32px;">
+      <div style="background: #ffffff; border: 1px solid rgba(0,0,0,0.08); border-radius: 16px; padding: 28px;">
+        <p style="margin: 0 0 4px; font-size: 11px; text-transform: uppercase; letter-spacing: 0.15em; color: #6B7280; font-weight: 700;">Fund Allocation</p>
+        <p style="margin: 0 0 24px; font-weight: 700;">Where your money goes</p>
+        <div style="display: flex; justify-content: center;">
+          <div style="position: relative; width: 180px; height: 180px;">
+            <svg width="180" height="180" viewBox="0 0 180 180" style="transform: rotate(-90deg);">
+              <circle cx="90" cy="90" r="66" fill="none" stroke="#1B7A34" stroke-width="28" stroke-dasharray="292.5 122.2" stroke-dashoffset="0"></circle>
+              <circle cx="90" cy="90" r="66" fill="none" stroke="#4DC86A" stroke-width="28" stroke-dasharray="66.4 348.3" stroke-dashoffset="-297"></circle>
+              <circle cx="90" cy="90" r="66" fill="none" stroke="#a8e6b8" stroke-width="28" stroke-dasharray="41.2 373.5" stroke-dashoffset="-368"></circle>
+            </svg>
+            <div style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;">
+              <div style="text-align: center;"><div style="font-size: 24px; font-weight: 800; color: #1B7A34;">72%</div><div style="font-size: 10px; color: #6B7280;">Programs</div></div>
+            </div>
+          </div>
+        </div>
+        <div style="margin-top: 16px; display: flex; flex-direction: column; gap: 8px;">
+          <div style="display: flex; align-items: center; gap: 12px;"><div style="width: 12px; height: 12px; border-radius: 3px; background: #1B7A34; flex-shrink: 0;"></div><span style="flex: 1; font-size: 12px;">Programs &amp; Activities</span><span style="font-weight: 700; font-size: 12px;">72%</span></div>
+          <div style="display: flex; align-items: center; gap: 12px;"><div style="width: 12px; height: 12px; border-radius: 3px; background: #4DC86A; flex-shrink: 0;"></div><span style="flex: 1; font-size: 12px;">Operations &amp; Staff</span><span style="font-weight: 700; font-size: 12px;">17%</span></div>
+          <div style="display: flex; align-items: center; gap: 12px;"><div style="width: 12px; height: 12px; border-radius: 3px; background: #a8e6b8; flex-shrink: 0;"></div><span style="flex: 1; font-size: 12px;">Administration</span><span style="font-weight: 700; font-size: 12px;">11%</span></div>
+        </div>
+      </div>
+      <div style="background: #ffffff; border: 1px solid rgba(0,0,0,0.08); border-radius: 16px; padding: 28px;">
+        <p style="margin: 0 0 4px; font-size: 11px; text-transform: uppercase; letter-spacing: 0.15em; color: #6B7280; font-weight: 700;">Quarterly Finances</p>
+        <p style="margin: 0 0 24px; font-weight: 700;">Raised vs Spent (&#2547;M)</p>
+        <div style="display: flex; align-items: flex-end; gap: 20px; height: 180px;">
+          <sc-for list="{{ quarters }}" as="q" hint-placeholder-count="4">
+            <div style="flex: 1; display: flex; flex-direction: column; align-items: center; gap: 6px; height: 100%; justify-content: flex-end;">
+              <div style="display: flex; align-items: flex-end; gap: 4px; flex: 1; width: 100%; justify-content: center;">
+                <div style="width: 20px; border-radius: 4px 4px 0 0; background: #4DC86A; height: {{ q.raisedH }};"></div>
+                <div style="width: 20px; border-radius: 4px 4px 0 0; background: #1B7A34; height: {{ q.spentH }};"></div>
+              </div>
+              <div style="font-size: 11px; color: #6B7280;">{{ q.q }}</div>
+            </div>
+          </sc-for>
+        </div>
+        <div style="display: flex; align-items: center; gap: 16px; margin-top: 12px;">
+          <div style="display: flex; align-items: center; gap: 6px;"><div style="width: 12px; height: 12px; border-radius: 3px; background: #4DC86A;"></div><span style="font-size: 12px; color: #6B7280;">Raised</span></div>
+          <div style="display: flex; align-items: center; gap: 6px;"><div style="width: 12px; height: 12px; border-radius: 3px; background: #1B7A34;"></div><span style="font-size: 12px; color: #6B7280;">Spent</span></div>
+        </div>
+      </div>
+      <div style="background: #ffffff; border: 1px solid rgba(0,0,0,0.08); border-radius: 16px; padding: 28px;">
+        <p style="margin: 0 0 4px; font-size: 11px; text-transform: uppercase; letter-spacing: 0.15em; color: #6B7280; font-weight: 700;">Cumulative Impact</p>
+        <p style="margin: 0 0 24px; font-weight: 700;">People Supported (2024)</p>
+        <svg width="100%" height="180" viewBox="0 0 300 190" preserveAspectRatio="none">
+          <line x1="0" y1="20" x2="300" y2="20" stroke="#f0f0f0" stroke-dasharray="4 2"></line>
+          <line x1="0" y1="70" x2="300" y2="70" stroke="#f0f0f0" stroke-dasharray="4 2"></line>
+          <line x1="0" y1="120" x2="300" y2="120" stroke="#f0f0f0" stroke-dasharray="4 2"></line>
+          <line x1="0" y1="170" x2="300" y2="170" stroke="#f0f0f0" stroke-dasharray="4 2"></line>
+          <polyline points="10,168 55,152 100,128 145,107 190,68 235,40 280,20" fill="none" stroke="#1B7A34" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"></polyline>
+          <circle cx="10" cy="168" r="4" fill="#1B7A34"></circle><circle cx="55" cy="152" r="4" fill="#1B7A34"></circle><circle cx="100" cy="128" r="4" fill="#1B7A34"></circle><circle cx="145" cy="107" r="4" fill="#1B7A34"></circle><circle cx="190" cy="68" r="4" fill="#1B7A34"></circle><circle cx="235" cy="40" r="4" fill="#1B7A34"></circle><circle cx="280" cy="20" r="4" fill="#1B7A34"></circle>
+        </svg>
+        <div style="display: flex; justify-content: space-between; margin-top: 4px; padding: 0 2px;">
+          <span style="font-size: 10px; color: #6B7280;">Jan</span><span style="font-size: 10px; color: #6B7280;">Mar</span><span style="font-size: 10px; color: #6B7280;">May</span><span style="font-size: 10px; color: #6B7280;">Jul</span><span style="font-size: 10px; color: #6B7280;">Sep</span><span style="font-size: 10px; color: #6B7280;">Nov</span><span style="font-size: 10px; color: #6B7280;">Dec</span>
+        </div>
+        <p style="margin: 12px 0 0; font-size: 12px; color: #6B7280;">180 in January &#8594; <strong style="color: #1B7A34;">{{ livesVal }} in published records</strong></p>
+      </div>
+    </div>
+  </section>
+  <section style="padding: 80px 0; background: #fafafa; border-top: 1px solid rgba(0,0,0,0.05);">
+    <div style="max-width: 880px; margin: 0 auto; padding: 0 24px;">
+      <div style="margin-bottom: 56px;">
+        <p style="margin: 0 0 12px; font-size: 12px; text-transform: uppercase; letter-spacing: 0.2em; color: #6B7280; font-weight: 700;">Track Record</p>
+        <h2 style="margin: 0; font-size: clamp(32px, 4vw, 48px); line-height: 1.15;"><span style="font-weight: 300;">Our</span> <span style="font-weight: 800;">milestones</span></h2>
+      </div>
+      <div style="position: relative;">
+        <div style="position: absolute; left: 16px; top: 8px; bottom: 8px; width: 2px; background: rgba(0,0,0,0.08);"></div>
+        <div style="display: flex; flex-direction: column; gap: 32px; padding-left: 48px;">
+          <sc-for list="{{ milestones }}" as="m" hint-placeholder-count="8">
+            <div style="position: relative;">
+              <div style="position: absolute; left: -40px; top: 18px; width: 16px; height: 16px; border-radius: 50%; border: 2px solid #ffffff; background: {{ m.dot }};"></div>
+              <div style="background: #ffffff; border-radius: 12px; border: 1px solid rgba(0,0,0,0.08); padding: 20px;" style-hover="box-shadow: 0 4px 12px rgba(0,0,0,0.06);">
+                <p style="margin: 0 0 4px; font-size: 12px; color: #6B7280; font-weight: 700;">{{ m.date }}</p>
+                <p style="margin: 0; font-size: 14px; font-weight: 500;">{{ m.event }}</p>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section style="padding: 80px 0; background: #ffffff;">
+    <div style="max-width: 1280px; margin: 0 auto; padding: 0 24px;">
+      <div style="margin-bottom: 56px; text-align: center;">
+        <p style="margin: 0 0 12px; font-size: 12px; text-transform: uppercase; letter-spacing: 0.2em; color: #6B7280; font-weight: 700;">Our Pledge</p>
+        <h2 style="margin: 0; font-size: clamp(32px, 4vw, 48px); line-height: 1.15; font-weight: 800;">5 donor commitments</h2>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 20px;">
+        <sc-for list="{{ commitments }}" as="c" hint-placeholder-count="5">
+          <div style="text-align: center; padding: 24px; border-radius: 16px; border: 1px solid rgba(0,0,0,0.08); background: #ffffff;" style-hover="box-shadow: 0 8px 24px rgba(0,0,0,0.07);">
+            <div style="width: 48px; height: 48px; border-radius: 28%; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; background: #f0faf3; color: #1B7A34;">{{ c.icon }}</div>
+            <p style="margin: 0 0 4px; font-weight: 700; font-size: 14px;">{{ c.title }}</p>
+            <p style="margin: 0; font-size: 12px; color: #6B7280; line-height: 1.6;">{{ c.desc }}</p>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+  <section style="padding: 64px 0; background: #fafafa; border-top: 1px solid rgba(0,0,0,0.05);">
+    <div style="max-width: 560px; margin: 0 auto; padding: 0 24px; text-align: center;">
+      <h2 style="margin: 0 0 12px; font-size: 24px; font-weight: 700;">Download our Annual Report</h2>
+      <p style="margin: 0 0 12px; font-size: 13px; color: #6B7280;">These are the audited 2024 figures. For 2026 year-to-date, line by line, see the <a href="Trust Ledger.dc.html" style="font-weight: 700;">Trust Ledger</a> — its overhead share differs because the year is still in progress.</p>
+      <p style="margin: 0 0 24px; color: #6B7280; font-size: 14px;">Full 2024 Annual Impact Report &#8212; financials, outcomes, and forward outlook.</p>
+      <a href="mailto:hello@goodnesssociety.org?subject=Annual%20Report%20Request" style="display: inline-flex; align-items: center; gap: 8px; padding: 14px 28px; border-radius: 999px; color: #ffffff; font-weight: 700; text-decoration: none; background: linear-gradient(135deg, #4DC86A 0%, #1B7A34 100%);" style-hover="opacity: 0.9;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><path d="M7 10l5 5 5-5"></path><path d="M12 15V3"></path></svg>Request PDF Report</a>
+    </div>
+  </section>
+  <dc-import name="SiteFooter" hint-size="100%,420px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  icon(paths) {
+    return React.createElement("svg", { width: 22, height: 22, viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: 2, strokeLinecap: "round", strokeLinejoin: "round", dangerouslySetInnerHTML: { __html: paths } });
+  }
+  state = { lives: null };
+  componentDidMount() {
+    import("./gs-os.js").then((m) => m.loadImpact()).then((impact) => this.setState({ lives: impact.filter((r) => r.published).reduce((n, r) => n + (r.beneficiaries || 0), 0) }));
+  }
+  renderVals() {
+    const dot = { milestone: "#1B7A34", funding: "#1565C0", program: "#4DC86A" };
+    return {
+      livesVal: this.state.lives === null ? "\u2014" : this.state.lives.toLocaleString(),
+      quarters: [
+        { q: "Q1 '24", raisedH: "112px", spentH: "104px" },
+        { q: "Q2 '24", raisedH: "132px", spentH: "119px" },
+        { q: "Q3 '24", raisedH: "160px", spentH: "149px" },
+        { q: "Q4 '24", raisedH: "125px", spentH: "99px" },
+      ],
+      milestones: [
+        { date: "Jan 2024", event: "Organisation officially registered", dot: dot.milestone },
+        { date: "Mar 2024", event: "First education cohort launched \u2014 45 participants", dot: dot.program },
+        { date: "May 2024", event: "\u09F382L raised in first funding round", dot: dot.funding },
+        { date: "Jun 2024", event: "AI & Digital Skills program launched in partnership with TechHub Dhaka", dot: dot.program },
+        { date: "Aug 2024", event: "500th beneficiary milestone reached", dot: dot.milestone },
+        { date: "Oct 2024", event: "Second funding round \u2014 \u09F31.63Cr raised", dot: dot.funding },
+        { date: "Nov 2024", event: "Youth Empowerment bootcamp \u2014 120 graduates", dot: dot.program },
+        { date: "Dec 2024", event: "First annual report published \u2014 audited accounts and programme results", dot: dot.milestone },
+      ],
+      commitments: [
+        { icon: this.icon('<path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/>'), title: "Open Books", desc: "All financial records are available for public review on request." },
+        { icon: this.icon('<path d="M3 3v16a2 2 0 0 0 2 2h16"/><path d="M7 16v-3"/><path d="M12 16v-6"/><path d="M17 16V8"/>'), title: "Impact Reports", desc: "Quarterly reports published showing program outcomes and metrics." },
+        { icon: this.icon('<path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/>'), title: "Donor Protection", desc: "Your contributions are ring-fenced and allocated only to stated programs." },
+        { icon: this.icon('<path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/>'), title: "Audit Compliance", desc: "Annual independent audit conducted and results publicly disclosed." },
+        { icon: this.icon('<path d="M22 7 13.5 15.5 8.5 10.5 2 17"/><path d="M16 7h6v6"/>'), title: "Progress Tracking", desc: "Every initiative has a public milestone tracker updated monthly." },
+      ],
+    };
+  }
+}
+</script>
+</body>
+</html>

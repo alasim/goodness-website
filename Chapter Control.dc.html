@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+  body { margin: 0; background: #f4f5f7; font-family: 'Plus Jakarta Sans', system-ui, sans-serif; }
+  a { color: #1B7A34; } a:hover { color: #4DC86A; }
+</style>
+</helmet>
+<div data-screen-label="Chapter Control" style="color: #0D0D0D; min-height: 100vh;">
+  <div style="max-width: 1080px; margin: 0 auto; padding: 28px 24px 88px;">
+    <div style="display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin-bottom: 20px;">
+      <div style="display: flex; align-items: center; gap: 10px;">
+        <div style="width: 34px; height: 34px; border-radius: 30%; background: linear-gradient(135deg, #4DC86A 0%, #1B7A34 100%); display: flex; align-items: center; justify-content: center; color: #ffffff; font-weight: 800; font-size: 17px;">G</div>
+        <div>
+          <div style="font-size: 15px; font-weight: 800;">Chapter Control</div>
+          <div style="font-size: 10px; color: #6B7280; text-transform: uppercase; letter-spacing: 0.16em;">Goodness OS &#183; local command</div>
+        </div>
+      </div>
+      <div style="display: flex; gap: 8px;">
+        <a href="Chapters.dc.html" style="padding: 8px 16px; border-radius: 999px; border: 1px solid rgba(0,0,0,0.12); background: #ffffff; font-size: 12px; font-weight: 700; text-decoration: none; color: #0D0D0D;">Public network &#8599;</a>
+        <a href="Mission Control.dc.html" style="padding: 8px 16px; border-radius: 999px; border: 1px solid rgba(0,0,0,0.12); background: #ffffff; font-size: 12px; font-weight: 700; text-decoration: none; color: #0D0D0D;">HQ Mission Control &#8599;</a>
+      </div>
+    </div>
+    <section style="display: {{ pickDisp }}; flex-direction: column; align-items: center; text-align: center; padding: 40px 0;">
+      <h1 style="margin: 0 0 10px; font-size: clamp(26px, 3.6vw, 38px); line-height: 1.15;"><span style="font-weight: 300;">Run your chapter</span> <span style="font-weight: 800;">from one place.</span></h1>
+      <p style="margin: 0 0 26px; font-size: 14px; color: #6B7280; max-width: 460px; line-height: 1.65;">Sign in as a chapter lead. You operate locally; HQ approves the sensitive parts &#8212; autonomy within guardrails.</p>
+      <div style="width: 100%; max-width: 520px; display: flex; flex-direction: column; gap: 8px;">
+        <sc-for list="{{ options }}" as="o" hint-placeholder-count="5">
+          <button onClick="{{ o.pick }}" style="display: flex; align-items: center; gap: 12px; padding: 12px 14px; border-radius: 12px; border: 1px solid rgba(0,0,0,0.08); background: #ffffff; cursor: pointer; font-family: inherit; text-align: left;" style-hover="border-color: #1B7A34; background: #f0faf3;">
+            <div style="width: 36px; height: 36px; border-radius: 28%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 12px; font-weight: 800; color: #ffffff; background: {{ o.grad }};">{{ o.initials }}</div>
+            <div style="flex: 1; min-width: 0;">
+              <div style="font-size: 13.5px; font-weight: 700;">{{ o.name }}</div>
+              <div style="font-size: 11px; color: #9CA3AF;">{{ o.role }} &#183; {{ o.chapter }}</div>
+            </div>
+            <span style="font-size: 12px; font-weight: 700; color: #1B7A34;">Enter &#8594;</span>
+          </button>
+        </sc-for>
+      </div>
+    </section>
+    <section style="display: {{ dashDisp }}; flex-direction: column; gap: 18px;">
+      <div style="background: #0D0D0D; border-radius: 20px; padding: 26px 30px; display: flex; align-items: center; gap: 16px; flex-wrap: wrap;">
+        <div style="flex: 1; min-width: 240px;">
+          <div style="font-size: 11px; color: rgba(255,255,255,0.45);">{{ meLine }}</div>
+          <h1 style="margin: 4px 0 0; font-size: 24px; font-weight: 800; color: #ffffff;">{{ ch.name }}</h1>
+        </div>
+        <div style="display: flex; gap: 18px; flex-wrap: wrap;">
+          <div><div style="font-size: 19px; font-weight: 800; color: #ffffff;">{{ ch.members }}</div><div style="font-size: 10px; color: rgba(255,255,255,0.45);">Members</div></div>
+          <div><div style="font-size: 19px; font-weight: 800; color: #4DC86A;">{{ ch.live }}</div><div style="font-size: 10px; color: rgba(255,255,255,0.45);">Missions live</div></div>
+          <div><div style="font-size: 19px; font-weight: 800; color: #ffffff;">{{ ch.people }}</div><div style="font-size: 10px; color: rgba(255,255,255,0.45);">People supported</div></div>
+          <div><div style="font-size: 19px; font-weight: 800; color: #ffffff;">{{ ch.deployed }}</div><div style="font-size: 10px; color: rgba(255,255,255,0.45);">Deployed locally</div></div>
+        </div>
+        <button onClick="{{ signOut }}" style="padding: 8px 14px; border-radius: 999px; border: 1px solid rgba(255,255,255,0.25); background: transparent; color: rgba(255,255,255,0.75); font-size: 11px; font-weight: 700; cursor: pointer; font-family: inherit;">Sign out</button>
+      </div>
+      <div style="background: #f0faf3; border: 1px solid rgba(27,122,52,0.25); border-radius: 16px; padding: 16px 20px;">
+        <div style="font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.14em; color: #1B7A34; margin-bottom: 8px;">From HQ</div>
+        <div style="display: flex; flex-direction: column; gap: 6px;">
+          <sc-for list="{{ announcements }}" as="a" hint-placeholder-count="3">
+            <div style="font-size: 12.5px; color: #374151;">&#8226; {{ a }}</div>
+          </sc-for>
+        </div>
+      </div>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 18px; align-items: start;">
+        <div style="display: flex; flex-direction: column; gap: 18px;">
+          <section style="background: #ffffff; border: 1px solid rgba(0,0,0,0.07); border-radius: 16px; padding: 22px;">
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 4px;">
+              <h2 style="margin: 0; font-size: 11px; text-transform: uppercase; letter-spacing: 0.16em; color: #9CA3AF; font-weight: 800;">Within your authority</h2>
+              <span style="font-size: 10px; font-weight: 800; color: #1B7A34; text-transform: uppercase;">No HQ approval needed</span>
+            </div>
+            <p style="margin: 0 0 14px; font-size: 11.5px; color: #9CA3AF;">Low-risk local missions publish straight to the public board.</p>
+            <div style="display: flex; flex-direction: column; gap: 10px;">
+              <input value="{{ mTitle }}" onInput="{{ setMTitle }}" placeholder="Mission title, e.g. Weekend CV clinic" style="box-sizing: border-box; padding: 10px 14px; border-radius: 10px; border: 1px solid rgba(0,0,0,0.12); background: #fafafa; font-size: 13px; font-family: inherit; outline: none;" style-focus="border-color: #1B7A34; background: #ffffff;">
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                <input value="{{ mDate }}" onInput="{{ setMDate }}" placeholder="Date, e.g. Sat 19 Sep 2026" style="box-sizing: border-box; padding: 10px 14px; border-radius: 10px; border: 1px solid rgba(0,0,0,0.12); background: #fafafa; font-size: 13px; font-family: inherit; outline: none;" style-focus="border-color: #1B7A34; background: #ffffff;">
+                <input value="{{ mRoles }}" onInput="{{ setMRoles }}" placeholder="Roles: Mentor x4, Desk x2" style="box-sizing: border-box; padding: 10px 14px; border-radius: 10px; border: 1px solid rgba(0,0,0,0.12); background: #fafafa; font-size: 13px; font-family: inherit; outline: none;" style-focus="border-color: #1B7A34; background: #ffffff;">
+              </div>
+              <div style="display: flex; align-items: center; gap: 10px;">
+                <button onClick="{{ publishMission }}" style="padding: 10px 20px; border-radius: 999px; border: none; color: #ffffff; font-size: 12px; font-weight: 800; font-family: inherit; cursor: pointer; background: linear-gradient(135deg, #4DC86A 0%, #1B7A34 100%);" style-hover="opacity: 0.9;">Publish local mission</button>
+                <span style="display: {{ mErrDisp }}; font-size: 11.5px; color: #d4183d; font-weight: 600;">Title and date required.</span>
+                <span style="display: {{ mOkDisp }}; font-size: 11.5px; color: #1B7A34; font-weight: 700;">Published &#8212; it's live on the mission board.</span>
+              </div>
+            </div>
+          </section>
+          <section style="background: #ffffff; border: 1px solid rgba(0,0,0,0.07); border-radius: 16px; padding: 22px;">
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 4px;">
+              <h2 style="margin: 0; font-size: 11px; text-transform: uppercase; letter-spacing: 0.16em; color: #9CA3AF; font-weight: 800;">Needs HQ approval</h2>
+              <span style="font-size: 10px; font-weight: 800; color: #E65100; text-transform: uppercase;">Guardrail</span>
+            </div>
+            <p style="margin: 0 0 14px; font-size: 11.5px; color: #9CA3AF;">Budgets, funding opportunities, and public impact records go to HQ first.</p>
+            <div style="display: flex; flex-direction: column; gap: 10px;">
+              <select value="{{ pKind }}" onChange="{{ setPKind }}" style="box-sizing: border-box; padding: 10px 14px; border-radius: 10px; border: 1px solid rgba(0,0,0,0.12); background: #fafafa; font-size: 13px; font-family: inherit; outline: none;">
+                <option value="Funding need">Funding need (goes to Fund Impact if approved)</option>
+                <option value="Budget request">Budget request</option>
+                <option value="Impact record">Publish an impact record</option>
+              </select>
+              <input value="{{ pTitle }}" onInput="{{ setPTitle }}" placeholder="Title, e.g. AI Bootcamp — close ৳3.2L gap" style="box-sizing: border-box; padding: 10px 14px; border-radius: 10px; border: 1px solid rgba(0,0,0,0.12); background: #fafafa; font-size: 13px; font-family: inherit; outline: none;" style-focus="border-color: #1B7A34; background: #ffffff;">
+              <input value="{{ pAmount }}" onInput="{{ setPAmount }}" placeholder="Amount if money, e.g. 320000" style="box-sizing: border-box; padding: 10px 14px; border-radius: 10px; border: 1px solid rgba(0,0,0,0.12); background: #fafafa; font-size: 13px; font-family: inherit; outline: none;" style-focus="border-color: #1B7A34; background: #ffffff;">
+              <div style="display: flex; align-items: center; gap: 10px;">
+                <button onClick="{{ sendProposal }}" style="padding: 10px 20px; border-radius: 999px; border: 1px solid rgba(230,81,0,0.4); color: #E65100; background: #fff8f2; font-size: 12px; font-weight: 800; font-family: inherit; cursor: pointer;" style-hover="background: #ffefe0;">Send to HQ for approval</button>
+                <span style="display: {{ pErrDisp }}; font-size: 11.5px; color: #d4183d; font-weight: 600;">Title required.</span>
+              </div>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 8px; margin-top: 14px;">
+              <sc-for list="{{ proposals }}" as="pr" hint-placeholder-count="0">
+                <div style="display: flex; align-items: center; gap: 10px; padding: 10px 12px; border: 1px solid rgba(0,0,0,0.07); border-radius: 10px; font-size: 12px;">
+                  <span style="flex: 1; font-weight: 600;">{{ pr.title }}</span>
+                  <span style="color: #9CA3AF;">{{ pr.kind }}</span>
+                  <span style="padding: 2px 9px; border-radius: 999px; font-size: 10px; font-weight: 800; text-transform: uppercase; background: {{ pr.bg }}; color: {{ pr.color }};">{{ pr.stage }}</span>
+                </div>
+              </sc-for>
+            </div>
+          </section>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 18px;">
+          <section style="background: #ffffff; border: 1px solid rgba(0,0,0,0.07); border-radius: 16px; padding: 22px;">
+            <h2 style="margin: 0 0 12px; font-size: 11px; text-transform: uppercase; letter-spacing: 0.16em; color: #9CA3AF; font-weight: 800;">Attendance to verify &#183; your missions</h2>
+            <div style="display: {{ noAsgDisp }}; font-size: 12.5px; color: #9CA3AF;">Nothing awaiting verification in {{ ch.shortName }}.</div>
+            <div style="display: flex; flex-direction: column; gap: 8px;">
+              <sc-for list="{{ asg }}" as="a" hint-placeholder-count="0">
+                <div style="display: flex; align-items: center; gap: 10px; padding: 10px 12px; border: 1px solid rgba(0,0,0,0.07); border-radius: 10px;">
+                  <div style="flex: 1; min-width: 0;">
+                    <div style="font-size: 12.5px; font-weight: 700;">{{ a.name }}</div>
+                    <div style="font-size: 10.5px; color: #9CA3AF;">{{ a.role }} &#183; {{ a.mission }}</div>
+                  </div>
+                  <button onClick="{{ a.verify }}" style="padding: 7px 14px; border-radius: 999px; border: none; color: #ffffff; font-size: 11px; font-weight: 800; font-family: inherit; cursor: pointer; background: linear-gradient(135deg, #4DC86A 0%, #1B7A34 100%);">Verify {{ a.hours }}h</button>
+                </div>
+              </sc-for>
+            </div>
+          </section>
+          <section style="background: #ffffff; border: 1px solid rgba(0,0,0,0.07); border-radius: 16px; padding: 22px;">
+            <h2 style="margin: 0 0 12px; font-size: 11px; text-transform: uppercase; letter-spacing: 0.16em; color: #9CA3AF; font-weight: 800;">Goodness standards</h2>
+            <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 10px;">
+              <div style="flex: 1; height: 10px; border-radius: 999px; background: #f0f1f3; overflow: hidden;"><div style="height: 100%; border-radius: 999px; background: linear-gradient(90deg, #4DC86A, #1B7A34); width: {{ stdW }};"></div></div>
+              <span style="font-size: 12px; font-weight: 800;">{{ stdLabel }}</span>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 6px;">
+              <sc-for list="{{ standards }}" as="st" hint-placeholder-count="6">
+                <div style="display: flex; align-items: center; gap: 8px; font-size: 12px;"><span style="font-weight: 800; color: {{ st.color }};">{{ st.mark }}</span><span style="color: #374151;">{{ st.label }}</span></div>
+              </sc-for>
+            </div>
+          </section>
+          <section style="background: #ffffff; border: 1px solid rgba(0,0,0,0.07); border-radius: 16px; padding: 22px;">
+            <h2 style="margin: 0 0 12px; font-size: 11px; text-transform: uppercase; letter-spacing: 0.16em; color: #9CA3AF; font-weight: 800;">Your team &amp; members</h2>
+            <div style="display: flex; flex-direction: column; gap: 8px;">
+              <sc-for list="{{ team }}" as="t" hint-placeholder-count="3">
+                <div style="display: flex; align-items: center; gap: 10px; font-size: 12.5px;">
+                  <div style="width: 28px; height: 28px; border-radius: 28%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 10px; font-weight: 800; color: #ffffff; background: {{ t.grad }};">{{ t.initials }}</div>
+                  <span style="flex: 1; font-weight: 700;">{{ t.name }}</span>
+                  <span style="color: #9CA3AF;">{{ t.role }}</span>
+                </div>
+              </sc-for>
+            </div>
+            <div style="font-size: 11.5px; color: #6B7280; margin-top: 10px;">{{ memberNote }}</div>
+          </section>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { net: null, os: null, missions: null, me: null, mTitle: "", mDate: "", mRoles: "", mOk: false, mErr: false, pKind: "Funding need", pTitle: "", pAmount: "", pErr: false };
+  load() {
+    import("./gs-os.js").then((m) => { this.gs = m; return Promise.all([m.loadNetwork(), m.loadOS(), m.loadMissions()]); })
+      .then(([net, os, missions]) => this.setState({ net, os, missions, me: this.gs.readChapterLead() }));
+  }
+  componentDidMount() { this.load(); }
+  short(n) { const v = Number(n || 0); return v >= 100000 ? "\u09F3" + (v / 100000).toFixed(1) + "L" : "\u09F3" + v.toLocaleString(); }
+  renderVals() {
+    const s = this.state, net = s.net;
+    const blankCh = { name: "", shortName: "", members: "", live: "", people: "", deployed: "" };
+    const idle = { pickDisp: "flex", dashDisp: "none", options: [], ch: blankCh, meLine: "", announcements: [], proposals: [], asg: [], noAsgDisp: "none", standards: [], stdW: "0%", stdLabel: "", team: [], memberNote: "", mTitle: "", mDate: "", mRoles: "", mErrDisp: "none", mOkDisp: "none", pKind: "Funding need", pTitle: "", pAmount: "", pErrDisp: "none",
+      setMTitle: () => {}, setMDate: () => {}, setMRoles: () => {}, publishMission: () => {}, setPKind: () => {}, setPTitle: () => {}, setPAmount: () => {}, sendProposal: () => {}, signOut: () => {} };
+    if (!net || !s.os) return idle;
+    const leads = [];
+    net.chapters.forEach((c) => c.team.forEach((t) => { if (/Lead$/.test(t.role)) leads.push({ t, c }); }));
+    const sel = s.me ? leads.find((x) => x.t.volunteerId === s.me) : null;
+    if (!sel) {
+      return { ...idle,
+        options: leads.map(({ t, c }) => ({ name: t.volunteer.name, role: t.role, chapter: c.name,
+          initials: t.volunteer.initials, grad: s.os.avatarGradients[t.volunteer.avatarColor],
+          pick: () => { this.gs.claimChapterLead(t.volunteerId); this.setState({ me: t.volunteerId }); } })) };
+    }
+    const c = sel.c;
+    const stdItems = ["Brand guidelines", "Safeguarding", "Finance & Trust", "Mission operations", "Impact reporting", "Chapter leadership"];
+    const myProposals = this.gs.readProposals().filter((p) => p.chapterId === c.id);
+    const pendingAsg = [];
+    c.missions.forEach((m) => (m.assignments || []).forEach((a) => {
+      if (a.state === "completed") {
+        const v = s.os.volunteers.find((x) => x.id === a.volunteerId);
+        pendingAsg.push({ name: v ? v.name : "Volunteer", role: a.role, mission: m.title, hours: m.hours,
+          verify: () => { this.gs.setAssignmentState(m.id, a.volunteerId, "verified", m.hours); this.gs.logAudit(c.name + " lead verified " + m.hours + "h for " + (v ? v.name : "volunteer") + " on \u201C" + m.title + "\u201D"); this.load(); } });
+      }
+    }));
+    return {
+      pickDisp: "none", dashDisp: "flex", options: [],
+      meLine: "Good day, " + sel.t.volunteer.name + " \u00B7 " + sel.t.role,
+      ch: { name: c.name, shortName: c.name.replace("Goodness ", ""),
+        members: c.type === "university" ? "26" : String(c.memberCount),
+        live: String(c.missionsLive), people: c.people.toLocaleString(), deployed: this.short(c.deployed) },
+      announcements: [
+        "National Volunteer Week starts 5 September \u2014 plan one public mission.",
+        "New certificate standard is live \u2014 issue only from Mission Control.",
+        "Q3 chapter reports due 30 Sep \u2014 impact records must cite evidence.",
+      ],
+      mTitle: s.mTitle, mDate: s.mDate, mRoles: s.mRoles,
+      setMTitle: (e) => this.setState({ mTitle: e.target.value, mOk: false }),
+      setMDate: (e) => this.setState({ mDate: e.target.value, mOk: false }),
+      setMRoles: (e) => this.setState({ mRoles: e.target.value, mOk: false }),
+      mErrDisp: s.mErr ? "inline" : "none",
+      mOkDisp: s.mOk ? "inline" : "none",
+      publishMission: () => {
+        if (!s.mTitle || !s.mDate) { this.setState({ mErr: true }); return; }
+        const roles = (s.mRoles || "").split(",").map((ck) => { const mt = ck.trim().match(/^(.*?)\s*[x\u00D7]\s*(\d+)$/i); return mt ? { role: mt[1].trim(), need: parseInt(mt[2], 10), skills: [] } : (ck.trim() ? { role: ck.trim(), need: 1, skills: [] } : null); }).filter(Boolean);
+        this.gs.createMission({ title: s.mTitle, programSlug: "community-development", program: "Community Development",
+          chapter: c.city, venue: c.city, date: s.mDate, time: "To be confirmed", hours: 4, lead: sel.t.volunteer.name,
+          impactTarget: "To be defined", summary: "Local mission published by " + c.name + " within chapter authority.",
+          roles: roles.length ? roles : [{ role: "Volunteer", need: 5, skills: [] }] });
+        this.setState({ mTitle: "", mDate: "", mRoles: "", mOk: true, mErr: false }, () => this.load());
+      },
+      pKind: s.pKind, pTitle: s.pTitle, pAmount: s.pAmount,
+      setPKind: (e) => this.setState({ pKind: e.target.value }),
+      setPTitle: (e) => this.setState({ pTitle: e.target.value }),
+      setPAmount: (e) => this.setState({ pAmount: e.target.value }),
+      pErrDisp: s.pErr ? "inline" : "none",
+      sendProposal: () => {
+        if (!s.pTitle) { this.setState({ pErr: true }); return; }
+        this.gs.submitProposal({ chapterId: c.id, chapterName: c.name, kind: s.pKind, title: s.pTitle,
+          amount: parseInt(String(s.pAmount).replace(/[^0-9]/g, ""), 10) || 0, by: sel.t.volunteer.name });
+        this.setState({ pTitle: "", pAmount: "", pErr: false }, () => this.load());
+      },
+      proposals: myProposals.map((p) => ({ title: p.title, kind: p.kind,
+        stage: p.stage === "pending" ? "Awaiting HQ" : p.stage === "approved" ? "Approved" : "Returned",
+        bg: p.stage === "pending" ? "#fff3e0" : p.stage === "approved" ? "#f0faf3" : "#fdecec",
+        color: p.stage === "pending" ? "#E65100" : p.stage === "approved" ? "#1B7A34" : "#d4183d" })),
+      asg: pendingAsg,
+      noAsgDisp: pendingAsg.length ? "none" : "block",
+      standards: stdItems.map((label, i) => ({ label,
+        mark: i < c.standards.done ? "\u2713" : "\u25CB",
+        color: i < c.standards.done ? "#1B7A34" : "#9CA3AF" })),
+      stdW: Math.round((c.standards.done / c.standards.total) * 100) + "%",
+      stdLabel: c.standards.done + " / " + c.standards.total,
+      team: c.team.map((t) => ({ name: t.volunteer.name, role: t.role, initials: t.volunteer.initials, grad: s.os.avatarGradients[t.volunteer.avatarColor] })),
+      memberNote: (c.type === "university" ? "26 campus volunteers" : c.memberCount + " members") + " \u00B7 full roster in HQ Mission Control",
+      signOut: () => { this.gs.claimChapterLead(null); this.setState({ me: null }); },
+    };
+  }
+}
+</script>
+</body>
+</html>

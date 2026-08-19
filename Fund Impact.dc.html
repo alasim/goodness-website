@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+  body { margin: 0; background: #ffffff; font-family: 'Plus Jakarta Sans', system-ui, sans-serif; }
+  a { color: #1B7A34; } a:hover { color: #4DC86A; }
+</style>
+</helmet>
+<div data-screen-label="Fund Impact" style="color: #0D0D0D; padding-top: 72px;">
+  <dc-import name="SiteNav" active="fund" hint-size="100%,72px"></dc-import>
+  <section style="position: relative; background: #0D0D0D; padding: 64px 0 52px; overflow: hidden;">
+    <svg style="position: absolute; top: -30px; right: -20px; opacity: 0.07; pointer-events: none;" width="560" height="380" viewBox="0 0 600 400" fill="none">
+      <circle cx="220" cy="180" r="160" stroke="#4DC86A" stroke-width="44" fill="none"></circle>
+      <path d="M370 180 C390 180 420 200 430 240 C445 295 420 350 370 370 C310 395 240 370 210 320" stroke="#4DC86A" stroke-width="44" fill="none" stroke-linecap="round"></path>
+      <line x1="220" y1="180" x2="380" y2="180" stroke="#4DC86A" stroke-width="44" stroke-linecap="round"></line>
+    </svg>
+    <div style="position: relative; max-width: 1280px; margin: 0 auto; padding: 0 24px;">
+      <span style="display: inline-flex; align-items: center; padding: 6px 16px; border-radius: 999px; color: #ffffff; font-size: 12px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; background: linear-gradient(135deg, #4DC86A 0%, #1B7A34 100%); margin-bottom: 24px;">Fund Impact</span>
+      <div style="display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 48px; align-items: end;">
+        <h1 style="margin: 0; font-size: clamp(32px, 4.4vw, 56px); line-height: 1.1; letter-spacing: -0.02em; color: #ffffff;"><span style="font-weight: 300;">Don't just donate.</span><br><span style="font-weight: 800;">Back measurable impact.</span></h1>
+        <div>
+          <p style="margin: 0 0 18px; font-size: 15px; color: rgba(255,255,255,0.6); line-height: 1.7;">Every opportunity below has a funding target, expected outcomes, and a public trail &#8212; your contribution joins its funding pool, the work is delivered by verified volunteers, and the results land on the Impact page and Trust Ledger with evidence.</p>
+          <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+            <a href="Trust Ledger.dc.html" style="padding: 12px 22px; border-radius: 999px; font-size: 13px; font-weight: 700; color: #0D0D0D; background: #ffffff; text-decoration: none;">See where money goes &#8594;</a>
+            <a href="Partner Room.dc.html" style="padding: 12px 22px; border-radius: 999px; font-size: 13px; font-weight: 700; color: #ffffff; background: rgba(255,255,255,0.12); text-decoration: none;">Partner Room</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section style="padding: 56px 0 80px; background: #fafafa; border-top: 1px solid rgba(0,0,0,0.05);">
+    <div style="max-width: 1280px; margin: 0 auto; padding: 0 24px;">
+      <div style="display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-bottom: 28px;">
+        <div>
+          <p style="margin: 0 0 10px; font-size: 12px; text-transform: uppercase; letter-spacing: 0.2em; color: #6B7280; font-weight: 700;">Open now</p>
+          <h2 style="margin: 0; font-size: clamp(26px, 3.2vw, 40px); line-height: 1.15;"><span style="font-weight: 300;">{{ oppCount }} initiatives</span> <span style="font-weight: 800;">seeking funding</span></h2>
+        </div>
+        <div style="font-size: 13px; color: #6B7280;">{{ totalGap }} still needed across all open initiatives</div>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(400px, 1fr)); gap: 20px;">
+        <sc-for list="{{ opps }}" as="o" hint-placeholder-count="4">
+          <article style="background: #ffffff; border: 1px solid rgba(0,0,0,0.08); border-top: 3px solid {{ o.accent }}; border-radius: 18px; padding: 26px; display: flex; flex-direction: column; gap: 14px;">
+            <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+              <span style="display: {{ o.urgentDisp }}; padding: 3px 10px; border-radius: 999px; font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; background: #E65100; color: #ffffff;">Urgent</span>
+              <span style="display: inline-flex; align-items: center; gap: 6px; padding: 3px 10px; border-radius: 999px; font-size: 10px; font-weight: 700; background: {{ o.bg }}; color: {{ o.color }};"><span style="width: 6px; height: 6px; border-radius: 50%; background: {{ o.light }};"></span>{{ o.program }}</span>
+              <span style="font-size: 11px; color: #9CA3AF;">{{ o.where }}</span>
+            </div>
+            <h3 style="margin: 0; font-size: 21px; font-weight: 800; line-height: 1.25; letter-spacing: -0.01em;">{{ o.title }}</h3>
+            <div>
+              <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 10px; margin-bottom: 6px;">
+                <span style="font-size: 13px; font-weight: 700;">{{ o.securedLabel }} secured of {{ o.targetLabel }}</span>
+                <span style="font-size: 13px; font-weight: 800; color: {{ o.gapColor }};">{{ o.gapLabel }} still seeking partners</span>
+              </div>
+              <div style="height: 10px; border-radius: 999px; background: #f0f1f3; overflow: hidden;"><div style="height: 100%; border-radius: 999px; background: linear-gradient(90deg, {{ o.light }}, {{ o.color }}); width: {{ o.pctW }};"></div></div>
+              <div style="font-size: 11px; color: #9CA3AF; margin-top: 5px;">{{ o.pctLabel }} funded</div>
+            </div>
+            <div>
+              <div style="font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.12em; color: #9CA3AF; margin-bottom: 8px;">Expected outcomes &#183; measured &amp; published</div>
+              <ul style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 6px;">
+                <sc-for list="{{ o.expected }}" as="x" hint-placeholder-count="3">
+                  <li style="display: flex; align-items: flex-start; gap: 8px; font-size: 12.5px; color: #374151;"><span style="color: #1B7A34; font-weight: 800;">&#8250;</span>{{ x }}</li>
+                </sc-for>
+              </ul>
+            </div>
+            <div style="display: flex; flex-wrap: wrap; gap: 6px;">
+              <sc-for list="{{ o.seeking }}" as="sk" hint-placeholder-count="2">
+                <span style="padding: 4px 11px; border-radius: 999px; font-size: 11px; font-weight: 600; background: #fafafa; border: 1px solid rgba(0,0,0,0.1); color: #374151;">{{ sk }}</span>
+              </sc-for>
+            </div>
+            <p style="margin: 0; font-size: 11.5px; color: #9CA3AF; line-height: 1.55;">{{ o.note }}</p>
+            <div style="display: flex; gap: 10px; margin-top: auto; padding-top: 6px;">
+              <a href="Partner.dc.html#build" style="flex: 1; text-align: center; padding: 12px 0; border-radius: 999px; font-size: 13px; font-weight: 800; color: #ffffff; text-decoration: none; background: linear-gradient(135deg, {{ o.light }} 0%, {{ o.color }} 100%);" style-hover="opacity: 0.9;">Fund this initiative</a>
+              <a href="Impact.dc.html" style="padding: 12px 18px; border-radius: 999px; font-size: 13px; font-weight: 700; color: #0D0D0D; text-decoration: none; border: 1px solid rgba(0,0,0,0.12);" style-hover="border-color: #1B7A34; color: #1B7A34;">Past results</a>
+            </div>
+          </article>
+        </sc-for>
+      </div>
+      <p style="margin: 26px auto 0; font-size: 12px; color: #9CA3AF; line-height: 1.65; max-width: 760px; text-align: center;">Your contribution joins the funding pool supporting an initiative &#8212; we never claim a fixed \u09f3-per-life conversion. What the initiative collectively achieves is reported on the Impact page with outputs, outcomes, and evidence, and every taka is traceable on the Trust Ledger. \u201CSecured\u201D means signed commitments; cash actually received is what the Trust Ledger reports \u2014 the two are never blurred.</p>
+    </div>
+  </section>
+  <section style="padding: 64px 0; background: #ffffff; border-top: 1px solid rgba(0,0,0,0.05);">
+    <div style="max-width: 880px; margin: 0 auto; padding: 0 24px; text-align: center;">
+      <h2 style="margin: 0 0 14px; font-size: clamp(24px, 3vw, 34px); line-height: 1.25;"><span style="font-weight: 300;">Already a partner?</span> <span style="font-weight: 800;">Your Partner Room is live.</span></h2>
+      <p style="margin: 0 auto 26px; font-size: 15px; color: #6B7280; max-width: 520px; line-height: 1.7;">A live window into your partnership &#8212; funding deployed, missions underway, the people delivering the work, and the evidence behind every claim.</p>
+      <a href="Partner Room.dc.html" style="padding: 14px 28px; border-radius: 999px; font-size: 14px; font-weight: 700; color: #ffffff; text-decoration: none; background: linear-gradient(135deg, #4DC86A 0%, #1B7A34 100%);" style-hover="opacity: 0.9;">Open Partner Room &#8594;</a>
+    </div>
+  </section>
+  <dc-import name="SiteFooter" hint-size="100%,420px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { data: null, colors: null };
+  componentDidMount() {
+    import("./gs-os.js").then((m) => Promise.all([m.loadPartners(), m.loadOS()]))
+      .then(([data, os]) => this.setState({ data, colors: os.programColors }));
+  }
+  short(n) {
+    const v = Number(n || 0);
+    if (v >= 10000000) return "\u09F3" + (v / 10000000).toFixed(2) + "Cr";
+    if (v >= 100000) return "\u09F3" + (v / 100000).toFixed(1) + "L";
+    return "\u09F3" + v.toLocaleString();
+  }
+  renderVals() {
+    const s = this.state;
+    if (!s.data) return { oppCount: "\u2014", totalGap: "\u2014", opps: [] };
+    const names = {
+      "ai-digital-skills": "AI & Digital Skills",
+      "education-career-readiness": "Education & Careers",
+      "community-development": "Community Development",
+      "youth-empowerment": "Youth Empowerment",
+      "innovation-social-good": "Innovation",
+    };
+    const opps = s.data.opportunities.map((o) => {
+      const c = s.colors[o.programSlug] || s.colors["education-career-readiness"];
+      return { ...o,
+        program: names[o.programSlug] || o.programSlug,
+        color: c.color, bg: c.bg, light: c.light,
+        accent: o.urgent ? "#E65100" : c.light,
+        urgentDisp: o.urgent ? "inline-flex" : "none",
+        securedLabel: this.short(o.secured), targetLabel: this.short(o.target),
+        gapLabel: this.short(o.gap), gapColor: o.urgent ? "#E65100" : "#1B7A34",
+        pctW: o.pct + "%", pctLabel: o.pct + "%" };
+    });
+    return {
+      oppCount: String(opps.length),
+      totalGap: this.short(s.data.opportunities.reduce((n, o) => n + o.gap, 0)),
+      opps,
+    };
+  }
+}
+</script>
+</body>
+</html>

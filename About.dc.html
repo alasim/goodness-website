@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+  body { margin: 0; background: #ffffff; font-family: 'Plus Jakarta Sans', system-ui, sans-serif; }
+  a { color: #1B7A34; } a:hover { color: #4DC86A; }
+</style>
+</helmet>
+<div data-screen-label="About" style="color: #0D0D0D; padding-top: 72px;">
+  <dc-import name="SiteNav" active="about" hint-size="100%,72px"></dc-import>
+  <section style="position: relative; background: #ffffff; padding: 64px 0 80px; overflow: hidden;">
+    <svg style="position: absolute; top: 0; right: 0; opacity: 0.05; pointer-events: none;" width="500" height="380" viewBox="0 0 600 400" fill="none">
+      <circle cx="220" cy="180" r="160" stroke="#4DC86A" stroke-width="44" fill="none"></circle>
+      <path d="M370 180 C390 180 420 200 430 240 C445 295 420 350 370 370 C310 395 240 370 210 320" stroke="#4DC86A" stroke-width="44" fill="none" stroke-linecap="round"></path>
+      <line x1="220" y1="180" x2="380" y2="180" stroke="#4DC86A" stroke-width="44" stroke-linecap="round"></line>
+    </svg>
+    <div style="max-width: 1280px; margin: 0 auto; padding: 0 24px; display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center;">
+      <div>
+        <span style="display: inline-flex; align-items: center; padding: 6px 16px; border-radius: 999px; color: #ffffff; font-size: 13px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; background: linear-gradient(135deg, #4DC86A 0%, #1B7A34 100%); margin-bottom: 32px;">About Us</span>
+        <h1 style="margin: 0 0 24px; font-size: clamp(40px, 5vw, 67px); line-height: 1.05; letter-spacing: -0.02em;"><span style="font-weight: 300;">Who we</span><br><span style="font-weight: 800;">are</span></h1>
+        <p style="margin: 0; font-size: 18px; color: #6B7280; line-height: 1.65; max-width: 520px;">Goodness Society is a government-registered, non-profit organisation dedicated to creating sustainable social impact through education, skills development, technology, and community empowerment.</p>
+      </div>
+      <div style="position: relative; height: 280px; border-radius: 24px; overflow: hidden;">
+        <img src="https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?w=900&auto=format&fit=crop&q=80" alt="Community outreach" style="width: 100%; height: 100%; object-fit: cover;">
+        <div style="position: absolute; inset: 0; background: linear-gradient(135deg, rgba(77,200,106,0.18) 0%, rgba(27,122,52,0.18) 100%);"></div>
+      </div>
+    </div>
+  </section>
+  <section style="padding: 64px 0; background: #fafafa; border-top: 1px solid rgba(0,0,0,0.05); border-bottom: 1px solid rgba(0,0,0,0.05);">
+    <div style="max-width: 900px; margin: 0 auto; padding: 0 24px; text-align: center;">
+      <p style="margin: 0; font-size: clamp(22px, 3vw, 35px); font-weight: 300; line-height: 1.5;">We believe that <strong style="font-weight: 800; color: #1B7A34;">meaningful change happens</strong> when good intentions are combined with <strong style="font-weight: 800;">transparency, accountability, and measurable results.</strong></p>
+    </div>
+  </section>
+  <section style="padding: 96px 0; background: #ffffff;">
+    <div style="max-width: 1280px; margin: 0 auto; padding: 0 24px; display: grid; grid-template-columns: 1fr 1fr; gap: 32px;">
+      <div style="position: relative; background: #0D0D0D; border-radius: 16px; padding: 40px; overflow: hidden;">
+        <svg style="position: absolute; top: -32px; right: -32px; transform: rotate(20deg); opacity: 0.1; pointer-events: none;" width="200" height="200" viewBox="0 0 200 200" fill="none"><rect x="8" y="8" width="184" height="184" rx="40" fill="#4DC86A"></rect></svg>
+        <div style="position: relative;">
+          <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 24px;">
+            <div style="width: 32px; height: 32px; border-radius: 35%; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #4DC86A 0%, #1B7A34 100%);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"></path><circle cx="12" cy="12" r="3"></circle></svg></div>
+            <p style="margin: 0; font-size: 12px; text-transform: uppercase; letter-spacing: 0.2em; color: rgba(255,255,255,0.4); font-weight: 700;">Our Vision</p>
+          </div>
+          <p style="margin: 0; color: #ffffff; font-weight: 300; font-size: 21px; line-height: 1.6;">To create a society where every individual has access to <strong style="font-weight: 800;">opportunities that enable them to thrive,</strong> contribute, and succeed in an evolving world.</p>
+        </div>
+      </div>
+      <div style="position: relative; border: 2px solid rgba(27,122,52,0.15); border-radius: 16px; padding: 40px; overflow: hidden; background: #ffffff;">
+        <svg style="position: absolute; bottom: -32px; left: -32px; transform: rotate(-10deg); opacity: 0.05; pointer-events: none;" width="200" height="200" viewBox="0 0 200 200" fill="none"><defs><linearGradient id="msq" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#4DC86A"></stop><stop offset="100%" stop-color="#1B7A34"></stop></linearGradient></defs><rect x="8" y="8" width="184" height="184" rx="40" fill="url(#msq)"></rect></svg>
+        <div style="position: relative;">
+          <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 24px;">
+            <div style="width: 32px; height: 32px; border-radius: 35%; display: flex; align-items: center; justify-content: center; background: #f0faf3;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1B7A34" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg></div>
+            <p style="margin: 0; font-size: 12px; text-transform: uppercase; letter-spacing: 0.2em; color: #6B7280; font-weight: 700;">Our Mission</p>
+          </div>
+          <p style="margin: 0; font-weight: 300; font-size: 21px; line-height: 1.6;">To design and execute impactful initiatives that improve lives through <strong style="font-weight: 800;">education, workforce readiness, technology adoption,</strong> and community development.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section style="padding: 96px 0; background: #fafafa;">
+    <div style="max-width: 1280px; margin: 0 auto; padding: 0 24px;">
+      <div style="margin-bottom: 56px;">
+        <p style="margin: 0 0 12px; font-size: 12px; text-transform: uppercase; letter-spacing: 0.2em; color: #6B7280; font-weight: 700;">Our Edge</p>
+        <h2 style="margin: 0; font-size: clamp(32px, 4vw, 51px); line-height: 1.15;"><span style="font-weight: 300;">What makes</span> <span style="font-weight: 800;">us different</span></h2>
+      </div>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px;">
+        <sc-for list="{{ differentiators }}" as="d" hint-placeholder-count="4">
+          <div style="background: #ffffff; border-radius: 16px; border: 1px solid rgba(0,0,0,0.08); padding: 32px;" style-hover="box-shadow: 0 8px 24px rgba(0,0,0,0.08);">
+            <div style="width: 48px; height: 48px; border-radius: 28%; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; background: {{ d.bg }}; color: {{ d.color }};">{{ d.icon }}</div>
+            <h3 style="margin: 0 0 8px; font-size: 18px; font-weight: 700;">{{ d.title }}</h3>
+            <p style="margin: 0; color: #6B7280; line-height: 1.6; font-size: 14px;">{{ d.desc }}</p>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+  <section style="padding: 96px 0; background: #ffffff;">
+    <div style="max-width: 1280px; margin: 0 auto; padding: 0 24px;">
+      <div style="margin-bottom: 56px;">
+        <p style="margin: 0 0 12px; font-size: 12px; text-transform: uppercase; letter-spacing: 0.2em; color: #6B7280; font-weight: 700;">The People</p>
+        <h2 style="margin: 0; font-size: clamp(32px, 4vw, 51px); line-height: 1.15; font-weight: 800;">Our team</h2>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px;">
+        <sc-for list="{{ team }}" as="m" hint-placeholder-count="4">
+          <div style="text-align: center;">
+            <div style="width: 96px; height: 96px; border-radius: 30%; overflow: hidden; margin: 0 auto 16px; border: 3px solid rgba(77,200,106,0.35);">
+              <img src="{{ m.photo }}" alt="{{ m.name }}" style="width: 100%; height: 100%; object-fit: cover;">
+            </div>
+            <p style="margin: 0; font-weight: 700; font-size: 14px;">{{ m.name }}</p>
+            <p style="margin: 2px 0 0; font-size: 12px; color: #6B7280;">{{ m.role }}</p>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+  <dc-import name="SiteFooter" hint-size="100%,420px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  icon(paths) {
+    return React.createElement("svg", { width: 22, height: 22, viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: 2, strokeLinecap: "round", strokeLinejoin: "round", dangerouslySetInnerHTML: { __html: paths } });
+  }
+  renderVals() {
+    const green = { color: "#1B7A34", bg: "#f0faf3" }, blue = { color: "#1565C0", bg: "#e8f0fc" };
+    return {
+      differentiators: [
+        { ...green, icon: this.icon('<path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/>'), title: "Radical Transparency", desc: "Every donation, project expense, milestone, and impact report is openly documented and shared with our donors and community." },
+        { ...blue, icon: this.icon('<path d="M3 3v16a2 2 0 0 0 2 2h16"/><path d="M7 16v-3"/><path d="M12 16v-6"/><path d="M17 16V8"/>'), title: "Measurable Impact", desc: "We focus on outcomes, not activities. Every initiative has clear goals, success metrics, and public reporting built in." },
+        { ...green, icon: this.icon('<path d="M22 7 13.5 15.5 8.5 10.5 2 17"/><path d="M16 7h6v6"/>'), title: "Sustainable Change", desc: "Rather than temporary assistance, we invest in programs that create long-term opportunities and self-sufficiency." },
+        { ...blue, icon: this.icon('<rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><path d="M9 2v2M15 2v2M9 20v2M15 20v2M2 9h2M2 15h2M20 9h2M20 15h2"/>'), title: "Technology-Driven Accountability", desc: "We leverage digital tools, dashboards, and public reporting systems to ensure every contribution can be tracked and verified." },
+      ],
+      team: [
+        { name: "Nusrat Jahan", role: "Executive Director", photo: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=300&auto=format&fit=crop&q=80" },
+        { name: "Tanvir Ahmed", role: "Programs Lead", photo: "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=300&auto=format&fit=crop&q=80" },
+        { name: "Sadia Islam", role: "Digital Skills Director", photo: "https://images.unsplash.com/photo-1531123897727-8f129e1688ce?w=300&auto=format&fit=crop&q=80" },
+        { name: "Rakibul Hasan", role: "Partnerships Manager", photo: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=300&auto=format&fit=crop&q=80" },
+      ],
+    };
+  }
+}
+</script>
+</body>
+</html>

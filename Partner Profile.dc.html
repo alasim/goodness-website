@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+  body { margin: 0; background: #ffffff; font-family: 'Plus Jakarta Sans', system-ui, sans-serif; }
+  a { color: #1B7A34; } a:hover { color: #4DC86A; }
+</style>
+</helmet>
+<div data-screen-label="Partner Profile" style="color: #0D0D0D; padding-top: 72px;">
+  <dc-import name="SiteNav" hint-size="100%,72px"></dc-import>
+  <section style="position: relative; background: #0D0D0D; padding: 64px 0 52px; overflow: hidden;">
+    <svg style="position: absolute; top: -30px; right: -20px; opacity: 0.07; pointer-events: none;" width="520" height="360" viewBox="0 0 600 400" fill="none">
+      <circle cx="220" cy="180" r="160" stroke="#4DC86A" stroke-width="44" fill="none"></circle>
+      <path d="M370 180 C390 180 420 200 430 240 C445 295 420 350 370 370 C310 395 240 370 210 320" stroke="#4DC86A" stroke-width="44" fill="none" stroke-linecap="round"></path>
+    </svg>
+    <div style="position: relative; max-width: 1080px; margin: 0 auto; padding: 0 24px;">
+      <div style="display: flex; align-items: center; gap: 18px; flex-wrap: wrap; margin-bottom: 22px;">
+        <div style="width: 64px; height: 64px; border-radius: 28%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 22px; font-weight: 800; color: #ffffff; background: linear-gradient(135deg, #1976D2 0%, #1565C0 100%);">{{ p.initials }}</div>
+        <div>
+          <div style="font-size: 13px; color: rgba(255,255,255,0.5);">{{ p.name }} &#215; Goodness Society</div>
+          <span style="display: inline-flex; margin-top: 6px; padding: 3px 12px; border-radius: 999px; font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em; background: linear-gradient(135deg, #4DC86A 0%, #1B7A34 100%); color: #ffffff;">{{ p.tier }} &#10003; &#183; since {{ p.since }}</span>
+        </div>
+      </div>
+      <h1 style="margin: 0 0 26px; font-size: clamp(28px, 4vw, 46px); line-height: 1.15; letter-spacing: -0.02em; color: #ffffff; max-width: 720px;"><span style="font-weight: 800;">{{ p.story }}</span></h1>
+      <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.12); border-radius: 16px; overflow: hidden;">
+        <div style="background: rgba(255,255,255,0.05); padding: 17px 20px;"><div style="font-size: 22px; font-weight: 800; color: #ffffff;">{{ p.committedLabel }}</div><div style="font-size: 11px; color: rgba(255,255,255,0.45); margin-top: 2px;">{{ p.committedNote }}</div></div>
+        <div style="background: rgba(255,255,255,0.05); padding: 17px 20px;"><div style="font-size: 22px; font-weight: 800; color: #ffffff;">{{ p.recordCount }}</div><div style="font-size: 11px; color: rgba(255,255,255,0.45); margin-top: 2px;">Published impact records</div></div>
+        <div style="background: rgba(255,255,255,0.05); padding: 17px 20px;"><div style="font-size: 22px; font-weight: 800; color: #4DC86A;">{{ p.peopleLabel }}</div><div style="font-size: 11px; color: rgba(255,255,255,0.45); margin-top: 2px;">People supported by those programmes</div></div>
+        <div style="background: rgba(255,255,255,0.05); padding: 17px 20px;"><div style="font-size: 22px; font-weight: 800; color: #ffffff;">{{ p.empLabel }}</div><div style="font-size: 11px; color: rgba(255,255,255,0.45); margin-top: 2px;">Employee volunteering</div></div>
+      </div>
+      <p style="margin: 20px 0 0; font-size: 12px; color: rgba(255,255,255,0.45); line-height: 1.6; max-width: 720px;">Every figure on this page is live from Goodness Society's own records &#8212; the same numbers shown on the public Impact page and Trust Ledger. Programme results are collective, supported by this partnership alongside other funding and volunteer effort.</p>
+    </div>
+  </section>
+  <section style="padding: 52px 0 72px; background: #fafafa;">
+    <div style="max-width: 1080px; margin: 0 auto; padding: 0 24px;">
+      <h2 style="margin: 0 0 18px; font-size: 13px; text-transform: uppercase; letter-spacing: 0.2em; color: #9CA3AF; font-weight: 800;">Programmes supported</h2>
+      <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 16px; margin-bottom: 36px;">
+        <sc-for list="{{ programs }}" as="pr" hint-placeholder-count="2">
+          <div style="background: #ffffff; border: 1px solid rgba(0,0,0,0.08); border-top: 3px solid {{ pr.color }}; border-radius: 16px; padding: 22px;">
+            <div style="font-size: 15px; font-weight: 800; margin-bottom: 4px;">{{ pr.name }}</div>
+            <div style="font-size: 12px; color: #6B7280;">{{ pr.note }}</div>
+          </div>
+        </sc-for>
+      </div>
+      <h2 style="margin: 0 0 18px; font-size: 13px; text-transform: uppercase; letter-spacing: 0.2em; color: #9CA3AF; font-weight: 800;">What those programmes have published</h2>
+      <div style="display: flex; flex-direction: column; gap: 12px; margin-bottom: 36px;">
+        <sc-for list="{{ records }}" as="r" hint-placeholder-count="2">
+          <a href="Impact.dc.html" style="display: flex; align-items: center; gap: 16px; background: #ffffff; border: 1px solid rgba(0,0,0,0.08); border-radius: 14px; padding: 18px 22px; text-decoration: none; color: inherit; flex-wrap: wrap;" style-hover="box-shadow: 0 8px 24px rgba(0,0,0,0.07);">
+            <div style="flex: 1; min-width: 240px;">
+              <div style="font-size: 14px; font-weight: 800;">{{ r.title }}</div>
+              <div style="font-size: 12px; color: #6B7280; margin-top: 2px;">{{ r.meta }}</div>
+            </div>
+            <div style="font-size: 13px; color: #374151; flex: 1.1; min-width: 220px; line-height: 1.5;">{{ r.outcomeLine }}</div>
+            <span style="font-size: 12px; font-weight: 700; color: #1B7A34; flex-shrink: 0;">Record &#8594;</span>
+          </a>
+        </sc-for>
+      </div>
+      <div style="display: flex; gap: 12px; flex-wrap: wrap; justify-content: center;">
+        <a href="Trust Ledger.dc.html" style="padding: 13px 24px; border-radius: 999px; font-size: 13px; font-weight: 700; color: #0D0D0D; text-decoration: none; border: 1px solid rgba(0,0,0,0.12); background: #ffffff;">Follow the money &#8594;</a>
+        <a href="Partner.dc.html" style="padding: 13px 24px; border-radius: 999px; font-size: 13px; font-weight: 700; color: #ffffff; text-decoration: none; background: linear-gradient(135deg, #4DC86A 0%, #1B7A34 100%);" style-hover="opacity: 0.9;">Partner with Goodness</a>
+      </div>
+    </div>
+  </section>
+  <dc-import name="SiteFooter" hint-size="100%,420px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { data: null, impact: null, colors: null };
+  componentDidMount() {
+    import("./gs-os.js").then((m) => Promise.all([m.loadPartners(), m.loadImpact(), m.loadOS()]))
+      .then(([data, impact, os]) => this.setState({ data, impact, colors: os.programColors }));
+  }
+  short(n) {
+    const v = Number(n || 0);
+    if (v >= 10000000) return "\u09F3" + (v / 10000000).toFixed(2) + "Cr";
+    if (v >= 100000) return "\u09F3" + (v / 100000).toFixed(1) + "L";
+    return "\u09F3" + v.toLocaleString();
+  }
+  renderVals() {
+    const s = this.state;
+    const blank = { name: "", initials: "", tier: "", since: "", story: "", committedLabel: "", recordCount: "", peopleLabel: "", empLabel: "" };
+    if (!s.data) return { p: blank, programs: [], records: [] };
+    const id = new URLSearchParams(location.search).get("id") || "ptr-brightworks";
+    const raw = s.data.partners.find((x) => x.id === id) || s.data.partners[0];
+    const initials = (n) => n.split(" ").filter((w) => /^[A-Z]/.test(w)).map((w) => w[0]).join("").slice(0, 2).toUpperCase();
+    const myImpact = (s.impact || []).filter((r) => r.published && raw.programs.includes(r.programSlug));
+    const people = myImpact.reduce((n, r) => n + (r.beneficiaries || 0), 0);
+    const names = {
+      "ai-digital-skills": "AI & Digital Skills Development",
+      "education-career-readiness": "Education & Career Readiness",
+      "community-development": "Community Development",
+      "youth-empowerment": "Youth Empowerment",
+      "innovation-social-good": "Innovation for Social Good",
+    };
+    return {
+      p: { ...raw, initials: initials(raw.name),
+        story: raw.story || "Partnering for verified impact.",
+        committedLabel: raw.discloseFunding === false ? "Partner-only" : (raw.committed ? this.short(raw.committed) : "In-kind"),
+        committedNote: raw.discloseFunding === false ? "Funding details are shared privately" : (raw.committed ? "Committed" : "Non-cash partnership"),
+        recordCount: String(myImpact.length),
+        peopleLabel: people.toLocaleString(),
+        empLabel: raw.employees.participated ? raw.employees.participated + " people \u00B7 " + raw.employees.hours + "h" : "\u2014" },
+      programs: raw.programs.map((slug) => {
+        const c = s.colors[slug] || s.colors["education-career-readiness"];
+        const recs = myImpact.filter((r) => r.programSlug === slug);
+        return { name: names[slug] || slug, color: c.color,
+          note: recs.length + (recs.length === 1 ? " published record" : " published records") + " \u00B7 " + recs.reduce((n, r) => n + (r.beneficiaries || 0), 0).toLocaleString() + " people supported" };
+      }),
+      records: myImpact.map((r) => {
+        const best = r.outcomes.find((o) => o.basis === "verified") || r.outcomes[0];
+        return { title: r.title,
+          meta: (r.primaryValue != null ? r.primaryValue.toLocaleString() : r.beneficiaries) + " " + (r.unitLabel || "people supported") + " \u00B7 " + r.chapter + " \u00B7 " + r.date,
+          outcomeLine: best ? (best.value == null ? best.label + " \u2014 awaiting measurement" : best.value.toLocaleString() + " \u00B7 " + best.label + " (" + best.basis + ")") : "Outcomes not yet recorded" };
+      }),
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+  body { margin: 0; background: #fafafa; font-family: 'Plus Jakarta Sans', system-ui, sans-serif; }
+  a { color: #1B7A34; } a:hover { color: #4DC86A; }
+</style>
+</helmet>
+<div data-screen-label="Partner Room" style="color: #0D0D0D; padding-top: 72px; min-height: 100vh; display: flex; flex-direction: column;">
+  <dc-import name="SiteNav" hint-size="100%,72px"></dc-import>
+  <main style="flex: 1; width: 100%; max-width: 1120px; margin: 0 auto; padding: 32px 24px 88px; box-sizing: border-box;">
+    <section style="display: {{ signInDisp }}; flex-direction: column; align-items: center; text-align: center; padding: 48px 0;">
+      <div style="width: 52px; height: 52px; border-radius: 28%; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; background: linear-gradient(135deg, #4DC86A 0%, #1B7A34 100%); color: #ffffff; font-weight: 800; font-size: 22px;">G</div>
+      <h1 style="margin: 0 0 12px; font-size: clamp(32px, 4.5vw, 46px); line-height: 1.1; letter-spacing: -0.02em;"><span style="font-weight: 300;">Partner</span> <span style="font-weight: 800;">Room</span></h1>
+      <p style="margin: 0 0 32px; font-size: 16px; color: #6B7280; line-height: 1.6; max-width: 480px;">A live window into your partnership &#8212; not a quarterly PDF. Choose your organisation to enter.</p>
+      <div style="width: 100%; max-width: 560px; background: #ffffff; border: 1px solid rgba(0,0,0,0.08); border-radius: 20px; padding: 24px; box-sizing: border-box; display: flex; flex-direction: column; gap: 8px;">
+        <div style="font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.15em; color: #9CA3AF; margin-bottom: 6px; text-align: left;">Sign in as</div>
+        <sc-for list="{{ options }}" as="o" hint-placeholder-count="5">
+          <button onClick="{{ o.pick }}" style="display: flex; align-items: center; gap: 12px; padding: 12px 14px; border-radius: 12px; border: 1px solid rgba(0,0,0,0.07); background: #ffffff; cursor: pointer; font-family: inherit; text-align: left;" style-hover="border-color: #1B7A34; background: #f0faf3;">
+            <div style="width: 38px; height: 38px; border-radius: 28%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 13px; font-weight: 800; color: #ffffff; background: linear-gradient(135deg, #1976D2 0%, #1565C0 100%);">{{ o.initials }}</div>
+            <div style="flex: 1; min-width: 0;">
+              <div style="font-size: 14px; font-weight: 700;">{{ o.name }}</div>
+              <div style="font-size: 11px; color: #9CA3AF;">{{ o.tier }} &#183; since {{ o.since }}</div>
+            </div>
+            <span style="font-size: 12px; font-weight: 700; color: #1B7A34;">Enter &#8594;</span>
+          </button>
+        </sc-for>
+      </div>
+    </section>
+    <section style="display: {{ dashDisp }}; flex-direction: column; gap: 20px;">
+      <div style="position: relative; background: #0D0D0D; border-radius: 24px; overflow: hidden; padding: 34px 38px;">
+        <svg style="position: absolute; top: 0; right: 0; opacity: 0.07; pointer-events: none;" width="380" height="250" viewBox="0 0 600 400" fill="none">
+          <circle cx="220" cy="180" r="160" stroke="#4DC86A" stroke-width="44" fill="none"></circle>
+          <path d="M370 180 C390 180 420 200 430 240 C445 295 420 350 370 370 C310 395 240 370 210 320" stroke="#4DC86A" stroke-width="44" fill="none" stroke-linecap="round"></path>
+        </svg>
+        <div style="position: relative; display: flex; align-items: center; gap: 18px; flex-wrap: wrap;">
+          <div style="width: 60px; height: 60px; border-radius: 28%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 20px; font-weight: 800; color: #ffffff; background: linear-gradient(135deg, #1976D2 0%, #1565C0 100%);">{{ p.initials }}</div>
+          <div style="flex: 1; min-width: 240px;">
+            <div style="font-size: 12px; color: rgba(255,255,255,0.45); margin-bottom: 3px;">{{ greeting }}</div>
+            <h1 style="margin: 0; font-size: 28px; font-weight: 800; color: #ffffff; letter-spacing: -0.015em;">{{ p.name }}</h1>
+            <div style="display: flex; align-items: center; gap: 8px; margin-top: 8px; flex-wrap: wrap;">
+              <span style="padding: 3px 12px; border-radius: 999px; font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em; background: linear-gradient(135deg, #4DC86A 0%, #1B7A34 100%); color: #ffffff;">{{ p.tier }} &#10003;</span>
+              <span style="font-size: 12px; color: rgba(255,255,255,0.5);">Partnership since {{ p.since }} &#183; {{ p.kind }}</span>
+            </div>
+          </div>
+          <div style="display: flex; gap: 8px; flex-shrink: 0;">
+            <a href="{{ publicHref }}" style="padding: 9px 18px; border-radius: 999px; border: 1px solid rgba(255,255,255,0.25); color: #ffffff; font-size: 12px; font-weight: 700; text-decoration: none;" style-hover="background: rgba(255,255,255,0.1);">Public profile &#8599;</a>
+            <button onClick="{{ signOut }}" style="padding: 9px 16px; border-radius: 999px; border: 1px solid rgba(255,255,255,0.25); background: transparent; color: rgba(255,255,255,0.75); font-size: 12px; font-weight: 700; cursor: pointer; font-family: inherit;" style-hover="background: rgba(255,255,255,0.1); color: #ffffff;">Sign out</button>
+          </div>
+        </div>
+        <p style="position: relative; margin: 18px 0 0; font-size: 15px; color: rgba(255,255,255,0.65);">Your partnership is creating measurable progress.</p>
+        <div style="position: relative; display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.12); border-radius: 14px; overflow: hidden; margin-top: 20px;">
+          <div style="background: rgba(255,255,255,0.05); padding: 15px 18px;"><div style="font-size: 21px; font-weight: 800; color: #ffffff;">{{ p.committedLabel }}</div><div style="font-size: 11px; color: rgba(255,255,255,0.45); margin-top: 2px;">Committed</div></div>
+          <div style="background: rgba(255,255,255,0.05); padding: 15px 18px;"><div style="font-size: 21px; font-weight: 800; color: #ffffff;">{{ p.receivedLabel }}</div><div style="font-size: 11px; color: rgba(255,255,255,0.45); margin-top: 2px;">Received</div></div>
+          <div style="background: rgba(255,255,255,0.05); padding: 15px 18px;"><div style="font-size: 21px; font-weight: 800; color: #4DC86A;">{{ p.deployedLabel }}</div><div style="font-size: 11px; color: rgba(255,255,255,0.45); margin-top: 2px;">Programme spending to date (shared across funders)</div></div>
+          <div style="background: rgba(255,255,255,0.05); padding: 15px 18px;"><div style="font-size: 21px; font-weight: 800; color: #ffffff;">{{ p.peopleLabel }}</div><div style="font-size: 11px; color: rgba(255,255,255,0.45); margin-top: 2px;">People supported through initiatives you back (shared)</div></div>
+        </div>
+      </div>
+      <div style="display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 20px; align-items: start;">
+        <div style="display: flex; flex-direction: column; gap: 20px;">
+          <section style="background: #ffffff; border: 1px solid rgba(0,0,0,0.08); border-radius: 20px; padding: 26px;">
+            <h2 style="margin: 0 0 4px; font-size: 12px; text-transform: uppercase; letter-spacing: 0.2em; color: #9CA3AF; font-weight: 800;">Happening now</h2>
+            <p style="margin: 0 0 16px; font-size: 12px; color: #9CA3AF;">Live missions in the programmes your funding supports.</p>
+            <div style="display: {{ noLiveDisp }}; font-size: 13px; color: #9CA3AF;">No missions live this week &#8212; the next cohort is being scheduled.</div>
+            <div style="display: flex; flex-direction: column; gap: 10px;">
+              <sc-for list="{{ liveMissions }}" as="m" hint-placeholder-count="2">
+                <a href="{{ m.href }}" style="display: flex; align-items: center; gap: 14px; padding: 14px 16px; border: 1px solid rgba(0,0,0,0.07); border-radius: 14px; text-decoration: none; color: inherit;" style-hover="box-shadow: 0 6px 18px rgba(0,0,0,0.07);">
+                  <span style="width: 8px; height: 8px; border-radius: 50%; background: #4DC86A; flex-shrink: 0;"></span>
+                  <div style="flex: 1; min-width: 0;">
+                    <div style="font-size: 13.5px; font-weight: 700;">{{ m.title }}</div>
+                    <div style="font-size: 11.5px; color: #6B7280; margin-top: 2px;">{{ m.meta }}</div>
+                  </div>
+                  <span style="font-size: 11px; font-weight: 700; color: #1B7A34; flex-shrink: 0;">Your funding supports this &#8594;</span>
+                </a>
+              </sc-for>
+            </div>
+          </section>
+          <section style="background: #ffffff; border: 1px solid rgba(0,0,0,0.08); border-radius: 20px; padding: 26px;">
+            <h2 style="margin: 0 0 16px; font-size: 12px; text-transform: uppercase; letter-spacing: 0.2em; color: #9CA3AF; font-weight: 800;">Trace our contribution</h2>
+            <div style="display: flex; flex-direction: column; gap: 0;">
+              <sc-for list="{{ trace }}" as="t" hint-placeholder-count="6">
+                <div style="display: flex; align-items: flex-start; gap: 14px;">
+                  <div style="display: flex; flex-direction: column; align-items: center;">
+                    <div style="width: 30px; height: 30px; border-radius: 30%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; background: {{ t.bg }}; color: {{ t.color }};">{{ t.icon }}</div>
+                    <div style="width: 2px; height: 22px; background: {{ t.line }};"></div>
+                  </div>
+                  <div style="padding-bottom: 8px; min-width: 0;">
+                    <div style="font-size: 14px; font-weight: 800;">{{ t.value }}</div>
+                    <div style="font-size: 12px; color: #6B7280;">{{ t.label }}</div>
+                  </div>
+                </div>
+              </sc-for>
+            </div>
+            <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-top: 10px;">
+              <a href="Trust Ledger.dc.html" style="font-size: 12px; font-weight: 700; text-decoration: none;">Trust Ledger &#8594;</a>
+              <a href="Impact.dc.html" style="font-size: 12px; font-weight: 700; text-decoration: none;">Impact records &#8594;</a>
+            </div>
+          </section>
+          <section style="background: #ffffff; border: 1px solid rgba(0,0,0,0.08); border-radius: 20px; padding: 26px;">
+            <h2 style="margin: 0 0 16px; font-size: 12px; text-transform: uppercase; letter-spacing: 0.2em; color: #9CA3AF; font-weight: 800;">Partnership timeline</h2>
+            <div style="display: flex; flex-direction: column; gap: 14px;">
+              <sc-for list="{{ timeline }}" as="tl" hint-placeholder-count="5">
+                <div style="display: flex; align-items: flex-start; gap: 12px;">
+                  <div style="width: 74px; flex-shrink: 0; font-size: 11px; font-weight: 700; color: #9CA3AF; padding-top: 2px;">{{ tl.date }}</div>
+                  <div style="width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; margin-top: 5px; background: {{ tl.dot }};"></div>
+                  <div style="font-size: 13px; color: #374151; line-height: 1.5;">{{ tl.text }}</div>
+                </div>
+              </sc-for>
+            </div>
+          </section>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 20px;">
+          <section style="display: {{ commitDisp }}; background: #ffffff; border: 1px solid rgba(0,0,0,0.08); border-radius: 20px; padding: 26px; flex-direction: column;">
+            <h2 style="margin: 0 0 4px; font-size: 12px; text-transform: uppercase; letter-spacing: 0.2em; color: #9CA3AF; font-weight: 800;">Our commitments</h2>
+            <p style="margin: 0 0 14px; font-size: 12px; color: #9CA3AF;">What we agreed to do together, and where we are.</p>
+            <div style="font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.12em; color: #1B7A34; margin-bottom: 8px;">Goodness Society</div>
+            <div style="display: flex; flex-direction: column; gap: 8px; margin-bottom: 14px;">
+              <sc-for list="{{ commitsG }}" as="c" hint-placeholder-count="3">
+                <div style="display: flex; align-items: center; justify-content: space-between; gap: 10px; font-size: 12.5px;">
+                  <span style="color: #374151;">{{ c.label }}</span>
+                  <span style="font-weight: 800; white-space: nowrap; color: {{ c.color }};">{{ c.state }}</span>
+                </div>
+              </sc-for>
+            </div>
+            <div style="font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.12em; color: #1565C0; margin-bottom: 8px;">{{ p.name }}</div>
+            <div style="display: flex; flex-direction: column; gap: 8px;">
+              <sc-for list="{{ commitsP }}" as="c" hint-placeholder-count="3">
+                <div style="display: flex; align-items: center; justify-content: space-between; gap: 10px; font-size: 12.5px;">
+                  <span style="color: #374151;">{{ c.label }}</span>
+                  <span style="font-weight: 800; white-space: nowrap; color: {{ c.color }};">{{ c.state }}</span>
+                </div>
+              </sc-for>
+            </div>
+          </section>
+          <section style="background: #ffffff; border: 1px solid rgba(0,0,0,0.08); border-radius: 20px; padding: 26px;">
+            <h2 style="margin: 0 0 14px; font-size: 12px; text-transform: uppercase; letter-spacing: 0.2em; color: #9CA3AF; font-weight: 800;">Partnership goal</h2>
+            <div style="font-size: 14px; font-weight: 800; margin-bottom: 8px; line-height: 1.4;">{{ p.goalLabel }}</div>
+            <div style="height: 10px; border-radius: 999px; background: #f0f1f3; overflow: hidden; margin-bottom: 7px;"><div style="height: 100%; border-radius: 999px; background: linear-gradient(90deg, #4DC86A, #1B7A34); width: {{ goalW }};"></div></div>
+            <div style="font-size: 12px; color: #6B7280;">{{ goalNote }}</div>
+          </section>
+          <section style="background: #ffffff; border: 1px solid rgba(0,0,0,0.08); border-radius: 20px; padding: 26px;">
+            <h2 style="margin: 0 0 4px; font-size: 12px; text-transform: uppercase; letter-spacing: 0.2em; color: #9CA3AF; font-weight: 800;">People delivering the work</h2>
+            <p style="margin: 0 0 14px; font-size: 12px; color: #9CA3AF;">Verified volunteers in your programmes.</p>
+            <div style="display: flex; flex-direction: column; gap: 10px;">
+              <sc-for list="{{ people }}" as="v" hint-placeholder-count="3">
+                <a href="{{ v.href }}" style="display: flex; align-items: center; gap: 12px; padding: 10px 12px; border: 1px solid rgba(0,0,0,0.07); border-radius: 12px; text-decoration: none; color: inherit;" style-hover="border-color: rgba(27,122,52,0.35);">
+                  <div style="width: 34px; height: 34px; border-radius: 28%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 12px; font-weight: 800; color: #ffffff; background: {{ v.grad }};">{{ v.initials }}</div>
+                  <div style="flex: 1; min-width: 0;">
+                    <div style="font-size: 13px; font-weight: 700;">{{ v.name }}</div>
+                    <div style="font-size: 11px; color: #9CA3AF;">{{ v.role }} &#183; {{ v.hours }} verified hours</div>
+                  </div>
+                </a>
+              </sc-for>
+            </div>
+          </section>
+          <section style="background: #ffffff; border: 1px solid rgba(0,0,0,0.08); border-radius: 20px; padding: 26px;">
+            <h2 style="margin: 0 0 14px; font-size: 12px; text-transform: uppercase; letter-spacing: 0.2em; color: #9CA3AF; font-weight: 800;">Employee volunteering</h2>
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 12px;">
+              <div style="background: #fafafa; border-radius: 10px; padding: 10px 12px;"><div style="font-size: 17px; font-weight: 800;">{{ p.empCount }}</div><div style="font-size: 10px; color: #9CA3AF;">Employees</div></div>
+              <div style="background: #fafafa; border-radius: 10px; padding: 10px 12px;"><div style="font-size: 17px; font-weight: 800; color: #1B7A34;">{{ p.empHours }}</div><div style="font-size: 10px; color: #9CA3AF;">Service hours</div></div>
+              <div style="background: #fafafa; border-radius: 10px; padding: 10px 12px;"><div style="font-size: 17px; font-weight: 800;">{{ p.empSessions }}</div><div style="font-size: 10px; color: #9CA3AF;">Sessions</div></div>
+            </div>
+            <a href="Missions.dc.html" style="font-size: 12px; font-weight: 700; text-decoration: none;">Open missions your team can join &#8594;</a>
+          </section>
+          <section style="background: #ffffff; border: 1px solid rgba(0,0,0,0.08); border-radius: 20px; padding: 26px;">
+            <h2 style="margin: 0 0 12px; font-size: 12px; text-transform: uppercase; letter-spacing: 0.2em; color: #9CA3AF; font-weight: 800;">In-kind contribution</h2>
+            <div style="display: {{ noInKindDisp }}; font-size: 12.5px; color: #9CA3AF;">None recorded for this partnership.</div>
+            <div style="display: flex; flex-direction: column; gap: 8px;">
+              <sc-for list="{{ inKind }}" as="ik" hint-placeholder-count="1">
+                <div style="display: flex; align-items: center; justify-content: space-between; gap: 10px; font-size: 12.5px;">
+                  <span style="color: #374151;">{{ ik.label }}</span>
+                  <span style="font-weight: 700; color: #6B7280; white-space: nowrap;">{{ ik.value }} est.</span>
+                </div>
+              </sc-for>
+            </div>
+          </section>
+          <section style="background: #0D0D0D; border-radius: 20px; padding: 26px;">
+            <h2 style="margin: 0 0 10px; font-size: 12px; text-transform: uppercase; letter-spacing: 0.2em; color: rgba(255,255,255,0.4); font-weight: 800;">Reports &amp; sharing</h2>
+            <div style="display: flex; flex-direction: column; gap: 8px;">
+              <button onClick="{{ briefAlert }}" style="text-align: left; padding: 11px 14px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.15); background: rgba(255,255,255,0.05); color: #ffffff; font-size: 12.5px; font-weight: 700; cursor: pointer; font-family: inherit;" style-hover="background: rgba(255,255,255,0.1);">Quarterly impact brief &#183; Q3 2026 &#8595;</button>
+              <a href="{{ publicHref }}" style="padding: 11px 14px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.15); background: rgba(255,255,255,0.05); color: #ffffff; font-size: 12.5px; font-weight: 700; text-decoration: none;" style-hover="background: rgba(255,255,255,0.1);">Shareable live partnership page &#8599;</a>
+              <button onClick="{{ makeCard }}" style="text-align: left; padding: 11px 14px; border-radius: 12px; border: none; background: linear-gradient(135deg, #4DC86A 0%, #1B7A34 100%); color: #ffffff; font-size: 12.5px; font-weight: 800; cursor: pointer; font-family: inherit;" style-hover="opacity: 0.9;">Create impact milestone card &#8594;</button>
+            </div>
+          </section>
+          <section style="background: #f0faf3; border: 1px solid rgba(27,122,52,0.25); border-radius: 20px; padding: 26px;">
+            <h2 style="margin: 0 0 8px; font-size: 12px; text-transform: uppercase; letter-spacing: 0.2em; color: #1B7A34; font-weight: 800;">Where we can go next</h2>
+            <div style="font-size: 13.5px; font-weight: 800; margin-bottom: 4px;">{{ renewTitle }}</div>
+            <p style="margin: 0 0 12px; font-size: 12.5px; color: #374151; line-height: 1.55;">{{ renewNote }}</p>
+            <a href="Fund Impact.dc.html" style="font-size: 12.5px; font-weight: 800; text-decoration: none;">See the opportunity &#8594;</a>
+          </section>
+        </div>
+      </div>
+      <p style="margin: 4px 0 0; font-size: 11px; color: #9CA3AF; line-height: 1.6;">Programme figures are pooled: your funding joins other gifts supporting the same programmes, so \u201Cpeople supported\u201D reflects what those programmes achieved collectively \u2014 not a private conversion of your taka into outcomes.</p>
+    </section>
+  </main>
+  <dc-import name="SiteFooter" hint-size="100%,420px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { data: null, os: null, missions: null, impact: null, fin: null, me: null };
+  load() {
+    import("./gs-os.js").then((m) => { this.gs = m; return Promise.all([m.loadPartners(), m.loadOS(), m.loadMissions(), m.loadImpact(), m.loadFinance()]); })
+      .then(([data, os, missions, impact, fin]) => this.setState({ data, os, missions, impact, fin, me: this.gs.readPartner() }));
+  }
+  componentDidMount() { this.load(); }
+  short(n) {
+    const v = Number(n || 0);
+    if (v >= 10000000) return "\u09F3" + (v / 10000000).toFixed(2) + "Cr";
+    if (v >= 100000) return "\u09F3" + (v / 100000).toFixed(1) + "L";
+    return "\u09F3" + v.toLocaleString();
+  }
+  renderVals() {
+    const s = this.state;
+    const hr = new Date().getHours();
+    const greeting = "Good " + (hr < 12 ? "morning" : hr < 17 ? "afternoon" : "evening") + ",";
+    const blankP = { name: "", initials: "", tier: "", since: "", kind: "", committedLabel: "", receivedLabel: "", deployedLabel: "", peopleLabel: "", goalLabel: "", empCount: "", empHours: "", empSessions: "" };
+    const idle = { greeting, p: blankP, options: [], liveMissions: [], noLiveDisp: "none", trace: [], timeline: [], people: [], inKind: [], noInKindDisp: "none", commitDisp: "none", commitsG: [], commitsP: [], goalW: "0%", goalNote: "", renewTitle: "", renewNote: "", publicHref: "#", signOut: () => {}, briefAlert: () => {}, makeCard: () => {} };
+    if (!s.data) return { ...idle, signInDisp: "flex", dashDisp: "none" };
+    const initials = (n) => n.split(" ").filter((w) => /^[A-Z]/.test(w)).map((w) => w[0]).join("").slice(0, 2).toUpperCase();
+    const raw = s.me ? s.data.partners.find((x) => x.id === s.me) : null;
+    if (!raw || raw.stage === "proposal") {
+      return { ...idle, signInDisp: "flex", dashDisp: "none",
+        options: s.data.partners.filter((p) => p.stage !== "proposal").map((p) => ({
+          name: p.name, tier: p.tier, since: p.since, initials: initials(p.name),
+          pick: () => { this.gs.claimPartner(p.id); this.setState({ me: p.id }); } })) };
+    }
+    const myImpact = (s.impact || []).filter((r) => r.published && raw.programs.includes(r.programSlug));
+    const people = myImpact.reduce((n, r) => n + (r.beneficiaries || 0), 0);
+    const myFunds = (s.fin ? s.fin.funds : []).filter((f) => raw.programs.includes(f.programSlug));
+    const deployed = myFunds.reduce((n, f) => n + f.spent, 0);
+    const expenses = myFunds.reduce((n, f) => n + f.expenses.filter((e) => e.status === "approved").length, 0);
+    const docsChecked = myFunds.reduce((n, f) => n + f.checked, 0);
+    const outcomes = myImpact.reduce((a, r) => { r.outcomes.forEach((o) => { a[o.basis] = (a[o.basis] || 0) + 1; }); return a; }, {});
+    const p = { ...raw, initials: initials(raw.name),
+      committedLabel: this.short(raw.committed), receivedLabel: this.short(raw.received),
+      deployedLabel: this.short(deployed), peopleLabel: people.toLocaleString(),
+      goalLabel: raw.goal.label,
+      empCount: String(raw.employees.participated), empHours: String(raw.employees.hours), empSessions: String(raw.employees.sessions) };
+    const live = (s.missions || []).filter((m) => m.state === "open" && raw.programs.includes(m.programSlug)).slice(0, 3);
+    const vols = (s.os ? s.os.volunteers : []).filter((v) => raw.programs.includes(v.programSlug) && v.status !== "suspended")
+      .sort((a, b) => b.hours - a.hours).slice(0, 3);
+    const goalPct = raw.goal.target ? Math.min(100, Math.round((people / raw.goal.target) * 100)) : 0;
+    const tIcon = { money: ["\u09F3", "#e8f0fc", "#1565C0"], check: ["\u2713", "#f0faf3", "#1B7A34"] };
+    return {
+      greeting, p,
+      signInDisp: "none", dashDisp: "flex", options: [],
+      publicHref: "Partner Profile.dc.html?id=" + raw.id,
+      liveMissions: live.map((m) => ({ title: m.title, href: "Mission Detail.dc.html?id=" + m.id,
+        meta: (m.remote ? "Remote" : m.chapter) + " \u00B7 " + m.date + " \u00B7 " + m.filled + "/" + m.need + " roles filled" })),
+      noLiveDisp: live.length ? "none" : "block",
+      trace: [
+        { value: this.short(raw.received) + " received", label: "of " + this.short(raw.committed) + " committed \u00B7 receipts issued", icon: "\u09F3", bg: "#e8f0fc", color: "#1565C0" },
+        { value: this.short(myFunds.reduce((n, f) => n + f.allocated, 0)) + " allocated", label: "to " + myFunds.length + " programme fund" + (myFunds.length === 1 ? "" : "s") + " your gift joins", icon: "\u2192", bg: "#eef0f3", color: "#4B5563" },
+        { value: expenses + " accepted expenses", label: this.short(deployed) + " deployed \u00B7 " + docsChecked + " documents checked", icon: "\u2713", bg: "#f0faf3", color: "#1B7A34" },
+        { value: myImpact.length + " published impact records", label: "for the programmes you support", icon: "\u25A6", bg: "#f5f0ff", color: "#6B21A8" },
+        { value: people.toLocaleString() + " people supported", label: "collectively, across those programmes", icon: "\u2665", bg: "#f0faf3", color: "#1B7A34" },
+        { value: (outcomes.verified || 0) + " verified \u00B7 " + (outcomes["self-reported"] || 0) + " self-reported \u00B7 " + (outcomes.observed || 0) + " observed", label: (outcomes.pending || 0) + " awaiting measurement \u2014 we publish dates, not guesses", icon: "\u2261", bg: "#fff3e0", color: "#E65100" },
+      ].map((t, i, arr) => ({ ...t, line: i < arr.length - 1 ? "#E5E7EB" : "transparent" })),
+      timeline: raw.timeline.map((t) => ({ ...t, dot: t.type === "money" ? "#1565C0" : t.type === "evidence" ? "#1B7A34" : t.type === "people" ? "#6B21A8" : "#4DC86A" })),
+      people: vols.map((v) => ({ name: v.name, role: v.role, hours: v.hours, initials: v.initials,
+        grad: s.os.avatarGradients[v.avatarColor], href: "Volunteer Profile.dc.html?id=" + v.id })),
+      commitDisp: raw.commitments ? "flex" : "none",
+      commitsG: raw.commitments ? raw.commitments.goodness.map((c) => {
+        const done = c.total != null && c.done >= c.total;
+        return { label: c.label,
+          state: c.note ? c.note : (c.unit === "L" ? "\u09F3" + c.done + "L / \u09F3" + c.total + "L" : c.done + " / " + c.total),
+          color: c.note ? "#E65100" : done ? "#1B7A34" : "#0D0D0D" };
+      }) : [],
+      commitsP: raw.commitments ? raw.commitments.partner.map((c) => {
+        const done = c.total != null && c.done >= c.total;
+        return { label: c.label,
+          state: c.note ? c.note : (c.unit === "L" ? "\u09F3" + c.done + "L / \u09F3" + c.total + "L" : c.done + " / " + c.total),
+          color: c.note ? "#E65100" : done ? "#1B7A34" : "#0D0D0D" };
+      }) : [],
+      inKind: raw.inKind.map((ik) => ({ label: ik.label, value: this.short(ik.estValue) })),
+      noInKindDisp: raw.inKind.length ? "none" : "block",
+      goalW: goalPct + "%",
+      goalNote: people.toLocaleString() + " / " + raw.goal.target.toLocaleString() + " \u00B7 " + Math.max(0, raw.goal.target - people).toLocaleString() + " to go",
+      renewTitle: raw.id === "ptr-techhub" ? "Renew for 2027 \u2014 and take the tools national" : "Close the " + (raw.programs.includes("innovation-social-good") ? "Open Impact Tools" : "next initiative's") + " funding gap",
+      renewNote: "Your partnership has watched this grow all year. The natural next chapter is already scoped on the Fund Impact board.",
+      signOut: () => { this.gs.claimPartner(null); this.setState({ me: null }); },
+      briefAlert: () => {
+        this.gs.logAudit("Quarterly impact brief generated for " + raw.name);
+        alert("Q3 2026 Impact Brief \u2014 " + raw.name + "\n\nCommitted: " + this.short(raw.committed) + "\nReceived: " + this.short(raw.received) + "\nDeployed by supported programmes: " + this.short(deployed) + "\nPeople supported: " + people.toLocaleString() + "\nPublished records: " + myImpact.length + "\nEmployee volunteering: " + raw.employees.participated + " people \u00B7 " + raw.employees.hours + " hours\n\n(Prototype: this becomes a downloadable PDF.)");
+      },
+      makeCard: () => {
+        try {
+          const prev = JSON.parse(localStorage.getItem("gs-social-cards") || "{}");
+          localStorage.setItem("gs-social-cards", JSON.stringify({ ...prev, jHeadline: raw.name + " \u00D7 Goodness Society \u2014 " + people.toLocaleString() + " people supported", jSub: raw.story || "A live, verifiable partnership.", jProgram: "" }));
+        } catch (e) {}
+        location.href = "Social Cards.dc.html";
+      },
+    };
+  }
+}
+</script>
+</body>
+</html>

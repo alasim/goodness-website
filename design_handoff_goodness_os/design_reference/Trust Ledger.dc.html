@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+  body { margin: 0; background: #ffffff; font-family: 'Plus Jakarta Sans', system-ui, sans-serif; }
+  a { color: #1B7A34; } a:hover { color: #4DC86A; }
+</style>
+</helmet>
+<div data-screen-label="Trust Ledger" style="color: #0D0D0D; padding-top: 72px;">
+  <dc-import name="SiteNav" active="trust" hint-size="100%,72px"></dc-import>
+  <section style="position: relative; background: #0D0D0D; padding: 64px 0 56px; overflow: hidden;">
+    <svg style="position: absolute; top: -30px; right: -20px; opacity: 0.07; pointer-events: none;" width="560" height="380" viewBox="0 0 600 400" fill="none">
+      <circle cx="220" cy="180" r="160" stroke="#4DC86A" stroke-width="44" fill="none"></circle>
+      <path d="M370 180 C390 180 420 200 430 240 C445 295 420 350 370 370 C310 395 240 370 210 320" stroke="#4DC86A" stroke-width="44" fill="none" stroke-linecap="round"></path>
+      <line x1="220" y1="180" x2="380" y2="180" stroke="#4DC86A" stroke-width="44" stroke-linecap="round"></line>
+    </svg>
+    <div style="position: relative; max-width: 1280px; margin: 0 auto; padding: 0 24px;">
+      <span style="display: inline-flex; align-items: center; padding: 6px 16px; border-radius: 999px; color: #ffffff; font-size: 12px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; background: linear-gradient(135deg, #4DC86A 0%, #1B7A34 100%); margin-bottom: 24px;">Trust Ledger &#183; 2026 year to date</span>
+      <h1 style="margin: 0 0 30px; font-size: clamp(30px, 4vw, 50px); line-height: 1.15; letter-spacing: -0.02em; max-width: 800px; color: #ffffff;"><span style="font-weight: 300;">Follow every taka</span> <span style="font-weight: 800;">from the donation to the outcome.</span></h1>
+      <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px;">
+        <div style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); border-radius: 16px; padding: 20px;">
+          <div style="font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.14em; color: rgba(255,255,255,0.45); margin-bottom: 8px;">Received</div>
+          <div style="font-size: 27px; font-weight: 800; color: #ffffff;">{{ received }}</div>
+          <div style="font-size: 11.5px; color: rgba(255,255,255,0.5); margin-top: 4px;">{{ donationCount }} recorded donations</div>
+        </div>
+        <div style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); border-radius: 16px; padding: 20px;">
+          <div style="font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.14em; color: rgba(255,255,255,0.45); margin-bottom: 8px;">Allocated to funds</div>
+          <div style="font-size: 27px; font-weight: 800; color: #ffffff;">{{ allocated }}</div>
+          <div style="font-size: 11.5px; color: rgba(255,255,255,0.5); margin-top: 4px;">{{ unallocated }} not yet allocated &#183; {{ budgeted }} budgeted</div>
+        </div>
+        <div style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); border-radius: 16px; padding: 20px;">
+          <div style="font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.14em; color: rgba(255,255,255,0.45); margin-bottom: 8px;">Accepted into the ledger</div>
+          <div style="font-size: 27px; font-weight: 800; color: #4DC86A;">{{ spent }}</div>
+          <div style="font-size: 11.5px; color: rgba(255,255,255,0.5); margin-top: 4px;">{{ pending }} recorded, awaiting review</div>
+        </div>
+        <div style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); border-radius: 16px; padding: 20px;">
+          <div style="font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.14em; color: rgba(255,255,255,0.45); margin-bottom: 8px;">Programme spending</div>
+          <div style="font-size: 27px; font-weight: 800; color: #ffffff;">{{ programShare }}</div>
+          <div style="font-size: 11.5px; color: rgba(255,255,255,0.5); margin-top: 4px;">Operations &amp; administration {{ overhead }} of accepted spending</div>
+        </div>
+      </div>
+      <div style="display: flex; align-items: center; gap: 10px; margin-top: 26px; flex-wrap: wrap; font-size: 12.5px; color: rgba(255,255,255,0.55);">
+        <span style="display: inline-flex; align-items: center; gap: 6px;"><span style="width: 7px; height: 7px; border-radius: 50%; background: #4DC86A;"></span>{{ documented }} of accepted spending has a document attached &#183; {{ checked }} fully checked by our team</span>
+        <span style="color: rgba(255,255,255,0.25);">&#183;</span>
+        <span>Figures cover 1 Jan &#8211; 31 Aug 2026. Received is cash in; allocated is money formally assigned to a fund; budget is what a programme plans to spend; accepted spending (shown as “accepted” on every fund and expense) is money already incurred and signed off. These are our own books, reviewed internally and audited annually.</span>
+      </div>
+    </div>
+  </section>
+  <section style="padding: 56px 0 24px; background: #ffffff;">
+    <div style="max-width: 1280px; margin: 0 auto; padding: 0 24px;">
+      <p style="margin: 0 0 10px; font-size: 12px; text-transform: uppercase; letter-spacing: 0.2em; color: #6B7280; font-weight: 700;">Step 1 &#183; Allocation</p>
+      <h2 style="margin: 0 0 8px; font-size: clamp(26px, 3.2vw, 38px); line-height: 1.2;"><span style="font-weight: 300;">Where the money</span> <span style="font-weight: 800;">is committed</span></h2>
+      <p style="margin: 0 0 26px; font-size: 14px; color: #6B7280; max-width: 640px;">Click a fund to see its budget, every expense against it, the documents behind each one, and the impact record it supported.</p>
+      <div style="display: flex; flex-direction: column; gap: 10px;">
+        <sc-for list="{{ funds }}" as="f" hint-placeholder-count="6">
+          <button onClick="{{ f.pick }}" style="display: flex; align-items: center; gap: 18px; width: 100%; text-align: left; padding: 18px 22px; border-radius: 16px; cursor: pointer; font-family: inherit; border: 1px solid {{ f.border }}; background: {{ f.rowBg }};" style-hover="border-color: rgba(27,122,52,0.35);">
+            <div style="width: 10px; height: 38px; border-radius: 999px; flex-shrink: 0; background: {{ f.color }};"></div>
+            <div style="flex: 1; min-width: 0;">
+              <div style="font-size: 15px; font-weight: 800;">{{ f.program }}</div>
+              <div style="font-size: 12px; color: #6B7280; margin-top: 2px;">{{ f.note }}</div>
+            </div>
+            <div style="width: 230px; flex-shrink: 0;">
+              <div style="display: flex; align-items: center; justify-content: space-between; font-size: 11.5px; color: #6B7280; margin-bottom: 5px;"><span>{{ f.spentLabel }} accepted</span><span>{{ f.spentPct }}</span></div>
+              <div style="height: 9px; border-radius: 999px; background: #f0f1f3; overflow: hidden;"><div style="height: 100%; border-radius: 999px; background: {{ f.color }}; width: {{ f.w }};"></div></div>
+            </div>
+            <div style="width: 118px; text-align: right; flex-shrink: 0;">
+              <div style="font-size: 16px; font-weight: 800;">{{ f.budgetLabel }}</div>
+              <div style="font-size: 10.5px; color: #9CA3AF;">budget</div>
+            </div>
+            <div style="font-size: 13px; font-weight: 700; color: {{ f.color }}; flex-shrink: 0;">{{ f.arrow }}</div>
+          </button>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+  <section style="padding: 24px 0 72px; background: #ffffff;">
+    <div style="max-width: 1280px; margin: 0 auto; padding: 0 24px;">
+      <div style="display: {{ drillDisp }}; flex-direction: column; gap: 16px; border: 1px solid rgba(0,0,0,0.08); border-radius: 20px; overflow: hidden;">
+        <div style="padding: 24px 26px; background: #fafafa; border-bottom: 1px solid rgba(0,0,0,0.06); display: flex; align-items: flex-start; gap: 20px; flex-wrap: wrap;">
+          <div style="flex: 1; min-width: 240px;">
+            <p style="margin: 0 0 6px; font-size: 11px; text-transform: uppercase; letter-spacing: 0.16em; color: #9CA3AF; font-weight: 800;">Step 2 &#183; Spending</p>
+            <h3 style="margin: 0 0 3px; font-size: 21px; font-weight: 800;">{{ sel.program }}</h3>
+            <div style="font-size: 12.5px; color: #6B7280;">{{ sel.project }} &#183; {{ sel.restrictedNote }}</div>
+            <div style="display: {{ sel.gapDisp }}; font-size: 12px; color: #E65100; margin-top: 4px; font-weight: 600;">{{ sel.gapNote }}</div>
+          </div>
+          <div style="display: flex; gap: 26px; flex-wrap: wrap;">
+            <div><div style="font-size: 10.5px; color: #9CA3AF; text-transform: uppercase; letter-spacing: 0.1em;">Budget</div><div style="font-size: 17px; font-weight: 800;">{{ sel.budgetLabel }}</div></div>
+            <div><div style="font-size: 10.5px; color: #9CA3AF; text-transform: uppercase; letter-spacing: 0.1em;">Allocated</div><div style="font-size: 17px; font-weight: 800;">{{ sel.allocatedLabel }}</div></div>
+            <div><div style="font-size: 10.5px; color: #9CA3AF; text-transform: uppercase; letter-spacing: 0.1em;">Accepted spending</div><div style="font-size: 17px; font-weight: 800; color: #1B7A34;">{{ sel.spentLabel }}</div></div>
+            <div><div style="font-size: 10.5px; color: #9CA3AF; text-transform: uppercase; letter-spacing: 0.1em;">Unspent allocation</div><div style="font-size: 17px; font-weight: 800;">{{ sel.remainingLabel }}</div></div>
+            <div style="display: {{ sel.gapDisp }};"><div style="font-size: 10.5px; color: #E65100; text-transform: uppercase; letter-spacing: 0.1em;">Funding gap</div><div style="font-size: 17px; font-weight: 800; color: #E65100;">{{ sel.gapLabel }}</div></div>
+          </div>
+          <button onClick="{{ clearPick }}" style="padding: 8px 16px; border-radius: 999px; border: 1px solid rgba(0,0,0,0.12); background: #ffffff; font-size: 12px; font-weight: 700; font-family: inherit; cursor: pointer; color: #6B7280; flex-shrink: 0;">Close</button>
+        </div>
+        <div style="padding: 0 26px 8px;">
+          <div style="display: grid; grid-template-columns: 2.2fr 1fr 1.1fr 1.4fr 0.9fr; gap: 14px; padding: 12px 4px; border-bottom: 1px solid rgba(0,0,0,0.06); font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.12em; color: #9CA3AF;">
+            <div>Expense</div><div>Amount</div><div>Payee &amp; date</div><div>Documents</div><div>Ledger status</div>
+          </div>
+          <sc-for list="{{ sel.rows }}" as="e" hint-placeholder-count="3">
+            <div style="display: grid; grid-template-columns: 2.2fr 1fr 1.1fr 1.4fr 0.9fr; gap: 14px; padding: 14px 4px; border-bottom: 1px solid rgba(0,0,0,0.04); align-items: start;">
+              <div style="min-width: 0;">
+                <div style="font-size: 13px; font-weight: 700; line-height: 1.35;">{{ e.item }}</div>
+                <a href="{{ e.impactHref }}" style="display: {{ e.impactDisp }}; font-size: 11px; font-weight: 700; text-decoration: none; margin-top: 3px;">Supported: {{ e.impactLabel }} &#8594;</a>
+              </div>
+              <div style="font-size: 13.5px; font-weight: 800; white-space: nowrap;">{{ e.amount }}</div>
+              <div style="font-size: 11.5px; color: #6B7280; min-width: 0;">{{ e.payee }}<br>{{ e.date }}</div>
+              <div style="display: flex; flex-wrap: wrap; gap: 5px;">
+                <sc-for list="{{ e.docs }}" as="d" hint-placeholder-count="2">
+                  <span style="display: inline-flex; align-items: center; gap: 5px; padding: 3px 9px; border-radius: 999px; font-size: 10.5px; font-weight: 600; background: {{ d.bg }}; color: #0D0D0D; border: 1px solid {{ d.border }};"><span style="color: {{ d.color }}; font-weight: 800;">{{ d.mark }}</span>{{ d.label }}<span style="color: {{ d.color }}; font-size: 9px; text-transform: uppercase; letter-spacing: 0.06em;">{{ d.state }}</span></span>
+                </sc-for>
+                <span style="display: {{ e.noDocsDisp }}; font-size: 11px; color: #E65100; font-weight: 600;">No document yet</span>
+              </div>
+              <div><span style="padding: 3px 10px; border-radius: 999px; font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.06em; background: {{ e.stBg }}; color: {{ e.stColor }};">{{ e.stLabel }}</span></div>
+            </div>
+          </sc-for>
+        </div>
+        <div style="display: {{ sel.impactDisp }}; margin: 8px 26px 26px; padding: 20px 22px; border-radius: 16px; background: #f8fdf9; border: 1px solid rgba(27,122,52,0.2);">
+          <p style="margin: 0 0 6px; font-size: 11px; text-transform: uppercase; letter-spacing: 0.16em; color: #1B7A34; font-weight: 800;">Step 3 &#183; This spending supported</p>
+          <div style="display: flex; flex-direction: column; gap: 12px;">
+            <sc-for list="{{ sel.impacts }}" as="i" hint-placeholder-count="1">
+              <div style="display: flex; align-items: flex-start; gap: 14px; flex-wrap: wrap;">
+                <div style="flex: 1; min-width: 220px;">
+                  <div style="font-size: 14px; font-weight: 700;">{{ i.title }}</div>
+                  <div style="font-size: 12px; color: #6B7280; margin-top: 2px;">{{ i.unitLine }} &#183; {{ i.evidenceLine }}</div>
+                </div>
+                <div style="font-size: 12px; color: #374151; flex: 1.2; min-width: 240px; line-height: 1.55;">{{ i.outcomeLine }}</div>
+                <a href="Impact.dc.html" style="font-size: 12px; font-weight: 700; text-decoration: none; flex-shrink: 0;">Full record &#8594;</a>
+              </div>
+            </sc-for>
+          </div>
+          <p style="margin: 14px 0 0; font-size: 11px; color: #6B7280; line-height: 1.55;">This fund supported the work above; the recorded impact is not a conversion of taka into outcomes. Volunteers, partners, and participants' own effort all contributed.</p>
+        </div>
+      </div>
+      <div style="display: {{ hintDisp }}; padding: 28px; border: 1px dashed rgba(0,0,0,0.14); border-radius: 16px; background: #fafafa; text-align: center; font-size: 13.5px; color: #6B7280;">Pick a fund above to follow the money through to the work it paid for.</div>
+    </div>
+  </section>
+  <section style="padding: 56px 0 72px; background: #fafafa; border-top: 1px solid rgba(0,0,0,0.05);">
+    <div style="max-width: 1280px; margin: 0 auto; padding: 0 24px;">
+      <p style="margin: 0 0 10px; font-size: 12px; text-transform: uppercase; letter-spacing: 0.2em; color: #6B7280; font-weight: 700;">Money in</p>
+      <h2 style="margin: 0 0 24px; font-size: clamp(24px, 3vw, 34px); line-height: 1.2;"><span style="font-weight: 300;">Every donation</span> <span style="font-weight: 800;">we have recorded</span></h2>
+      <div style="background: #ffffff; border: 1px solid rgba(0,0,0,0.08); border-radius: 18px; overflow: hidden;">
+        <div style="display: grid; grid-template-columns: 2fr 1fr 1fr 1.3fr 0.9fr; gap: 14px; padding: 13px 22px; border-bottom: 1px solid rgba(0,0,0,0.06); font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.12em; color: #9CA3AF;">
+          <div>Donor</div><div>Amount</div><div>Date</div><div>Restricted to</div><div>Receipt issued</div>
+        </div>
+        <sc-for list="{{ donations }}" as="d" hint-placeholder-count="8">
+          <div style="display: grid; grid-template-columns: 2fr 1fr 1fr 1.3fr 0.9fr; gap: 14px; padding: 14px 22px; border-bottom: 1px solid rgba(0,0,0,0.04); align-items: center;">
+            <div style="min-width: 0;"><div style="font-size: 13px; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">{{ d.donor }}</div><div style="font-size: 11px; color: #9CA3AF;">{{ d.type }} &#183; {{ d.method }}</div></div>
+            <div style="font-size: 13.5px; font-weight: 800; white-space: nowrap;">{{ d.amount }}</div>
+            <div style="font-size: 12px; color: #6B7280;">{{ d.date }}</div>
+            <div style="font-size: 12px; color: #374151;">{{ d.restrictedLabel }}</div>
+            <div style="font-size: 11.5px; color: #6B7280; font-variant-numeric: tabular-nums;">{{ d.receipt }}</div>
+          </div>
+        </sc-for>
+      </div>
+      <p style="margin: 16px 0 0; font-size: 11.5px; color: #9CA3AF; line-height: 1.6; max-width: 720px;">Individual donors are listed by the name they gave us; anyone may ask to appear as an anonymous donor and we never publish personal contact details. Every gift carries the receipt reference issued for it. Restricted gifts can only be spent on the programme named.</p>
+    </div>
+  </section>
+  <section style="padding: 64px 0; background: #ffffff; border-top: 1px solid rgba(0,0,0,0.05);">
+    <div style="max-width: 880px; margin: 0 auto; padding: 0 24px; text-align: center;">
+      <h2 style="margin: 0 0 14px; font-size: clamp(24px, 3vw, 34px); line-height: 1.25;"><span style="font-weight: 300;">Fund a mission and</span> <span style="font-weight: 800;">watch it move through this page.</span></h2>
+      <p style="margin: 0 auto 26px; font-size: 15px; color: #6B7280; max-width: 500px; line-height: 1.7;">Your gift is recorded here, allocated to a fund, spent against documented invoices, and tied to the impact record it supported.</p>
+      <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
+        <a href="Partner.dc.html" style="padding: 14px 26px; border-radius: 999px; font-size: 14px; font-weight: 700; color: #ffffff; text-decoration: none; background: linear-gradient(135deg, #4DC86A 0%, #1B7A34 100%);" style-hover="opacity: 0.9;">Fund this work</a>
+        <a href="Impact.dc.html" style="padding: 14px 26px; border-radius: 999px; font-size: 14px; font-weight: 700; color: #0D0D0D; text-decoration: none; background: rgba(0,0,0,0.05);" style-hover="background: rgba(0,0,0,0.1);">See the impact</a>
+      </div>
+    </div>
+  </section>
+  <dc-import name="SiteFooter" hint-size="100%,420px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { fin: null, impact: null, colors: null, pick: null };
+  componentDidMount() {
+    import("./gs-os.js").then((m) => Promise.all([m.loadFinance(), m.loadImpact(), m.loadOS()]))
+      .then(([fin, impact, os]) => this.setState({ fin, impact, colors: os.programColors }));
+  }
+  money(n) { return "\u09F3" + Number(n || 0).toLocaleString(); }
+  short(n) {
+    const v = Number(n || 0);
+    if (v >= 10000000) return "\u09F3" + (v / 10000000).toFixed(2) + "Cr";
+    if (v >= 100000) return "\u09F3" + (v / 100000).toFixed(1) + "L";
+    return "\u09F3" + v.toLocaleString();
+  }
+  renderVals() {
+    const s = this.state;
+    const blankSel = { program: "", project: "", restrictedNote: "", budgetLabel: "", allocatedLabel: "", spentLabel: "", remainingLabel: "", gapLabel: "", gapNote: "", gapDisp: "none", rows: [], impacts: [], impactDisp: "none" };
+    if (!s.fin) return { received: "\u2014", donationCount: "\u2014", allocated: "\u2014", unallocated: "\u2014", budgeted: "\u2014", spent: "\u2014", pending: "\u2014", programShare: "\u2014", overhead: "\u2014", documented: "\u2014", checked: "\u2014", funds: [], donations: [], sel: blankSel, drillDisp: "none", hintDisp: "flex", clearPick: () => {} };
+    const fin = s.fin, colors = s.colors;
+    const opColor = { color: "#6B7280", bg: "#f0f1f3", light: "#9CA3AF" };
+    const colorFor = (slug) => colors[slug] || opColor;
+    const selFund = s.pick ? fin.funds.find((f) => f.id === s.pick) : null;
+    const impactFor = (fund) => (s.impact || []).filter((r) => r.published && r.programSlug === fund.programSlug);
+    let sel = blankSel;
+    if (selFund) {
+      const imps = impactFor(selFund);
+      sel = {
+        program: selFund.program, project: selFund.project,
+        restrictedNote: selFund.restricted
+          ? this.money(selFund.restricted) + " received as restricted gifts \u00B7 " + this.money(selFund.restrictedRemaining) + " restricted balance remaining"
+          : "Funded from unrestricted giving",
+        budgetLabel: this.money(selFund.budget),
+        allocatedLabel: this.money(selFund.allocated),
+        spentLabel: this.money(selFund.spent),
+        remainingLabel: this.money(selFund.remaining),
+        gapDisp: selFund.fundingGap ? "block" : "none",
+        gapLabel: this.money(selFund.fundingGap),
+        gapNote: "Budget exceeds allocated funds by " + this.money(selFund.fundingGap) + " \u2014 this programme is still seeking funding.",
+        rows: selFund.expenses.map((e) => {
+          const rec = (s.impact || []).find((r) => r.id === e.impactId && r.published);
+          return { item: e.item, amount: this.money(e.amount), payee: e.payee, date: e.date,
+            docs: (e.evidence || []).map((d) => ({ label: d.label,
+              mark: d.checked ? "\u2713" : "\u25CB",
+              state: d.checked ? "checked" : "attached",
+              bg: d.checked ? "#f0faf3" : "#ffffff",
+              border: d.checked ? "rgba(27,122,52,0.25)" : "rgba(0,0,0,0.14)",
+              color: d.checked ? "#1B7A34" : "#6B7280" })),
+            noDocsDisp: (e.evidence || []).length ? "none" : "inline",
+            stLabel: e.status === "approved" ? "Accepted" : "Awaiting review",
+            stBg: e.status === "approved" ? "#f0faf3" : "#fff3e0",
+            stColor: e.status === "approved" ? "#1B7A34" : "#E65100",
+            impactDisp: rec ? "inline" : "none",
+            impactLabel: rec ? rec.title : "",
+            impactHref: "Impact.dc.html" };
+        }),
+        impacts: imps.map((r) => {
+          const best = r.outcomes.find((o) => o.basis === "verified") || r.outcomes[0];
+          return { title: r.title,
+            unitLine: (r.primaryValue != null ? r.primaryValue.toLocaleString() : r.beneficiaries) + " " + (r.unitLabel || "people supported"),
+            evidenceLine: r.evidenceVerified + "/" + r.evidenceTotal + " documents verified",
+            outcomeLine: best ? (best.value == null ? best.label + " \u2014 awaiting measurement" : best.value.toLocaleString() + " \u00B7 " + best.label + " (" + best.basis + ")") : "Outcomes not yet recorded" };
+        }),
+        impactDisp: imps.length ? "block" : "none",
+      };
+    }
+    return {
+      received: this.short(fin.received),
+      donationCount: String(fin.donations.length),
+      allocated: this.short(fin.allocated),
+      unallocated: this.short(fin.unallocated),
+      budgeted: this.short(fin.budgeted),
+      spent: this.short(fin.spent),
+      pending: this.short(fin.pending),
+      programShare: fin.programSharePct + "%",
+      overhead: fin.overheadPct + "%",
+      documented: fin.documentedPct + "%",
+      checked: fin.checkedPct + "%",
+      funds: fin.funds.map((f) => {
+        const c = colorFor(f.programSlug);
+        const on = s.pick === f.id;
+        return { program: f.program, color: c.color,
+          note: f.project + " \u00B7 " + f.expenses.length + (f.expenses.length === 1 ? " expense" : " expenses") + " \u00B7 " + f.withDocs + " with documents"
+            + (f.missingDocs ? ", " + f.missingDocs + " missing" : "") + (f.fundingGap ? " \u00B7 funding gap " + this.short(f.fundingGap) : ""),
+          budgetLabel: this.short(f.budget),
+          spentLabel: this.short(f.spent),
+          spentPct: f.spentPct + "%",
+          w: f.spentPct + "%",
+          border: on ? "rgba(27,122,52,0.4)" : "rgba(0,0,0,0.08)",
+          rowBg: on ? "#f8fdf9" : "#ffffff",
+          arrow: on ? "\u2713" : "\u2192",
+          pick: () => this.setState({ pick: on ? null : f.id }) };
+      }),
+      donations: fin.donations.map((d) => ({ donor: d.donor, type: d.type, method: d.method,
+        amount: this.money(d.amount), date: d.date, receipt: d.receipt || "\u2014",
+        restrictedLabel: d.restricted ? (fin.funds.find((f) => f.programSlug === d.restricted) || {}).program || d.restricted : "Unrestricted" })),
+      sel,
+      drillDisp: selFund ? "flex" : "none",
+      hintDisp: selFund ? "none" : "flex",
+      clearPick: () => this.setState({ pick: null }),
+    };
+  }
+}
+</script>
+</body>
+</html>

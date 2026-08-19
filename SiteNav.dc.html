@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400&display=swap" rel="stylesheet">
+</helmet>
+<header style="position: fixed; top: 0; left: 0; right: 0; z-index: 50; background: rgba(255,255,255,0.95); backdrop-filter: blur(8px); border-bottom: 1px solid rgba(0,0,0,0.05); font-family: 'Plus Jakarta Sans', system-ui, sans-serif;">
+  <div style="max-width: 1280px; margin: 0 auto; padding: 0 24px; height: 72px; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: nowrap; box-sizing: border-box;">
+    <a href="Home.dc.html" style="display: flex; align-items: center; flex-shrink: 0;"><img src="assets/gs-logo-cropped.png" alt="Society for Initiatives of Goodness" style="height: 40px; width: auto;"></a>
+    <nav style="display: flex; align-items: center; gap: 18px; flex-wrap: nowrap; margin-left: auto; flex-shrink: 0;">
+      <sc-for list="{{ primary }}" as="l" hint-placeholder-count="5">
+        <a href="{{ l.href }}" style="font-size: 13.5px; text-decoration: none; padding-bottom: 2px; white-space: nowrap; font-weight: {{ l.weight }}; color: {{ l.color }}; border-bottom: {{ l.border }};" style-hover="color: #1B7A34;">{{ l.label }}</a>
+      </sc-for>
+      <div style="position: relative; flex-shrink: 0;">
+        <button onClick="{{ toggleMore }}" style="display: flex; align-items: center; gap: 5px; padding: 6px 10px; border-radius: 8px; border: none; background: {{ moreBg }}; font-family: inherit; font-size: 13.5px; font-weight: {{ moreWeight }}; color: {{ moreColor }}; cursor: pointer; white-space: nowrap;" style-hover="background: rgba(0,0,0,0.05);">More <span style="font-size: 9px;">&#9660;</span></button>
+        <div style="display: {{ menuDisp }}; position: absolute; top: calc(100% + 10px); right: 0; min-width: 208px; background: #ffffff; border: 1px solid rgba(0,0,0,0.09); border-radius: 14px; box-shadow: 0 14px 40px rgba(0,0,0,0.14); padding: 8px; flex-direction: column; gap: 2px; z-index: 60;">
+          <sc-for list="{{ secondary }}" as="s" hint-placeholder-count="4">
+            <a href="{{ s.href }}" style="display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 10px 12px; border-radius: 10px; font-size: 13.5px; text-decoration: none; white-space: nowrap; font-weight: {{ s.weight }}; color: {{ s.color }}; background: {{ s.bg }};" style-hover="background: #f0faf3; color: #1B7A34;">{{ s.label }}<span style="font-size: 11px; color: #9CA3AF;">{{ s.hint }}</span></a>
+          </sc-for>
+        </div>
+      </div>
+    </nav>
+    <a href="My Goodness.dc.html" style="padding: 9px 16px; border-radius: 999px; font-size: 13px; text-decoration: none; border: 1px solid rgba(0,0,0,0.14); white-space: nowrap; flex-shrink: 0; font-weight: {{ mineWeight }}; color: {{ mineColor }};" style-hover="border-color: #1B7A34; color: #1B7A34;">My Goodness</a>
+    <a href="Partner.dc.html" style="padding: 10px 20px; border-radius: 999px; font-size: 13.5px; font-weight: 700; color: #ffffff; text-decoration: none; background: linear-gradient(135deg, #4DC86A 0%, #1B7A34 100%); white-space: nowrap; flex-shrink: 0;" style-hover="opacity: 0.9;">Partner with Us</a>
+  </div>
+</header>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{
+  &quot;$preview&quot;: {&quot;width&quot;: &quot;1280px&quot;, &quot;height&quot;: &quot;72px&quot;},
+  &quot;active&quot;: {&quot;editor&quot;: &quot;enum&quot;, &quot;default&quot;: &quot;home&quot;, &quot;tsType&quot;: &quot;string&quot;, &quot;options&quot;: [&quot;home&quot;, &quot;about&quot;, &quot;programs&quot;, &quot;missions&quot;, &quot;impact&quot;, &quot;volunteers&quot;, &quot;chapters&quot;, &quot;fund&quot;, &quot;trust&quot;, &quot;room&quot;, &quot;transparency&quot;, &quot;printables&quot;, &quot;mine&quot;, &quot;verify&quot;]}
+}">
+class Component extends DCLogic {
+  state = { open: false };
+  componentDidMount() {
+    this._close = (e) => { if (!e.target.closest || !e.target.closest("nav")) this.setState({ open: false }); };
+    document.addEventListener("click", this._close);
+  }
+  componentWillUnmount() { document.removeEventListener("click", this._close); }
+  renderVals() {
+    const active = this.props.active ?? "";
+    const mk = (id, label, href, hint) => ({
+      label, href, hint: hint || "",
+      weight: active === id ? "700" : "500",
+      color: active === id ? "#1B7A34" : "#0D0D0D",
+      border: active === id ? "2px solid #4DC86A" : "2px solid transparent",
+      bg: active === id ? "#f0faf3" : "transparent",
+    });
+    const secondaryIds = ["about", "programs", "trust", "room", "transparency", "printables", "verify"];
+    const inMore = secondaryIds.includes(active);
+    return {
+      primary: [
+        mk("missions", "Missions", "Missions.dc.html"),
+        mk("fund", "Fund Impact", "Fund Impact.dc.html"),
+        mk("impact", "Impact", "Impact.dc.html"),
+        mk("chapters", "Chapters", "Chapters.dc.html"),
+        mk("volunteers", "People", "Volunteers.dc.html"),
+      ],
+      secondary: [
+        mk("about", "About", "About.dc.html", "Our story"),
+        mk("programs", "Programs", "Programs.dc.html", "Five areas of work"),
+        mk("trust", "Trust Ledger", "Trust Ledger.dc.html", "Follow the money"),
+        mk("room", "Partner Room", "Partner Room.dc.html", "For sponsors"),
+        mk("transparency", "Transparency", "Transparency.dc.html", "Yearly summary"),
+        mk("printables", "Printables", "Printables.dc.html", "Print & share"),
+        mk("verify", "Verify a credential", "Verify.dc.html", "Check a ref"),
+      ],
+      mineWeight: active === "mine" ? "700" : "600",
+      mineColor: active === "mine" ? "#1B7A34" : "#0D0D0D",
+      menuDisp: this.state.open ? "flex" : "none",
+      moreBg: this.state.open ? "rgba(0,0,0,0.05)" : "transparent",
+      moreWeight: inMore ? "700" : "500",
+      moreColor: inMore || this.state.open ? "#1B7A34" : "#0D0D0D",
+      toggleMore: (e) => { e.stopPropagation(); this.setState({ open: !this.state.open }); },
+    };
+  }
+}
+</script>
+</body>
+</html>

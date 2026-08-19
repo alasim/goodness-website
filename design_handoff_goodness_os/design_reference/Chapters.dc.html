@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+  body { margin: 0; background: #ffffff; font-family: 'Plus Jakarta Sans', system-ui, sans-serif; }
+  a { color: #1B7A34; } a:hover { color: #4DC86A; }
+</style>
+</helmet>
+<div data-screen-label="Chapters" style="color: #0D0D0D; padding-top: 72px;">
+  <dc-import name="SiteNav" active="chapters" hint-size="100%,72px"></dc-import>
+  <section style="position: relative; background: #0D0D0D; padding: 64px 0 52px; overflow: hidden;">
+    <svg style="position: absolute; top: -30px; right: -20px; opacity: 0.07; pointer-events: none;" width="560" height="380" viewBox="0 0 600 400" fill="none">
+      <circle cx="220" cy="180" r="160" stroke="#4DC86A" stroke-width="44" fill="none"></circle>
+      <path d="M370 180 C390 180 420 200 430 240 C445 295 420 350 370 370 C310 395 240 370 210 320" stroke="#4DC86A" stroke-width="44" fill="none" stroke-linecap="round"></path>
+      <line x1="220" y1="180" x2="380" y2="180" stroke="#4DC86A" stroke-width="44" stroke-linecap="round"></line>
+    </svg>
+    <div style="position: relative; max-width: 1280px; margin: 0 auto; padding: 0 24px;">
+      <span style="display: inline-flex; align-items: center; padding: 6px 16px; border-radius: 999px; color: #ffffff; font-size: 12px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; background: linear-gradient(135deg, #4DC86A 0%, #1B7A34 100%); margin-bottom: 24px;">The Network</span>
+      <div style="display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 48px; align-items: end;">
+        <h1 style="margin: 0; font-size: clamp(32px, 4.4vw, 56px); line-height: 1.08; letter-spacing: -0.02em; color: #ffffff;"><span style="font-weight: 300;">One organisation.</span><br><span style="font-weight: 800;">Goodness, everywhere.</span></h1>
+        <div>
+          <p style="margin: 0 0 18px; font-size: 15px; color: rgba(255,255,255,0.6); line-height: 1.7;">Chapters run their own missions with their own leaders &#8212; while identity, standards, impact measurement, and the money trail stay one system. Every number below is computed from the same records as the rest of the platform.</p>
+          <a href="#start" style="padding: 12px 22px; border-radius: 999px; font-size: 13px; font-weight: 700; color: #0D0D0D; background: #ffffff; text-decoration: none; display: inline-block;">Start a chapter in your city &#8594;</a>
+        </div>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.12); border-radius: 16px; overflow: hidden; margin-top: 40px;">
+        <div style="background: rgba(255,255,255,0.05); padding: 18px 22px;"><div style="font-size: 24px; font-weight: 800; color: #4DC86A;">{{ statActive }}</div><div style="font-size: 11.5px; color: rgba(255,255,255,0.45); margin-top: 3px;">Active chapters</div></div>
+        <div style="background: rgba(255,255,255,0.05); padding: 18px 22px;"><div style="font-size: 24px; font-weight: 800; color: #ffffff;">{{ statForming }}</div><div style="font-size: 11.5px; color: rgba(255,255,255,0.45); margin-top: 3px;">Forming chapters</div></div>
+        <div style="background: rgba(255,255,255,0.05); padding: 18px 22px;"><div style="font-size: 24px; font-weight: 800; color: #ffffff;">{{ statMembers }}</div><div style="font-size: 11.5px; color: rgba(255,255,255,0.45); margin-top: 3px;">Chapter members</div></div>
+        <div style="background: rgba(255,255,255,0.05); padding: 18px 22px;"><div style="font-size: 24px; font-weight: 800; color: #ffffff;">{{ statHours }}</div><div style="font-size: 11.5px; color: rgba(255,255,255,0.45); margin-top: 3px;">Verified hours across the network</div></div>
+      </div>
+    </div>
+  </section>
+  <section style="padding: 44px 0 8px; background: #fafafa; border-top: 1px solid rgba(0,0,0,0.05);">
+    <div style="max-width: 1280px; margin: 0 auto; padding: 0 24px;">
+      <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 16px;">
+        <span style="width: 8px; height: 8px; border-radius: 50%; background: #4DC86A;"></span>
+        <h2 style="margin: 0; font-size: 13px; text-transform: uppercase; letter-spacing: 0.2em; color: #9CA3AF; font-weight: 800;">Across Goodness right now</h2>
+      </div>
+      <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+        <sc-for list="{{ feed }}" as="f" hint-placeholder-count="4">
+          <div style="display: flex; align-items: center; gap: 10px; padding: 10px 16px; background: #ffffff; border: 1px solid rgba(0,0,0,0.08); border-radius: 999px;">
+            <span style="font-size: 11px; font-weight: 800; color: {{ f.color }};">{{ f.place }}</span>
+            <span style="font-size: 12px; color: #374151;">{{ f.text }}</span>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+  <section style="padding: 36px 0 72px; background: #fafafa;">
+    <div style="max-width: 1280px; margin: 0 auto; padding: 0 24px;">
+      <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(370px, 1fr)); gap: 20px;">
+        <sc-for list="{{ cards }}" as="c" hint-placeholder-count="6">
+          <a href="{{ c.href }}" style="display: flex; flex-direction: column; gap: 14px; background: #ffffff; border: 1px solid rgba(0,0,0,0.08); border-top: 3px solid {{ c.accent }}; border-radius: 18px; padding: 24px; text-decoration: none; color: inherit;" style-hover="box-shadow: 0 12px 32px rgba(0,0,0,0.1); transform: translateY(-3px);">
+            <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+              <span style="padding: 3px 10px; border-radius: 999px; font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; background: {{ c.typeBg }}; color: {{ c.typeColor }};">{{ c.typeLabel }}</span>
+              <span style="display: {{ c.formingDisp }}; padding: 3px 10px; border-radius: 999px; font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; background: #fff3e0; color: #E65100;">Forming</span>
+              <span style="display: {{ c.parentDisp }}; font-size: 11px; color: #9CA3AF;">under {{ c.parentName }}</span>
+            </div>
+            <div>
+              <h3 style="margin: 0 0 3px; font-size: 21px; font-weight: 800; letter-spacing: -0.01em;">{{ c.name }}</h3>
+              <div style="font-size: 12px; color: #6B7280;">{{ c.coverageLine }}</div>
+            </div>
+            <p style="margin: 0; font-size: 13px; color: #374151; line-height: 1.6;">{{ c.story }}</p>
+            <div style="display: {{ c.statsDisp }}; grid-template-columns: repeat(4, 1fr); gap: 1px; background: rgba(0,0,0,0.06); border: 1px solid rgba(0,0,0,0.06); border-radius: 12px; overflow: hidden;">
+              <div style="background: #fafafa; padding: 10px 12px;"><div style="font-size: 16px; font-weight: 800;">{{ c.members }}</div><div style="font-size: 9.5px; color: #9CA3AF;">Members</div></div>
+              <div style="background: #fafafa; padding: 10px 12px;"><div style="font-size: 16px; font-weight: 800; color: #1B7A34;">{{ c.live }}</div><div style="font-size: 9.5px; color: #9CA3AF;">Missions live</div></div>
+              <div style="background: #fafafa; padding: 10px 12px;"><div style="font-size: 16px; font-weight: 800;">{{ c.people }}</div><div style="font-size: 9.5px; color: #9CA3AF;">People supported</div></div>
+              <div style="background: #fafafa; padding: 10px 12px;"><div style="font-size: 16px; font-weight: 800;">{{ c.partners }}</div><div style="font-size: 9.5px; color: #9CA3AF;">Partners</div></div>
+            </div>
+            <div style="display: {{ c.formingNoteDisp }}; font-size: 12px; color: #E65100; font-weight: 600;">Leadership team being established &#183; Goodness standards {{ c.standards }}</div>
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-top: auto; padding-top: 10px; border-top: 1px solid rgba(0,0,0,0.06);">
+              <div style="display: flex; align-items: center; gap: 8px; min-width: 0;">
+                <div style="display: {{ c.leadDisp }}; width: 28px; height: 28px; border-radius: 28%; align-items: center; justify-content: center; flex-shrink: 0; font-size: 10px; font-weight: 800; color: #ffffff; background: {{ c.leadGrad }};">{{ c.leadInitials }}</div>
+                <span style="font-size: 12px; color: #6B7280; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">{{ c.leadLine }}</span>
+              </div>
+              <span style="font-size: 13px; font-weight: 700; color: #1B7A34; flex-shrink: 0;">{{ c.cta }} &#8594;</span>
+            </div>
+          </a>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+  <section id="start" style="padding: 72px 0; background: #0D0D0D;">
+    <div style="max-width: 880px; margin: 0 auto; padding: 0 24px; text-align: center;">
+      <h2 style="margin: 0 0 14px; font-size: clamp(26px, 3.4vw, 40px); line-height: 1.2; color: #ffffff;"><span style="font-weight: 300;">Don't see Goodness in your city?</span><br><span style="font-weight: 800;">Start a chapter.</span></h2>
+      <p style="margin: 0 auto 26px; font-size: 15px; color: rgba(255,255,255,0.6); max-width: 520px; line-height: 1.7;">Chapters begin with a few committed people. Tell us where, and we'll help you form a leadership team, meet the Goodness standards, and go active &#8212; like Goodness Cumilla is doing right now.</p>
+      <div style="display: {{ reqThanksDisp }}; padding: 16px 20px; border-radius: 14px; background: rgba(77,200,106,0.15); border: 1px solid rgba(77,200,106,0.4); color: #ffffff; font-size: 13.5px; font-weight: 700; max-width: 560px; margin: 0 auto;">Chapter proposal received &#8212; HQ reviews it and, if approved, your chapter appears here as Forming. Watch this page.</div>
+      <div style="display: {{ reqFormDisp }}; flex-direction: column; gap: 10px; max-width: 560px; margin: 0 auto; text-align: left;">
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+          <input value="{{ rCity }}" onInput="{{ setRCity }}" placeholder="City or campus *" style="box-sizing: border-box; padding: 12px 16px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.2); background: rgba(255,255,255,0.08); color: #ffffff; font-size: 13px; font-family: inherit; outline: none;">
+          <input value="{{ rName }}" onInput="{{ setRName }}" placeholder="Your name &amp; contact *" style="box-sizing: border-box; padding: 12px 16px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.2); background: rgba(255,255,255,0.08); color: #ffffff; font-size: 13px; font-family: inherit; outline: none;">
+        </div>
+        <input value="{{ rWhy }}" onInput="{{ setRWhy }}" placeholder="Why here? Local needs, your team, your Goodness ID if you have one" style="box-sizing: border-box; padding: 12px 16px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.2); background: rgba(255,255,255,0.08); color: #ffffff; font-size: 13px; font-family: inherit; outline: none;">
+        <div style="display: flex; align-items: center; gap: 12px;">
+          <button onClick="{{ sendRequest }}" style="padding: 13px 26px; border-radius: 999px; border: none; color: #0D0D0D; font-size: 13px; font-weight: 800; font-family: inherit; cursor: pointer; background: #ffffff;" style-hover="opacity: 0.9;">Propose the chapter &#8594;</button>
+          <span style="display: {{ reqErrDisp }}; font-size: 12px; color: #FFB74D; font-weight: 700;">City and contact are required.</span>
+        </div>
+        <p style="margin: 4px 0 0; font-size: 11px; color: rgba(255,255,255,0.35);">Lifecycle: Proposed &#8594; Forming (leadership + Goodness standards) &#8594; Active.</p>
+      </div>
+    </div>
+  </section>
+  <dc-import name="SiteFooter" hint-size="100%,420px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { net: null, os: null, rCity: "", rName: "", rWhy: "", reqSent: false, reqErr: false };
+  componentDidMount() {
+    import("./gs-os.js").then((m) => Promise.all([m.loadNetwork(), m.loadOS()]))
+      .then(([net, os]) => this.setState({ net, os }));
+  }
+  renderVals() {
+    const s = this.state, net = s.net;
+    const reqVals = {
+      rCity: s.rCity, rName: s.rName, rWhy: s.rWhy,
+      setRCity: (e) => this.setState({ rCity: e.target.value }),
+      setRName: (e) => this.setState({ rName: e.target.value }),
+      setRWhy: (e) => this.setState({ rWhy: e.target.value }),
+      reqFormDisp: s.reqSent ? "none" : "flex",
+      reqThanksDisp: s.reqSent ? "block" : "none",
+      reqErrDisp: s.reqErr ? "inline" : "none",
+      sendRequest: () => {
+        if (!s.rCity || !s.rName) { this.setState({ reqErr: true }); return; }
+        import("./gs-os.js").then((m) => m.submitChapterRequest({ city: s.rCity, contact: s.rName, why: s.rWhy }));
+        this.setState({ reqSent: true, reqErr: false });
+      },
+    };
+    if (!net) return { ...reqVals, statActive: "\u2014", statForming: "\u2014", statMembers: "\u2014", statHours: "\u2014", feed: [], cards: [] };
+    const members = net.active.reduce((n, c) => n + c.memberCount, 0);
+    const hours = net.active.reduce((n, c) => n + c.hours, 0);
+    const feed = [];
+    net.active.forEach((c) => {
+      const live = c.missions.filter((m) => m.state === "open")[0];
+      if (live) feed.push({ place: c.city, color: "#E65100", text: "\u201C" + live.title + "\u201D needs " + live.spotsLeft + " more volunteers" });
+      const rec = c.impact[0];
+      if (rec) feed.push({ place: c.city, color: "#1B7A34", text: rec.title + " published \u2014 " + (rec.beneficiaries || 0) + " people supported" });
+    });
+    net.forming.forEach((c) => feed.unshift({ place: c.city, color: "#6B21A8", text: c.name + " is forming \u2014 leadership team assembling" }));
+    return {
+      ...reqVals,
+      statActive: String(net.active.length),
+      statForming: String(net.forming.length),
+      statMembers: String(members),
+      statHours: hours.toLocaleString(),
+      feed: feed.slice(0, 6),
+      cards: net.chapters.map((c) => {
+        const parent = c.parentId ? net.chapters.find((x) => x.id === c.parentId) : null;
+        const lead = c.team.find((t) => /Lead$/.test(t.role) && t.volunteer) || c.team[0];
+        const forming = c.status === "forming";
+        return {
+          name: c.name, story: c.story,
+          href: "Chapter.dc.html?id=" + c.id,
+          accent: forming ? "#E65100" : c.type === "university" ? "#1565C0" : "#4DC86A",
+          typeLabel: c.type === "university" ? "University chapter" : "District chapter",
+          typeBg: c.type === "university" ? "#e8f0fc" : "#f0faf3",
+          typeColor: c.type === "university" ? "#1565C0" : "#1B7A34",
+          formingDisp: forming ? "inline-flex" : "none",
+          parentDisp: parent ? "inline" : "none",
+          parentName: parent ? parent.name : "",
+          coverageLine: c.type === "university" ? c.campusNote || c.city : (c.coverage || []).join(" \u00B7 ") || c.city,
+          statsDisp: forming ? "none" : "grid",
+          members: c.type === "university" ? "26" : String(c.memberCount),
+          live: String(c.missionsLive),
+          people: c.people.toLocaleString(),
+          partners: String(c.partners.length),
+          formingNoteDisp: forming ? "block" : "none",
+          standards: c.standards.done + " / " + c.standards.total,
+          leadDisp: lead ? "flex" : "none",
+          leadGrad: lead && s.os ? s.os.avatarGradients[lead.volunteer.avatarColor] : "",
+          leadInitials: lead ? lead.volunteer.initials : "",
+          leadLine: lead ? lead.role + ": " + lead.volunteer.name : "Leadership forming",
+          cta: forming ? "Follow progress" : "Visit chapter",
+        };
+      }),
+    };
+  }
+}
+</script>
+</body>
+</html>

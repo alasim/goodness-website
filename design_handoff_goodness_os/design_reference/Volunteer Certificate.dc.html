@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400&family=Great+Vibes&family=Alex+Brush&family=Sacramento&family=Dancing+Script:wght@500&display=swap" rel="stylesheet">
+<style>
+  body { margin: 0; font-family: 'Plus Jakarta Sans', system-ui, sans-serif; }
+  a { color: #1B7A34; } a:hover { color: #4DC86A; }
+  doc-page:not(:defined) { visibility: hidden; }
+  @media print { [data-print-hide] { display: none !important; } }
+  @media (max-width: 1500px) { [data-print-hide] { position: static !important; width: auto !important; max-width: 720px; margin: 18px auto !important; } }
+</style>
+<script src="./doc-page.js"></script>
+</helmet>
+<doc-page size="a4" orientation="landscape">
+<section class="page" data-screen-label="Volunteer Certificate" style="position: relative; background: #ffffff; font-family: 'Plus Jakarta Sans', system-ui, sans-serif; overflow: hidden; display: flex; flex-direction: column;">
+  <div style="height: 7px; background: linear-gradient(90deg, #4DC86A 0%, #1B7A34 55%, #1565C0 100%); flex-shrink: 0;"></div>
+  <div style="position: absolute; top: 26px; left: 26px; right: 26px; bottom: 26px; border: 1.5px solid rgba(27,122,52,0.45); border-radius: 3px; pointer-events: none;"></div>
+  <div style="position: absolute; top: 33px; left: 33px; right: 33px; bottom: 33px; border: 1px solid rgba(27,122,52,0.15); border-radius: 2px; pointer-events: none;"></div>
+  <svg style="position: absolute; top: 14px; left: 14px; pointer-events: none;" width="70" height="70" viewBox="0 0 70 70">
+    <rect x="8" y="8" width="40" height="40" rx="11" fill="none" stroke="#1B7A34" stroke-width="2" opacity="0.5" transform="rotate(14 28 28)"></rect>
+    <rect x="16" y="16" width="30" height="30" rx="9" fill="#4DC86A" opacity="0.14" transform="rotate(26 31 31)"></rect>
+  </svg>
+  <svg style="position: absolute; top: 14px; right: 14px; pointer-events: none;" width="70" height="70" viewBox="0 0 70 70">
+    <rect x="22" y="8" width="40" height="40" rx="11" fill="none" stroke="#1565C0" stroke-width="2" opacity="0.35" transform="rotate(-14 42 28)"></rect>
+    <rect x="24" y="16" width="30" height="30" rx="9" fill="#1565C0" opacity="0.09" transform="rotate(-26 39 31)"></rect>
+  </svg>
+  <svg style="position: absolute; bottom: 14px; left: 14px; pointer-events: none;" width="70" height="70" viewBox="0 0 70 70">
+    <rect x="8" y="22" width="40" height="40" rx="11" fill="none" stroke="#1565C0" stroke-width="2" opacity="0.35" transform="rotate(-14 28 42)"></rect>
+    <rect x="16" y="24" width="30" height="30" rx="9" fill="#1565C0" opacity="0.09" transform="rotate(-26 31 39)"></rect>
+  </svg>
+  <svg style="position: absolute; bottom: 14px; right: 14px; pointer-events: none;" width="70" height="70" viewBox="0 0 70 70">
+    <rect x="22" y="22" width="40" height="40" rx="11" fill="none" stroke="#1B7A34" stroke-width="2" opacity="0.5" transform="rotate(14 42 42)"></rect>
+    <rect x="24" y="24" width="30" height="30" rx="9" fill="#4DC86A" opacity="0.14" transform="rotate(26 39 39)"></rect>
+  </svg>
+  <sc-if value="{{ watermark }}" hint-placeholder-val="{{ true }}">
+    <div style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; pointer-events: none;">
+      <span style="font-size: 340px; font-weight: 800; color: rgba(27,122,52,0.03); line-height: 1; user-select: none;">G</span>
+    </div>
+  </sc-if>
+  <div style="position: relative; flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 44px 90px 40px;">
+    <img src="assets/gs-logo.png" alt="Goodness Society" style="height: 62px; width: auto; margin-bottom: 16px;">
+    <div style="display: flex; align-items: center; justify-content: center; gap: 14px; margin-bottom: 14px;">
+      <div style="width: 54px; height: 1.5px; background: linear-gradient(90deg, transparent, #1B7A34);"></div>
+      <span style="font-size: 11px; font-weight: 700; color: #1B7A34; text-transform: uppercase; letter-spacing: 0.28em; white-space: nowrap;">Official Recognition of Service</span>
+      <div style="width: 54px; height: 1.5px; background: linear-gradient(90deg, #1B7A34, transparent);"></div>
+    </div>
+    <h1 style="margin: 0 0 16px; font-size: 44px; line-height: 1.08; letter-spacing: -0.015em; color: #0D0D0D;">
+      <span style="font-weight: 300;">Certificate of</span> <span style="font-weight: 800;">Volunteer Service</span>
+    </h1>
+    <p style="margin: 0 0 18px; font-size: 13.5px; color: #6B7280; letter-spacing: 0.04em;">This certificate is proudly presented to</p>
+    <div style="margin-bottom: 20px;">
+      <div style="font-size: 38px; font-weight: 300; font-style: italic; color: #0D0D0D; line-height: 1.15; min-width: 480px; min-height: 46px; padding: 0 24px 6px; display: inline-block;">{{ nameVal }}</div>
+      <div style="width: 480px; height: 2px; background: linear-gradient(90deg, transparent, #1B7A34 18%, #1B7A34 82%, transparent); margin: 0 auto;"></div>
+      <div style="font-size: 10px; color: #9CA3AF; margin-top: 6px; text-transform: uppercase; letter-spacing: 0.12em;">Full name of volunteer</div>
+    </div>
+    <p style="margin: 0 auto 26px; font-size: 13.5px; color: #374151; line-height: 1.75; max-width: 620px;">
+      in grateful recognition of the time, skill, and dedication given as a volunteer with
+      <strong style="font-weight: 800; color: #0D0D0D;">Goodness Society</strong>, advancing our mission of
+      sustainable social impact through education, skills development, and community empowerment.
+    </p>
+    <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 36px; width: 640px; margin-bottom: 30px;">
+      <div style="text-align: center;">
+        <div style="font-size: 14px; font-weight: 600; color: #0D0D0D; height: 26px; line-height: 26px; border-bottom: 1.5px solid #C9CED6; white-space: nowrap; overflow: hidden;">{{ programVal }}</div>
+        <div style="font-size: 9.5px; color: #9CA3AF; text-transform: uppercase; letter-spacing: 0.1em; margin-top: 6px;">Program / Area</div>
+      </div>
+      <div style="text-align: center;">
+        <div style="font-size: 14px; font-weight: 600; color: #0D0D0D; height: 26px; line-height: 26px; border-bottom: 1.5px solid #C9CED6; white-space: nowrap; overflow: hidden;">{{ periodVal }}</div>
+        <div style="font-size: 9.5px; color: #9CA3AF; text-transform: uppercase; letter-spacing: 0.1em; margin-top: 6px;">Period of Service</div>
+      </div>
+      <div style="text-align: center;">
+        <div style="font-size: 14px; font-weight: 600; color: #0D0D0D; height: 26px; line-height: 26px; border-bottom: 1.5px solid #C9CED6; white-space: nowrap; overflow: hidden;">{{ hoursVal }}</div>
+        <div style="font-size: 9.5px; color: #9CA3AF; text-transform: uppercase; letter-spacing: 0.1em; margin-top: 6px;">Hours Contributed</div>
+      </div>
+    </div>
+    <div style="display: grid; grid-template-columns: 1fr auto 1fr; align-items: end; gap: 48px; width: 720px;">
+      <div style="text-align: center;">
+        <div style="border-bottom: 1.5px solid #0D0D0D; height: 44px; display: flex; align-items: flex-end; justify-content: center; overflow: visible;"><span style="font-family: {{ signFontVal }}; font-size: 32px; line-height: 1; color: #1a1a1a; white-space: nowrap; transform: rotate(-3deg); padding-bottom: 2px;">{{ signNameVal }}</span></div>
+        <div style="font-size: 12px; font-weight: 700; color: #0D0D0D; margin-top: 7px;">Executive Director</div>
+        <div style="font-size: 10.5px; color: #6B7280; margin-top: 1px;">Goodness Society</div>
+      </div>
+      <svg width="118" height="118" viewBox="0 0 118 118" style="display: block;">
+        <defs>
+          <linearGradient id="gsSealGrad" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#4DC86A"></stop>
+            <stop offset="100%" stop-color="#1B7A34"></stop>
+          </linearGradient>
+          <path id="gsSealArc" d="M59,59 m-42,0 a42,42 0 1,1 84,0 a42,42 0 1,1 -84,0"></path>
+        </defs>
+        <circle cx="59" cy="59" r="56" fill="none" stroke="#1B7A34" stroke-width="1.5" opacity="0.4"></circle>
+        <circle cx="59" cy="59" r="52.5" fill="none" stroke="#1B7A34" stroke-width="0.75" opacity="0.25"></circle>
+        <circle cx="59" cy="59" r="33" fill="none" stroke="#1B7A34" stroke-width="0.75" opacity="0.25"></circle>
+        <circle cx="59" cy="59" r="49" fill="rgba(77,200,106,0.05)"></circle>
+        <text font-size="8" letter-spacing="2.6" fill="#1B7A34" font-weight="700" font-family="'Plus Jakarta Sans', sans-serif">
+          <textPath href="#gsSealArc" startOffset="0">GOODNESS SOCIETY &#8226; OFFICIAL SEAL &#8226;</textPath>
+        </text>
+        <rect x="46" y="42" width="26" height="26" rx="8" fill="url(#gsSealGrad)"></rect>
+        <text x="59" y="60" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="800" font-family="'Plus Jakarta Sans', sans-serif">G</text>
+        <text x="59" y="82" text-anchor="middle" fill="#1B7A34" font-size="6.5" font-weight="700" letter-spacing="1.4" font-family="'Plus Jakarta Sans', sans-serif">OFFICIAL</text>
+      </svg>
+      <div style="text-align: center;">
+        <div style="border-bottom: 1.5px solid #0D0D0D; height: 44px; display: flex; align-items: flex-end; justify-content: center; font-size: 14px; font-weight: 600; color: #0D0D0D; padding-bottom: 6px;">{{ dateVal }}</div>
+        <div style="font-size: 12px; font-weight: 700; color: #0D0D0D; margin-top: 7px;">Date Issued</div>
+        <div style="font-size: 10.5px; color: #6B7280; margin-top: 1px;">DD / MM / YYYY</div>
+      </div>
+    </div>
+  </div>
+  <div style="position: relative; flex-shrink: 0; display: flex; align-items: center; justify-content: space-between; gap: 20px; height: 56px; padding: 0 20px; margin: 0 26px 26px; border-top: 1px solid rgba(27,122,52,0.15); background: rgba(77,200,106,0.04);">
+    <div style="display: flex; align-items: center; gap: 12px;">
+      <div style="width: 42px; height: 42px; flex-shrink: 0; background: #ffffff; padding: 2px; box-sizing: border-box;">{{ qr }}</div>
+      <div>
+        <div style="font-size: 10px; font-weight: 700; color: #0D0D0D; letter-spacing: 0.06em;">Certificate Ref: GS-VOL-{{ refVal }}</div>
+        <div style="font-size: 8.5px; color: #6B7280; text-transform: uppercase; letter-spacing: 0.1em; margin-top: 1px;">Scan to verify &#183; goodnesssociety.org/verify</div>
+      </div>
+    </div>
+    <div style="display: flex; align-items: center; gap: 8px;">
+      <div style="width: 14px; height: 14px; border-radius: 30%; background: linear-gradient(135deg, #4DC86A 0%, #1B7A34 100%);"></div>
+      <div style="font-size: 9.5px; color: #6B7280; letter-spacing: 0.02em;">Together for a Better Tomorrow</div>
+    </div>
+  </div>
+</section>
+</doc-page>
+<aside data-print-hide="true" style="position: fixed; top: 16px; right: 16px; bottom: 16px; width: 312px; background: #ffffff; border: 1px solid rgba(0,0,0,0.09); border-radius: 18px; box-shadow: 0 12px 40px rgba(0,0,0,0.14); overflow: auto; padding: 22px 22px 18px; box-sizing: border-box; z-index: 50; font-family: 'Plus Jakarta Sans', system-ui, sans-serif;">
+  <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 4px;">
+    <div style="width: 26px; height: 26px; border-radius: 30%; background: linear-gradient(135deg, #4DC86A 0%, #1B7A34 100%); display: flex; align-items: center; justify-content: center; color: #ffffff; font-weight: 800; font-size: 14px;">G</div>
+    <div style="font-size: 14px; font-weight: 800; color: #0D0D0D;">Fill in the certificate</div>
+  </div>
+  <p style="margin: 0 0 16px; font-size: 11.5px; color: #6B7280; line-height: 1.5;">Type below — the certificate updates live. This panel is not printed.</p>
+  <button onClick="{{ printDoc }}" style="width: 100%; padding: 11px 0; border-radius: 999px; border: none; background: linear-gradient(135deg, #4DC86A 0%, #1B7A34 100%); color: #ffffff; font-size: 13px; font-weight: 800; font-family: inherit; cursor: pointer; margin-bottom: 16px;">Print / Save as PDF</button>
+  <div style="display: flex; flex-direction: column; gap: 12px;">
+    <div>
+      <label style="display: block; font-size: 10px; font-weight: 700; color: #6B7280; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 5px;">Volunteer full name</label>
+      <input value="{{ fName }}" onInput="{{ setName }}" placeholder="e.g. Nusrat Jahan" style="width: 100%; box-sizing: border-box; padding: 9px 12px; border-radius: 10px; border: 1px solid rgba(0,0,0,0.12); background: #fafafa; font-size: 13px; font-family: inherit; color: #0D0D0D; outline: none;" style-focus="border-color: #1B7A34; background: #ffffff;">
+    </div>
+    <div>
+      <label style="display: block; font-size: 10px; font-weight: 700; color: #6B7280; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 5px;">Program / area</label>
+      <select value="{{ fProgram }}" onChange="{{ setProgram }}" style="width: 100%; box-sizing: border-box; padding: 9px 12px; border-radius: 10px; border: 1px solid rgba(0,0,0,0.12); background: #fafafa; font-size: 13px; font-family: inherit; color: #0D0D0D; outline: none;">
+        <option value="">Select a program&#8230;</option>
+        <option value="Education &amp; Career Readiness">Education &amp; Career Readiness</option>
+        <option value="AI &amp; Digital Skills Development">AI &amp; Digital Skills Development</option>
+        <option value="Youth Empowerment">Youth Empowerment</option>
+        <option value="Community Development">Community Development</option>
+        <option value="Innovation for Social Good">Innovation for Social Good</option>
+      </select>
+    </div>
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+      <div>
+        <label style="display: block; font-size: 10px; font-weight: 700; color: #6B7280; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 5px;">Period</label>
+        <input value="{{ fPeriod }}" onInput="{{ setPeriod }}" placeholder="Jan &#8211; Jun 2026" style="width: 100%; box-sizing: border-box; padding: 9px 12px; border-radius: 10px; border: 1px solid rgba(0,0,0,0.12); background: #fafafa; font-size: 13px; font-family: inherit; color: #0D0D0D; outline: none;" style-focus="border-color: #1B7A34; background: #ffffff;">
+      </div>
+      <div>
+        <label style="display: block; font-size: 10px; font-weight: 700; color: #6B7280; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 5px;">Hours</label>
+        <input value="{{ fHours }}" onInput="{{ setHours }}" placeholder="120 hours" style="width: 100%; box-sizing: border-box; padding: 9px 12px; border-radius: 10px; border: 1px solid rgba(0,0,0,0.12); background: #fafafa; font-size: 13px; font-family: inherit; color: #0D0D0D; outline: none;" style-focus="border-color: #1B7A34; background: #ffffff;">
+      </div>
+    </div>
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+      <div>
+        <label style="display: block; font-size: 10px; font-weight: 700; color: #6B7280; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 5px;">Date issued</label>
+        <input value="{{ fDate }}" onInput="{{ setDate }}" placeholder="15 / 06 / 2026" style="width: 100%; box-sizing: border-box; padding: 9px 12px; border-radius: 10px; border: 1px solid rgba(0,0,0,0.12); background: #fafafa; font-size: 13px; font-family: inherit; color: #0D0D0D; outline: none;" style-focus="border-color: #1B7A34; background: #ffffff;">
+      </div>
+      <div>
+        <label style="display: block; font-size: 10px; font-weight: 700; color: #6B7280; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 5px;">Certificate ref</label>
+        <input value="{{ fRef }}" onInput="{{ setRef }}" placeholder="2026-0148" style="width: 100%; box-sizing: border-box; padding: 9px 12px; border-radius: 10px; border: 1px solid rgba(0,0,0,0.12); background: #fafafa; font-size: 13px; font-family: inherit; color: #0D0D0D; outline: none;" style-focus="border-color: #1B7A34; background: #ffffff;">
+      </div>
+    </div>
+    <div>
+      <label style="display: block; font-size: 10px; font-weight: 700; color: #6B7280; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 5px;">Executive Director signature</label>
+      <input value="{{ fSign }}" onInput="{{ setSign }}" placeholder="e.g. Nusrat Jahan" style="width: 100%; box-sizing: border-box; padding: 9px 12px; border-radius: 10px; border: 1px solid rgba(0,0,0,0.12); background: #fafafa; font-size: 13px; font-family: inherit; color: #0D0D0D; outline: none;" style-focus="border-color: #1B7A34; background: #ffffff;">
+    </div>
+    <div>
+      <label style="display: block; font-size: 10px; font-weight: 700; color: #6B7280; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 5px;">Signature font</label>
+      <select value="{{ fSignFont }}" onChange="{{ setSignFont }}" style="width: 100%; box-sizing: border-box; padding: 9px 12px; border-radius: 10px; border: 1px solid rgba(0,0,0,0.12); background: #fafafa; font-size: 13px; font-family: inherit; color: #0D0D0D; outline: none;">
+        <option value="'Great Vibes', cursive">Great Vibes</option>
+        <option value="'Alex Brush', cursive">Alex Brush</option>
+        <option value="'Sacramento', cursive">Sacramento</option>
+        <option value="'Dancing Script', cursive">Dancing Script</option>
+      </select>
+      <div style="margin-top: 8px; text-align: center; font-family: {{ fSignFontVal }}; font-size: 28px; color: #1a1a1a; min-height: 34px;">{{ fSignPreview }}</div>
+    </div>
+    <div style="display: flex; gap: 8px; margin-top: 2px;">
+      <button onClick="{{ loadSample }}" style="flex: 1; padding: 9px 0; border-radius: 999px; border: 1px solid rgba(27,122,52,0.3); background: #f0faf3; color: #1B7A34; font-size: 12px; font-weight: 700; font-family: inherit; cursor: pointer;">Load sample</button>
+      <button onClick="{{ clearAll }}" style="flex: 1; padding: 9px 0; border-radius: 999px; border: 1px solid rgba(0,0,0,0.12); background: #ffffff; color: #6B7280; font-size: 12px; font-weight: 700; font-family: inherit; cursor: pointer;">Clear</button>
+    </div>
+  </div>
+  <div style="margin-top: 18px; padding-top: 14px; border-top: 1px solid rgba(0,0,0,0.07);">
+    <div style="font-size: 10px; font-weight: 700; color: #9CA3AF; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 8px;">More Goodness Society assets</div>
+    <div style="display: flex; flex-direction: column; gap: 6px; font-size: 12.5px; font-weight: 600;">
+      <a href="Printables.dc.html" style="text-decoration: none;">→ Back to website</a>
+      <a href="Member Registration Form.dc.html" style="text-decoration: none;">&#8594; Member Registration Form</a>
+      <a href="Money Receipt.dc.html" style="text-decoration: none;">&#8594; Official Money Receipt</a>
+      <a href="Social Cards.dc.html" style="text-decoration: none;">&#8594; Social Share Cards</a>
+    </div>
+  </div>
+</aside>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{
+  &quot;watermark&quot;: {&quot;editor&quot;: &quot;boolean&quot;, &quot;default&quot;: true, &quot;tsType&quot;: &quot;boolean&quot;, &quot;section&quot;: &quot;Decoration&quot;}
+}">
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    let saved = {};
+    try { saved = JSON.parse(localStorage.getItem("gs-cert-fields") || "{}"); } catch (e) {}
+    this.state = Object.assign({ name: "", program: "", period: "", hours: "", date: "", ref: "", sign: "", signFont: "'Great Vibes', cursive" }, saved);
+  }
+  save(patch) {
+    this.setState(patch, () => {
+      try { localStorage.setItem("gs-cert-fields", JSON.stringify(this.state)); } catch (e) {}
+    });
+  }
+  qrGrid(seed) {
+    // deterministic QR-style module grid (visual verification mark, not a scannable encoder)
+    const n = 21, cells = [];
+    let h = 2166136261;
+    for (let i = 0; i < seed.length; i++) { h ^= seed.charCodeAt(i); h = Math.imul(h, 16777619); }
+    const rnd = () => { h ^= h << 13; h ^= h >>> 17; h ^= h << 5; return (h >>> 0) / 4294967296; };
+    const finder = (r, c) => {
+      const inBox = (r0, c0) => r >= r0 && r < r0 + 7 && c >= c0 && c < c0 + 7;
+      for (const [r0, c0] of [[0, 0], [0, n - 7], [n - 7, 0]]) {
+        if (inBox(r0, c0)) {
+          const dr = Math.abs(r - (r0 + 3)), dc = Math.abs(c - (c0 + 3));
+          const d = Math.max(dr, dc);
+          return d === 1 ? "off" : "on";
+        }
+      }
+      return null;
+    };
+    for (let r = 0; r < n; r++) for (let c = 0; c < n; c++) {
+      const f = finder(r, c);
+      const on = f ? f === "on" : rnd() > 0.52;
+      if (on) cells.push(React.createElement("rect", { key: r + "-" + c, x: c, y: r, width: 1, height: 1, fill: "#0D0D0D" }));
+    }
+    return React.createElement("svg", { width: "100%", height: "100%", viewBox: "0 0 " + n + " " + n, shapeRendering: "crispEdges", style: { display: "block" } }, cells);
+  }
+  renderVals() {
+    const s = this.state, blank = "\u00A0";
+    return {
+      qr: this.qrGrid("GS-VOL-" + (s.ref || "0000")),
+      watermark: this.props.watermark ?? true,
+      nameVal: s.name || blank,
+      programVal: s.program || blank,
+      periodVal: s.period || blank,
+      hoursVal: s.hours || blank,
+      dateVal: s.date || blank,
+      refVal: s.ref || "__________",
+      fName: s.name, fProgram: s.program, fPeriod: s.period, fHours: s.hours, fDate: s.date, fRef: s.ref,
+      fSign: s.sign, fSignFont: s.signFont, fSignFontVal: s.signFont,
+      signNameVal: s.sign || blank,
+      signFontVal: s.signFont || "'Great Vibes', cursive",
+      fSignPreview: s.sign || "Signature preview",
+      setSign: (e) => this.save({ sign: e.target.value }),
+      setSignFont: (e) => this.save({ signFont: e.target.value }),
+      setName: (e) => this.save({ name: e.target.value }),
+      setProgram: (e) => this.save({ program: e.target.value }),
+      setPeriod: (e) => this.save({ period: e.target.value }),
+      setHours: (e) => this.save({ hours: e.target.value }),
+      setDate: (e) => this.save({ date: e.target.value }),
+      setRef: (e) => this.save({ ref: e.target.value }),
+      printDoc: () => window.print(),
+      loadSample: () => this.save({ name: "Nusrat Jahan", program: "Youth Empowerment", period: "Jan \u2013 Jun 2026", hours: "120 hours", date: "15 / 06 / 2026", ref: "2026-0148", sign: "Nusrat Jahan" }),
+      clearAll: () => this.save({ name: "", program: "", period: "", hours: "", date: "", ref: "", sign: "" }),
+    };
+  }
+}
+</script>
+</body>
+</html>

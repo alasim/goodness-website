@@ -1,0 +1,2 @@
+# Project: Goodness Society — GOODNESS OS
+The confirmed product vision, wave roadmap, and phase status live in GOODNESS-OS.md — read it before any new feature work and update phase STATUS lines as work completes. UI/UX first, data/integration later; prototype data flows through localStorage via gs-os.js. Brand: Plus Jakarta Sans, green gradient #4DC86A→#1B7A34, blue #1565C0, ink #0D0D0D, rounded-square + G-swash motifs, no neon/sci-fi. Never hardcode a single country into new OS features.

@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+  body { margin: 0; background: #ffffff; font-family: 'Plus Jakarta Sans', system-ui, sans-serif; }
+  a { color: #1B7A34; } a:hover { color: #4DC86A; }
+  html { scroll-behavior: smooth; }
+</style>
+</helmet>
+<div data-screen-label="Home" style="color: #0D0D0D;">
+  <dc-import name="SiteNav" active="" hint-size="100%,72px"></dc-import>
+  <main style="padding-top: 72px;">
+
+    <section data-screen-label="01 Hero" style="max-width: 1280px; margin: 0 auto; padding: 72px 24px 56px; display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 48px; align-items: center;">
+      <div>
+        <div style="font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.3em; color: #1B7A34; margin-bottom: 18px;">Together for a Better Tomorrow</div>
+        <h1 style="margin: 0 0 18px; font-size: clamp(40px, 5.2vw, 64px); line-height: 1.02; letter-spacing: -0.02em;"><span style="font-weight: 800;">Goodness,</span> <span style="font-weight: 300; font-style: italic;">organized.</span></h1>
+        <p style="margin: 0 0 30px; font-size: 17px; color: #4B5563; line-height: 1.7; max-width: 480px; text-wrap: pretty;">People, skills and capital working together to create measurable change across Bangladesh &#8212; every mission, taka and outcome connected and verifiable.</p>
+        <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
+          <a href="Missions.dc.html" style="padding: 15px 30px; border-radius: 999px; font-size: 14.5px; font-weight: 800; color: #ffffff; text-decoration: none; background: linear-gradient(135deg, #4DC86A 0%, #1B7A34 100%);" style-hover="opacity: 0.9;">Join a Mission</a>
+          <a href="Fund Impact.dc.html" style="padding: 15px 30px; border-radius: 999px; font-size: 14.5px; font-weight: 800; color: #0D0D0D; text-decoration: none; border: 1.5px solid rgba(0,0,0,0.16);" style-hover="border-color: #1B7A34; color: #1B7A34;">Fund Impact</a>
+          <a href="#live" style="font-size: 13.5px; font-weight: 700; text-decoration: none; padding: 10px 6px;">See Goodness live &#8594;</a>
+        </div>
+      </div>
+      <div style="background: #0D0D0D; border-radius: 26px; padding: 26px 28px; box-shadow: 0 30px 60px rgba(13,13,13,0.18);">
+        <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 18px;">
+          <span style="width: 8px; height: 8px; border-radius: 50%; background: #4DC86A; box-shadow: 0 0 0 4px rgba(77,200,106,0.2);"></span>
+          <span style="font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.24em; color: rgba(255,255,255,0.55);">Goodness live</span>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 14px;">
+          <a href="Missions.dc.html" style="display: block; text-decoration: none; padding: 14px 16px; border-radius: 14px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08);" style-hover="background: rgba(255,255,255,0.09);">
+            <div style="font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.14em; color: #4DC86A; margin-bottom: 4px;">{{ liveMsnLabel }}</div>
+            <div style="font-size: 14px; font-weight: 700; color: #ffffff;">{{ liveMsnTitle }}</div>
+            <div style="font-size: 11.5px; color: rgba(255,255,255,0.5); margin-top: 2px;">{{ liveMsnMeta }}</div>
+          </a>
+          <a href="Impact.dc.html" style="display: block; text-decoration: none; padding: 14px 16px; border-radius: 14px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08);" style-hover="background: rgba(255,255,255,0.09);">
+            <div style="font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.14em; color: #90CAF9; margin-bottom: 4px;">New impact published</div>
+            <div style="font-size: 14px; font-weight: 700; color: #ffffff;">{{ liveImpTitle }}</div>
+            <div style="font-size: 11.5px; color: rgba(255,255,255,0.5); margin-top: 2px;">{{ liveImpMeta }}</div>
+          </a>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
+            <a href="Chapters.dc.html" style="display: block; text-decoration: none; padding: 14px 16px; border-radius: 14px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08);" style-hover="background: rgba(255,255,255,0.09);">
+              <div style="font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.14em; color: rgba(255,255,255,0.45); margin-bottom: 4px;">{{ liveChName }}</div>
+              <div style="font-size: 14px; font-weight: 700; color: #ffffff;">{{ liveChMeta }}</div>
+            </a>
+            <a href="Fund Impact.dc.html" style="display: block; text-decoration: none; padding: 14px 16px; border-radius: 14px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08);" style-hover="background: rgba(255,255,255,0.09);">
+              <div style="font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.14em; color: #FFB74D; margin-bottom: 4px;">Funding opportunity</div>
+              <div style="font-size: 14px; font-weight: 700; color: #ffffff;">{{ liveFundLine }}</div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section data-screen-label="02 Live strip" style="border-top: 1px solid rgba(0,0,0,0.06); border-bottom: 1px solid rgba(0,0,0,0.06); background: #fafafa;">
+      <div style="max-width: 1280px; margin: 0 auto; padding: 22px 24px;">
+        <div style="font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.24em; color: #9CA3AF; margin-bottom: 14px;">Goodness right now</div>
+        <div style="display: grid; grid-template-columns: repeat(6, 1fr); gap: 12px;">
+          <sc-for list="{{ strip }}" as="st" hint-placeholder-count="6">
+            <a href="{{ st.href }}" style="display: block; text-decoration: none; padding: 4px 0;" style-hover="opacity: 0.75;">
+              <div style="font-size: 24px; font-weight: 800; color: {{ st.color }}; letter-spacing: -0.01em;">{{ st.value }}</div>
+              <div style="font-size: 11.5px; color: #6B7280; margin-top: 2px;">{{ st.label }} &#8594;</div>
+            </a>
+          </sc-for>
+        </div>
+      </div>
+    </section>
+
+    <section data-screen-label="03 Choose your role" style="max-width: 1280px; margin: 0 auto; padding: 72px 24px;">
+      <h2 style="margin: 0 0 8px; font-size: clamp(26px, 3.4vw, 38px); letter-spacing: -0.01em;"><span style="font-weight: 300;">How will you</span> <span style="font-weight: 800;">create Goodness?</span></h2>
+      <p style="margin: 0 0 32px; font-size: 14.5px; color: #6B7280;">Time, consistency, capital or institutional strength &#8212; every form of contribution has a real place in the system.</p>
+      <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;">
+        <a href="Missions.dc.html" style="display: block; text-decoration: none; color: inherit; background: #ffffff; border: 1px solid rgba(0,0,0,0.08); border-radius: 18px; padding: 24px;" style-hover="border-color: #1B7A34; box-shadow: 0 12px 30px rgba(27,122,52,0.1);">
+          <div style="font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.18em; color: #1B7A34; margin-bottom: 10px;">Give time</div>
+          <div style="font-size: 17px; font-weight: 800; margin-bottom: 6px;">Join a Mission</div>
+          <p style="margin: 0 0 14px; font-size: 12.5px; color: #6B7280; line-height: 1.6;">Find something meaningful you can do this week &#8212; every verified hour builds your Goodness Passport.</p>
+          <span style="font-size: 12.5px; font-weight: 800; color: #1B7A34;">Browse missions &#8594;</span>
+        </a>
+        <a href="My Goodness.dc.html" style="display: block; text-decoration: none; color: inherit; background: #ffffff; border: 1px solid rgba(0,0,0,0.08); border-radius: 18px; padding: 24px;" style-hover="border-color: #1B7A34; box-shadow: 0 12px 30px rgba(27,122,52,0.1);">
+          <div style="font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.18em; color: #1B7A34; margin-bottom: 10px;">Sustain the movement</div>
+          <div style="font-size: 17px; font-weight: 800; margin-bottom: 6px;">Make a Goodness Commitment</div>
+          <p style="margin: 0 0 14px; font-size: 12.5px; color: #6B7280; line-height: 1.6;">Choose your own amount and rhythm &#8212; the commitment matters, never the size.</p>
+          <span style="font-size: 12.5px; font-weight: 800; color: #1B7A34;">Start a commitment &#8594;</span>
+        </a>
+        <a href="Fund Impact.dc.html" style="display: block; text-decoration: none; color: inherit; background: #ffffff; border: 1px solid rgba(0,0,0,0.08); border-radius: 18px; padding: 24px;" style-hover="border-color: #1B7A34; box-shadow: 0 12px 30px rgba(27,122,52,0.1);">
+          <div style="font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.18em; color: #1B7A34; margin-bottom: 10px;">Back impact</div>
+          <div style="font-size: 17px; font-weight: 800; margin-bottom: 6px;">Fund an Initiative</div>
+          <p style="margin: 0 0 14px; font-size: 12.5px; color: #6B7280; line-height: 1.6;">Support measurable work and follow what happens &#8212; secured and received are never blurred.</p>
+          <span style="font-size: 12.5px; font-weight: 800; color: #1B7A34;">Explore Fund Impact &#8594;</span>
+        </a>
+        <a href="Partner.dc.html" style="display: block; text-decoration: none; color: inherit; background: #0D0D0D; border-radius: 18px; padding: 24px;" style-hover="box-shadow: 0 12px 30px rgba(13,13,13,0.3);">
+          <div style="font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.18em; color: #4DC86A; margin-bottom: 10px;">Build with us</div>
+          <div style="font-size: 17px; font-weight: 800; margin-bottom: 6px; color: #ffffff;">Partner with Goodness</div>
+          <p style="margin: 0 0 14px; font-size: 12.5px; color: rgba(255,255,255,0.55); line-height: 1.6;">Capital, employees, technology or resources &#8212; with a live room, not an annual PDF.</p>
+          <span style="font-size: 12.5px; font-weight: 800; color: #4DC86A;">Explore partnerships &#8594;</span>
+        </a>
+      </div>
+    </section>
+
+    <section id="live" data-screen-label="04 Goodness live feed" style="background: #0D0D0D; scroll-margin-top: 90px;">
+      <div style="max-width: 1280px; margin: 0 auto; padding: 72px 24px;">
+        <div style="display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-bottom: 30px;">
+          <h2 style="margin: 0; font-size: clamp(26px, 3.4vw, 38px); letter-spacing: -0.01em; color: #ffffff;"><span style="font-weight: 300;">Goodness is</span> <span style="font-weight: 800;">happening now.</span></h2>
+          <span style="font-size: 12px; color: rgba(255,255,255,0.4);">Drawn live from missions, impact records, the ledger and the network</span>
+        </div>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+          <sc-for list="{{ feed }}" as="f" hint-placeholder-count="6">
+            <a href="{{ f.href }}" style="display: flex; align-items: flex-start; gap: 14px; text-decoration: none; padding: 16px 18px; border-radius: 14px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.07);" style-hover="background: rgba(255,255,255,0.08);">
+              <span style="padding: 3px 10px; border-radius: 999px; font-size: 9px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em; background: {{ f.chipBg }}; color: {{ f.chipColor }}; flex-shrink: 0; margin-top: 1px;">{{ f.tag }}</span>
+              <span style="flex: 1;">
+                <span style="display: block; font-size: 13.5px; font-weight: 700; color: #ffffff; line-height: 1.45;">{{ f.text }}</span>
+                <span style="display: block; font-size: 11px; color: rgba(255,255,255,0.4); margin-top: 3px;">{{ f.meta }}</span>
+              </span>
+            </a>
+          </sc-for>
+        </div>
+      </div>
+    </section>
+
+    <section data-screen-label="05 Network" style="max-width: 1280px; margin: 0 auto; padding: 72px 24px;">
+      <div style="display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-bottom: 30px;">
+        <h2 style="margin: 0; font-size: clamp(26px, 3.4vw, 38px); letter-spacing: -0.01em;"><span style="font-weight: 300;">Goodness</span> <span style="font-weight: 800;">across Bangladesh</span></h2>
+        <a href="Chapters.dc.html" style="font-size: 13.5px; font-weight: 700; text-decoration: none;">All chapters &#8594;</a>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px;">
+        <sc-for list="{{ chapters }}" as="c" hint-placeholder-count="7">
+          <a href="{{ c.href }}" style="display: block; text-decoration: none; color: inherit; background: #ffffff; border: 1px solid rgba(0,0,0,0.08); border-radius: 16px; padding: 20px;" style-hover="border-color: #1B7A34; box-shadow: 0 10px 26px rgba(27,122,52,0.09);">
+            <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
+              <div style="width: 34px; height: 34px; border-radius: 28%; background: linear-gradient(135deg, #4DC86A 0%, #1B7A34 100%); display: flex; align-items: center; justify-content: center; color: #ffffff; font-weight: 800; font-size: 14px; flex-shrink: 0;">{{ c.initial }}</div>
+              <div style="min-width: 0;">
+                <div style="font-size: 13.5px; font-weight: 800; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">{{ c.name }}</div>
+                <div style="font-size: 10.5px; color: {{ c.noteColor }}; font-weight: 700;">{{ c.note }}</div>
+              </div>
+            </div>
+            <div style="font-size: 12px; color: #6B7280;">{{ c.meta }}</div>
+          </a>
+        </sc-for>
+        <a href="Chapters.dc.html" style="display: flex; flex-direction: column; justify-content: center; text-decoration: none; color: inherit; border: 1.5px dashed rgba(27,122,52,0.4); border-radius: 16px; padding: 20px; background: #f8fdf9;" style-hover="border-color: #1B7A34;">
+          <div style="font-size: 13.5px; font-weight: 800; color: #1B7A34;">Don't see Goodness where you are?</div>
+          <div style="font-size: 12px; color: #6B7280; margin-top: 4px;">Propose a chapter &#8212; HQ reviews every request. Start a Chapter &#8594;</div>
+        </a>
+      </div>
+    </section>
+
+    <section data-screen-label="06 How Goodness works" style="background: #fafafa; border-top: 1px solid rgba(0,0,0,0.06); border-bottom: 1px solid rgba(0,0,0,0.06);">
+      <div style="max-width: 1280px; margin: 0 auto; padding: 72px 24px;">
+        <h2 style="margin: 0 0 8px; font-size: clamp(26px, 3.4vw, 38px); letter-spacing: -0.01em;"><span style="font-weight: 300;">See how</span> <span style="font-weight: 800;">Goodness works</span></h2>
+        <p style="margin: 0 0 36px; font-size: 14.5px; color: #6B7280; max-width: 560px;">One real initiative, followed all the way through: money and people become verified change &#8212; and every step stays traceable.</p>
+        <div style="display: grid; grid-template-columns: repeat(7, 1fr); gap: 0; align-items: stretch;">
+          <sc-for list="{{ chain }}" as="ch" hint-placeholder-count="7">
+            <div style="position: relative; padding: 0 14px 0 0;">
+              <div style="background: #ffffff; border: 1px solid rgba(0,0,0,0.08); border-radius: 14px; padding: 16px 14px; height: 100%; box-sizing: border-box;">
+                <div style="font-size: 9.5px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.12em; color: {{ ch.color }}; margin-bottom: 6px;">{{ ch.step }}</div>
+                <div style="font-size: 14px; font-weight: 800; line-height: 1.3;">{{ ch.value }}</div>
+                <div style="font-size: 10.5px; color: #9CA3AF; margin-top: 4px; line-height: 1.5;">{{ ch.note }}</div>
+              </div>
+              <span style="position: absolute; right: 1px; top: 50%; transform: translateY(-50%); color: #9CA3AF; font-size: 13px; font-weight: 800; display: {{ ch.arrowDisp }};">&#8594;</span>
+            </div>
+          </sc-for>
+        </div>
+        <div style="display: flex; gap: 12px; margin-top: 24px; flex-wrap: wrap;">
+          <a href="Impact.dc.html" style="padding: 12px 24px; border-radius: 999px; font-size: 13px; font-weight: 800; color: #ffffff; text-decoration: none; background: linear-gradient(135deg, #4DC86A 0%, #1B7A34 100%);" style-hover="opacity: 0.9;">Open the impact record</a>
+          <a href="Trust Ledger.dc.html" style="padding: 12px 24px; border-radius: 999px; font-size: 13px; font-weight: 800; color: #0D0D0D; text-decoration: none; border: 1.5px solid rgba(0,0,0,0.16);" style-hover="border-color: #1B7A34; color: #1B7A34;">Open the Trust Ledger</a>
+        </div>
+      </div>
+    </section>
+
+    <section data-screen-label="07 Your Goodness" style="max-width: 1280px; margin: 0 auto; padding: 72px 24px;">
+      <h2 style="margin: 0 0 8px; font-size: clamp(26px, 3.4vw, 38px); letter-spacing: -0.01em;"><span style="font-weight: 300;">Your Goodness</span> <span style="font-weight: 800;">grows with you.</span></h2>
+      <p style="margin: 0 0 32px; font-size: 14.5px; color: #6B7280;">Join, and you get a real place inside the system &#8212; not a thank-you email.</p>
+      <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;">
+        <a href="Volunteers.dc.html" style="display: block; text-decoration: none; color: inherit; background: #ffffff; border: 1px solid rgba(0,0,0,0.08); border-radius: 18px; padding: 26px;" style-hover="border-color: #1B7A34; box-shadow: 0 12px 30px rgba(27,122,52,0.1);">
+          <div style="font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.18em; color: #9CA3AF; margin-bottom: 12px;">Volunteer</div>
+          <div style="font-size: 18px; font-weight: 800; margin-bottom: 12px;">Goodness Passport</div>
+          <div style="display: flex; gap: 16px; margin-bottom: 12px;">
+            <div><div style="font-size: 20px; font-weight: 800;">{{ egMissions }}</div><div style="font-size: 10.5px; color: #9CA3AF;">missions</div></div>
+            <div><div style="font-size: 20px; font-weight: 800; color: #1B7A34;">{{ egHours }}</div><div style="font-size: 10.5px; color: #9CA3AF;">verified hours</div></div>
+            <div><div style="font-size: 20px; font-weight: 800;">{{ egCreds }}</div><div style="font-size: 10.5px; color: #9CA3AF;">credentials</div></div>
+          </div>
+          <p style="margin: 0; font-size: 12px; color: #6B7280; line-height: 1.6; font-style: italic;">Every contribution becomes part of your verified impact history.</p>
+        </a>
+        <a href="My Goodness.dc.html" style="display: block; text-decoration: none; color: inherit; background: #ffffff; border: 1px solid rgba(0,0,0,0.08); border-radius: 18px; padding: 26px;" style-hover="border-color: #1B7A34; box-shadow: 0 12px 30px rgba(27,122,52,0.1);">
+          <div style="font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.18em; color: #9CA3AF; margin-bottom: 12px;">Member</div>
+          <div style="font-size: 18px; font-weight: 800; margin-bottom: 12px;">Goodness Commitment</div>
+          <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 12px;">
+            <span style="padding: 4px 12px; border-radius: 999px; font-size: 11px; font-weight: 800; background: #f0faf3; color: #1B7A34; border: 1px solid rgba(27,122,52,0.3);">Sustaining Member &#10003;</span>
+            <span style="font-size: 11px; color: #9CA3AF;">your amount &#183; your rhythm</span>
+          </div>
+          <p style="margin: 0; font-size: 12px; color: #6B7280; line-height: 1.6; font-style: italic;">Contribute in a rhythm that works for you &#8212; recognition follows commitment, never size.</p>
+        </a>
+        <a href="Partner Room.dc.html" style="display: block; text-decoration: none; color: inherit; background: #ffffff; border: 1px solid rgba(0,0,0,0.08); border-radius: 18px; padding: 26px;" style-hover="border-color: #1B7A34; box-shadow: 0 12px 30px rgba(27,122,52,0.1);">
+          <div style="font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.18em; color: #9CA3AF; margin-bottom: 12px;">Partner</div>
+          <div style="font-size: 18px; font-weight: 800; margin-bottom: 12px;">Partner Room</div>
+          <div style="display: flex; gap: 16px; margin-bottom: 12px;">
+            <div><div style="font-size: 20px; font-weight: 800;">&#2547;25L</div><div style="font-size: 10.5px; color: #9CA3AF;">committed</div></div>
+            <div><div style="font-size: 20px; font-weight: 800; color: #1B7A34;">566</div><div style="font-size: 10.5px; color: #9CA3AF;">people supported*</div></div>
+            <div><div style="font-size: 20px; font-weight: 800;">62</div><div style="font-size: 10.5px; color: #9CA3AF;">employee hours</div></div>
+          </div>
+          <p style="margin: 0; font-size: 12px; color: #6B7280; line-height: 1.6; font-style: italic;">Follow your partnership while it happens. *Shared results across all funders.</p>
+        </a>
+      </div>
+    </section>
+
+    <section data-screen-label="08 Impact preview" style="background: #0D0D0D;">
+      <div style="max-width: 1280px; margin: 0 auto; padding: 72px 24px; display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 48px; align-items: center;">
+        <div>
+          <h2 style="margin: 0 0 14px; font-size: clamp(26px, 3.4vw, 38px); letter-spacing: -0.01em; color: #ffffff; line-height: 1.15;"><span style="font-weight: 300;">We don't stop at what we delivered.</span> <span style="font-weight: 800;">We measure what changed.</span></h2>
+          <p style="margin: 0 0 22px; font-size: 14px; color: rgba(255,255,255,0.55); line-height: 1.7;">Outputs are what happened. Outcomes are what changed in people's lives &#8212; and Goodness publishes both, with evidence, or publishes nothing.</p>
+          <a href="Impact.dc.html" style="font-size: 13.5px; font-weight: 800; color: #4DC86A; text-decoration: none;">View the full impact record &#8594;</a>
+        </div>
+        <div style="background: #ffffff; border-radius: 20px; padding: 28px;">
+          <div style="display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 18px;">
+            <div style="font-size: 15px; font-weight: 800;">{{ impTitle }}</div>
+            <span style="padding: 3px 12px; border-radius: 999px; font-size: 10px; font-weight: 800; text-transform: uppercase; background: #f0faf3; color: #1B7A34;">Published</span>
+          </div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
+            <div style="border: 1px solid rgba(0,0,0,0.08); border-radius: 14px; padding: 16px;">
+              <div style="font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.14em; color: #9CA3AF; margin-bottom: 8px;">Delivered</div>
+              <div style="font-size: 22px; font-weight: 800;">{{ impDelivered }}</div>
+              <div style="font-size: 11px; color: #6B7280; margin-top: 3px;">{{ impDeliveredNote }}</div>
+            </div>
+            <div style="border: 1px solid rgba(27,122,52,0.3); background: #f8fdf9; border-radius: 14px; padding: 16px;">
+              <div style="font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.14em; color: #1B7A34; margin-bottom: 8px;">What changed</div>
+              <div style="font-size: 22px; font-weight: 800; color: #1B7A34;">{{ impOutcome }}</div>
+              <div style="font-size: 11px; color: #6B7280; margin-top: 3px;">{{ impOutcomeNote }} &#183; <span style="color: #1B7A34; font-weight: 800;">Verified</span></div>
+            </div>
+          </div>
+          <div style="display: flex; align-items: center; gap: 8px; margin-top: 14px; font-size: 12px; color: #6B7280;">Evidence <span style="font-weight: 800; color: #1B7A34;">{{ impEvidence }}</span> &#183; attendance sheets, assessments and employer confirmations on file</div>
+        </div>
+      </div>
+    </section>
+
+    <section data-screen-label="09 Trust" style="max-width: 1280px; margin: 0 auto; padding: 72px 24px;">
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center;">
+        <div>
+          <h2 style="margin: 0 0 14px; font-size: clamp(26px, 3.4vw, 38px); letter-spacing: -0.01em; line-height: 1.15;"><span style="font-weight: 300;">Don't take our word for it.</span> <span style="font-weight: 800;">Follow the money.</span></h2>
+          <p style="margin: 0 0 22px; font-size: 14px; color: #6B7280; line-height: 1.7;">Every taka received is traceable to programme funds, approved spending, supporting documents and published impact. Not an annual summary &#8212; a living ledger.</p>
+          <div style="display: flex; gap: 22px; margin-bottom: 22px;">
+            <div><div style="font-size: 24px; font-weight: 800; color: #1B7A34;">{{ trustProgramme }}</div><div style="font-size: 11px; color: #9CA3AF;">programme spending</div></div>
+            <div><div style="font-size: 24px; font-weight: 800;">{{ trustOps }}</div><div style="font-size: 11px; color: #9CA3AF;">operations &amp; admin</div></div>
+            <div><div style="font-size: 24px; font-weight: 800; color: #1B7A34;">{{ trustDocs }}</div><div style="font-size: 11px; color: #9CA3AF;">spending documented</div></div>
+          </div>
+          <a href="Trust Ledger.dc.html" style="padding: 13px 26px; border-radius: 999px; font-size: 13.5px; font-weight: 800; color: #ffffff; text-decoration: none; background: linear-gradient(135deg, #4DC86A 0%, #1B7A34 100%); display: inline-block;" style-hover="opacity: 0.9;">Open the Trust Ledger</a>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 0;">
+          <sc-for list="{{ moneySteps }}" as="ms" hint-placeholder-count="5">
+            <div>
+              <div style="display: flex; align-items: center; gap: 14px; padding: 14px 18px; background: #ffffff; border: 1px solid rgba(0,0,0,0.08); border-radius: 14px;">
+                <span style="width: 30px; height: 30px; border-radius: 50%; background: {{ ms.dotBg }}; color: {{ ms.dotColor }}; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 800; flex-shrink: 0;">{{ ms.n }}</span>
+                <span style="flex: 1; font-size: 13.5px; font-weight: 700;">{{ ms.label }}</span>
+                <span style="font-size: 12.5px; color: #6B7280; font-weight: 700;">{{ ms.value }}</span>
+              </div>
+              <div style="display: {{ ms.arrowDisp }}; justify-content: center; padding: 3px 0;"><span style="color: #9CA3AF; font-size: 13px;">&#8595;</span></div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </section>
+
+    <section data-screen-label="10 Partners" style="background: #fafafa; border-top: 1px solid rgba(0,0,0,0.06); border-bottom: 1px solid rgba(0,0,0,0.06);">
+      <div style="max-width: 1280px; margin: 0 auto; padding: 72px 24px; display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center;">
+        <div>
+          <h2 style="margin: 0 0 14px; font-size: clamp(26px, 3.4vw, 38px); letter-spacing: -0.01em; line-height: 1.15;"><span style="font-weight: 300;">For organisations that want</span> <span style="font-weight: 800;">more than a logo placement.</span></h2>
+          <p style="margin: 0 0 22px; font-size: 14px; color: #6B7280; line-height: 1.7;">Fund measurable initiatives, involve your employees, and follow your partnership from commitment to outcome &#8212; in a live Partner Room, not a year-end PDF.</p>
+          <a href="Partner.dc.html" style="font-size: 13.5px; font-weight: 800; text-decoration: none;">See how partnerships work &#8594;</a>
+        </div>
+        <a href="Partner Profile.dc.html" style="display: block; text-decoration: none; color: inherit; background: #ffffff; border: 1px solid rgba(0,0,0,0.08); border-radius: 20px; padding: 26px;" style-hover="border-color: #1B7A34; box-shadow: 0 14px 34px rgba(27,122,52,0.1);">
+          <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px;">
+            <div style="width: 44px; height: 44px; border-radius: 28%; background: linear-gradient(135deg, #1976D2 0%, #1565C0 100%); display: flex; align-items: center; justify-content: center; color: #ffffff; font-weight: 800; font-size: 16px;">BW</div>
+            <div>
+              <div style="font-size: 15px; font-weight: 800;">BrightWorks Bangladesh</div>
+              <div style="font-size: 11px; color: #1B7A34; font-weight: 800;">Strategic Impact Partner &#10003;</div>
+            </div>
+          </div>
+          <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px;">
+            <div style="background: #fafafa; border-radius: 10px; padding: 10px 12px;"><div style="font-size: 16px; font-weight: 800;">&#2547;25L</div><div style="font-size: 9.5px; color: #9CA3AF;">committed</div></div>
+            <div style="background: #fafafa; border-radius: 10px; padding: 10px 12px;"><div style="font-size: 16px; font-weight: 800; color: #1B7A34;">566</div><div style="font-size: 9.5px; color: #9CA3AF;">people supported*</div></div>
+            <div style="background: #fafafa; border-radius: 10px; padding: 10px 12px;"><div style="font-size: 16px; font-weight: 800;">9</div><div style="font-size: 9.5px; color: #9CA3AF;">employees volunteered</div></div>
+            <div style="background: #fafafa; border-radius: 10px; padding: 10px 12px;"><div style="font-size: 16px; font-weight: 800;">62</div><div style="font-size: 9.5px; color: #9CA3AF;">verified hours</div></div>
+          </div>
+          <div style="font-size: 10px; color: #9CA3AF; margin-top: 10px;">*Through initiatives BrightWorks backs &#8212; shared programme results across all funders.</div>
+        </a>
+      </div>
+    </section>
+
+    <section data-screen-label="11 Programs" style="max-width: 1280px; margin: 0 auto; padding: 72px 24px;">
+      <div style="display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-bottom: 26px;">
+        <h2 style="margin: 0; font-size: clamp(24px, 3vw, 34px); letter-spacing: -0.01em;"><span style="font-weight: 300;">Five areas of</span> <span style="font-weight: 800;">sustainable impact</span></h2>
+        <a href="Programs.dc.html" style="font-size: 13.5px; font-weight: 700; text-decoration: none;">All programs &#8594;</a>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px;">
+        <sc-for list="{{ programs }}" as="p" hint-placeholder-count="5">
+          <a href="Programs.dc.html" style="display: block; text-decoration: none; color: inherit; border: 1px solid rgba(0,0,0,0.08); border-radius: 14px; padding: 18px;" style-hover="border-color: #1B7A34; background: #f8fdf9;">
+            <div style="font-size: 13.5px; font-weight: 800; line-height: 1.35;">{{ p.name }}</div>
+            <div style="font-size: 11px; color: #6B7280; margin-top: 5px; line-height: 1.5;">{{ p.line }}</div>
+          </a>
+        </sc-for>
+      </div>
+    </section>
+
+    <section data-screen-label="12 People" style="max-width: 1280px; margin: 0 auto; padding: 0 24px 72px;">
+      <div style="display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-bottom: 26px;">
+        <h2 style="margin: 0; font-size: clamp(24px, 3vw, 34px); letter-spacing: -0.01em;"><span style="font-weight: 300;">The people</span> <span style="font-weight: 800;">behind the system</span></h2>
+        <a href="Volunteers.dc.html" style="font-size: 13.5px; font-weight: 700; text-decoration: none;">Meet the volunteers &#8594;</a>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px;">
+        <sc-for list="{{ people }}" as="pe" hint-placeholder-count="3">
+          <a href="{{ pe.href }}" style="display: flex; align-items: center; gap: 14px; text-decoration: none; color: inherit; border: 1px solid rgba(0,0,0,0.08); border-radius: 16px; padding: 18px;" style-hover="border-color: #1B7A34; box-shadow: 0 10px 26px rgba(27,122,52,0.09);">
+            <div style="width: 48px; height: 48px; border-radius: 28%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 16px; font-weight: 800; color: #ffffff; background: {{ pe.grad }};">{{ pe.initials }}</div>
+            <div style="min-width: 0;">
+              <div style="font-size: 14px; font-weight: 800;">{{ pe.name }}</div>
+              <div style="font-size: 11.5px; color: #6B7280;">{{ pe.role }} &#183; {{ pe.city }}</div>
+              <div style="font-size: 11px; color: #1B7A34; font-weight: 800; margin-top: 2px;">{{ pe.stat }}</div>
+            </div>
+          </a>
+        </sc-for>
+      </div>
+    </section>
+
+    <section data-screen-label="13 Final CTA" style="background: linear-gradient(135deg, #4DC86A 0%, #1B7A34 100%);">
+      <div style="max-width: 1280px; margin: 0 auto; padding: 80px 24px; text-align: center;">
+        <h2 style="margin: 0 0 12px; font-size: clamp(30px, 4.2vw, 48px); letter-spacing: -0.015em; color: #ffffff;"><span style="font-weight: 300;">There is a place for you</span> <span style="font-weight: 800;">in Goodness.</span></h2>
+        <p style="margin: 0 0 36px; font-size: 15px; color: rgba(255,255,255,0.75); font-style: italic;">Together for a Better Tomorrow.</p>
+        <div style="display: flex; justify-content: center; gap: 12px; flex-wrap: wrap;">
+          <a href="Missions.dc.html" style="padding: 14px 26px; border-radius: 999px; font-size: 13.5px; font-weight: 800; color: #1B7A34; text-decoration: none; background: #ffffff;" style-hover="opacity: 0.92;">Give your time &#8594;</a>
+          <a href="My Goodness.dc.html" style="padding: 14px 26px; border-radius: 999px; font-size: 13.5px; font-weight: 800; color: #ffffff; text-decoration: none; border: 1.5px solid rgba(255,255,255,0.55);" style-hover="background: rgba(255,255,255,0.12);">Give consistently &#8594;</a>
+          <a href="Fund Impact.dc.html" style="padding: 14px 26px; border-radius: 999px; font-size: 13.5px; font-weight: 800; color: #ffffff; text-decoration: none; border: 1.5px solid rgba(255,255,255,0.55);" style-hover="background: rgba(255,255,255,0.12);">Back an initiative &#8594;</a>
+          <a href="Partner.dc.html" style="padding: 14px 26px; border-radius: 999px; font-size: 13.5px; font-weight: 800; color: #ffffff; text-decoration: none; border: 1.5px solid rgba(255,255,255,0.55);" style-hover="background: rgba(255,255,255,0.12);">Build with us &#8594;</a>
+        </div>
+      </div>
+    </section>
+  </main>
+  <dc-import name="SiteFooter" hint-size="100%,320px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { os: null, missions: null, impact: null, fin: null, net: null };
+  componentDidMount() {
+    import("./gs-os.js").then((m) => { this.gs = m; return Promise.all([m.loadOS(), m.loadMissions(), m.loadImpact(), m.loadFinance(), m.loadNetwork()]); })
+      .then(([os, missions, impact, fin, net]) => this.setState({ os, missions, impact, fin, net }));
+  }
+  short(n) { const v = Number(n || 0); return v >= 100000 ? "\u09F3" + (v / 100000).toFixed(1) + "L" : "\u09F3" + v.toLocaleString(); }
+  renderVals() {
+    const s = this.state, os = s.os, missions = s.missions || [], impact = s.impact || [], fin = s.fin, net = s.net;
+    const spotsOf = (m) => (m.roles || []).reduce((k, r) => k + Math.max(0, r.need - (r.filled || 0)), 0);
+    const open = missions.filter((m) => m.state === "open");
+    const openSpots = open.reduce((n, m) => n + spotsOf(m), 0);
+    const topMsn = open.slice().sort((a, b) => spotsOf(b) - spotsOf(a))[0];
+    const published = impact.filter((r) => r.published);
+    const peopleSupported = published.reduce((n, r) => n + (r.beneficiaries || 0), 0);
+    const topCh = net ? net.active.slice().sort((a, b) => b.memberCount - a.memberCount)[0] : null;
+    const active = os ? os.volunteers.filter((v) => v.status !== "suspended") : [];
+    const chain = [
+      { step: "Partner funds", value: "\u09F35.0L allocated", note: "BrightWorks \u2192 Education & Career Readiness", color: "#1565C0" },
+      { step: "Mission launched", value: "Career Launch Bootcamp", note: "Dhaka \u00B7 mentors, trainers, ops", color: "#1B7A34" },
+      { step: "People show up", value: "14 volunteers \u00B7 110 participants", note: "Hours verified by the mission lead", color: "#1B7A34" },
+      { step: "Work delivered", value: "104 completed", note: "95% of target \u2014 output, not outcome", color: "#1B7A34" },
+      { step: "Outcome measured", value: "29 employed", note: "73 interviewed within 90 days", color: "#E65100" },
+      { step: "Evidence", value: "4 / 4 verified", note: "Attendance \u2713 Assessment \u2713 Employer \u2713", color: "#E65100" },
+      { step: "Traceable", value: "Record + Ledger", note: "Open both \u2014 nothing is hidden", color: "#0D0D0D" },
+    ].map((c, i, arr) => ({ ...c, arrowDisp: i === arr.length - 1 ? "none" : "inline" }));
+    return {
+      liveMsnLabel: s.missions ? (open.length + (open.length === 1 ? " mission needs" : " missions need") + " people") : "Missions",
+      liveMsnTitle: topMsn ? topMsn.title : "\u2026",
+      liveMsnMeta: topMsn ? topMsn.chapter + " \u00B7 " + spotsOf(topMsn) + (spotsOf(topMsn) === 1 ? " position left" : " positions left") : "",
+      liveImpTitle: published[0] ? published[0].title : "\u2026",
+      liveImpMeta: published[0] ? published[0].beneficiaries.toLocaleString() + " people supported \u00B7 evidence on file" : "",
+      liveChName: topCh ? topCh.name : "Chapters",
+      liveChMeta: topCh ? topCh.memberCount + " members active" : "\u2026",
+      liveFundLine: "AI Skills Expansion \u00B7 still seeking partners",
+      strip: [
+        { value: s.missions ? String(openSpots) : "\u2026", label: "open mission spots", href: "Missions.dc.html", color: "#1B7A34" },
+        { value: s.impact ? peopleSupported.toLocaleString() : "\u2026", label: "people supported", href: "Impact.dc.html", color: "#0D0D0D" },
+        { value: net ? String(net.active.length) : "\u2026", label: "active chapters", href: "Chapters.dc.html", color: "#0D0D0D" },
+        { value: os ? String(active.length) : "\u2026", label: "active volunteers", href: "Volunteers.dc.html", color: "#0D0D0D" },
+        { value: fin ? fin.documentedPct + "%" : "\u2026", label: "spending documented", href: "Trust Ledger.dc.html", color: "#1B7A34" },
+        { value: fin ? this.short(fin.received) : "\u2026", label: "received & traceable", href: "Trust Ledger.dc.html", color: "#0D0D0D" },
+      ],
+      feed: (() => {
+        const rows = [];
+        open.slice(0, 2).forEach((m) => rows.push({ tag: m.chapter, chipBg: "rgba(77,200,106,0.16)", chipColor: "#4DC86A",
+          text: "\u201C" + m.title + "\u201D needs " + spotsOf(m) + " more " + (spotsOf(m) === 1 ? "volunteer" : "volunteers"),
+          meta: m.date + " \u00B7 " + (m.roles || []).map((r) => r.role).slice(0, 2).join(", "), href: "Missions.dc.html" }));
+        published.slice(0, 2).forEach((r) => rows.push({ tag: "Impact", chipBg: "rgba(144,202,249,0.18)", chipColor: "#90CAF9",
+          text: r.title + " \u2014 " + r.beneficiaries.toLocaleString() + " people supported", meta: "Published with evidence", href: "Impact.dc.html" }));
+        const exp = fin ? fin.expenses.filter((e) => e.status === "approved").slice(-1)[0] : null;
+        if (exp) rows.push({ tag: "Ledger", chipBg: "rgba(255,183,77,0.16)", chipColor: "#FFB74D",
+          text: this.short(exp.amount) + " \u2014 " + exp.item + " accepted with documentation", meta: "Trust Ledger \u00B7 " + exp.payee, href: "Trust Ledger.dc.html" });
+        if (net && net.forming[0]) rows.push({ tag: "Network", chipBg: "rgba(171,130,255,0.16)", chipColor: "#CBB2FF",
+          text: net.forming[0].name + " is forming \u2014 leadership team assembling", meta: "Goodness standards " + net.forming[0].standards.done + " / " + net.forming[0].standards.total, href: "Chapters.dc.html" });
+        return rows.slice(0, 6);
+      })(),
+      chapters: net ? net.chapters.slice(0, 7).map((c) => {
+        const forming = c.status === "forming";
+        const urgent = c.missions && c.missions.some((m) => m.urgent);
+        return { name: c.name, initial: c.name.replace("Goodness ", "")[0], href: "Chapter.dc.html?id=" + c.id,
+          note: forming ? "Forming" : urgent ? "Urgent response active" : (c.type === "university" ? "University chapter" : "Active"),
+          noteColor: forming ? "#6B21A8" : urgent ? "#E65100" : "#1B7A34",
+          meta: forming ? "Leadership being established" : (m => m + (m === 1 ? " member \u00B7 " : " members \u00B7 "))(c.type === "university" ? 26 : c.memberCount) + c.missionsLive + (c.missionsLive === 1 ? " mission live" : " missions live") };
+      }) : [],
+      chain,
+      egMissions: os ? String(os.volunteers[0].missions) : "\u2026",
+      egHours: os ? String(os.volunteers[0].hours) : "\u2026",
+      egCreds: os ? String(os.volunteers[0].credentials.length) : "\u2026",
+      impTitle: published[0] ? published[0].title : "Career Launch \u2014 Dhaka",
+      impDelivered: "104 / 110 completed",
+      impDeliveredNote: "95% of participation target",
+      impOutcome: "29 secured employment",
+      impOutcomeNote: "73 interviewed within 90 days",
+      impEvidence: "4 / 4 verified",
+      trustProgramme: fin ? (100 - fin.overheadPct) + "%" : "\u2026",
+      trustOps: fin ? fin.overheadPct + "%" : "\u2026",
+      trustDocs: fin ? fin.documentedPct + "%" : "\u2026",
+      moneySteps: [
+        { n: "1", label: "Received & receipted", value: fin ? this.short(fin.received) : "\u2026", dotBg: "#f0faf3", dotColor: "#1B7A34" },
+        { n: "2", label: "Programme funds allocated", value: "restricted honoured", dotBg: "#f0faf3", dotColor: "#1B7A34" },
+        { n: "3", label: "Spending approved", value: "HQ review", dotBg: "#fff3e0", dotColor: "#E65100" },
+        { n: "4", label: "Documents attached", value: fin ? fin.documentedPct + "% documented" : "\u2026", dotBg: "#fff3e0", dotColor: "#E65100" },
+        { n: "5", label: "Impact published with evidence", value: published.length + " records", dotBg: "#e8f0fc", dotColor: "#1565C0" },
+      ].map((m2, i, arr) => ({ ...m2, arrowDisp: i === arr.length - 1 ? "none" : "flex" })),
+      programs: [
+        { name: "Education & Career Readiness", line: "Bootcamps, mentoring, employment outcomes" },
+        { name: "AI & Digital Skills", line: "Practical AI literacy for young people" },
+        { name: "Youth Leadership", line: "Leads, chapters, real responsibility" },
+        { name: "Community Development", line: "Local needs, surveyed and answered" },
+        { name: "Social Innovation", line: "New models, measured before scaled" },
+      ],
+      people: active.slice(0, 3).map((v) => ({ name: v.name, role: v.role, city: v.city, initials: v.initials,
+        grad: os.avatarGradients[v.avatarColor], stat: v.hours + " verified hours \u00B7 " + v.missions + (v.missions === 1 ? " mission" : " missions"),
+        href: "Volunteer Profile.dc.html?id=" + v.id })),
+    };
+  }
+}
+</script>
+</body>
+</html>

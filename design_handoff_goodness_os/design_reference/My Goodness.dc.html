@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+  body { margin: 0; background: #fafafa; font-family: 'Plus Jakarta Sans', system-ui, sans-serif; }
+  a { color: #1B7A34; } a:hover { color: #4DC86A; }
+</style>
+</helmet>
+<div data-screen-label="My Goodness" style="color: #0D0D0D; padding-top: 72px; min-height: 100vh; display: flex; flex-direction: column;">
+  <dc-import name="SiteNav" hint-size="100%,72px"></dc-import>
+  <main style="flex: 1; width: 100%; max-width: 1080px; margin: 0 auto; padding: 36px 24px 80px; box-sizing: border-box;">
+    <section style="display: {{ signInDisp }}; flex-direction: column; align-items: center; text-align: center; padding: 48px 0;">
+      <div style="width: 52px; height: 52px; border-radius: 28%; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; background: linear-gradient(135deg, #4DC86A 0%, #1B7A34 100%); color: #ffffff; font-weight: 800; font-size: 22px;">G</div>
+      <h1 style="margin: 0 0 12px; font-size: clamp(32px, 4.5vw, 46px); line-height: 1.1; letter-spacing: -0.02em;"><span style="font-weight: 300;">My</span> <span style="font-weight: 800;">Goodness</span></h1>
+      <p style="margin: 0 0 32px; font-size: 16px; color: #6B7280; line-height: 1.6; max-width: 460px;">Your verified service, credentials, and shareable assets in one place. Choose your Goodness Passport to sign in.</p>
+      <div style="width: 100%; max-width: 620px; background: #ffffff; border: 1px solid rgba(0,0,0,0.08); border-radius: 20px; padding: 24px; box-sizing: border-box;">
+        <div style="font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.15em; color: #9CA3AF; margin-bottom: 14px; text-align: left;">Sign in as</div>
+        <input value="{{ q }}" onInput="{{ setQ }}" placeholder="Search your name&#8230;" style="width: 100%; box-sizing: border-box; padding: 12px 18px; border-radius: 999px; border: 1px solid rgba(0,0,0,0.12); background: #fafafa; font-size: 14px; font-family: inherit; outline: none; margin-bottom: 14px;" style-focus="border-color: #1B7A34; background: #ffffff;">
+        <div style="display: flex; flex-direction: column; gap: 8px; max-height: 300px; overflow-y: auto;">
+          <sc-for list="{{ options }}" as="o" hint-placeholder-count="6">
+            <button onClick="{{ o.pick }}" style="display: flex; align-items: center; gap: 12px; padding: 10px 12px; border-radius: 12px; border: 1px solid rgba(0,0,0,0.07); background: #ffffff; cursor: pointer; font-family: inherit; text-align: left;" style-hover="border-color: #1B7A34; background: #f0faf3;">
+              <div style="width: 36px; height: 36px; border-radius: 28%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 12px; font-weight: 800; color: #ffffff; background: {{ o.grad }};">{{ o.initials }}</div>
+              <div style="flex: 1; min-width: 0;">
+                <div style="font-size: 14px; font-weight: 700;">{{ o.name }}</div>
+                <div style="font-size: 11px; color: #9CA3AF;">{{ o.role }} &#183; {{ o.goodnessId }}</div>
+              </div>
+              <span style="font-size: 12px; font-weight: 700; color: #1B7A34;">Sign in &#8594;</span>
+            </button>
+          </sc-for>
+        </div>
+      </div>
+    </section>
+    <section style="display: {{ dashDisp }}; flex-direction: column; gap: 20px;">
+      <div style="position: relative; background: #0D0D0D; border-radius: 24px; overflow: hidden; padding: 32px 36px;">
+        <svg style="position: absolute; top: 0; right: 0; opacity: 0.07; pointer-events: none;" width="380" height="250" viewBox="0 0 600 400" fill="none">
+          <circle cx="220" cy="180" r="160" stroke="#4DC86A" stroke-width="44" fill="none"></circle>
+          <path d="M370 180 C390 180 420 200 430 240 C445 295 420 350 370 370 C310 395 240 370 210 320" stroke="#4DC86A" stroke-width="44" fill="none" stroke-linecap="round"></path>
+        </svg>
+        <div style="position: relative; display: flex; align-items: center; gap: 20px; flex-wrap: wrap;">
+          <div style="width: 64px; height: 64px; border-radius: 28%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 22px; font-weight: 800; color: #ffffff; background: {{ me.grad }};">{{ me.initials }}</div>
+          <div style="flex: 1; min-width: 220px;">
+            <div style="font-size: 12px; color: rgba(255,255,255,0.45); margin-bottom: 4px;">{{ greeting }}</div>
+            <h1 style="margin: 0; font-size: 30px; font-weight: 800; color: #ffffff; letter-spacing: -0.015em;">{{ me.firstName }}</h1>
+            <p style="margin: 6px 0 0; font-size: 14px; color: rgba(255,255,255,0.6);">You've contributed <strong style="color: #4DC86A; font-weight: 800;">{{ me.hours }} hours</strong> of verified service across {{ me.missions }} missions.</p>
+          </div>
+          <button onClick="{{ signOut }}" style="padding: 9px 18px; border-radius: 999px; border: 1px solid rgba(255,255,255,0.25); background: transparent; color: rgba(255,255,255,0.75); font-size: 12px; font-weight: 700; cursor: pointer; font-family: inherit;" style-hover="background: rgba(255,255,255,0.1); color: #ffffff;">Sign out</button>
+        </div>
+        <div style="position: relative; display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.12); border-radius: 14px; overflow: hidden; margin-top: 28px;">
+          <div style="background: rgba(255,255,255,0.05); padding: 16px 20px;"><div style="font-size: 22px; font-weight: 800; color: #ffffff;">{{ me.missions }}</div><div style="font-size: 11px; color: rgba(255,255,255,0.45); margin-top: 2px;">Missions</div></div>
+          <div style="background: rgba(255,255,255,0.05); padding: 16px 20px;"><div style="font-size: 22px; font-weight: 800; color: #4DC86A;">{{ me.hours }}</div><div style="font-size: 11px; color: rgba(255,255,255,0.45); margin-top: 2px;">Verified hours</div></div>
+          <div style="background: rgba(255,255,255,0.05); padding: 16px 20px;"><div style="font-size: 22px; font-weight: 800; color: #ffffff;">{{ me.credCount }}</div><div style="font-size: 11px; color: rgba(255,255,255,0.45); margin-top: 2px;">Credentials</div></div>
+          <div style="background: rgba(255,255,255,0.05); padding: 16px 20px;"><div style="font-size: 22px; font-weight: 800; color: #ffffff;">{{ me.level }}</div><div style="font-size: 11px; color: rgba(255,255,255,0.45); margin-top: 2px;">Current level</div></div>
+        </div>
+      </div>
+      <div style="display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 20px; align-items: start;">
+        <div style="display: flex; flex-direction: column; gap: 20px;">
+          <section style="background: #ffffff; border: 1px solid rgba(0,0,0,0.08); border-radius: 20px; padding: 26px;">
+            <div style="display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 4px;">
+              <h2 style="margin: 0; font-size: 12px; text-transform: uppercase; letter-spacing: 0.2em; color: #9CA3AF; font-weight: 800;">My missions</h2>
+              <a href="Missions.dc.html" style="font-size: 12px; font-weight: 700; text-decoration: none;">Find a mission &#8594;</a>
+            </div>
+            <p style="margin: 0 0 18px; font-size: 12px; color: #9CA3AF;">Hours post to your passport the moment your team lead verifies them.</p>
+            <div style="display: {{ noMissionsDisp }}; flex-direction: column; gap: 10px; padding: 18px; border: 1px dashed rgba(0,0,0,0.12); border-radius: 14px; align-items: flex-start;">
+              <div style="font-size: 13px; font-weight: 700;">You haven't joined a mission yet</div>
+              <div style="font-size: 12px; color: #6B7280;">Pick one meaningful thing to do this week &#8212; roles start at 4 hours.</div>
+              <a href="Missions.dc.html" style="padding: 9px 18px; border-radius: 999px; color: #ffffff; font-size: 12px; font-weight: 700; text-decoration: none; background: linear-gradient(135deg, #4DC86A 0%, #1B7A34 100%);">Browse missions &#8594;</a>
+            </div>
+            <div style="display: {{ recDisp }}; flex-direction: column; gap: 10px; margin-bottom: 18px;">
+              <div style="font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.14em; color: #1B7A34;">Recommended for you</div>
+              <sc-for list="{{ recs }}" as="rc" hint-placeholder-count="0">
+                <a href="{{ rc.href }}" style="display: flex; align-items: center; gap: 14px; padding: 14px 16px; border: 1px solid rgba(27,122,52,0.22); background: #f8fdf9; border-radius: 14px; text-decoration: none; color: inherit;" style-hover="box-shadow: 0 6px 18px rgba(27,122,52,0.12);">
+                  <div style="width: 34px; height: 34px; border-radius: 28%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; background: linear-gradient(135deg, #4DC86A 0%, #1B7A34 100%); color: #ffffff; font-weight: 800; font-size: 13px;">&#10003;</div>
+                  <div style="flex: 1; min-width: 0;">
+                    <div style="font-size: 13px; font-weight: 700; line-height: 1.35;">{{ rc.title }}</div>
+                    <div style="font-size: 11px; color: #1B7A34; margin-top: 2px;">{{ rc.why }}</div>
+                    <div style="font-size: 11px; color: #9CA3AF; margin-top: 1px;">{{ rc.meta }}</div>
+                  </div>
+                  <span style="font-size: 12px; font-weight: 700; color: #1B7A34; flex-shrink: 0;">View &#8594;</span>
+                </a>
+              </sc-for>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 10px;">
+              <sc-for list="{{ myMissions }}" as="mm" hint-placeholder-count="0">
+                <a href="{{ mm.href }}" style="display: flex; align-items: center; gap: 14px; padding: 14px 16px; border: 1px solid {{ mm.border }}; background: {{ mm.rowBg }}; border-radius: 14px; text-decoration: none; color: inherit;" style-hover="box-shadow: 0 6px 18px rgba(0,0,0,0.07);">
+                  <div style="width: 42px; height: 42px; border-radius: 12px; display: flex; flex-direction: column; align-items: center; justify-content: center; flex-shrink: 0; background: {{ mm.dayBg }};">
+                    <span style="font-size: 15px; font-weight: 800; color: {{ mm.dayColor }}; line-height: 1;">{{ mm.dayNum }}</span>
+                    <span style="font-size: 9px; font-weight: 700; color: {{ mm.dayColor }}; text-transform: uppercase;">{{ mm.dayMon }}</span>
+                  </div>
+                  <div style="flex: 1; min-width: 0;">
+                    <div style="font-size: 13px; font-weight: 700; line-height: 1.35;">{{ mm.title }}</div>
+                    <div style="font-size: 11px; color: #6B7280; margin-top: 2px;">{{ mm.role }} &#183; {{ mm.chapter }} &#183; {{ mm.time }}</div>
+                  </div>
+                  <span style="padding: 3px 10px; border-radius: 999px; font-size: 10px; font-weight: 800; text-transform: uppercase; background: {{ mm.chipBg }}; color: {{ mm.chipColor }}; flex-shrink: 0;">{{ mm.stateLabel }}</span>
+                  <span style="font-size: 12px; font-weight: 800; color: {{ mm.hoursColor }}; flex-shrink: 0; width: 42px; text-align: right;">{{ mm.hoursLabel }}</span>
+                </a>
+              </sc-for>
+            </div>
+          </section>
+          <section style="background: #ffffff; border: 1px solid rgba(0,0,0,0.08); border-radius: 20px; padding: 26px;">
+            <h2 style="margin: 0 0 4px; font-size: 12px; text-transform: uppercase; letter-spacing: 0.2em; color: #9CA3AF; font-weight: 800;">My assets</h2>
+            <p style="margin: 0 0 18px; font-size: 12px; color: #9CA3AF;">Issued by Goodness Society. Locked items unlock when the team enables them.</p>
+            <div style="display: flex; flex-direction: column; gap: 12px;">
+              <div style="display: {{ certOnDisp }}; align-items: center; gap: 14px; border: 1px solid rgba(27,122,52,0.25); background: #f0faf3; border-radius: 14px; padding: 16px 18px;">
+                <div style="width: 42px; height: 42px; border-radius: 28%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; background: linear-gradient(135deg, #4DC86A 0%, #1B7A34 100%);"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"></circle><path d="M15.5 13 17 22l-5-3-5 3 1.5-9"></path></svg></div>
+                <div style="flex: 1; min-width: 0;">
+                  <div style="font-weight: 700; font-size: 14px;">My certificate of service</div>
+                  <div style="font-size: 12px; color: #6B7280; margin-top: 2px;">Ref {{ me.certRef }}</div>
+                </div>
+                <button onClick="{{ openCert }}" style="padding: 9px 18px; border-radius: 999px; border: none; color: #ffffff; font-size: 13px; font-weight: 700; font-family: inherit; cursor: pointer; background: linear-gradient(135deg, #4DC86A 0%, #1B7A34 100%);" style-hover="opacity: 0.9;">Download</button>
+              </div>
+              <div style="display: {{ certOffDisp }}; align-items: center; gap: 14px; border: 1px dashed rgba(0,0,0,0.15); background: #fafafa; border-radius: 14px; padding: 16px 18px;">
+                <div style="width: 42px; height: 42px; border-radius: 28%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; background: #ececf0;"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#9CA3AF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg></div>
+                <div style="flex: 1;">
+                  <div style="font-weight: 700; font-size: 14px; color: #6B7280;">My certificate of service</div>
+                  <div style="font-size: 12px; color: #9CA3AF; margin-top: 2px;">Awaiting issue by the Goodness team</div>
+                </div>
+                <span style="padding: 6px 14px; border-radius: 999px; font-size: 11px; font-weight: 800; color: #9CA3AF; background: #ececf0; text-transform: uppercase; letter-spacing: 0.08em;">Locked</span>
+              </div>
+              <div style="display: flex; align-items: center; gap: 14px; border: 1px solid rgba(0,0,0,0.08); border-radius: 14px; padding: 16px 18px;">
+                <div style="width: 42px; height: 42px; border-radius: 28%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; background: #0D0D0D;"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#4DC86A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><path d="m8.6 13.5 6.8 4"></path><path d="m15.4 6.5-6.8 4"></path></svg></div>
+                <div style="flex: 1;">
+                  <div style="font-weight: 700; font-size: 14px;">My social card</div>
+                  <div style="font-size: 12px; color: #6B7280; margin-top: 2px;">Pre-filled with your profile &#183; 1080&#215;1080 PNG</div>
+                </div>
+                <button onClick="{{ openCard }}" style="padding: 9px 18px; border-radius: 999px; border: 1px solid rgba(0,0,0,0.15); background: #ffffff; color: #0D0D0D; font-size: 13px; font-weight: 700; font-family: inherit; cursor: pointer;" style-hover="border-color: #1B7A34; color: #1B7A34;">Create</button>
+              </div>
+            </div>
+          </section>
+          <section style="background: #ffffff; border: 1px solid rgba(0,0,0,0.08); border-radius: 20px; padding: 26px;">
+            <h2 style="margin: 0 0 16px; font-size: 12px; text-transform: uppercase; letter-spacing: 0.2em; color: #9CA3AF; font-weight: 800;">My credentials</h2>
+            <div style="display: {{ noCredsDisp }}; font-size: 13px; color: #9CA3AF;">No credentials yet. Complete missions and your first credential will appear here.</div>
+            <div style="display: flex; flex-direction: column; gap: 10px;">
+              <sc-for list="{{ creds }}" as="c" hint-placeholder-count="2">
+                <div style="display: flex; align-items: center; gap: 12px; padding: 12px 14px; border: 1px solid rgba(0,0,0,0.07); border-radius: 12px;">
+                  <div style="flex: 1; min-width: 0;">
+                    <div style="font-size: 13px; font-weight: 700;">{{ c.title }}</div>
+                    <div style="font-size: 11px; color: #9CA3AF; font-variant-numeric: tabular-nums;">{{ c.ref }} &#183; {{ c.issued }}</div>
+                  </div>
+                  <span style="padding: 3px 10px; border-radius: 999px; font-size: 10px; font-weight: 800; text-transform: uppercase; background: {{ c.chipBg }}; color: {{ c.chipColor }};">{{ c.statusLabel }}</span>
+                  <a href="{{ c.verifyHref }}" style="font-size: 11px; font-weight: 700; text-decoration: none;">Verify &#8599;</a>
+                </div>
+              </sc-for>
+            </div>
+          </section>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 20px;">
+          <section style="background: #ffffff; border: 1px solid rgba(0,0,0,0.08); border-radius: 20px; padding: 26px;">
+            <h2 style="margin: 0 0 16px; font-size: 12px; text-transform: uppercase; letter-spacing: 0.2em; color: #9CA3AF; font-weight: 800;">Next milestone</h2>
+            <div style="font-size: 15px; font-weight: 800; margin-bottom: 6px;">{{ nextMilestone }}</div>
+            <div style="height: 10px; border-radius: 999px; background: #f0f1f3; overflow: hidden; margin-bottom: 8px;"><div style="height: 100%; border-radius: 999px; background: linear-gradient(90deg, #4DC86A, #1B7A34); width: {{ milestoneW }};"></div></div>
+            <div style="font-size: 12px; color: #6B7280;">{{ milestoneNote }}</div>
+          </section>
+          <section style="background: #ffffff; border: 1px solid rgba(0,0,0,0.08); border-radius: 20px; padding: 26px;">
+            <h2 style="margin: 0 0 16px; font-size: 12px; text-transform: uppercase; letter-spacing: 0.2em; color: #9CA3AF; font-weight: 800;">My journey</h2>
+            <div style="display: flex; flex-direction: column;">
+              <sc-for list="{{ journey }}" as="j" hint-placeholder-count="4">
+                <div style="display: flex; align-items: flex-start; gap: 12px;">
+                  <div style="display: flex; flex-direction: column; align-items: center;">
+                    <div style="width: 14px; height: 14px; border-radius: 50%; border: 2px solid {{ j.ring }}; background: {{ j.fill }}; flex-shrink: 0;"></div>
+                    <div style="width: 2px; height: 26px; background: {{ j.line }};"></div>
+                  </div>
+                  <div style="margin-top: -2px; padding-bottom: 10px;">
+                    <div style="font-size: 13px; font-weight: {{ j.weight }}; color: {{ j.textColor }};">{{ j.label }}</div>
+                    <div style="font-size: 11px; color: #9CA3AF;">{{ j.note }}</div>
+                  </div>
+                </div>
+              </sc-for>
+            </div>
+          </section>
+          <section style="background: #ffffff; border: 1px solid rgba(0,0,0,0.08); border-radius: 20px; padding: 26px;">
+            <div style="display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 4px;">
+              <h2 style="margin: 0; font-size: 12px; text-transform: uppercase; letter-spacing: 0.2em; color: #9CA3AF; font-weight: 800;">My chapter</h2>
+              <a href="Chapters.dc.html" style="font-size: 12px; font-weight: 700; text-decoration: none;">All chapters &#8594;</a>
+            </div>
+            <div style="display: {{ chapterDisp }}; flex-direction: column; gap: 12px;">
+              <a href="{{ chHref }}" style="display: flex; align-items: center; gap: 14px; padding: 14px 16px; border: 1px solid rgba(27,122,52,0.22); background: #f8fdf9; border-radius: 14px; text-decoration: none; color: inherit;" style-hover="box-shadow: 0 6px 18px rgba(27,122,52,0.12);">
+                <div style="width: 42px; height: 42px; border-radius: 28%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; background: linear-gradient(135deg, #4DC86A 0%, #1B7A34 100%); color: #ffffff; font-weight: 800; font-size: 16px;">{{ chInitial }}</div>
+                <div style="flex: 1; min-width: 0;">
+                  <div style="font-size: 14.5px; font-weight: 800;">{{ chName }}</div>
+                  <div style="font-size: 11.5px; color: #6B7280; margin-top: 2px;">{{ chMeta }}</div>
+                  <div style="display: {{ chRoleDisp }}; font-size: 11px; font-weight: 800; color: #1B7A34; margin-top: 2px;">{{ chRole }}</div>
+                </div>
+                <span style="font-size: 12px; font-weight: 700; color: #1B7A34; flex-shrink: 0;">View &#8594;</span>
+              </a>
+              <div style="display: {{ chOppsDisp }}; flex-direction: column; gap: 8px;">
+                <div style="font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.12em; color: #9CA3AF;">Near you</div>
+                <sc-for list="{{ chOpps }}" as="co" hint-placeholder-count="0">
+                  <a href="{{ co.href }}" style="display: flex; align-items: center; gap: 10px; padding: 10px 12px; border: 1px solid rgba(0,0,0,0.07); border-radius: 12px; text-decoration: none; color: inherit; font-size: 12.5px;" style-hover="border-color: rgba(27,122,52,0.35);"><span style="font-weight: 700; flex: 1;">{{ co.title }}</span><span style="color: #1B7A34; font-weight: 800; flex-shrink: 0;">{{ co.note }} &#8594;</span></a>
+                </sc-for>
+              </div>
+              <div style="display: {{ switchDisp }}; align-items: center; gap: 10px; flex-wrap: wrap; padding-top: 4px;">
+                <span style="font-size: 11.5px; color: #9CA3AF;">Make a different chapter your home:</span>
+                <sc-for list="{{ chOptions }}" as="op" hint-placeholder-count="0">
+                  <button onClick="{{ op.pick }}" style="padding: 6px 12px; border-radius: 999px; border: 1px solid rgba(0,0,0,0.12); background: #ffffff; font-size: 11px; font-weight: 700; font-family: inherit; cursor: pointer; color: #374151;" style-hover="border-color: #1B7A34; color: #1B7A34;">{{ op.label }}</button>
+                </sc-for>
+              </div>
+              <div style="display: {{ joinedNoteDisp }}; padding: 10px 14px; border-radius: 12px; background: #f0faf3; border: 1px solid rgba(27,122,52,0.25); font-size: 12px; color: #1B7A34; font-weight: 700;">{{ joinedNote }}</div>
+              <p style="margin: 0; font-size: 10.5px; color: #9CA3AF; line-height: 1.55;">Your primary chapter is where you belong organisationally &#8212; you can join missions anywhere in Goodness.</p>
+            </div>
+          </section>
+          <section style="background: #ffffff; border: 1px solid rgba(0,0,0,0.08); border-radius: 20px; padding: 26px;">
+            <h2 style="margin: 0 0 4px; font-size: 12px; text-transform: uppercase; letter-spacing: 0.2em; color: #9CA3AF; font-weight: 800;">Goodness Commitment</h2>
+            <p style="margin: 0 0 16px; font-size: 12px; color: #9CA3AF;">Contribute what you can, when you can &#8212; Goodness appreciates the commitment, not the size.</p>
+            <div style="display: {{ cFormDisp }}; flex-direction: column; gap: 12px;">
+              <div>
+                <div style="font-size: 10.5px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em; color: #6B7280; margin-bottom: 6px;">Amount</div>
+                <div style="display: flex; gap: 6px; flex-wrap: wrap;">
+                  <sc-for list="{{ cAmounts }}" as="a" hint-placeholder-count="5">
+                    <button onClick="{{ a.pick }}" style="padding: 8px 14px; border-radius: 999px; font-size: 12px; font-weight: 800; font-family: inherit; cursor: pointer; border: {{ a.border }}; background: {{ a.bg }}; color: {{ a.color }};">{{ a.label }}</button>
+                  </sc-for>
+                  <input value="{{ cCustom }}" onInput="{{ setCCustom }}" placeholder="Custom \u09f3" style="width: 90px; box-sizing: border-box; padding: 8px 12px; border-radius: 999px; border: 1px solid rgba(0,0,0,0.12); background: #fafafa; font-size: 12px; font-family: inherit; outline: none;" style-focus="border-color: #1B7A34;">
+                </div>
+              </div>
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                <div>
+                  <div style="font-size: 10.5px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em; color: #6B7280; margin-bottom: 6px;">Rhythm</div>
+                  <select value="{{ cRhythm }}" onChange="{{ setCRhythm }}" style="width: 100%; box-sizing: border-box; padding: 10px 12px; border-radius: 10px; border: 1px solid rgba(0,0,0,0.12); background: #fafafa; font-size: 13px; font-family: inherit; outline: none;">
+                    <option value="Daily">Daily</option>
+                    <option value="Weekly">Weekly</option>
+                    <option value="Bi-weekly">Bi-weekly</option>
+                    <option value="Monthly">Monthly</option>
+                    <option value="Custom">Custom rhythm</option>
+                  </select>
+                </div>
+                <div>
+                  <div style="font-size: 10.5px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em; color: #6B7280; margin-bottom: 6px;">Goes to</div>
+                  <select value="{{ cDest }}" onChange="{{ setCDest }}" style="width: 100%; box-sizing: border-box; padding: 10px 12px; border-radius: 10px; border: 1px solid rgba(0,0,0,0.12); background: #fafafa; font-size: 13px; font-family: inherit; outline: none;">
+                    <option value="">Wherever Goodness needs it most</option>
+                    <option value="chapter">My Chapter</option>
+                    <option value="education-career-readiness">Education &amp; Career Readiness</option>
+                    <option value="ai-digital-skills">AI &amp; Digital Skills</option>
+                    <option value="community-development">Community Development</option>
+                  </select>
+                </div>
+              </div>
+              <button onClick="{{ startCommit }}" style="padding: 12px 0; border-radius: 999px; border: none; color: #ffffff; font-size: 13px; font-weight: 800; font-family: inherit; cursor: pointer; background: linear-gradient(135deg, #4DC86A 0%, #1B7A34 100%);" style-hover="opacity: 0.9;">Start my commitment</button>
+              <p style="margin: 0; font-size: 10.5px; color: #9CA3AF; line-height: 1.55;">Entirely voluntary &#8212; never a membership fee. Time, skills, and leadership count just as much.</p>
+            </div>
+            <div style="display: {{ cActiveDisp }}; flex-direction: column; gap: 12px;">
+              <div style="display: flex; align-items: center; gap: 12px; padding: 14px 16px; border-radius: 14px; background: #f8fdf9; border: 1px solid rgba(27,122,52,0.25);">
+                <div style="flex: 1;">
+                  <div style="font-size: 14px; font-weight: 800; color: #1B7A34;">{{ cStatusTitle }}</div>
+                  <div style="font-size: 12px; color: #374151; margin-top: 2px;">{{ cLine }}</div>
+                  <div style="font-size: 11px; color: #6B7280; margin-top: 2px;">Supporting: {{ cDestLabel }} &#183; sustaining since {{ cSince }}</div>
+                </div>
+                <button onClick="{{ contributeNow }}" style="display: {{ cPayDisp }}; padding: 9px 16px; border-radius: 999px; border: none; color: #ffffff; font-size: 12px; font-weight: 800; font-family: inherit; cursor: pointer; background: linear-gradient(135deg, #4DC86A 0%, #1B7A34 100%);" style-hover="opacity: 0.9;">Contribute now</button>
+              </div>
+              <div style="display: flex; gap: 14px; flex-wrap: wrap; font-size: 12.5px; color: #374151;">
+                <span><strong>{{ cCountLabel }}</strong></span>
+                <span><strong>{{ cTotal }}</strong> contributed</span>
+                <span style="color: #1B7A34; font-weight: 700;">Thank you for helping keep Goodness moving.</span>
+              </div>
+              <div style="display: flex; flex-direction: column; gap: 5px;">
+                <sc-for list="{{ cMonths }}" as="cm" hint-placeholder-count="0">
+                  <div style="display: flex; align-items: center; gap: 10px; font-size: 12px;"><span style="width: 64px; color: #9CA3AF; font-weight: 700;">{{ cm.label }}</span><span style="color: #1B7A34; letter-spacing: 2px;">{{ cm.dots }}</span><span style="color: #6B7280;">{{ cm.note }}</span></div>
+                </sc-for>
+              </div>
+              <div style="display: {{ cPausedNoteDisp }}; padding: 10px 14px; border-radius: 12px; background: #fff8f2; border: 1px solid rgba(230,81,0,0.25); font-size: 12px; color: #E65100;">Commitment paused &#8212; everything you've contributed remains part of your Goodness history. Resume whenever you're ready.</div>
+              <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+                <button onClick="{{ togglePause }}" style="padding: 8px 14px; border-radius: 999px; border: 1px solid rgba(0,0,0,0.12); background: #ffffff; font-size: 11px; font-weight: 700; font-family: inherit; cursor: pointer; color: #374151;">{{ pauseLabel }}</button>
+                <button onClick="{{ changeCommit }}" style="padding: 8px 14px; border-radius: 999px; border: 1px solid rgba(0,0,0,0.12); background: #ffffff; font-size: 11px; font-weight: 700; font-family: inherit; cursor: pointer; color: #374151;">Change amount or rhythm</button>
+                <label style="display: flex; align-items: center; gap: 6px; font-size: 11px; color: #6B7280; cursor: pointer;"><input type="checkbox" checked="{{ badgeOn }}" onChange="{{ toggleBadge }}" style="accent-color: #1B7A34;"> Show Sustaining Member on my Passport</label>
+              </div>
+              <p style="margin: 0; font-size: 10.5px; color: #9CA3AF; line-height: 1.55;">Change or pause any time &#8212; your recognition never downgrades. Every contribution enters the Trust Ledger with a receipt. <a href="Trust Ledger.dc.html" style="font-weight: 700;">Trace my contributions &#8594;</a></p>
+              <div style="padding-top: 8px; border-top: 1px solid rgba(0,0,0,0.06); font-size: 11.5px; color: #6B7280;">{{ collectiveLine }} <span style="font-weight: 800; color: #1B7A34;">Small commitments. One strong movement.</span></div>
+            </div>
+          </section>
+          <section style="display: {{ givingDisp }}; background: #ffffff; border: 1px solid rgba(0,0,0,0.08); border-radius: 20px; padding: 26px; flex-direction: column;">
+            <h2 style="margin: 0 0 4px; font-size: 12px; text-transform: uppercase; letter-spacing: 0.2em; color: #9CA3AF; font-weight: 800;">My giving</h2>
+            <p style="margin: 0 0 14px; font-size: 12px; color: #9CA3AF;">You support Goodness with money as well as time.</p>
+            <div style="font-size: 26px; font-weight: 800; color: #1B7A34;">{{ givingTotal }}</div>
+            <div style="font-size: 12px; color: #6B7280; margin-bottom: 12px;">contributed &#183; {{ givingCount }} &#183; receipts issued for every gift</div>
+            <div style="font-size: 12.5px; color: #374151; line-height: 1.6; margin-bottom: 10px;">{{ givingReach }}</div>
+            <div style="display: flex; gap: 14px; flex-wrap: wrap;"><a href="Trust Ledger.dc.html" style="font-size: 12px; font-weight: 700; text-decoration: none;">See your gifts on the Trust Ledger &#8594;</a><a href="Fund Impact.dc.html" style="font-size: 12px; font-weight: 800; text-decoration: none;">Back another initiative &#8594;</a></div>
+          </section>
+          <a href="{{ me.profileHref }}" style="text-align: center; padding: 14px 0; border-radius: 999px; color: #ffffff; font-size: 14px; font-weight: 700; text-decoration: none; background: linear-gradient(135deg, #4DC86A 0%, #1B7A34 100%);" style-hover="opacity: 0.9;">View my public passport &#8594;</a>
+        </div>
+      </div>
+    </section>
+  </main>
+  <dc-import name="SiteFooter" hint-size="100%,420px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { os: null, missions: null, q: "", me: null };
+  load() {
+    import("./gs-os.js").then((m) => { this.gs = m; return Promise.all([m.loadOS(), m.loadMissions(), m.loadFinance(), m.loadImpact(), m.loadNetwork()]); })
+      .then(([os, missions, fin, impact, net]) => this.setState({ os, missions, fin, impact, net, me: this.gs.readMe() }));
+  }
+  componentDidMount() { this.load(); }
+  renderVals() {
+    const s = this.state, os = s.os;
+    const blank = { firstName: "", initials: "", grad: "", hours: "", missions: "", credCount: "", level: "", certRef: "", profileHref: "#" };
+    const hr = new Date().getHours();
+    const greeting = "Good " + (hr < 12 ? "morning" : hr < 17 ? "afternoon" : "evening") + ",";
+    const idle = { greeting, me: blank, creds: [], journey: [], myMissions: [], noMissionsDisp: "none", recs: [], recDisp: "none", givingDisp: "none", givingTotal: "", givingCount: "", givingReach: "",
+      chapterDisp: "none", chHref: "#", chInitial: "", chName: "", chMeta: "", chRole: "", chRoleDisp: "none", chOpps: [], chOppsDisp: "none", chOptions: [], switchDisp: "none", joinedNote: "", joinedNoteDisp: "none",
+      cFormDisp: "none", cActiveDisp: "none", cAmounts: [], cCustom: "", cRhythm: "Monthly", cDest: "", cStatusTitle: "", cLine: "", cDestLabel: "", cSince: "", cCount: "", cCountLabel: "", cTotal: "", cPayDisp: "none", cPausedNoteDisp: "none", cMonths: [], pauseLabel: "", badgeOn: true, collectiveLine: "",
+      setCCustom: () => {}, setCRhythm: () => {}, setCDest: () => {}, startCommit: () => {}, contributeNow: () => {}, togglePause: () => {}, changeCommit: () => {}, toggleBadge: () => {}, certOnDisp: "none", certOffDisp: "none", noCredsDisp: "none", openCert: () => {}, openCard: () => {}, signOut: () => {}, nextMilestone: "", milestoneW: "0%", milestoneNote: "" };
+    if (!os) return { ...idle, signInDisp: "flex", dashDisp: "none", q: s.q, setQ: () => {}, options: [] };
+    const raw = s.me ? os.volunteers.find((v) => v.id === s.me) : null;
+    if (!raw) {
+      const q = s.q.toLowerCase();
+      return { ...idle, signInDisp: "flex", dashDisp: "none", q: s.q,
+        setQ: (e) => this.setState({ q: e.target.value }),
+        options: os.volunteers.filter((v) => !q || v.name.toLowerCase().includes(q)).slice(0, 12).map((v) => ({
+          name: v.name, role: v.role, goodnessId: v.goodnessId, initials: v.initials,
+          grad: os.avatarGradients[v.avatarColor],
+          pick: () => { this.gs.claim(v.id); this.setState({ me: v.id }); },
+        })) };
+    }
+    const me = { ...raw, firstName: raw.name.split(" ")[0], grad: os.avatarGradients[raw.avatarColor],
+      credCount: raw.credentials.length, profileHref: "Volunteer Profile.dc.html?id=" + raw.id };
+    const tiers = [10, 50, 100, 250, 500];
+    const target = tiers.find((t) => raw.hours < t) || 1000;
+    const journey = os.levels.map((label, i) => {
+      const reached = i <= raw.levelIndex, current = i === raw.levelIndex;
+      return { label, note: current ? "Current level" : reached ? "Completed" : "Next step",
+        ring: reached ? "#1B7A34" : "#D1D5DB",
+        fill: current ? "#1B7A34" : reached ? "#4DC86A" : "#ffffff",
+        line: i < os.levels.length - 1 ? (i < raw.levelIndex ? "#4DC86A" : "#E5E7EB") : "transparent",
+        weight: current ? "800" : "600", textColor: reached ? "#0D0D0D" : "#9CA3AF" };
+    });
+    const commit = this.gs.getCommitment(raw.id);
+    const myChName = (() => { const cid = s.net ? s.net.chapterOfVolunteer(raw) : null; const c = cid && s.net ? s.net.chapters.find((x) => x.id === cid) : null; return c ? c.name : "My Chapter"; })();
+    const destLabels = { "": "Wherever Goodness needs it most", "chapter": myChName, "education-career-readiness": "Education & Career Readiness", "ai-digital-skills": "AI & Digital Skills", "community-development": "Community Development" };
+    const allC = this.gs.allCommitments();
+    const activeC = Object.values(allC).filter((x) => x.status === "active");
+    const monthGroups = {};
+    ((commit && commit.contributions) || []).forEach((x) => {
+      const k = new Date(x.t).toLocaleString([], { month: "short" });
+      monthGroups[k] = monthGroups[k] || { n: 0, sum: 0 };
+      monthGroups[k].n += 1; monthGroups[k].sum += x.a;
+    });
+    const commitVals = {
+      cFormDisp: !commit || s.editCommit ? "flex" : "none",
+      cActiveDisp: commit && !s.editCommit ? "flex" : "none",
+      cAmounts: [10, 20, 50, 100, 500].map((a) => ({ label: "\u09F3" + a,
+        border: s.cAmt === a ? "1px solid transparent" : "1px solid rgba(0,0,0,0.12)",
+        bg: s.cAmt === a ? "linear-gradient(135deg, #4DC86A 0%, #1B7A34 100%)" : "#ffffff",
+        color: s.cAmt === a ? "#ffffff" : "#374151",
+        pick: () => this.setState({ cAmt: a, cCustom: "" }) })),
+      cCustom: s.cCustom || "",
+      setCCustom: (e) => this.setState({ cCustom: e.target.value, cAmt: null }),
+      cRhythm: s.cRhythm || "Monthly",
+      setCRhythm: (e) => this.setState({ cRhythm: e.target.value }),
+      cDest: s.cDest || "",
+      setCDest: (e) => this.setState({ cDest: e.target.value }),
+      startCommit: () => {
+        const amt = s.cAmt || parseInt(String(s.cCustom).replace(/[^0-9]/g, ""), 10) || 0;
+        if (!amt) return;
+        const dest = s.cDest || "";
+        this.gs.saveCommitment(raw.id, {
+          amount: amt, rhythm: s.cRhythm || "Monthly",
+          destSlug: dest === "chapter" || dest === "" ? null : dest,
+          destLabel: destLabels[dest], status: "active", badge: commit ? commit.badge !== false : true,
+          since: commit ? commit.since : new Date().toLocaleString([], { month: "short", year: "numeric" }),
+          contributions: commit ? commit.contributions || [] : [],
+        });
+        this.gs.logAudit(raw.name + (commit ? " changed their Goodness Commitment" : " started a Goodness Commitment") + " \u2014 \u09F3" + amt + " " + (s.cRhythm || "Monthly").toLowerCase());
+        this.setState({ editCommit: false }, () => this.load());
+      },
+      cStatusTitle: commit && commit.status === "paused" ? "Commitment paused" : "You're sustaining Goodness",
+      cLine: commit ? "\u09F3" + commit.amount + " \u00B7 " + commit.rhythm + (commit.status === "paused" ? " \u00B7 paused" : " \u00B7 active") : "",
+      cDestLabel: commit ? commit.destLabel : "",
+      cSince: commit ? commit.since : "",
+      cCount: commit ? String((commit.contributions || []).length) : "0",
+      cCountLabel: (() => { const n = commit ? (commit.contributions || []).length : 0; return n + (n === 1 ? " contribution" : " contributions"); })(),
+      cTotal: commit ? "\u09F3" + (commit.contributions || []).reduce((n, x) => n + x.a, 0).toLocaleString() : "\u09F30",
+      cPayDisp: commit && commit.status === "active" ? "block" : "none",
+      cPausedNoteDisp: commit && commit.status === "paused" ? "block" : "none",
+      cMonths: Object.entries(monthGroups).slice(-3).reverse().map(([label, g]) => ({
+        label, dots: g.n <= 8 ? "\u25CF ".repeat(g.n).trim() : "",
+        note: g.n + (g.n === 1 ? " contribution" : " contributions") + " \u00B7 \u09F3" + g.sum.toLocaleString() })),
+      contributeNow: () => { this.gs.contribute(raw.id, raw.name); this.load(); },
+      togglePause: () => {
+        this.gs.saveCommitment(raw.id, { status: commit.status === "paused" ? "active" : "paused" });
+        this.gs.logAudit(raw.name + (commit.status === "paused" ? " resumed" : " paused") + " their Goodness Commitment");
+        this.load();
+      },
+      pauseLabel: commit && commit.status === "paused" ? "Resume commitment" : "Pause commitment",
+      changeCommit: () => this.setState({ editCommit: true, cAmt: commit.amount, cRhythm: commit.rhythm, cDest: "" }),
+      badgeOn: commit ? commit.badge !== false : true,
+      toggleBadge: () => { this.gs.saveCommitment(raw.id, { badge: commit.badge === false }); this.load(); },
+      collectiveLine: activeC.length ? activeC.length + (activeC.length === 1 ? " member is" : " members are") + " sustaining Goodness with active commitments." : "Be among the first members to sustain Goodness continuously.",
+    };
+    const myGifts = ((s.fin && s.fin.donations) || []).filter((d) => d.donor === raw.name);
+    const givingPeople = ((s.impact) || []).filter((r) => r.published && (myGifts.some((d) => d.restricted === r.programSlug) || myGifts.some((d) => !d.restricted))).reduce((n, r) => n + (r.beneficiaries || 0), 0);
+    const net = s.net;
+    const myChId = net ? net.chapterOfVolunteer(raw) : null;
+    const myCh = myChId && net ? net.chapters.find((x) => x.id === myChId) : null;
+    const myTeamRole = myCh ? (myCh.team.find((t) => t.volunteerId === raw.id) || {}).role : null;
+    const myChOpps = myCh ? myCh.missions.filter((m) => m.state === "open").slice(0, 2).map((m) => ({
+      title: m.title, note: m.spotsLeft + " spots", href: "Mission Detail.dc.html?id=" + m.id })) : [];
+    const chOptions = net ? net.active.filter((c) => c.id !== myChId && c.type === "district").slice(0, 3).map((c) => ({
+      label: c.name.replace("Goodness ", ""),
+      pick: () => { this.gs.setMyChapter(raw.id, c.id); this.gs.logAudit(raw.name + " set their primary chapter to " + c.name); this.setState({ justJoined: true }, () => this.load()); } })) : [];
+    const mineMissions = [];
+    (s.missions || []).forEach((m) => {
+      const a = (m.assignments || []).find((x) => x.volunteerId === raw.id);
+      if (a) mineMissions.push({ m, a });
+    });
+    const joinedIds = new Set(mineMissions.map(({ m }) => m.id));
+    const mySkills = (raw.skills || []).map((x) => x.toLowerCase());
+    const recs = (s.missions || [])
+      .filter((m) => m.state === "open" && !joinedIds.has(m.id))
+      .map((m) => {
+        const skillHit = (m.roles || []).flatMap((r) => r.skills || []).find((sk) => mySkills.includes(sk.toLowerCase()));
+        const programHit = m.programSlug === raw.programSlug;
+        const cityHit = m.chapter === raw.city;
+        const score = (skillHit ? 3 : 0) + (programHit ? 2 : 0) + (cityHit ? 2 : 0) + (m.remote ? 1 : 0);
+        const why = skillHit ? "Matches your " + skillHit + " skill"
+          : programHit ? "In your program \u2014 " + m.program.split(" ").slice(0, 3).join(" ")
+          : cityHit ? "Close to you in " + m.chapter
+          : m.remote ? "Remote \u2014 fits any schedule" : "";
+        return { m, score, why };
+      })
+      .filter((x) => x.score > 0)
+      .sort((a, b) => b.score - a.score)
+      .slice(0, 3)
+      .map(({ m, why }) => ({ title: m.title, why,
+        meta: (m.remote ? "Remote" : m.chapter) + " \u00B7 " + m.date + " \u00B7 " + m.hours + " hours",
+        href: "Mission Detail.dc.html?id=" + m.id }));
+    return {
+      greeting, me, journey,
+      signInDisp: "none", dashDisp: "flex", q: s.q, setQ: () => {}, options: [],
+      noMissionsDisp: mineMissions.length === 0 ? "flex" : "none",
+      recDisp: recs.length ? "flex" : "none",
+      recs,
+      chapterDisp: "flex",
+      chHref: myCh ? "Chapter.dc.html?id=" + myCh.id : "Chapters.dc.html",
+      chInitial: myCh ? myCh.name.replace("Goodness ", "")[0] : "G",
+      chName: myCh ? myCh.name : "National network",
+      chMeta: myCh ? myCh.memberCount + (myCh.memberCount === 1 ? " member" : " members") + " \u00B7 " + myCh.missionsLive + (myCh.missionsLive === 1 ? " mission live" : " missions live") + " \u00B7 " + myCh.partners.length + (myCh.partners.length === 1 ? " partner" : " partners") : "No chapter covers your city yet",
+      chRole: myTeamRole ? myTeamRole + " \u2014 you lead this chapter" : "",
+      chRoleDisp: myTeamRole ? "block" : "none",
+      chOpps: myChOpps,
+      chOppsDisp: myChOpps.length ? "flex" : "none",
+      chOptions: chOptions,
+      switchDisp: chOptions.length && !myTeamRole ? "flex" : "none",
+      joinedNote: s.justJoined ? "You now belong to " + (myCh ? myCh.name : "") + " \u2014 welcome home." : "",
+      joinedNoteDisp: s.justJoined ? "block" : "none",
+      ...commitVals,
+      givingDisp: myGifts.length ? "flex" : "none",
+      givingTotal: "\u09F3" + myGifts.reduce((n, d) => n + Number(d.amount || 0), 0).toLocaleString(),
+      givingCount: myGifts.length + (myGifts.length === 1 ? " gift" : " gifts") + " since " + (myGifts[myGifts.length - 1] || {}).date,
+      givingReach: myGifts.some((d) => d.restricted)
+        ? "Your restricted gifts joined specific programme funds; unrestricted gifts support all programmes. Initiatives you supported have collectively reached " + givingPeople.toLocaleString() + " people \u2014 a shared result, not a private conversion of your taka."
+        : "Your gifts are unrestricted, supporting every programme. Published initiatives have collectively reached " + givingPeople.toLocaleString() + " people \u2014 a shared result, not a private conversion of your taka.",
+      myMissions: mineMissions.map(({ m, a }) => {
+        const parts = String(m.date).match(/(\d{1,2})\s+([A-Za-z]{3})/);
+        const verified = a.state === "verified";
+        return { title: m.title, role: a.role, chapter: m.chapter, time: m.time,
+          href: "Mission Detail.dc.html?id=" + m.id,
+          dayNum: parts ? parts[1] : "\u2014", dayMon: parts ? parts[2] : "TBC",
+          dayBg: verified ? "#f0faf3" : a.state === "completed" ? "#fff3e0" : "#e8f0fc",
+          dayColor: verified ? "#1B7A34" : a.state === "completed" ? "#E65100" : "#1565C0",
+          border: verified ? "rgba(27,122,52,0.25)" : "rgba(0,0,0,0.07)",
+          rowBg: verified ? "#f8fdf9" : "#ffffff",
+          stateLabel: verified ? "Hours verified" : a.state === "completed" ? "Submitted" : a.state === "checkedin" ? (m.remote ? "In progress" : "Checked in") : "Joined",
+          chipBg: verified ? "#f0faf3" : a.state === "completed" ? "#fff3e0" : "#e8f0fc",
+          chipColor: verified ? "#1B7A34" : a.state === "completed" ? "#E65100" : "#1565C0",
+          hoursLabel: (verified ? "+" : "") + m.hours + "h",
+          hoursColor: verified ? "#1B7A34" : "#9CA3AF" };
+      }),
+      creds: raw.credentials.map((c) => ({ ...c,
+        statusLabel: c.status === "valid" ? "Valid" : "Revoked",
+        chipBg: c.status === "valid" ? "#f0faf3" : "#fdecec",
+        chipColor: c.status === "valid" ? "#1B7A34" : "#d4183d",
+        verifyHref: "Verify.dc.html?ref=" + encodeURIComponent(c.ref) })),
+      noCredsDisp: raw.credentials.length === 0 ? "block" : "none",
+      certOnDisp: raw.certEnabled ? "flex" : "none",
+      certOffDisp: raw.certEnabled ? "none" : "flex",
+      nextMilestone: target + " hours of service",
+      milestoneW: Math.min(100, Math.round((raw.hours / target) * 100)) + "%",
+      milestoneNote: raw.hours + " of " + target + " hours \u00B7 " + Math.max(0, target - raw.hours) + " to go",
+      signOut: () => { this.gs.claim(null); this.setState({ me: null, q: "" }); },
+      openCert: () => {
+        const now = new Date();
+        const dd = String(now.getDate()).padStart(2, "0"), mm = String(now.getMonth() + 1).padStart(2, "0");
+        try {
+          localStorage.setItem("gs-cert-fields", JSON.stringify({ name: raw.name, program: raw.program,
+            period: "Since " + raw.joinedMonth, hours: raw.hours + " hours",
+            date: dd + " / " + mm + " / " + now.getFullYear(), ref: raw.certRef.replace("GS-VOL-", ""),
+            sign: "", signFont: "'Great Vibes', cursive" }));
+        } catch (e) {}
+        location.href = "Volunteer Certificate.dc.html";
+      },
+      openCard: () => {
+        try {
+          const prev = JSON.parse(localStorage.getItem("gs-social-cards") || "{}");
+          localStorage.setItem("gs-social-cards", JSON.stringify({ ...prev, vName: raw.name, vRole: raw.role, vProgram: raw.program, vQuote: raw.quote.slice(0, 118) }));
+        } catch (e) {}
+        location.href = "Social Cards.dc.html";
+      },
+    };
+  }
+}
+</script>
+</body>
+</html>

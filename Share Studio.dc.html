@@ -1,0 +1,1044 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Goodness Share Studio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600&display=swap" rel="stylesheet">
+<style>
+  html, body { margin: 0; padding: 0; background: #fafafa; font-family: 'Plus Jakarta Sans', sans-serif; }
+  a { color: #1B7A34; } a:hover { color: #4DC86A; }
+  textarea { font-family: 'Plus Jakarta Sans', sans-serif; }
+</style>
+<script src="https://unpkg.com/html-to-image@1.11.11/dist/html-to-image.js"></script>
+</helmet>
+<div data-screen-label="Share Studio" style="color: #0D0D0D; padding-top: 72px; min-height: 100vh; display: flex; flex-direction: column;">
+  <dc-import name="SiteNav" active="printables" hint-size="100%,72px"></dc-import>
+  <section style="background: #ffffff; border-bottom: 1px solid rgba(0,0,0,0.06); padding: 44px 0 36px;">
+    <div style="max-width: 1160px; margin: 0 auto; padding: 0 32px;">
+      <div style="font-size: 11px; font-weight: 800; letter-spacing: 0.14em; color: #1B7A34; margin-bottom: 10px;">GOODNESS SHARE STUDIO</div>
+      <h1 style="margin: 0 0 10px; font-size: 34px; font-weight: 800; letter-spacing: -0.02em;">Every meaningful contribution becomes a shareable story.</h1>
+      <p style="margin: 0 0 18px; font-size: 15px; color: #6B7280; max-width: 640px; line-height: 1.6;">Cards are generated from your verified Goodness record. The numbers are locked &#8212; a Goodness share card is a social claim backed by the platform.</p>
+      <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+        <span style="font-size: 12px; font-weight: 700; color: #1B7A34; background: #f0faf3; border-radius: 999px; padding: 6px 14px;">Verified numbers locked</span>
+        <span style="font-size: 12px; font-weight: 700; color: #1B7A34; background: #f0faf3; border-radius: 999px; padding: 6px 14px;">Goodness Verified &#10003; mark</span>
+        <span style="font-size: 12px; font-weight: 700; color: #1B7A34; background: #f0faf3; border-radius: 999px; padding: 6px 14px;">Square &#183; Story &#183; A4 poster</span>
+        <a href="Social Cards.dc.html" style="color: #0D0D0D; font-size: 12px; font-weight: 700; text-decoration: none; background: #fafafa; border: 1px solid rgba(0,0,0,0.1); border-radius: 999px; padding: 6px 14px;">Classic photo cards &#8594;</a>
+      </div>
+    </div>
+  </section>
+
+  <sc-if value="{{ needSignIn }}" hint-placeholder-val="{{ false }}">
+    <section style="max-width: 760px; margin: 48px auto; padding: 0 32px; width: 100%; box-sizing: border-box;">
+      <div style="background: #ffffff; border: 1px solid rgba(0,0,0,0.08); border-radius: 20px; padding: 36px;">
+        <h2 style="margin: 0 0 6px; font-size: 20px; font-weight: 800;">Who are you?</h2>
+        <p style="margin: 0 0 22px; font-size: 14px; color: #6B7280;">Sign in to generate cards from your own verified record. (Prototype sign-in &#8212; pick yourself from the member directory.)</p>
+        <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 10px;">
+          <sc-for list="{{ signInList }}" as="p" hint-placeholder-count="6">
+            <button onClick="{{ p.pick }}" style="display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: 12px; border: 1px solid rgba(0,0,0,0.08); background: #fafafa; cursor: pointer; font-family: inherit; text-align: left;" style-hover="border-color: #1B7A34; background: #f0faf3;">
+              <span style="width: 34px; height: 34px; border-radius: 28%; background: {{ p.grad }}; color: #ffffff; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 800; flex-shrink: 0;">{{ p.initials }}</span>
+              <span style="display: flex; flex-direction: column; min-width: 0;">
+                <span style="font-size: 13px; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">{{ p.name }}</span>
+                <span style="font-size: 11px; color: #6B7280;">{{ p.city }}</span>
+              </span>
+            </button>
+          </sc-for>
+        </div>
+      </div>
+    </section>
+  </sc-if>
+
+  <sc-if value="{{ ready }}" hint-placeholder-val="{{ false }}">
+    <section style="max-width: 1160px; margin: 36px auto 72px; padding: 0 32px; width: 100%; box-sizing: border-box; display: grid; grid-template-columns: 340px minmax(0, 1fr); gap: 28px; align-items: start;">
+      <div style="display: flex; flex-direction: column; gap: 16px; position: sticky; top: 16px; max-height: calc(100vh - 32px); overflow-y: auto; overscroll-behavior: contain; padding-right: 4px; scrollbar-width: thin;">
+        <div style="background: #ffffff; border: 1px solid rgba(0,0,0,0.08); border-radius: 16px; padding: 16px; display: flex; align-items: center; gap: 12px;">
+          <span style="width: 40px; height: 40px; border-radius: 28%; background: {{ meGrad }}; color: #ffffff; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 800; flex-shrink: 0;">{{ meInitials }}</span>
+          <div style="min-width: 0; flex: 1;">
+            <div style="font-size: 14px; font-weight: 800; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">{{ meName }}</div>
+            <div style="font-size: 12px; color: #6B7280;">{{ meLine }}</div>
+          </div>
+          <button onClick="{{ switchUser }}" style="border: 1px solid rgba(0,0,0,0.1); background: #fafafa; border-radius: 999px; padding: 6px 12px; font-size: 11px; font-weight: 700; cursor: pointer; font-family: inherit;">Switch</button>
+        </div>
+        <div style="position: sticky; top: 10px; z-index: 40; background: rgba(255,255,255,0.95); backdrop-filter: blur(10px); border: 1px solid rgba(0,0,0,0.08); border-radius: 16px; padding: 8px; display: flex; flex-wrap: wrap; gap: 4px; box-shadow: 0 4px 16px rgba(13,13,13,0.06);">
+          <sc-for list="{{ navChips }}" as="n" hint-placeholder-count="8">
+            <button onClick="{{ n.go }}" style="border: none; background: transparent; border-radius: 999px; padding: 7px 12px; font-size: 11.5px; font-weight: 700; color: #374151; cursor: pointer; font-family: inherit;" style-hover="background: #F0FDF4; color: #1B7A34;">{{ n.label }}</button>
+          </sc-for>
+        </div>
+        <div style="background: #ffffff; border: 1px solid rgba(0,0,0,0.08); border-radius: 16px; padding: 20px;">
+          <div id="nav-rec" style="font-size: 11px; font-weight: 800; letter-spacing: 0.12em; color: #1B7A34; margin-bottom: 12px;">RECOMMENDED FOR YOU</div>
+          <div style="display: flex; flex-direction: column; gap: 8px;">
+            <sc-for list="{{ recommended }}" as="r" hint-placeholder-count="3">
+              <button onClick="{{ r.pick }}" style="display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 11px 14px; border-radius: 12px; border: 1px solid {{ r.border }}; background: {{ r.bg }}; cursor: pointer; font-family: inherit; text-align: left;">
+                <span style="font-size: 13px; font-weight: 700; color: #0D0D0D;">{{ r.name }}</span>
+                <span style="font-size: 11px; font-weight: 800; color: #1B7A34; flex-shrink: 0;">Create &#8594;</span>
+              </button>
+            </sc-for>
+          </div>
+        </div>
+        <div style="background: #ffffff; border: 1px solid rgba(0,0,0,0.08); border-radius: 16px; padding: 20px;">
+          <div id="nav-journey" style="font-size: 11px; font-weight: 800; letter-spacing: 0.12em; color: #6B7280; margin-bottom: 12px;">MY JOURNEY</div>
+          <div style="display: flex; flex-direction: column; gap: 6px;">
+            <sc-for list="{{ journeyList }}" as="c" hint-placeholder-count="8">
+              <button onClick="{{ c.pick }}" disabled="{{ c.locked }}" style="display: flex; flex-direction: column; gap: 2px; padding: 10px 14px; border-radius: 12px; border: 1px solid {{ c.border }}; background: {{ c.bg }}; cursor: {{ c.cursor }}; font-family: inherit; text-align: left; opacity: {{ c.opacity }};">
+                <span style="display: flex; align-items: center; justify-content: space-between; gap: 8px; width: 100%;">
+                  <span style="font-size: 13px; font-weight: 700; color: #0D0D0D;">{{ c.name }}</span>
+                  <span style="font-size: 10px; font-weight: 800; letter-spacing: 0.08em; color: {{ c.tagColor }}; flex-shrink: 0;">{{ c.tag }}</span>
+                </span>
+                <span style="font-size: 11px; color: #9CA3AF;">{{ c.sub }}</span>
+              </button>
+            </sc-for>
+          </div>
+        </div>
+        <div style="background: #ffffff; border: 1px solid rgba(0,0,0,0.08); border-radius: 16px; padding: 20px;">
+          <div id="nav-giving" style="font-size: 11px; font-weight: 800; letter-spacing: 0.12em; color: #6B7280; margin-bottom: 4px;">MEMBER &amp; GIVING</div>
+          <div style="font-size: 12px; color: #9CA3AF; margin-bottom: 12px;">Amounts never appear on these cards &#8212; the commitment is what counts.</div>
+          <div style="display: flex; flex-direction: column; gap: 6px;">
+            <sc-for list="{{ givingList }}" as="c" hint-placeholder-count="3">
+              <button onClick="{{ c.pick }}" disabled="{{ c.locked }}" style="display: flex; flex-direction: column; gap: 2px; padding: 10px 14px; border-radius: 12px; border: 1px solid {{ c.border }}; background: {{ c.bg }}; cursor: {{ c.cursor }}; font-family: inherit; text-align: left; opacity: {{ c.opacity }};">
+                <span style="display: flex; align-items: center; justify-content: space-between; gap: 8px; width: 100%;">
+                  <span style="font-size: 13px; font-weight: 700; color: #0D0D0D;">{{ c.name }}</span>
+                  <span style="font-size: 10px; font-weight: 800; letter-spacing: 0.08em; color: {{ c.tagColor }}; flex-shrink: 0;">{{ c.tag }}</span>
+                </span>
+                <span style="font-size: 11px; color: #9CA3AF;">{{ c.sub }}</span>
+              </button>
+            </sc-for>
+          </div>
+        </div>
+        <div style="background: #ffffff; border: 1px solid rgba(0,0,0,0.08); border-radius: 16px; padding: 20px;">
+          <div id="nav-chapter" style="font-size: 11px; font-weight: 800; letter-spacing: 0.12em; color: #6B7280; margin-bottom: 4px;">MY CHAPTER &amp; NETWORK</div>
+          <div style="font-size: 12px; color: #9CA3AF; margin-bottom: 12px;">Chapter pride, leadership, launches and national milestones &#8212; all counted live from the network.</div>
+          <div style="display: flex; flex-direction: column; gap: 6px; margin-bottom: 0;">
+            <sc-for list="{{ chapterList }}" as="c" hint-placeholder-count="5">
+              <button onClick="{{ c.pick }}" disabled="{{ c.locked }}" style="display: flex; flex-direction: column; gap: 2px; padding: 10px 14px; border-radius: 12px; border: 1px solid {{ c.border }}; background: {{ c.bg }}; cursor: {{ c.cursor }}; font-family: inherit; text-align: left; opacity: {{ c.opacity }};">
+                <span style="display: flex; align-items: center; justify-content: space-between; gap: 8px; width: 100%;">
+                  <span style="font-size: 13px; font-weight: 700; color: #0D0D0D;">{{ c.name }}</span>
+                  <span style="font-size: 10px; font-weight: 800; letter-spacing: 0.08em; color: {{ c.tagColor }}; flex-shrink: 0;">{{ c.tag }}</span>
+                </span>
+                <span style="font-size: 11px; color: #9CA3AF;">{{ c.sub }}</span>
+              </button>
+            </sc-for>
+          </div>
+        </div>
+        <div style="background: #ffffff; border: 1px solid rgba(0,0,0,0.08); border-radius: 16px; padding: 20px;">
+          <div id="nav-impact" style="font-size: 11px; font-weight: 800; letter-spacing: 0.12em; color: #6B7280; margin-bottom: 4px;">IMPACT &amp; TRUST</div>
+          <div style="font-size: 12px; color: #9CA3AF; margin-bottom: 12px;">What happened afterward &#8212; published records, verified outcomes, and where the money went.</div>
+          <div style="display: flex; flex-direction: column; gap: 6px; margin-bottom: 0;">
+            <sc-for list="{{ impactList }}" as="c" hint-placeholder-count="5">
+              <button onClick="{{ c.pick }}" disabled="{{ c.locked }}" style="display: flex; flex-direction: column; gap: 2px; padding: 10px 14px; border-radius: 12px; border: 1px solid {{ c.border }}; background: {{ c.bg }}; cursor: {{ c.cursor }}; font-family: inherit; text-align: left; opacity: {{ c.opacity }};">
+                <span style="display: flex; align-items: center; justify-content: space-between; gap: 8px; width: 100%;">
+                  <span style="font-size: 13px; font-weight: 700; color: #0D0D0D;">{{ c.name }}</span>
+                  <span style="font-size: 10px; font-weight: 800; letter-spacing: 0.08em; color: {{ c.tagColor }}; flex-shrink: 0;">{{ c.tag }}</span>
+                </span>
+                <span style="font-size: 11px; color: #9CA3AF;">{{ c.sub }}</span>
+              </button>
+            </sc-for>
+          </div>
+        </div>
+        <div style="background: #ffffff; border: 1px solid rgba(0,0,0,0.08); border-radius: 16px; padding: 20px;">
+          <div id="nav-org" style="font-size: 11px; font-weight: 800; letter-spacing: 0.12em; color: #6B7280; margin-bottom: 4px;">MISSIONS &amp; FUNDING</div>
+          <div style="font-size: 12px; color: #9CA3AF; margin-bottom: 12px;">Recruitment posters and funding cards, generated from live OS data &#8212; each type has its own look. Recruitment and funding support the A4 poster format for print.</div>
+          <div style="display: flex; flex-direction: column; gap: 6px;">
+            <sc-for list="{{ orgList }}" as="c" hint-placeholder-count="6">
+              <button onClick="{{ c.pick }}" disabled="{{ c.locked }}" style="display: flex; flex-direction: column; gap: 2px; padding: 10px 14px; border-radius: 12px; border: 1px solid {{ c.border }}; background: {{ c.bg }}; cursor: {{ c.cursor }}; font-family: inherit; text-align: left; opacity: {{ c.opacity }};">
+                <span style="display: flex; align-items: center; justify-content: space-between; gap: 8px; width: 100%;">
+                  <span style="font-size: 13px; font-weight: 700; color: #0D0D0D;">{{ c.name }}</span>
+                  <span style="font-size: 10px; font-weight: 800; letter-spacing: 0.08em; color: {{ c.tagColor }}; flex-shrink: 0;">{{ c.tag }}</span>
+                </span>
+                <span style="font-size: 11px; color: #9CA3AF;">{{ c.sub }}</span>
+              </button>
+            </sc-for>
+          </div>
+        </div>
+        <div style="background: #ffffff; border: 1px solid rgba(0,0,0,0.08); border-radius: 16px; padding: 20px;">
+          <div id="nav-partner" style="font-size: 11px; font-weight: 800; letter-spacing: 0.12em; color: #6B7280; margin-bottom: 4px;">PARTNERS</div>
+          <div style="font-size: 12px; color: #9CA3AF; margin-bottom: 12px;">Partnership announcements, shared-impact milestones, employee volunteering and anniversaries &#8212; figures pull live from the Partner Room.</div>
+          <div style="display: flex; flex-direction: column; gap: 6px;">
+            <sc-for list="{{ partnerList }}" as="c" hint-placeholder-count="6">
+              <button onClick="{{ c.pick }}" disabled="{{ c.locked }}" style="display: flex; flex-direction: column; gap: 2px; padding: 10px 14px; border-radius: 12px; border: 1px solid {{ c.border }}; background: {{ c.bg }}; cursor: {{ c.cursor }}; font-family: inherit; text-align: left; opacity: {{ c.opacity }};">
+                <span style="display: flex; align-items: center; justify-content: space-between; gap: 8px; width: 100%;">
+                  <span style="font-size: 13px; font-weight: 700; color: #0D0D0D;">{{ c.name }}</span>
+                  <span style="font-size: 10px; font-weight: 800; letter-spacing: 0.08em; color: {{ c.tagColor }}; flex-shrink: 0;">{{ c.tag }}</span>
+                </span>
+                <span style="font-size: 11px; color: #9CA3AF;">{{ c.sub }}</span>
+              </button>
+            </sc-for>
+          </div>
+        </div>
+        <div style="background: #ffffff; border: 1px solid rgba(0,0,0,0.08); border-radius: 16px; padding: 20px;">
+          <div id="nav-digest" style="font-size: 11px; font-weight: 800; letter-spacing: 0.12em; color: #6B7280; margin-bottom: 4px;">WEEKLY &amp; MONTHLY DIGESTS</div>
+          <div style="font-size: 12px; color: #9CA3AF; margin-bottom: 12px;">Recurring recap posts the OS writes itself &#8212; nobody hand-counts numbers on a Friday.</div>
+          <div style="display: flex; flex-direction: column; gap: 6px;">
+            <sc-for list="{{ digestList }}" as="c" hint-placeholder-count="2">
+              <button onClick="{{ c.pick }}" disabled="{{ c.locked }}" style="display: flex; flex-direction: column; gap: 2px; padding: 10px 14px; border-radius: 12px; border: 1px solid {{ c.border }}; background: {{ c.bg }}; cursor: {{ c.cursor }}; font-family: inherit; text-align: left; opacity: {{ c.opacity }};">
+                <span style="display: flex; align-items: center; justify-content: space-between; gap: 8px; width: 100%;">
+                  <span style="font-size: 13px; font-weight: 700; color: #0D0D0D;">{{ c.name }}</span>
+                  <span style="font-size: 10px; font-weight: 800; letter-spacing: 0.08em; color: {{ c.tagColor }}; flex-shrink: 0;">{{ c.tag }}</span>
+                </span>
+                <span style="font-size: 11px; color: #9CA3AF;">{{ c.sub }}</span>
+              </button>
+            </sc-for>
+          </div>
+        </div>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 16px; min-width: 0;">
+        <div style="display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap;">
+          <div style="display: flex; gap: 6px; background: #ffffff; border: 1px solid rgba(0,0,0,0.08); border-radius: 999px; padding: 4px;">
+            <button onClick="{{ fmtSquare }}" style="border: none; border-radius: 999px; padding: 7px 16px; font-size: 12px; font-weight: 700; cursor: pointer; font-family: inherit; background: {{ sqBg }}; color: {{ sqFg }};">Square 1080</button>
+            <button onClick="{{ fmtStory }}" style="border: none; border-radius: 999px; padding: 7px 16px; font-size: 12px; font-weight: 700; cursor: pointer; font-family: inherit; background: {{ stBg }}; color: {{ stFg }};">Story 1080&#215;1920</button>
+            <sc-if value="{{ a4Avail }}" hint-placeholder-val="{{ false }}">
+              <button onClick="{{ fmtA4 }}" style="border: none; border-radius: 999px; padding: 7px 16px; font-size: 12px; font-weight: 700; cursor: pointer; font-family: inherit; background: {{ a4Bg }}; color: {{ a4Fg }};">A4 poster</button>
+            </sc-if>
+          </div>
+          <button onClick="{{ download }}" style="display: flex; align-items: center; gap: 8px; padding: 11px 26px; border-radius: 999px; border: none; color: #ffffff; font-size: 13px; font-weight: 700; cursor: pointer; font-family: inherit; background: linear-gradient(135deg, #4DC86A 0%, #1B7A34 100%);">{{ dlLabel }}</button>
+        </div>
+
+        <div style="background: #f4f5f7; border: 1px solid rgba(0,0,0,0.06); border-radius: 20px; padding: 28px; display: flex; justify-content: center;">
+          <div style="width: {{ boxW }}px; height: {{ boxH }}px; flex-shrink: 0;">
+            <div style="transform: scale({{ pv }}); transform-origin: top left;">
+              <div id="gs-card" style="width: 540px; height: {{ cardH }}px; box-sizing: border-box; padding: 44px; background: {{ cardBg }}; color: {{ cardFg }}; font-family: 'Plus Jakarta Sans', sans-serif; display: flex; flex-direction: column; justify-content: space-between; position: relative; overflow: hidden;">
+                <div style="position: absolute; top: -70px; right: -70px; width: 280px; height: 280px; border: 2px solid {{ motif }}; border-radius: 28%; pointer-events: none;"></div>
+                <div style="display: flex; align-items: center; gap: 12px; position: relative;">
+                  <span style="width: 40px; height: 40px; border-radius: 28%; background: {{ tileBg }}; color: {{ tileFg }}; display: flex; align-items: center; justify-content: center; font-size: 19px; font-weight: 800;">G</span>
+                  <span style="font-size: 15px; letter-spacing: -0.01em;"><span style="font-weight: 300;">Goodness</span> <span style="font-weight: 800;">Society</span></span>
+                </div>
+                <sc-if value="{{ isUrgent }}" hint-placeholder-val="{{ false }}">
+                  <div style="position: absolute; top: 0; left: 0; right: 0; height: 14px; background: repeating-linear-gradient(-45deg, #FF7A28 0 16px, #0D0D0D 16px 32px);"></div>
+                  <div style="position: absolute; bottom: 0; left: 0; right: 0; height: 14px; background: repeating-linear-gradient(-45deg, #FF7A28 0 16px, #0D0D0D 16px 32px);"></div>
+                </sc-if>
+                <sc-if value="{{ isRecruit }}" hint-placeholder-val="{{ false }}">
+                  <div style="display: flex; flex-direction: column; gap: 14px; position: relative; padding: 20px 0 0;">
+                    <div style="border-top: 3px solid #141410; border-bottom: 1px solid #141410; padding: 3px 0;"></div>
+                    <div style="font-size: 62px; font-weight: 800; line-height: 0.98; letter-spacing: -0.03em;">{{ stack1 }}<br><span style="color: #1B7A34;">{{ stack2 }}</span></div>
+                    <div style="font-size: 25px; font-weight: 800; line-height: 1.15; letter-spacing: -0.01em; text-wrap: pretty;">{{ title }}</div>
+                    <div style="font-size: 14px; font-weight: 600; color: {{ cardSub }};">{{ meta }}</div>
+                    <div style="display: flex; flex-direction: column; gap: 7px; padding-top: 2px;">
+                      <sc-for list="{{ rolesList }}" as="r" hint-placeholder-count="3">
+                        <div style="display: flex; align-items: center; gap: 10px;">
+                          <span style="min-width: 44px; text-align: center; font-size: 13px; font-weight: 800; background: #1B7A34; color: #ffffff; border-radius: 8px; padding: 4px 8px;">{{ r.n }}</span>
+                          <span style="font-size: 16px; font-weight: 700;">{{ r.r }}</span>
+                        </div>
+                      </sc-for>
+                    </div>
+                    <div style="margin: 6px -44px 0; background: #141410; color: #F6F3EA; padding: 16px 44px; display: flex; align-items: center; justify-content: space-between; gap: 12px;">
+                      <span style="font-size: 15px; font-weight: 800;">{{ band1 }}</span>
+                      <span style="font-size: 13px; font-weight: 700; color: #4DC86A;">{{ band2 }}</span>
+                    </div>
+                  </div>
+                </sc-if>
+                <sc-if value="{{ isUrgent }}" hint-placeholder-val="{{ false }}">
+                  <div style="display: flex; flex-direction: column; gap: 14px; position: relative; padding: 20px 0;">
+                    <div style="font-size: 15px; font-weight: 800; letter-spacing: 0.2em; color: #FF7A28;">{{ eyebrow }}</div>
+                    <div>
+                      <div style="font-size: 132px; font-weight: 800; line-height: 0.9; letter-spacing: -0.04em; color: #FF7A28;">{{ giant }}</div>
+                      <div style="font-size: 19px; font-weight: 800; letter-spacing: 0.16em; margin-top: 8px;">{{ giantUnit }}</div>
+                    </div>
+                    <div style="font-size: 27px; font-weight: 800; line-height: 1.12; letter-spacing: -0.01em; text-wrap: pretty;">{{ title }}</div>
+                    <div style="font-size: 14px; font-weight: 600; color: {{ cardSub }};">{{ meta }}</div>
+                    <div style="align-self: flex-start; font-size: 16px; font-weight: 800; padding: 10px 20px; border: 2px solid #FF7A28; border-radius: 10px; color: #ffffff;">{{ band1 }}</div>
+                    <div style="font-size: 13px; font-weight: 700; color: #FF7A28;">{{ band2 }}</div>
+                  </div>
+                </sc-if>
+                <sc-if value="{{ isFund }}" hint-placeholder-val="{{ false }}">
+                  <div style="display: flex; flex-direction: column; gap: 13px; position: relative; padding: 20px 0;">
+                    <div style="font-size: 13px; font-weight: 800; letter-spacing: 0.16em; color: rgba(255,255,255,0.85);">{{ eyebrow }}</div>
+                    <div style="font-size: 27px; font-weight: 800; line-height: 1.12; letter-spacing: -0.01em; text-wrap: pretty;">{{ title }}</div>
+                    <div>
+                      <div style="font-size: 92px; font-weight: 800; line-height: 0.95; letter-spacing: -0.03em;">{{ giant }}</div>
+                      <div style="font-size: 17px; font-weight: 800; letter-spacing: 0.16em; margin-top: 6px;">{{ giantUnit }}</div>
+                    </div>
+                    <div>
+                      <div style="height: 14px; border-radius: 999px; background: rgba(255,255,255,0.22); overflow: hidden;"><div style="height: 100%; width: {{ barPct }}; background: #ffffff; border-radius: 999px;"></div></div>
+                      <div style="display: flex; justify-content: space-between; gap: 10px; margin-top: 7px; font-size: 13px; font-weight: 700; color: rgba(255,255,255,0.85);"><span>{{ money1 }}</span><span>{{ pctLive }}</span></div>
+                    </div>
+                    <div style="display: flex; flex-direction: column; gap: 5px;">
+                      <sc-for list="{{ expectedList }}" as="e" hint-placeholder-count="3">
+                        <div style="display: flex; gap: 8px; font-size: 13.5px; font-weight: 600; color: rgba(255,255,255,0.9);"><span>&#10003;</span><span>{{ e.t }}</span></div>
+                      </sc-for>
+                    </div>
+                    <div style="align-self: flex-start; font-size: 14px; font-weight: 800; background: #ffffff; color: #1565C0; border-radius: 999px; padding: 10px 22px;">{{ band2 }}</div>
+                  </div>
+                </sc-if>
+                <sc-if value="{{ isPct }}" hint-placeholder-val="{{ false }}">
+                  <div style="display: flex; flex-direction: column; gap: 15px; position: relative; padding: 20px 0;">
+                    <div style="font-size: 13px; font-weight: 800; letter-spacing: 0.16em; color: #1565C0;">{{ eyebrow }}</div>
+                    <div style="display: flex; align-items: center; gap: 24px;">
+                      <div style="width: 168px; height: 168px; border-radius: 50%; background: {{ donutBg }}; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                        <div style="width: 118px; height: 118px; border-radius: 50%; background: #ffffff; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                          <span style="font-size: 34px; font-weight: 800; color: #1565C0; letter-spacing: -0.02em;">{{ giant }}</span>
+                          <span style="font-size: 10px; font-weight: 800; letter-spacing: 0.16em; color: #6B7280;">{{ giantUnit }}</span>
+                        </div>
+                      </div>
+                      <div style="display: flex; flex-direction: column; gap: 8px; min-width: 0;">
+                        <div style="font-size: 23px; font-weight: 800; line-height: 1.15; letter-spacing: -0.01em; text-wrap: pretty;">{{ title }}</div>
+                        <div style="font-size: 15px; font-weight: 700; color: #1565C0;">{{ money1 }}</div>
+                        <div style="font-size: 15px; font-weight: 700; color: #6B7280;">{{ money2 }}</div>
+                      </div>
+                    </div>
+                    <div style="font-size: 19px; font-weight: 800; letter-spacing: -0.01em;">{{ statement }}</div>
+                  </div>
+                </sc-if>
+                <sc-if value="{{ isFunded }}" hint-placeholder-val="{{ false }}">
+                  <div style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 14px; position: relative; padding: 20px 0;">
+                    <div style="width: 104px; height: 104px; border-radius: 50%; background: #ffffff; display: flex; align-items: center; justify-content: center;">
+                      <svg width="46" height="46" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17L4 12" stroke="#1B7A34" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                    </div>
+                    <div style="font-size: 46px; font-weight: 800; letter-spacing: 0.02em;">FULLY FUNDED</div>
+                    <div style="font-size: 21px; font-weight: 700; line-height: 1.3; max-width: 400px; text-wrap: pretty;">Together, we funded {{ title }}.</div>
+                    <div style="font-size: 14.5px; line-height: 1.5; font-weight: 500; color: rgba(255,255,255,0.85); max-width: 380px; text-wrap: pretty;">{{ statement }}</div>
+                  </div>
+                </sc-if>
+                <sc-if value="{{ isImpactPub }}" hint-placeholder-val="{{ false }}">
+                  <div style="display: flex; flex-direction: column; gap: 12px; position: relative; padding: 10px 0 0;">
+                    <div style="font-size: 26px; font-weight: 800; letter-spacing: 0.06em; border-bottom: 3px solid #0D0D0D; padding-bottom: 10px;">{{ eyebrow }}</div>
+                    <div>
+                      <div style="font-size: 24px; font-weight: 800; letter-spacing: -0.01em; line-height: 1.15;">{{ title }}</div>
+                      <div style="font-size: 12.5px; font-weight: 600; color: #6B7280; margin-top: 4px;">{{ meta }}</div>
+                    </div>
+                    <div style="display: flex; flex-direction: column;">
+                      <sc-for list="{{ rowsList }}" as="r" hint-placeholder-count="4">
+                        <div style="display: flex; align-items: baseline; gap: 12px; padding: 9px 0; border-top: 1px solid rgba(0,0,0,0.1);">
+                          <span style="font-size: 30px; font-weight: 800; letter-spacing: -0.02em; min-width: 76px;">{{ r.v }}</span>
+                          <span style="font-size: 14px; font-weight: 600; color: #374151; flex: 1;">{{ r.l }}</span>
+                          <sc-if value="{{ r.hasBasis }}" hint-placeholder-val="{{ false }}">
+                            <span style="font-size: 9px; font-weight: 800; letter-spacing: 0.08em; color: #1B7A34; background: #f0faf3; border-radius: 999px; padding: 4px 9px; flex-shrink: 0;">{{ r.basis }}</span>
+                          </sc-if>
+                        </div>
+                      </sc-for>
+                    </div>
+                    <div style="align-self: flex-start; font-size: 13px; font-weight: 800; color: #1565C0;">{{ band2 }}</div>
+                  </div>
+                </sc-if>
+                <sc-if value="{{ isOutcome }}" hint-placeholder-val="{{ false }}">
+                  <div style="display: flex; flex-direction: column; gap: 14px; position: relative; padding: 16px 0;">
+                    <div style="font-size: 13px; font-weight: 800; letter-spacing: 0.2em; color: {{ accent }};">{{ eyebrow }}</div>
+                    <div>
+                      <div style="font-size: 108px; font-weight: 800; line-height: 0.95; letter-spacing: -0.04em;">{{ giant }}</div>
+                      <div style="font-size: 21px; font-weight: 800; letter-spacing: 0.1em; margin-top: 8px; max-width: 420px; line-height: 1.3;">{{ giantUnit }}</div>
+                    </div>
+                    <div style="font-size: 16px; font-weight: 700; color: rgba(255,255,255,0.9);">{{ title }}</div>
+                    <div style="align-self: flex-start; font-size: 12px; font-weight: 800; letter-spacing: 0.08em; padding: 8px 16px; border-radius: 999px; background: rgba(255,255,255,0.16); color: #ffffff;">{{ chip }}</div>
+                    <div style="font-size: 13px; line-height: 1.5; color: {{ cardSub }}; max-width: 400px; text-wrap: pretty;">{{ statement }}</div>
+                  </div>
+                </sc-if>
+                <sc-if value="{{ isEvidence }}" hint-placeholder-val="{{ false }}">
+                  <div style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 12px; position: relative; padding: 8px 0 0;">
+                    <div style="width: 92px; height: 92px; border-radius: 50%; border: 4px solid #1B7A34; display: flex; flex-direction: column; align-items: center; justify-content: center; color: #1B7A34;">
+                      <span style="font-size: 30px; font-weight: 800; line-height: 1;">&#10003;</span>
+                      <span style="font-size: 14px; font-weight: 800;">{{ giant }}</span>
+                    </div>
+                    <div style="font-size: 15px; font-weight: 800; letter-spacing: 0.18em; color: #1B7A34;">{{ eyebrow }}</div>
+                    <div>
+                      <div style="font-size: 23px; font-weight: 800; letter-spacing: -0.01em; line-height: 1.15;">{{ title }}</div>
+                      <div style="font-size: 12.5px; font-weight: 600; color: #6B7280; margin-top: 4px;">{{ meta }}</div>
+                    </div>
+                    <div style="display: flex; flex-direction: column; gap: 4px; align-items: flex-start; margin: 0 auto;">
+                      <sc-for list="{{ expectedList }}" as="e" hint-placeholder-count="4">
+                        <div style="display: flex; gap: 8px; font-size: 13px; font-weight: 600; color: #374151;"><span style="color: #1B7A34;">&#10003;</span><span>{{ e.t }}</span></div>
+                      </sc-for>
+                    </div>
+                    <div style="font-size: 13px; font-weight: 800; color: #1565C0;">{{ band2 }}</div>
+                  </div>
+                </sc-if>
+                <sc-if value="{{ isDuo }}" hint-placeholder-val="{{ false }}">
+                  <div style="display: flex; flex-direction: column; gap: 13px; position: relative; padding: 10px 0 0;">
+                    <div style="font-size: 13px; font-weight: 800; letter-spacing: 0.18em; color: {{ accent }};">{{ eyebrow }}</div>
+                    <sc-if value="{{ giant }}" hint-placeholder-val="{{ false }}">
+                      <div>
+                        <div style="font-size: 82px; font-weight: 800; line-height: 0.95; letter-spacing: -0.03em;">{{ giant }}</div>
+                        <div style="font-size: 17px; font-weight: 800; letter-spacing: 0.12em; margin-top: 8px; max-width: 430px; line-height: 1.3;">{{ giantUnit }}</div>
+                      </div>
+                    </sc-if>
+                    <sc-if value="{{ title }}" hint-placeholder-val="{{ false }}">
+                      <div style="font-size: 32px; font-weight: 800; line-height: 1.12; letter-spacing: -0.02em; text-wrap: pretty;">{{ title }}</div>
+                    </sc-if>
+                    <sc-if value="{{ line1 }}" hint-placeholder-val="{{ false }}">
+                      <div style="font-size: 14.5px; font-weight: 700; color: {{ cardSub }};">{{ line1 }}</div>
+                    </sc-if>
+                    <sc-if value="{{ chip }}" hint-placeholder-val="{{ false }}">
+                      <div style="align-self: flex-start; font-size: 12px; font-weight: 800; letter-spacing: 0.06em; padding: 8px 16px; border-radius: 999px; border: 1.5px solid {{ accent }}; color: {{ accent }};">{{ chip }}</div>
+                    </sc-if>
+                    <div style="display: flex; gap: 26px;">
+                      <sc-for list="{{ stats }}" as="s" hint-placeholder-count="0">
+                        <div>
+                          <div style="font-size: 30px; font-weight: 800; letter-spacing: -0.02em;">{{ s.v }}</div>
+                          <div style="font-size: 9px; font-weight: 800; letter-spacing: 0.1em; color: {{ cardSub }}; margin-top: 2px; max-width: 120px; line-height: 1.35;">{{ s.l }}</div>
+                        </div>
+                      </sc-for>
+                    </div>
+                    <sc-if value="{{ statement }}" hint-placeholder-val="{{ false }}">
+                      <div style="font-size: 13px; line-height: 1.5; color: {{ cardSub }}; max-width: 410px; text-wrap: pretty;">{{ statement }}</div>
+                    </sc-if>
+                    <sc-if value="{{ band2 }}" hint-placeholder-val="{{ false }}">
+                      <div style="align-self: flex-start; font-size: 13.5px; font-weight: 800; background: {{ tileBg }}; color: {{ tileFg }}; border-radius: 999px; padding: 9px 18px;">{{ band2 }}</div>
+                    </sc-if>
+                  </div>
+                </sc-if>
+                <sc-if value="{{ isDigest }}" hint-placeholder-val="{{ false }}">
+                  <div style="display: flex; flex-direction: column; gap: 13px; position: relative; padding: 8px 0 0;">
+                    <div style="border-top: 3px solid currentColor; border-bottom: 1px solid currentColor; padding: 8px 0 9px;">
+                      <div style="font-size: 27px; font-weight: 800; letter-spacing: -0.01em;">{{ eyebrow }}</div>
+                    </div>
+                    <div style="font-size: 12.5px; font-weight: 700; color: {{ cardSub }};">{{ meta }}</div>
+                    <sc-if value="{{ title }}" hint-placeholder-val="{{ false }}">
+                      <div style="font-size: 21px; font-weight: 800; line-height: 1.2; letter-spacing: -0.01em; text-wrap: pretty; border-left: 4px solid {{ accent }}; padding-left: 14px;">{{ title }}</div>
+                    </sc-if>
+                    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px 20px;">
+                      <sc-for list="{{ stats }}" as="s" hint-placeholder-count="6">
+                        <div style="border-top: 1px solid rgba(128,128,128,0.35); padding-top: 7px;">
+                          <div style="font-size: 31px; font-weight: 800; letter-spacing: -0.02em;">{{ s.v }}</div>
+                          <div style="font-size: 9.5px; font-weight: 800; letter-spacing: 0.1em; color: {{ cardSub }}; margin-top: 2px; line-height: 1.35;">{{ s.l }}</div>
+                        </div>
+                      </sc-for>
+                    </div>
+                    <sc-if value="{{ statement }}" hint-placeholder-val="{{ false }}">
+                      <div style="font-size: 12.5px; line-height: 1.5; color: {{ cardSub }};">{{ statement }}</div>
+                    </sc-if>
+                  </div>
+                </sc-if>
+                <sc-if value="{{ isYear }}" hint-placeholder-val="{{ false }}">
+                  <div style="display: flex; flex-direction: column; gap: 9px; position: relative; padding: 0;">
+                    <div style="font-size: 13px; font-weight: 800; letter-spacing: 0.2em; color: {{ accent }};">{{ eyebrow }}</div>
+                    <div style="font-size: 84px; font-weight: 800; line-height: 0.9; letter-spacing: -0.05em;">{{ giant }}</div>
+                    <div style="font-size: 24px; font-weight: 800; letter-spacing: -0.01em; line-height: 1.15; text-wrap: pretty;">{{ title }}</div>
+                    <sc-if value="{{ meta }}" hint-placeholder-val="{{ false }}">
+                      <div style="font-size: 13.5px; font-weight: 700; color: {{ cardSub }};">{{ meta }}</div>
+                    </sc-if>
+                    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 9px 14px; padding-top: 2px;">
+                      <sc-for list="{{ stats }}" as="s" hint-placeholder-count="6">
+                        <div style="border-top: 1px solid rgba(128,128,128,0.4); padding-top: 6px;">
+                          <div style="font-size: 23px; font-weight: 800; letter-spacing: -0.02em;">{{ s.v }}</div>
+                          <div style="font-size: 8.5px; font-weight: 800; letter-spacing: 0.09em; color: {{ cardSub }}; margin-top: 2px; line-height: 1.35;">{{ s.l }}</div>
+                        </div>
+                      </sc-for>
+                    </div>
+                    <sc-if value="{{ statement }}" hint-placeholder-val="{{ false }}">
+                      <div style="font-size: 12.5px; line-height: 1.5; color: {{ cardSub }}; max-width: 420px; text-wrap: pretty;">{{ statement }}</div>
+                    </sc-if>
+                  </div>
+                </sc-if>
+                <sc-if value="{{ isMoney }}" hint-placeholder-val="{{ false }}">
+                  <div style="display: flex; flex-direction: column; gap: 12px; position: relative; padding: 12px 0 0;">
+                    <div style="font-size: 14px; font-weight: 800; letter-spacing: 0.2em; color: {{ accent }};">{{ eyebrow }}</div>
+                    <div style="font-size: 27px; font-weight: 800; letter-spacing: -0.01em;">{{ title }}</div>
+                    <div style="display: flex; flex-direction: column;">
+                      <sc-for list="{{ rowsList }}" as="r" hint-placeholder-count="3">
+                        <div style="display: flex; align-items: baseline; gap: 14px; padding: 12px 0; border-top: 1px solid rgba(255,255,255,0.2);">
+                          <span style="font-size: 38px; font-weight: 800; letter-spacing: -0.02em; min-width: 128px;">{{ r.v }}</span>
+                          <span style="font-size: 12px; font-weight: 800; letter-spacing: 0.1em; color: rgba(255,255,255,0.75);">{{ r.l }}</span>
+                        </div>
+                      </sc-for>
+                    </div>
+                    <div style="align-self: flex-start; font-size: 13.5px; font-weight: 800; background: #ffffff; color: #0D0D0D; border-radius: 999px; padding: 9px 18px;">{{ band2 }}</div>
+                  </div>
+                </sc-if>
+                <sc-if value="{{ isChapMember }}" hint-placeholder-val="{{ false }}">
+                  <div style="display: flex; flex-direction: column; gap: 13px; position: relative; padding: 18px 0 0;">
+                    <div style="display: flex; align-items: center; gap: 14px;">
+                      <span style="width: 64px; height: 64px; border-radius: 24%; background: linear-gradient(135deg, #4DC86A 0%, #1B7A34 100%); color: #ffffff; display: flex; align-items: center; justify-content: center; font-size: 30px; font-weight: 800;">{{ mono }}</span>
+                      <span style="font-size: 13px; font-weight: 800; letter-spacing: 0.16em; color: #6B7280;">{{ eyebrow }}</span>
+                    </div>
+                    <div style="font-size: 52px; font-weight: 800; line-height: 1; letter-spacing: -0.03em; color: #1B7A34;">{{ title }}</div>
+                    <div style="font-size: 15px; font-weight: 600; color: #6B7280;">{{ meta }}</div>
+                    <div style="font-size: 22px; font-weight: 800; letter-spacing: -0.01em;">{{ statement }}</div>
+                    <div style="margin: 4px -44px 0; background: linear-gradient(135deg, #4DC86A 0%, #1B7A34 100%); color: #ffffff; padding: 18px 44px; display: flex; gap: 30px;">
+                      <sc-for list="{{ stats }}" as="s" hint-placeholder-count="3">
+                        <div>
+                          <div style="font-size: 27px; font-weight: 800; letter-spacing: -0.02em;">{{ s.v }}</div>
+                          <div style="font-size: 9.5px; font-weight: 800; letter-spacing: 0.12em; color: rgba(255,255,255,0.75); margin-top: 2px;">{{ s.l }}</div>
+                        </div>
+                      </sc-for>
+                    </div>
+                  </div>
+                </sc-if>
+                <sc-if value="{{ isChapMile }}" hint-placeholder-val="{{ false }}">
+                  <div style="display: flex; flex-direction: column; gap: 15px; position: relative; padding: 20px 0;">
+                    <span style="width: 58px; height: 58px; border-radius: 24%; background: {{ tileBg }}; color: {{ tileFg }}; display: flex; align-items: center; justify-content: center; font-size: 27px; font-weight: 800;">{{ mono }}</span>
+                    <div style="font-size: 14px; font-weight: 800; letter-spacing: 0.18em; color: {{ accent }};">{{ eyebrow }}</div>
+                    <div>
+                      <div style="font-size: 112px; font-weight: 800; line-height: 0.95; letter-spacing: -0.04em;">{{ giant }}</div>
+                      <div style="font-size: 19px; font-weight: 800; letter-spacing: 0.16em; margin-top: 8px;">{{ giantUnit }}</div>
+                    </div>
+                    <div style="font-size: 15px; line-height: 1.5; font-weight: 500; color: {{ cardSub }}; max-width: 380px; text-wrap: pretty;">{{ statement }}</div>
+                  </div>
+                </sc-if>
+                <sc-if value="{{ isLead }}" hint-placeholder-val="{{ false }}">
+                  <div style="display: flex; flex-direction: column; gap: 14px; position: relative; padding: 22px 0;">
+                    <div style="font-size: 13px; font-weight: 800; letter-spacing: 0.16em; color: {{ accent }};">{{ eyebrow }}</div>
+                    <div style="display: flex; align-items: center; gap: 18px;">
+                      <div style="width: 96px; height: 96px; border-radius: 28%; background: {{ meGrad }}; color: #ffffff; display: flex; align-items: center; justify-content: center; font-size: 34px; font-weight: 800; flex-shrink: 0;">{{ meInitials }}</div>
+                      <div style="min-width: 0;">
+                        <div style="font-size: 33px; font-weight: 800; letter-spacing: -0.02em; line-height: 1.1;">{{ title }}</div>
+                        <div style="font-size: 15px; font-weight: 700; color: {{ accent }}; margin-top: 5px;">{{ meta }}</div>
+                      </div>
+                    </div>
+                    <div style="font-size: 19px; font-weight: 800; letter-spacing: -0.01em; max-width: 400px; text-wrap: pretty;">{{ statement }}</div>
+                    <sc-if value="{{ hasStats }}" hint-placeholder-val="{{ false }}">
+                      <div style="display: flex; gap: 26px;">
+                        <sc-for list="{{ stats }}" as="s" hint-placeholder-count="2">
+                          <div>
+                            <div style="font-size: 29px; font-weight: 800; letter-spacing: -0.02em;">{{ s.v }}</div>
+                            <div style="font-size: 10px; font-weight: 800; letter-spacing: 0.12em; color: {{ cardSub }}; margin-top: 2px;">{{ s.l }}</div>
+                          </div>
+                        </sc-for>
+                      </div>
+                    </sc-if>
+                    <sc-if value="{{ noteShown }}" hint-placeholder-val="{{ false }}">
+                      <div style="font-size: 15px; font-style: italic; color: {{ cardSub }}; max-width: 380px;">&#8220;{{ noteShown }}&#8221;</div>
+                    </sc-if>
+                  </div>
+                </sc-if>
+                <sc-if value="{{ isLaunch }}" hint-placeholder-val="{{ false }}">
+                  <div style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 13px; position: relative; padding: 20px 0;">
+                    <div style="font-size: 14px; font-weight: 800; letter-spacing: 0.22em; color: rgba(255,255,255,0.85);">{{ eyebrow }}</div>
+                    <div style="font-size: 62px; font-weight: 800; line-height: 0.95; letter-spacing: -0.02em; text-wrap: balance;">{{ giant }}</div>
+                    <div style="font-size: 19px; font-weight: 700; color: rgba(255,255,255,0.9);">{{ title }}</div>
+                    <sc-if value="{{ hasExpected }}" hint-placeholder-val="{{ false }}">
+                      <div style="display: flex; flex-direction: column; gap: 5px; align-items: center;">
+                        <sc-for list="{{ expectedList }}" as="e" hint-placeholder-count="3">
+                          <div style="font-size: 15px; font-weight: 700;">&#10003; {{ e.t }}</div>
+                        </sc-for>
+                      </div>
+                    </sc-if>
+                    <div style="font-size: 13.5px; font-weight: 800; background: #ffffff; color: #1B7A34; border-radius: 999px; padding: 10px 22px;">{{ band2 }}</div>
+                  </div>
+                </sc-if>
+                <sc-if value="{{ isDefault }}" hint-placeholder-val="{{ true }}">
+                <div style="display: flex; flex-direction: column; gap: 16px; position: relative; padding: 24px 0;">
+                  <div style="font-size: 13px; font-weight: 800; letter-spacing: 0.16em; color: {{ accent }};">{{ eyebrow }}</div>
+                  <sc-if value="{{ showAvatar }}" hint-placeholder-val="{{ false }}">
+                    <div style="width: 92px; height: 92px; border-radius: 28%; background: {{ meGrad }}; color: #ffffff; display: flex; align-items: center; justify-content: center; font-size: 32px; font-weight: 800;">{{ meInitials }}</div>
+                  </sc-if>
+                  <sc-if value="{{ showBadge }}" hint-placeholder-val="{{ false }}">
+                    <div style="width: 84px; height: 84px; border-radius: 28%; background: {{ badgeBg }}; display: flex; align-items: center; justify-content: center;">
+                      <svg width="38" height="38" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17L4 12" stroke="{{ badgeStroke }}" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                    </div>
+                  </sc-if>
+                  <sc-if value="{{ giant }}" hint-placeholder-val="{{ false }}">
+                    <div>
+                      <div style="font-size: 148px; font-weight: 800; line-height: 0.95; letter-spacing: -0.04em; color: {{ giantColor }};">{{ giant }}</div>
+                      <div style="font-size: 21px; font-weight: 800; letter-spacing: 0.18em; margin-top: 10px;">{{ giantUnit }}</div>
+                    </div>
+                  </sc-if>
+                  <sc-if value="{{ title }}" hint-placeholder-val="{{ false }}">
+                    <div style="font-size: 38px; font-weight: 800; line-height: 1.12; letter-spacing: -0.02em; text-wrap: pretty;">{{ title }}</div>
+                  </sc-if>
+                  <sc-if value="{{ line1 }}" hint-placeholder-val="{{ false }}">
+                    <div style="font-size: 16px; font-weight: 600; color: {{ cardSub }};">{{ line1 }}</div>
+                  </sc-if>
+                  <sc-if value="{{ chip }}" hint-placeholder-val="{{ false }}">
+                    <div style="align-self: flex-start; font-size: 14px; font-weight: 700; padding: 9px 18px; border-radius: 999px; background: {{ chipBg }}; color: {{ chipFg }};">{{ chip }}</div>
+                  </sc-if>
+                  <sc-if value="{{ hasStats }}" hint-placeholder-val="{{ false }}">
+                    <div style="display: flex; gap: 28px; padding-top: 6px;">
+                      <sc-for list="{{ stats }}" as="s" hint-placeholder-count="3">
+                        <div>
+                          <div style="font-size: 33px; font-weight: 800; letter-spacing: -0.02em;">{{ s.v }}</div>
+                          <div style="font-size: 10px; font-weight: 800; letter-spacing: 0.12em; color: {{ cardSub }}; margin-top: 3px;">{{ s.l }}</div>
+                        </div>
+                      </sc-for>
+                    </div>
+                  </sc-if>
+                  <sc-if value="{{ refLine }}" hint-placeholder-val="{{ false }}">
+                    <div style="font-size: 15px; font-weight: 700; letter-spacing: 0.04em; font-family: 'Courier New', monospace; color: {{ cardSub }};">{{ refLine }}</div>
+                  </sc-if>
+                  <sc-if value="{{ statement }}" hint-placeholder-val="{{ false }}">
+                    <div style="font-size: 16px; line-height: 1.5; font-weight: 500; max-width: 380px; text-wrap: pretty;">{{ statement }}</div>
+                  </sc-if>
+                  <sc-if value="{{ noteShown }}" hint-placeholder-val="{{ false }}">
+                    <div style="font-size: 15px; font-style: italic; color: {{ cardSub }}; max-width: 380px;">&#8220;{{ noteShown }}&#8221;</div>
+                  </sc-if>
+                </div>
+                </sc-if>
+                <div style="display: flex; align-items: center; justify-content: space-between; gap: 12px; position: relative;">
+                  <span style="font-size: 10px; font-weight: 800; letter-spacing: 0.1em; padding: 6px 12px; border-radius: 999px; background: {{ vChipBg }}; color: {{ vChipFg }};">GOODNESS VERIFIED &#10003;</span>
+                  <span style="font-size: 10.5px; font-weight: 600; color: {{ cardSub }};">{{ verifyLine }}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <sc-if value="{{ allowNote }}" hint-placeholder-val="{{ false }}">
+          <div style="background: #ffffff; border: 1px solid rgba(0,0,0,0.08); border-radius: 16px; padding: 16px 20px; display: flex; flex-direction: column; gap: 8px;">
+            <label style="font-size: 11px; font-weight: 800; letter-spacing: 0.1em; color: #6B7280;">PERSONAL NOTE (OPTIONAL &#8212; THE ONLY EDITABLE FIELD ON THE CARD)</label>
+            <input value="{{ note }}" onInput="{{ setNote }}" maxLength="90" placeholder="e.g. Grateful to everyone I've worked alongside." style="border: 1px solid rgba(0,0,0,0.1); border-radius: 10px; padding: 10px 14px; font-size: 14px; font-family: inherit; outline: none;">
+          </div>
+        </sc-if>
+
+        <div style="background: #ffffff; border: 1px solid rgba(0,0,0,0.08); border-radius: 16px; padding: 16px 20px; display: flex; flex-direction: column; gap: 10px;">
+          <div style="display: flex; align-items: center; justify-content: space-between; gap: 12px;">
+            <label style="font-size: 11px; font-weight: 800; letter-spacing: 0.1em; color: #6B7280;">SUGGESTED CAPTION</label>
+            <button onClick="{{ copyCaption }}" style="border: 1px solid rgba(0,0,0,0.1); background: #fafafa; border-radius: 999px; padding: 6px 14px; font-size: 11px; font-weight: 700; cursor: pointer; font-family: inherit;">{{ copyLabel }}</button>
+          </div>
+          <textarea value="{{ caption }}" onInput="{{ setCaption }}" rows="3" style="border: 1px solid rgba(0,0,0,0.1); border-radius: 10px; padding: 10px 14px; font-size: 13.5px; line-height: 1.6; resize: vertical; outline: none;"></textarea>
+          <div style="font-size: 11.5px; color: #9CA3AF;">Verified numbers on the card can&#8217;t be edited &#8212; they come straight from your Goodness record. The caption is yours.</div>
+        </div>
+      </div>
+    </section>
+  </sc-if>
+
+  <div style="margin-top: auto;"><dc-import name="SiteFooter" hint-size="100%,320px"></dc-import></div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { loaded: false, me: null, vols: [], missions: [], assignments: [], chapterName: "", cardId: null, fmt: "square", note: "", caption: "", copied: false, dl: false, cards: [] };
+
+  componentDidMount() {
+    this.load();
+  }
+
+  async load() {
+    const gs = await import("./gs-os.js");
+    this.gs = gs;
+    const os = await gs.loadOS();
+    const net = await gs.loadNetwork();
+    const md = await gs.loadMissions();
+    const fin = await gs.loadFinance();
+    const imp = await gs.loadImpact();
+    const pd = await gs.loadPartners();
+    this.opps = pd.opportunities || [];
+    this.partners = pd.partners || [];
+    const missions = md.missions || md;
+    this.allMissions = missions;
+    this.donations = fin.donations || [];
+    this.fin = fin;
+    this.impact = imp.filter((r) => r.published);
+    const meId = gs.readMe();
+    const vols = os.volunteers.filter((v) => v.status !== "suspended");
+    const me = vols.find((v) => v.id === meId) || null;
+    let chapterName = "";
+    this.net = net; this.myChapter = null;
+    if (me) {
+      const chId = net.chapterOfVolunteer(me);
+      const ch = chId ? net.chapters.find((c) => c.id === chId) : null;
+      this.myChapter = ch;
+      chapterName = ch ? ch.name : "Goodness " + me.city;
+    }
+    this.commitment = me ? gs.getCommitment(me.id) : null;
+    const assignments = ((os.store && os.store.assignments) || []).filter((a) => me && a.volunteerId === me.id && a.state === "verified");
+    const grads = os.avatarGradients || {};
+    this.grads = grads;
+    this.allVols = vols;
+    const cards = me ? this.buildCards(me, chapterName, assignments, missions) : [];
+    const params = new URLSearchParams(window.location.search);
+    const want = params.get("card");
+    const avail = cards.filter((c) => c.avail);
+    const pick = (want && cards.find((c) => c.id === want && c.avail)) || avail[0] || null;
+    this.setState({ loaded: true, me, vols, missions, assignments, chapterName, cards, cardId: pick ? pick.id : null, caption: pick ? pick.caption : "" });
+  }
+
+  grad(v) {
+    const g = (this.grads || {})[v.avatarColor];
+    return g || "linear-gradient(135deg, #4DC86A 0%, #1B7A34 100%)";
+  }
+
+  buildCards(v, chapterName, assignments, missions) {
+    const hours = v.hours || 0, msn = v.missions || 0;
+    const creds = (v.credentials || []).filter((c) => c.status === "valid");
+    const cert = creds.find((c) => /certificate of volunteer/i.test(c.title));
+    const skill = creds.find((c) => !/certificate of volunteer/i.test(c.title));
+    const hm = [1000, 500, 250, 100, 50, 25, 10].find((t) => hours >= t);
+    const mm = [50, 25, 10, 5].find((t) => msn >= t);
+    const nextH = [10, 25, 50, 100, 250, 500, 1000].find((t) => t > hours);
+    const nextM = [5, 10, 25, 50].find((t) => t > msn);
+    const first = assignments[0] || null;
+    const last = assignments[assignments.length - 1] || null;
+    const resolve = (a) => missions.find((m) => m.id === a.missionId) || null;
+    const site = "goodness.org \u00B7 backed by Goodness OS";
+    const statRow = [{ v: String(msn), l: "MISSIONS" }, { v: String(hours), l: "VERIFIED HOURS" }, { v: String(creds.length), l: "CREDENTIALS" }];
+    const cards = [];
+
+    cards.push({ id: "identity", name: "Volunteer Identity", sub: "Who I am in Goodness \u2014 live from my Passport", avail: true, theme: "light", allowNote: true,
+      model: { eyebrow: "I VOLUNTEER WITH GOODNESS", showAvatar: true, title: v.name, line1: v.role + " \u00B7 " + chapterName, stats: statRow, verifyLine: site },
+      caption: "I volunteer with Goodness Society through " + chapterName + " \u2014 " + msn + " missions and " + hours + " verified service hours so far. There is a place for you too." });
+
+    const fMission = first ? resolve(first) : null;
+    cards.push({ id: "first-mission", name: "First Mission", sub: first ? "Where my journey began" : "Unlocks when your first mission is verified", avail: !!first, theme: "gradient", allowNote: false,
+      model: first ? { eyebrow: "MY FIRST GOODNESS MISSION \u2713", title: fMission ? fMission.title : "My first mission", line1: (fMission ? (fMission.chapter + " \u00B7 ") : "") + (first.role || "Volunteer"), chip: (first.hours || 0) + " verified service hours", statement: "This is where my Goodness journey begins.", verifyLine: site } : null,
+      caption: first ? ("I completed my first Goodness mission \u2014 " + (fMission ? fMission.title : "") + ". " + (first.hours || 0) + " verified service hours. This is where it begins.") : "" });
+
+    const lMission = last ? resolve(last) : null;
+    cards.push({ id: "mission-completed", name: "Mission Completed", sub: last ? "My latest verified mission" : "Unlocks when a mission you joined is verified", avail: !!last, theme: "ink", allowNote: false,
+      model: last ? { eyebrow: "MISSION ACCOMPLISHED", title: lMission ? lMission.title : "Mission", line1: lMission ? (lMission.chapter + " \u00B7 " + lMission.program) : "", chip: "My contribution: " + (last.role || "Volunteer") + " \u00B7 " + (last.hours || 0) + "h verified", statement: "Delivered together, verified on the Goodness OS.", verifyLine: site } : null,
+      caption: last ? ("Mission accomplished: " + (lMission ? lMission.title : "") + " with " + chapterName + ". My part: " + (last.role || "Volunteer") + " \u00B7 " + (last.hours || 0) + " verified hours.") : "" });
+
+    cards.push({ id: "hours", name: "Service Hour Milestone", sub: hm ? (hm + " hours reached") : ("Unlocks at 10 verified hours \u2014 you have " + hours), avail: !!hm, theme: "ink", allowNote: true,
+      model: hm ? { eyebrow: "SERVICE HOUR MILESTONE", giant: String(hm), giantUnit: "HOURS OF GOODNESS", line1: msn + " missions \u00B7 " + chapterName, statement: "Every hour verified on my Goodness Passport.", verifyLine: site } : null,
+      caption: hm ? (hm + " hours of Goodness. Every one verified on my Goodness Passport across " + msn + " missions with " + chapterName + ". Small actions, done consistently.") : "" });
+
+    cards.push({ id: "missions", name: "Mission Milestone", sub: mm ? (mm + " missions reached") : ("Unlocks at 5 verified missions \u2014 you have " + msn), avail: !!mm, theme: "gradient", allowNote: true,
+      model: mm ? { eyebrow: "MISSION MILESTONE", giant: String(mm), giantUnit: "MISSIONS", line1: hours + " verified hours \u00B7 " + chapterName, statement: mm + " missions. One commitment to doing good.", verifyLine: site } : null,
+      caption: mm ? (mm + " missions with Goodness Society, " + hours + " verified service hours. One commitment to doing good.") : "" });
+
+    const promoted = (v.levelIndex || 0) >= 1;
+    cards.push({ id: "promotion", name: "Journey Promotion", sub: promoted ? ("You are a " + v.level) : "Unlocks when you advance beyond Volunteer", avail: promoted, theme: "light", allowNote: false,
+      model: promoted ? { eyebrow: "NEW CHAPTER IN MY JOURNEY", title: "I\u2019m now a " + v.level + " at Goodness Society.", line1: msn + " missions \u00B7 " + hours + " verified hours \u00B7 " + chapterName, statement: "Ready to help more people create meaningful change.", verifyLine: site } : null,
+      caption: promoted ? ("A new chapter: I\u2019m now a " + v.level + " at Goodness Society. " + msn + " missions and " + hours + " verified hours in \u2014 ready to help more people create meaningful change.") : "" });
+
+    cards.push({ id: "credential", name: "Credential Earned", sub: skill ? skill.title : "Unlocks when Goodness issues you a skill credential", avail: !!skill, theme: "light", allowNote: false,
+      model: skill ? { eyebrow: "CREDENTIAL EARNED \u2713", showBadge: true, title: skill.title, line1: "Issued by Goodness Society \u00B7 " + skill.issued, refLine: "Credential " + skill.ref, verifyLine: "Verify \u00B7 goodness.org/verify \u00B7 " + skill.ref } : null,
+      caption: skill ? ("Goodness Society issued my credential \u2014 " + skill.title + ". Independently verifiable, any time: goodness.org/verify \u00B7 " + skill.ref + ".") : "" });
+
+    cards.push({ id: "certificate", name: "Certificate Achievement", sub: cert && v.certEnabled ? "Social version of your service certificate" : "Unlocks with your Certificate of Volunteer Service", avail: !!(cert && v.certEnabled), theme: "light", allowNote: false,
+      model: cert ? { eyebrow: "VOLUNTEER SERVICE CERTIFICATE", showBadge: true, title: "Certificate of Volunteer Service earned", line1: hours + " verified service hours \u00B7 " + v.program, refLine: "Ref " + cert.ref, verifyLine: "Verify \u00B7 goodness.org/verify \u00B7 " + cert.ref } : null,
+      caption: cert ? ("My Certificate of Volunteer Service from Goodness Society \u2014 " + hours + " verified hours in " + v.program + ". Verify it: goodness.org/verify \u00B7 " + cert.ref + ".") : "" });
+
+    const cm = this.commitment;
+    const sustaining = !!(cm && (cm.status === "active" || cm.status === "paused"));
+    const since = cm ? (cm.since || "2026") : "";
+    let months = 0;
+    if (cm) { const d = new Date("1 " + since); if (!isNaN(d.getTime())) months = Math.max(0, Math.floor((Date.now() - d.getTime()) / (30.44 * 24 * 3600 * 1000))); }
+    const contribs = cm ? Math.max((cm.contributions || []).length, cm.count || 0) : 0;
+    const durMile = months >= 36 ? "Three years" : months >= 12 ? "One year" : months >= 6 ? "Six months" : null;
+    const countMile = [100, 50, 25, 10, 1].find((t) => contribs >= t);
+
+    cards.push({ id: "sustaining", name: "Sustaining Member", cat: "giving", sub: sustaining ? ("Sustaining since " + since + " \u2014 never shows your amount") : "Unlocks when you start a Goodness Commitment (My Goodness)", avail: sustaining, theme: "gradient", allowNote: true,
+      model: sustaining ? { eyebrow: "I HELP SUSTAIN GOODNESS", title: "Sustaining Member since " + since, line1: chapterName, chip: "Entirely voluntary \u2014 never a membership fee", statement: "Showing up consistently for a better tomorrow.", verifyLine: site } : null,
+      caption: sustaining ? ("I\u2019m a Sustaining Member of Goodness Society \u2014 a voluntary commitment in my own rhythm, since " + since + ". Small commitments. One strong movement.") : "" });
+
+    const durCard = sustaining && !!durMile;
+    cards.push({ id: "commitment-milestone", name: "Commitment Milestone", cat: "giving", sub: sustaining ? (durMile ? (durMile + " sustaining") : countMile ? (countMile + (countMile === 1 ? " contribution" : " contributions")) : "First contribution unlocks this card") : "Unlocks with an active Goodness Commitment", avail: !!(sustaining && (durMile || countMile)), theme: "ink", allowNote: true,
+      model: (sustaining && (durMile || countMile)) ? (durCard
+        ? { eyebrow: "COMMITMENT MILESTONE", title: durMile + " sustaining Goodness.", line1: "Since " + since + " \u00B7 " + chapterName, statement: "Small commitments. One strong movement.", verifyLine: site }
+        : { eyebrow: "COMMITMENT MILESTONE", giant: String(countMile), giantUnit: countMile === 1 ? "CONTRIBUTION" : "CONTRIBUTIONS", line1: "Sustaining since " + since + " \u00B7 " + chapterName, statement: "Small commitments. One strong movement.", verifyLine: site }) : null,
+      caption: (sustaining && (durMile || countMile)) ? (durCard
+        ? (durMile + " sustaining Goodness Society \u2014 showing up in my own rhythm since " + since + ". Small commitments. One strong movement.")
+        : (countMile + (countMile === 1 ? " contribution" : " contributions") + " to sustain Goodness Society since " + since + ". Small commitments. One strong movement.")) : "" });
+
+    const mine = (this.donations || []).filter((d) => d.donor === v.name);
+    let backedRec = null, backedNote = "";
+    for (const d of mine) {
+      if (d.restricted) { const r = (this.impact || []).find((x) => x.programSlug === d.restricted); if (r) { backedRec = r; break; } }
+    }
+    if (!backedRec && mine.length && (this.impact || []).length) { backedRec = this.impact[0]; backedNote = "unrestricted"; }
+    const oc = backedRec ? (backedRec.outcomes || []).find((o) => o.basis === "verified") : null;
+    cards.push({ id: "backed-impact", name: "Supporter Impact Update", cat: "giving", sub: backedRec ? ("Latest published record from work you back" + (backedNote ? " (unrestricted giving)" : "")) : "Unlocks when an initiative you backed publishes impact", avail: !!backedRec, theme: "light", allowNote: false,
+      model: backedRec ? { eyebrow: "AN INITIATIVE I BACKED REPORTED IMPACT", title: backedRec.title, line1: backedRec.program + " \u00B7 " + backedRec.chapter + " \u00B7 " + backedRec.date,
+        stats: [{ v: String(backedRec.primaryValue), l: (backedRec.unitLabel || "supported").toUpperCase() }, { v: backedRec.evidenceVerified + "/" + backedRec.evidenceTotal, l: "EVIDENCE VERIFIED" }],
+        chip: oc ? (oc.value + " " + oc.label.toLowerCase() + " \u00B7 Verified") : "",
+        statement: "Results are shared across all funders \u2014 my giving joined pooled programme funding.", verifyLine: site } : null,
+      caption: backedRec ? ("An initiative I backed just reported impact: " + backedRec.title + " \u2014 " + backedRec.primaryValue + " " + (backedRec.unitLabel || "supported") + (oc ? (", " + oc.value + " " + oc.label.toLowerCase() + " (verified)") : "") + ". Every record is published with evidence on Goodness.") : "" });
+
+    const ch = this.myChapter;
+    const chActive = ch && ch.status === "active";
+    const mono = ch ? (ch.city || "G").charAt(0) : "G";
+    cards.push({ id: "chap-member", name: "Chapter Member", cat: "chapter", sub: chActive ? ("Proud member of " + ch.name + " \u2014 live chapter stats") : "Unlocks when your city has an active chapter", avail: !!chActive, theme: "light", allowNote: true,
+      model: chActive ? { layout: "chapmember", mono, eyebrow: "PROUD MEMBER OF", title: ch.name, meta: ch.city + ", Bangladesh", statement: "Together for a Better Tomorrow.", stats: [{ v: String(ch.memberCount), l: "MEMBERS" }, { v: String(ch.missionsLive), l: "LIVE MISSIONS" }, { v: String(ch.people), l: "PEOPLE SUPPORTED" }], verifyLine: site } : null,
+      caption: chActive ? ("Proud member of " + ch.name + " \u2014 " + ch.memberCount + " members, " + ch.missionsLive + " live missions, " + ch.people + " people supported through published impact. Together for a Better Tomorrow.") : "" });
+    const myTeam = ch ? (ch.team || []).find((t) => t.volunteerId === v.id) : null;
+    const isLead = !!(myTeam && /lead/i.test(myTeam.role || ""));
+    cards.push({ id: "chap-lead", name: "Chapter Leadership", cat: "chapter", sub: isLead ? (myTeam.role + " \u00B7 " + ch.name) : "Unlocks when you hold a chapter leadership role", avail: isLead, theme: "light", allowNote: true,
+      model: isLead ? { layout: "lead", eyebrow: "LEADING GOODNESS LOCALLY", showAvatar: true, title: v.name, meta: myTeam.role + " \u00B7 " + ch.name, statement: "Building local action with national standards.", stats: [{ v: String(msn), l: "MISSIONS" }, { v: String(hours), l: "VERIFIED HOURS" }], verifyLine: site } : null,
+      caption: isLead ? ("I serve as " + myTeam.role + " of " + ch.name + " \u2014 building local action with national standards. " + msn + " missions and " + hours + " verified hours so far.") : "" });
+    const founding = !!(ch && ch.status === "forming");
+    cards.push({ id: "founding", name: "Founding Member", cat: "chapter", sub: founding ? ("Building " + ch.name + " from day one") : "Unlocks for members of a forming chapter \u2014 from day one", avail: founding, theme: "ink", allowNote: true,
+      model: founding ? { layout: "lead", eyebrow: "FOUNDING MEMBER", showAvatar: true, title: v.name, meta: ch.name + " \u00B7 forming", statement: "Building the chapter from day one.", verifyLine: site } : null,
+      caption: founding ? ("Founding member of " + ch.name + " \u2014 building the chapter from day one. Goodness is coming to " + ch.city + ".") : "" });
+    let chMile = null;
+    if (chActive) {
+      const pm = [100000, 50000, 25000, 10000, 5000, 2500, 1000, 500, 250, 100].find((t) => ch.people >= t);
+      const hm2 = [50000, 25000, 10000, 5000, 2500, 1000, 500, 250, 100].find((t) => ch.hours >= t);
+      const mm2 = [500, 250, 100, 50, 25].find((t) => ch.memberCount >= t);
+      chMile = pm ? { g: pm.toLocaleString(), u: "PEOPLE SUPPORTED", c: ch.people.toLocaleString() + " people supported through published impact" }
+        : hm2 ? { g: hm2.toLocaleString(), u: "VERIFIED SERVICE HOURS", c: hm2.toLocaleString() + " verified service hours" }
+        : mm2 ? { g: String(mm2), u: "MEMBERS STRONG", c: mm2 + " members strong" } : null;
+    }
+    cards.push({ id: "chap-mile", name: "Chapter Milestone", cat: "chapter", sub: chMile ? (ch.name + " \u00B7 " + chMile.g + " " + chMile.u.toLowerCase()) : "Unlocks when your chapter crosses a milestone", avail: !!chMile, theme: "forest", allowNote: false,
+      model: chMile ? { layout: "chapmile", mono, eyebrow: ch.name.toUpperCase() + " REACHED", giant: chMile.g, giantUnit: chMile.u, statement: "Reached together \u2014 every number from verified records on Goodness OS.", verifyLine: site } : null,
+      caption: chMile ? (ch.name + " reached " + chMile.c + " \u2014 every number from verified records. Together for a Better Tomorrow.") : "" });
+    const netData = this.net || { chapters: [], active: [], forming: [] };
+    netData.forming.forEach((f) => {
+      cards.push({ id: "launch-" + f.id, name: "Chapter forming \u2014 " + f.city, cat: "chapter", sub: "Recruit the founding community", avail: true, theme: "gradient", allowNote: false,
+        model: { layout: "launch", eyebrow: "A NEW CHAPTER IS FORMING", giant: f.city.toUpperCase(), title: f.name + " is forming.", expected: ["Founding volunteers", "Local leaders", "Community partners"], band2: "Help build the chapter \u2192 goodness.org/chapters", verifyLine: site },
+        caption: "Goodness is coming to " + f.city + " \u2014 " + f.name + " is forming and looking for founding volunteers, local leaders, and community partners. Help build it: goodness.org/chapters." });
+    });
+    ((this.gs.readStore().newChapters) || []).filter((c) => c.status === "active").forEach((f) => {
+      cards.push({ id: "launched-" + f.id, name: "Now active \u2014 " + f.city, cat: "chapter", sub: "Chapter launch announcement", avail: true, theme: "gradient", allowNote: false,
+        model: { layout: "launch", eyebrow: "GOODNESS IS NOW IN", giant: f.city.toUpperCase(), title: f.name + " is officially active.", expected: [], band2: "Join the founding community \u2192 goodness.org/chapters", verifyLine: site },
+        caption: f.name + " is officially active \u2014 Goodness is now in " + f.city + ". Join the founding community: goodness.org/chapters." });
+    });
+    const natHours = (this.allVols || []).reduce((n, x) => n + (x.hours || 0), 0);
+    const nhm = [100000, 50000, 25000, 10000, 5000, 2500, 1000].find((t) => natHours >= t);
+    const nActive = netData.active.length;
+    const natMile = nhm ? { g: nhm.toLocaleString(), u: "VERIFIED SERVICE HOURS", c: nhm.toLocaleString() + " verified service hours" } : nActive >= 5 ? { g: String(nActive), u: "ACTIVE CHAPTERS", c: nActive + " active chapters" } : null;
+    cards.push({ id: "network", name: "National Milestone", cat: "chapter", sub: natMile ? ("Goodness Bangladesh \u00B7 " + natMile.c) : "Unlocks at the next national milestone", avail: !!natMile, theme: "ink", allowNote: false,
+      model: natMile ? { layout: "chapmile", mono: "G", eyebrow: "GOODNESS BANGLADESH REACHED", giant: natMile.g, giantUnit: natMile.u, statement: "One movement, verified end to end \u2014 people, hours, money and impact on one operating system.", verifyLine: site } : null,
+      caption: natMile ? ("Goodness Bangladesh reached " + natMile.c + " \u2014 one movement, verified end to end. Together for a Better Tomorrow.") : "" });
+
+    const tk = (n) => "\u09F3" + (n >= 100000 ? (Math.round(n / 10000) / 10) + "L" : Number(n).toLocaleString("en-IN"));
+    const pubs = (this.impact || []).filter((r) => r.published);
+    pubs.slice(0, 3).forEach((r) => {
+      const rows = [{ v: (r.primaryValue || 0).toLocaleString(), l: r.unitLabel || "people supported", basis: "" }]
+        .concat((r.outcomes || []).slice(0, 3).map((o) => ({ v: Number(o.value).toLocaleString(), l: o.label, basis: (o.basis || "").toUpperCase() })));
+      cards.push({ id: "imppub-" + r.id, name: "Impact update \u2014 " + r.title.split(" \u2014 ")[0], cat: "impact", sub: r.program + " \u00B7 " + r.date, avail: true, theme: "light", allowNote: false,
+        model: { layout: "impactpub", eyebrow: "IMPACT UPDATE", title: r.title, meta: r.program + " \u00B7 Goodness " + r.chapter + " \u00B7 " + r.date, rows, band2: "See the evidence \u2192 goodness.org/impact", verifyLine: site },
+        caption: r.title + ": " + (r.primaryValue || 0).toLocaleString() + " " + (r.unitLabel || "people supported") + (r.outcomes && r.outcomes.length ? ", " + r.outcomes.map((o) => o.value + " " + o.label.toLowerCase() + " (" + o.basis + ")").join(", ") : "") + ". Measured and published on Goodness OS \u2014 see the evidence." });
+    });
+    let bestOut = null;
+    pubs.forEach((r) => (r.outcomes || []).forEach((o) => { if (o.basis === "verified" && (!bestOut || o.value > bestOut.o.value)) bestOut = { r, o }; }));
+    cards.push({ id: "outcome", name: "Outcome Milestone", cat: "impact", sub: bestOut ? (bestOut.o.value + " " + bestOut.o.label.toLowerCase() + " \u00B7 verified") : "Unlocks when a published record carries a verified outcome", avail: !!bestOut, theme: "royal", allowNote: false,
+      model: bestOut ? { layout: "outcome", eyebrow: "MEASURED OUTCOME", giant: Number(bestOut.o.value).toLocaleString(), giantUnit: bestOut.o.label.toUpperCase(), title: "following " + bestOut.r.title, chip: "OUTCOME BASIS: VERIFIED \u2713", statement: "The measured result, exactly as recorded \u2014 " + (bestOut.o.evidence || "supporting evidence") + " on file. We report what was measured, not a claim of sole credit.", verifyLine: site } : null,
+      caption: bestOut ? (bestOut.o.value + " " + bestOut.o.label.toLowerCase() + " following " + bestOut.r.title + " \u2014 outcome basis: verified (" + (bestOut.o.evidence || "evidence on file") + "). See the full impact record.") : "" });
+    const fullEv = pubs.find((r) => (r.evidence || []).length > 0 && r.evidence.every((x) => x.verified));
+    const bestEv = fullEv || pubs.filter((r) => (r.evidence || []).length).sort((a, b) => b.evidence.filter((x) => x.verified).length / b.evidence.length - a.evidence.filter((x) => x.verified).length / a.evidence.length)[0];
+    cards.push({ id: "evidence", name: "Evidence Verified", cat: "impact", sub: fullEv ? (fullEv.evidence.length + "/" + fullEv.evidence.length + " items verified \u00B7 " + fullEv.title.split(" \u2014 ")[0]) : "Unlocks when every evidence item on a published record is verified" + (bestEv ? " \u2014 closest: " + bestEv.evidence.filter((x) => x.verified).length + "/" + bestEv.evidence.length : ""), avail: !!fullEv, theme: "light", allowNote: false,
+      model: fullEv ? { layout: "evidence", eyebrow: "EVIDENCE VERIFIED", title: fullEv.title, meta: fullEv.program + " \u00B7 " + fullEv.date, giant: fullEv.evidence.length + "/" + fullEv.evidence.length, expected: fullEv.evidence.map((x) => x.label), band2: "See the complete impact record \u2192", verifyLine: site } : null,
+      caption: fullEv ? ("Every supporting evidence item on " + fullEv.title + " is verified \u2014 " + fullEv.evidence.length + "/" + fullEv.evidence.length + ". Other organisations publish claims; Goodness publishes the evidence.") : "" });
+    const fin = this.fin;
+    const topFund = fin ? fin.funds.filter((f) => f.programSlug !== "operations" && f.spent > 0).sort((a, b) => b.spent - a.spent)[0] : null;
+    const fundDocPct = topFund && topFund.docs ? Math.round((topFund.checked / topFund.docs) * 100) : 0;
+    cards.push({ id: "money-fund", name: "Where the Money Went", cat: "impact", sub: topFund ? (topFund.program + " \u00B7 " + tk(topFund.spent) + " approved spending") : "Unlocks once a programme has approved spending", avail: !!topFund, theme: "ink", allowNote: false,
+      model: topFund ? { layout: "money", eyebrow: "WHERE THE MONEY WENT", title: topFund.program, rows: [{ v: tk(topFund.allocated), l: "ALLOCATED" }, { v: tk(topFund.spent), l: "APPROVED SPENDING" }, { v: fundDocPct + "%", l: "SUPPORTED BY CHECKED DOCUMENTS" }], band2: "Follow every taka \u2192 goodness.org/trust", verifyLine: site } : null,
+      caption: topFund ? (topFund.program + ": " + tk(topFund.allocated) + " allocated, " + tk(topFund.spent) + " approved spending, " + fundDocPct + "% supported by checked documents. Follow every taka on the live Trust Ledger.") : "" });
+    cards.push({ id: "money-annual", name: "Programme vs operations", cat: "impact", sub: fin ? (fin.programSharePct + "% programme \u00B7 " + fin.overheadPct + "% operations") : "", avail: !!(fin && fin.spent), theme: "ink", allowNote: false,
+      model: fin ? { layout: "money", eyebrow: "HOW GOODNESS SPENDS", title: "All programmes, live", rows: [{ v: fin.programSharePct + "%", l: "PROGRAMME SPENDING" }, { v: fin.overheadPct + "%", l: "OPERATIONS & ADMINISTRATION" }, { v: fin.documentedPct + "%", l: "OF SPENDING CARRIES DOCUMENTS" }], band2: "Explore the live Trust Ledger \u2192", verifyLine: site } : null,
+      caption: fin ? (fin.programSharePct + "% programme spending, " + fin.overheadPct + "% operations & administration, " + fin.documentedPct + "% of spending carries documents \u2014 all live on the Goodness Trust Ledger.") : "" });
+
+    const partners = (this.partners || []).filter((p) => p.stage === "active" || p.stage === "renewal");
+    const progName = (slug) => { const r = (this.impact || []).find((x) => x.programSlug === slug); if (r) return r.program; return slug.split("-").map((w) => w === "ai" ? "AI" : w[0].toUpperCase() + w.slice(1)).join(" "); };
+    const peopleFor = (p) => pubs.filter((r) => (p.programs || []).includes(r.programSlug)).reduce((n, r) => n + (r.beneficiaries || r.primaryValue || 0), 0);
+    const mIdx = { Jan: 1, Feb: 2, Mar: 3, Apr: 4, May: 5, Jun: 6, Jul: 7, Aug: 8, Sep: 9, Oct: 10, Nov: 11, Dec: 12 };
+    const sinceNum = (s) => { const m = /^(\w{3}) (\d{4})$/.exec(s || ""); return m ? Number(m[2]) * 12 + mIdx[m[1]] : 0; };
+    const wantP = new URLSearchParams(window.location.search).get("partner");
+    const pinned = wantP ? partners.find((p) => p.id === wantP) : null;
+    const newest = pinned || partners.slice().sort((a, b) => sinceNum(b.since) - sinceNum(a.since))[0];
+    cards.push({ id: "partner-announce", name: "Partner Announcement", cat: "partner", sub: newest ? (newest.name + " \u00B7 " + newest.tier) : "Unlocks when a partnership becomes active", avail: !!newest, theme: "light", allowNote: false,
+      model: newest ? { layout: "duo", eyebrow: "BUILDING IMPACT TOGETHER", title: newest.name + " \u00D7 Goodness Society", line1: newest.tier + " \u00B7 since " + newest.since, chip: (newest.programs || []).map(progName).join(" \u00B7 "), statement: newest.kind + ". Partnership terms live in the Partner Room; funding details are shared " + (newest.discloseFunding ? "openly." : "privately, at the partner's choice."), verifyLine: site } : null,
+      caption: newest ? (newest.name + " \u00D7 Goodness Society \u2014 " + newest.tier.toLowerCase() + " supporting " + (newest.programs || []).map(progName).join(" and ") + ". Building impact together, measured and published.") : "" });
+    const pmile = (pinned && peopleFor(pinned) > 0) ? { p: pinned, people: peopleFor(pinned) } : partners.map((p) => ({ p, people: peopleFor(p) })).filter((x) => x.people > 0).sort((a, b) => b.people - a.people)[0];
+    cards.push({ id: "partner-mile", name: "Partner Impact Milestone", cat: "partner", sub: pmile ? (pmile.people.toLocaleString() + " people supported \u00B7 " + pmile.p.name) : "Unlocks when a backed programme publishes impact", avail: !!pmile, theme: "gradient", allowNote: false,
+      model: pmile ? { layout: "duo", eyebrow: pmile.p.name.toUpperCase() + " \u00D7 GOODNESS SOCIETY", giant: pmile.people.toLocaleString(), giantUnit: "PEOPLE SUPPORTED THROUGH INITIATIVES WE BACK", chip: "SHARED ATTRIBUTION", statement: "Results from programmes this partnership backs, measured across published impact records. Outcomes are pooled across all funders \u2014 never claimed twice.", verifyLine: site } : null,
+      caption: pmile ? (pmile.people.toLocaleString() + " people supported through initiatives " + pmile.p.name + " backs with Goodness Society \u2014 measured, published, shared attribution.") : "" });
+    const corp = (pinned && pinned.employees && pinned.employees.hours > 0) ? pinned : partners.filter((p) => /Corporate|CSR/i.test(p.kind) && p.employees && p.employees.hours > 0).sort((a, b) => b.employees.hours - a.employees.hours)[0];
+    cards.push({ id: "emp-vol", name: "Employee Volunteer", cat: "partner", sub: corp ? ("For " + corp.name + " employees \u00B7 " + corp.employees.participated + " volunteering") : "Unlocks when a corporate partner's employees volunteer", avail: !!corp, theme: "paper", allowNote: true,
+      model: corp ? { layout: "duo", eyebrow: "I VOLUNTEER THROUGH", title: corp.name + " \u00D7 Goodness Society", line1: (corp.programs || []).map(progName).join(" \u00B7 ") + " missions", stats: [{ v: String(corp.employees.participated), l: "COLLEAGUES" }, { v: String(corp.employees.sessions), l: "SESSIONS" }, { v: String(corp.employees.hours), l: "VERIFIED HOURS" }], statement: "Verified service through the " + corp.name + " employee volunteering programme.", verifyLine: site } : null,
+      caption: corp ? ("I volunteer through the " + corp.name + " \u00D7 Goodness Society partnership \u2014 " + corp.employees.hours + " verified employee hours and counting across " + corp.employees.sessions + " sessions.") : "" });
+    cards.push({ id: "emp-hours", name: "Corporate Employee Milestone", cat: "partner", sub: corp ? (corp.employees.hours + " employee hours \u00B7 " + corp.name) : "Unlocks with employee volunteering", avail: !!corp, theme: "royal", allowNote: false,
+      model: corp ? { layout: "duo", eyebrow: corp.name.toUpperCase() + " \u00D7 GOODNESS", giant: String(corp.employees.hours), giantUnit: "EMPLOYEE SERVICE HOURS", chip: "ALL HOURS VERIFIED \u2713", statement: corp.employees.participated + " " + corp.name + " employees have contributed " + corp.employees.hours + " verified hours through Goodness missions.", band2: "See our partnership \u2192", verifyLine: site } : null,
+      caption: corp ? (corp.employees.participated + " " + corp.name + " employees have contributed " + corp.employees.hours + " verified service hours through Goodness missions. Corporate volunteering, verified on Goodness OS.") : "" });
+    const yrsOf = (p) => Math.floor((2026 * 12 + 8 - sinceNum(p.since)) / 12);
+    const anniv = (pinned && sinceNum(pinned.since) > 0 && yrsOf(pinned) >= 1) ? { p: pinned, yrs: yrsOf(pinned) } : partners.map((p) => ({ p, yrs: yrsOf(p) })).filter((x) => x.yrs >= 1 && sinceNum(x.p.since) > 0).sort((a, b) => b.yrs - a.yrs)[0];
+    cards.push({ id: "partner-anniv", name: "Partnership Anniversary", cat: "partner", sub: anniv ? (anniv.yrs + (anniv.yrs === 1 ? " year" : " years") + " \u00B7 " + anniv.p.name) : "Unlocks at a partnership's first anniversary", avail: !!anniv, theme: "ink", allowNote: false,
+      model: anniv ? { layout: "duo", eyebrow: "PARTNERSHIP ANNIVERSARY", giant: anniv.yrs + (anniv.yrs === 1 ? " YEAR" : " YEARS"), giantUnit: "BUILDING GOODNESS TOGETHER", title: anniv.p.name + " \u00D7 Goodness Society", line1: "Since " + anniv.p.since + " \u00B7 " + anniv.p.tier, stats: [{ v: String((anniv.p.programs || []).length), l: "PROGRAMMES BACKED" }, { v: peopleFor(anniv.p).toLocaleString(), l: "PEOPLE SUPPORTED (SHARED)" }, { v: String(anniv.p.employees ? anniv.p.employees.hours : 0), l: "EMPLOYEE HOURS" }], verifyLine: site } : null,
+      caption: anniv ? (anniv.yrs + (anniv.yrs === 1 ? " year" : " years") + " building Goodness together \u2014 " + anniv.p.name + " \u00D7 Goodness Society, since " + anniv.p.since + ". Long-term partnership, measured impact.") : "" });
+
+    const natAll = (this.allVols || []).reduce((n, x) => n + (x.hours || 0), 0);
+    const natPeople = pubs.reduce((n, r) => n + (r.beneficiaries || r.primaryValue || 0), 0);
+    cards.push({ id: "digest-week", name: "Goodness This Week", cat: "digest", sub: "The weekly movement snapshot \u2014 no designer needed", avail: true, theme: "light", allowNote: false,
+      model: { layout: "digest", eyebrow: "GOODNESS THIS WEEK", meta: "Week of 19 August 2026 \u00B7 live movement snapshot", stats: [
+        { v: String((this.allVols || []).length), l: "VOLUNTEERS" }, { v: natAll.toLocaleString(), l: "VERIFIED HOURS" },
+        { v: String(netData.active.length), l: "ACTIVE CHAPTERS" }, { v: String(pubs.length), l: "IMPACT RECORDS PUBLISHED" },
+        { v: natPeople.toLocaleString(), l: "PEOPLE SUPPORTED (SHARED)" }, { v: String(partners.length), l: "ACTIVE PARTNERS" }],
+        statement: "Generated from Goodness OS \u2014 every number verified, nothing hand-counted.", verifyLine: site },
+      caption: "Goodness this week: " + (this.allVols || []).length + " volunteers, " + natAll.toLocaleString() + " verified hours, " + pubs.length + " published impact records and " + partners.length + " active partners across " + netData.active.length + " chapters. Together for a Better Tomorrow." });
+    const r0 = pubs[0] || null;
+    cards.push({ id: "digest-month", name: "Goodness This Month", cat: "digest", sub: "August 2026 recap with the month\u2019s headline result", avail: true, theme: "ink", allowNote: false,
+      model: { layout: "digest", eyebrow: "THE MONTH IN GOODNESS", meta: "August 2026 \u00B7 generated from Goodness OS", title: r0 ? (r0.title + " \u2014 " + (r0.primaryValue || 0).toLocaleString() + " " + (r0.unitLabel || "people supported")) : "", stats: [
+        { v: String((missions || []).length), l: "MISSIONS ON THE BOARD" }, { v: natAll.toLocaleString(), l: "VERIFIED HOURS TO DATE" },
+        { v: natPeople.toLocaleString(), l: "PEOPLE SUPPORTED (SHARED)" }, { v: String(partners.length), l: "ACTIVE PARTNERS" }],
+        statement: "What happened, and what happened afterward \u2014 see the evidence at goodness.org/impact.", verifyLine: site },
+      caption: "August 2026 at Goodness" + (r0 ? (": " + r0.title + " published \u2014 " + (r0.primaryValue || 0).toLocaleString() + " " + (r0.unitLabel || "people supported")) : "") + ". " + natAll.toLocaleString() + " verified hours and counting. Follow the work: goodness.org." });
+
+    const yStats = [{ v: String(msn), l: "MISSIONS" }, { v: String(hours), l: "VERIFIED HOURS" }, { v: String(creds.length), l: "CREDENTIALS" }];
+    if (sustaining) yStats.push({ v: String(contribs), l: "COMMITMENT CONTRIBUTIONS" });
+    if (chActive) yStats.push({ v: ch.people.toLocaleString(), l: "CHAPTER PEOPLE SUPPORTED (SHARED)" });
+    cards.push({ id: "year-me", name: "My Year in Goodness", sub: "The flagship recap \u2014 my 2026, verified", avail: true, theme: "gradient", allowNote: true,
+      model: { layout: "year", eyebrow: "MY YEAR IN GOODNESS", giant: "2026", title: v.name, meta: v.level + " \u00B7 " + chapterName, stats: yStats,
+        statement: "A year of showing up \u2014 every number verified on my Goodness Passport.", verifyLine: site },
+      caption: "My 2026 in Goodness: " + msn + " missions, " + hours + " verified hours" + (creds.length ? (", " + creds.length + (creds.length === 1 ? " credential" : " credentials")) : "") + (sustaining ? (", " + contribs + " commitment contributions") : "") + " with " + chapterName + ". A year of showing up." });
+    const pYear = pinned || (pmile ? pmile.p : (partners[0] || null));
+    cards.push({ id: "year-partner", name: "Partner Year in Goodness", cat: "partner", sub: pYear ? ("Our 2026 with Goodness \u2014 " + pYear.name) : "Unlocks with an active partnership", avail: !!pYear, theme: "royal", allowNote: false,
+      model: pYear ? { layout: "year", eyebrow: "OUR 2026 WITH GOODNESS", giant: "2026", title: pYear.name + " \u00D7 Goodness Society", meta: pYear.tier + " \u00B7 since " + pYear.since, stats: [
+        pYear.discloseFunding && pYear.committed ? { v: tk(pYear.committed), l: "COMMITTED" } : { v: String((pYear.programs || []).length), l: "PROGRAMMES" },
+        { v: String((pYear.programs || []).length), l: "INITIATIVES BACKED" }, { v: peopleFor(pYear).toLocaleString(), l: "PEOPLE SUPPORTED (SHARED)" },
+        { v: String(pYear.employees ? pYear.employees.participated : 0), l: "EMPLOYEES VOLUNTEERED" }, { v: String(pYear.employees ? pYear.employees.hours : 0), l: "VERIFIED EMPLOYEE HOURS" }].filter((x, i, a) => a.findIndex((y) => y.l === x.l) === i),
+        statement: "Backed initiatives, measured results \u2014 outcomes pooled across all funders, never claimed twice.", verifyLine: site } : null,
+      caption: pYear ? ("Our 2026 with Goodness Society: " + (pYear.programs || []).length + " initiatives backed, " + peopleFor(pYear).toLocaleString() + " people supported through pooled programmes" + (pYear.employees && pYear.employees.hours ? (", " + pYear.employees.hours + " verified employee volunteer hours") : "") + ". \u2014 " + pYear.name) : "" });
+    cards.push({ id: "year-chapter", name: "Chapter Year in Goodness", cat: "chapter", sub: chActive ? (ch.name + " \u2014 2026 in review") : "Unlocks when your chapter is active", avail: !!chActive, theme: "gradient", allowNote: false,
+      model: chActive ? { layout: "year", eyebrow: ch.name.toUpperCase() + " \u2014 YEAR IN REVIEW", giant: "2026", title: ch.name, meta: ch.city + ", Bangladesh", stats: [
+        { v: String(ch.memberCount), l: "MEMBERS" }, { v: ch.hours.toLocaleString(), l: "VERIFIED HOURS" }, { v: String(ch.missionsLive), l: "LIVE MISSIONS" },
+        { v: ch.people.toLocaleString(), l: "PEOPLE SUPPORTED (SHARED)" }, { v: String(partners.filter((p) => (p.districts || []).includes(ch.city)).length), l: "PARTNERS IN DISTRICT" }],
+        statement: "Chapter pride without rankings \u2014 one movement. Together for a Better Tomorrow.", verifyLine: site } : null,
+      caption: chActive ? (ch.name + " in 2026: " + ch.memberCount + " members, " + ch.hours.toLocaleString() + " verified hours, " + ch.people.toLocaleString() + " people supported through published impact. One movement.") : "" });
+    const open = (this.allMissions || []).filter((m) => m.state === "open").sort((a, b) => (b.urgent ? 1 : 0) - (a.urgent ? 1 : 0)).slice(0, 3);
+    open.forEach((m) => {
+      const roles = (m.roles || []).map((r) => ({ n: r.need + " \u00D7", r: r.role }));
+      if (m.urgent) {
+        cards.push({ id: "urgent-" + m.id, name: "Urgent \u2014 " + m.title, cat: "orgs", sub: m.spotsLeft + " positions still open \u00B7 " + m.date, avail: true, theme: "alarm", a4: true, allowNote: false,
+          model: { layout: "urgent", eyebrow: "URGENT \u2014 PEOPLE NEEDED", giant: String(m.spotsLeft), giantUnit: m.spotsLeft === 1 ? "POSITION STILL OPEN" : "POSITIONS STILL OPEN", title: m.title, meta: "Goodness " + m.chapter + " \u00B7 " + m.venue, band1: m.date + " \u00B7 " + m.time, band2: "Join now \u2014 goodness.org/missions", verifyLine: site },
+          caption: "URGENT: " + m.title + " needs " + m.spotsLeft + " more volunteers \u2014 " + m.date + ", " + m.time + ". " + m.venue + ". Join through Goodness: goodness.org/missions." });
+      } else {
+        cards.push({ id: "recruit-" + m.id, name: "Volunteers needed \u2014 " + m.title, cat: "orgs", sub: m.spotsLeft + " spots open \u00B7 " + m.date, avail: true, theme: "paper", a4: true, allowNote: false,
+          model: { layout: "recruit", stack1: "VOLUNTEERS", stack2: "NEEDED", title: m.title, meta: "Goodness " + m.chapter + " \u00B7 " + m.venue, roles, chip: m.spotsLeft + " spots open", band1: m.date + " \u00B7 " + m.time, band2: "Join mission \u2192 goodness.org/missions", verifyLine: site },
+          caption: "Volunteers needed: " + m.title + " with Goodness " + m.chapter + " \u2014 " + m.date + ", " + m.time + ". Roles: " + (m.roles || []).map((r) => r.role + " (" + r.need + ")").join(", ") + ". Sign up: goodness.org/missions." });
+      }
+    });
+    (this.opps || []).forEach((o) => {
+      if (o.gap === 0) {
+        cards.push({ id: "funded-" + o.id, name: "Fully funded \u2014 " + o.title, cat: "orgs", sub: tk(o.target) + " secured together", avail: true, theme: "gradient", a4: false, allowNote: false,
+          model: { layout: "funded", title: o.title, statement: "Next: watch the work happen \u2014 every taka tracked on the Trust Ledger, every result published with evidence.", verifyLine: site },
+          caption: "FULLY FUNDED \u2713 Together, we funded " + o.title + ". Next: watch the work happen \u2014 every taka tracked on the live Trust Ledger." });
+      } else {
+        cards.push({ id: "fund-" + o.id, name: "Help fund \u2014 " + o.title, cat: "orgs", sub: tk(o.gap) + " still needed \u00B7 " + o.pct + "% secured", avail: true, theme: "blue", a4: true, allowNote: false,
+          model: { layout: "fund", eyebrow: o.urgent ? "URGENT \u2014 HELP FUND THIS WORK" : "HELP FUND THIS WORK", title: o.title, giant: tk(o.gap), giantUnit: "STILL NEEDED", pct: o.pct, money1: tk(o.secured) + " secured of " + tk(o.target), expected: (o.expected || []).slice(0, 3), chip: "Expected outcomes measured & published", band2: "Back measurable impact \u2192", verifyLine: site },
+          caption: "Help fund this: " + o.title + " \u2014 " + tk(o.gap) + " still needed (" + o.pct + "% secured). Expected outcomes are measured and published with evidence. Back measurable impact on Goodness." });
+      }
+    });
+    const pctRows = (this.opps || []).filter((o) => o.pct >= 25 && o.pct < 100).map((o) => ({ o, mile: [75, 50, 25].find((t) => o.pct >= t) })).sort((a, b) => b.o.pct - a.o.pct).slice(0, 2);
+    pctRows.forEach(({ o, mile }) => {
+      cards.push({ id: "pct-" + o.id, name: mile + "% funded \u2014 " + o.title, cat: "orgs", sub: "Progress milestone \u00B7 live at " + o.pct + "%", avail: true, theme: "light", a4: false, allowNote: false,
+        model: { layout: "pct", eyebrow: "FUNDING MILESTONE", pct: o.pct, giant: mile + "%", giantUnit: "FUNDED", title: o.title, money1: tk(o.secured) + " secured", money2: tk(o.gap) + " still needed", statement: "Help us close the gap.", verifyLine: site },
+        caption: o.title + " has passed " + mile + "% funded \u2014 " + tk(o.secured) + " secured, " + tk(o.gap) + " still needed. Help us close the gap: back measurable impact on Goodness." });
+    });
+
+    cards.forEach((c) => {
+      if (c.avail) {
+        if (c.id === "hours" && nextH) c.sub += " \u00B7 next: " + nextH;
+        if (c.id === "missions" && nextM) c.sub += " \u00B7 next: " + nextM;
+        if (c.id === "commitment-milestone" && !durCard && countMile) { const nc = [1, 10, 25, 50, 100].find((t) => t > contribs); if (nc) c.sub += " \u00B7 next: " + nc; }
+      }
+    });
+    return cards;
+  }
+
+  current() { return this.state.cards.find((c) => c.id === this.state.cardId) || null; }
+
+  pick(id) {
+    const c = this.state.cards.find((x) => x.id === id);
+    if (!c || !c.avail) return;
+    if (this.state.fmt === "a4" && !c.a4) this.setState({ fmt: "square" });
+    this.setState({ cardId: id, caption: c.caption, note: "", copied: false });
+  }
+
+  async download() {
+    const card = this.current();
+    const el = document.getElementById("gs-card");
+    if (!el || !window.htmlToImage || !card) return;
+    this.setState({ dl: true });
+    try {
+      const url = await window.htmlToImage.toPng(el, { pixelRatio: 2 });
+      const a = document.createElement("a");
+      a.download = "goodness-" + card.id + "-" + this.state.fmt + ".png";
+      a.href = url;
+      a.click();
+    } catch (e) {}
+    this.setState({ dl: false });
+  }
+
+  renderVals() {
+    const s = this.state;
+    const me = s.me;
+    const card = this.current();
+    const m = (card && card.model) || {};
+    const theme = card ? card.theme : "light";
+    const T = theme === "ink"
+      ? { bg: "#0D0D0D", fg: "#ffffff", sub: "rgba(255,255,255,0.55)", accent: "#4DC86A", motif: "rgba(255,255,255,0.08)", tileBg: "linear-gradient(135deg, #4DC86A 0%, #1B7A34 100%)", tileFg: "#ffffff", giant: "#4DC86A", chipBg: "rgba(77,200,106,0.15)", chipFg: "#4DC86A", vBg: "rgba(255,255,255,0.1)", vFg: "#4DC86A", badgeBg: "rgba(77,200,106,0.15)", badgeStroke: "#4DC86A" }
+      : theme === "gradient"
+      ? { bg: "linear-gradient(135deg, #4DC86A 0%, #1B7A34 100%)", fg: "#ffffff", sub: "rgba(255,255,255,0.75)", accent: "rgba(255,255,255,0.9)", motif: "rgba(255,255,255,0.18)", tileBg: "#ffffff", tileFg: "#1B7A34", giant: "#ffffff", chipBg: "rgba(255,255,255,0.16)", chipFg: "#ffffff", vBg: "rgba(255,255,255,0.16)", vFg: "#ffffff", badgeBg: "rgba(255,255,255,0.16)", badgeStroke: "#ffffff" }
+      : theme === "paper"
+      ? { bg: "#F6F3EA", fg: "#141410", sub: "#6f6a5c", accent: "#1B7A34", motif: "transparent", tileBg: "#141410", tileFg: "#F6F3EA", giant: "#141410", chipBg: "#141410", chipFg: "#F6F3EA", vBg: "#141410", vFg: "#4DC86A", badgeBg: "#141410", badgeStroke: "#4DC86A" }
+      : theme === "alarm"
+      ? { bg: "#0D0D0D", fg: "#ffffff", sub: "rgba(255,255,255,0.6)", accent: "#FF7A28", motif: "transparent", tileBg: "#FF7A28", tileFg: "#0D0D0D", giant: "#FF7A28", chipBg: "rgba(255,122,40,0.16)", chipFg: "#FF7A28", vBg: "rgba(255,122,40,0.16)", vFg: "#FF7A28", badgeBg: "rgba(255,122,40,0.16)", badgeStroke: "#FF7A28" }
+      : theme === "royal"
+      ? { bg: "#1565C0", fg: "#ffffff", sub: "rgba(255,255,255,0.7)", accent: "#BBDEFB", motif: "rgba(255,255,255,0.1)", tileBg: "#ffffff", tileFg: "#1565C0", giant: "#ffffff", chipBg: "rgba(255,255,255,0.16)", chipFg: "#ffffff", vBg: "rgba(255,255,255,0.16)", vFg: "#BBDEFB", badgeBg: "rgba(255,255,255,0.16)", badgeStroke: "#BBDEFB" }
+      : theme === "forest"
+      ? { bg: "#145A28", fg: "#ffffff", sub: "rgba(255,255,255,0.65)", accent: "#7FE49A", motif: "rgba(255,255,255,0.1)", tileBg: "#ffffff", tileFg: "#145A28", giant: "#ffffff", chipBg: "rgba(255,255,255,0.14)", chipFg: "#ffffff", vBg: "rgba(255,255,255,0.14)", vFg: "#7FE49A", badgeBg: "rgba(255,255,255,0.14)", badgeStroke: "#7FE49A" }
+      : theme === "blue"
+      ? { bg: "#1565C0", fg: "#ffffff", sub: "rgba(255,255,255,0.72)", accent: "rgba(255,255,255,0.9)", motif: "rgba(255,255,255,0.14)", tileBg: "#ffffff", tileFg: "#1565C0", giant: "#ffffff", chipBg: "rgba(255,255,255,0.16)", chipFg: "#ffffff", vBg: "rgba(255,255,255,0.16)", vFg: "#ffffff", badgeBg: "rgba(255,255,255,0.16)", badgeStroke: "#ffffff" }
+      : { bg: "#ffffff", fg: "#0D0D0D", sub: "#6B7280", accent: "#1B7A34", motif: "rgba(27,122,52,0.12)", tileBg: "linear-gradient(135deg, #4DC86A 0%, #1B7A34 100%)", tileFg: "#ffffff", giant: "#1B7A34", chipBg: "#f0faf3", chipFg: "#1B7A34", vBg: "#f0faf3", vFg: "#1B7A34", badgeBg: "#f0faf3", badgeStroke: "#1B7A34" };
+    const square = s.fmt === "square";
+    const a4 = s.fmt === "a4";
+    const cardH = square ? 540 : a4 ? 764 : 960;
+    const pv = square ? 0.72 : a4 ? 0.62 : 0.55;
+    const recIds = ["credential", "commitment-milestone", "chap-lead", "founding", "hours", "missions", "chap-mile", "sustaining", "backed-impact", "promotion", "mission-completed", "chap-member", "first-mission", "identity"];
+    const recommended = recIds.map((id) => s.cards.find((c) => c.id === id && c.avail)).filter(Boolean).slice(0, 3)
+      .map((c) => ({ name: c.name, border: "rgba(27,122,52,0.3)", bg: "#f8fdf9", pick: () => this.pick(c.id) }));
+    const toRow = (c) => {
+      const sel = c.id === s.cardId;
+      return { name: c.name, sub: c.sub, locked: !c.avail, cursor: c.avail ? "pointer" : "default", opacity: c.avail ? "1" : "0.55",
+        border: sel ? "#1B7A34" : "rgba(0,0,0,0.08)", bg: sel ? "#f0faf3" : "#fafafa",
+        tag: c.avail ? (sel ? "SELECTED" : "READY") : "LOCKED", tagColor: c.avail ? "#1B7A34" : "#9CA3AF",
+        pick: () => this.pick(c.id) };
+    };
+    const journeyList = s.cards.filter((c) => !c.cat).map(toRow);
+    const givingList = s.cards.filter((c) => c.cat === "giving").map(toRow);
+    const orgList = s.cards.filter((c) => c.cat === "orgs").map((c) => { const r = toRow(c); if (c.theme === "alarm") { r.tag = c.id === s.cardId ? "SELECTED" : "URGENT"; r.tagColor = c.id === s.cardId ? "#1B7A34" : "#E65100"; } return r; });
+    const chapterList = s.cards.filter((c) => c.cat === "chapter").map(toRow);
+    const impactList = s.cards.filter((c) => c.cat === "impact").map(toRow);
+    const partnerList = s.cards.filter((c) => c.cat === "partner").map(toRow);
+    const digestList = s.cards.filter((c) => c.cat === "digest").map(toRow);
+    const jump = (id) => () => {
+      const el = document.getElementById(id);
+      if (!el) return;
+      let sc = el.parentElement;
+      while (sc && !(/(auto|scroll)/.test(getComputedStyle(sc).overflowY) && sc.scrollHeight > sc.clientHeight)) sc = sc.parentElement;
+      if (sc) {
+        window.scrollTo(0, 0);
+        const apply = () => { sc.scrollTop += el.getBoundingClientRect().top - sc.getBoundingClientRect().top - 12; };
+        apply();
+        requestAnimationFrame(() => { apply(); requestAnimationFrame(apply); });
+      }
+      else window.scrollTo(0, Math.max(0, el.getBoundingClientRect().top + window.scrollY - 90));
+    };
+    const navChips = [["nav-rec", "For you"], ["nav-journey", "My journey"], ["nav-giving", "Giving"], ["nav-chapter", "Chapter"], ["nav-impact", "Impact"], ["nav-org", "Missions & funding"], ["nav-partner", "Partners"], ["nav-digest", "Digests"]].map((x) => ({ id: x[0], label: x[1], go: jump(x[0]) }));
+    const signInList = s.vols.slice(0, 24).map((p) => ({ name: p.name, city: p.city, initials: p.initials, grad: this.grad(p), pick: () => { this.gs.claim(p.id); this.load(); } }));
+    return {
+      needSignIn: s.loaded && !me,
+      ready: s.loaded && !!me && !!card,
+      signInList, recommended, journeyList, givingList, orgList, chapterList, impactList, partnerList, digestList, navChips,
+      meName: me ? me.name : "", meInitials: me ? me.initials : "", meGrad: me ? this.grad(me) : "",
+      meLine: me ? (me.level + " \u00B7 " + s.chapterName) : "",
+      switchUser: () => { this.gs.claim(null); this.load(); },
+      fmtSquare: () => this.setState({ fmt: "square" }), fmtStory: () => this.setState({ fmt: "story" }), fmtA4: () => this.setState({ fmt: "a4" }),
+      sqBg: square ? "#0D0D0D" : "transparent", sqFg: square ? "#ffffff" : "#6B7280",
+      stBg: s.fmt === "story" ? "#0D0D0D" : "transparent", stFg: s.fmt === "story" ? "#ffffff" : "#6B7280",
+      a4Bg: a4 ? "#0D0D0D" : "transparent", a4Fg: a4 ? "#ffffff" : "#6B7280",
+      a4Avail: !!(card && card.a4),
+      boxW: Math.round(540 * pv), boxH: Math.round(cardH * pv), pv, cardH,
+      cardBg: T.bg, cardFg: T.fg, cardSub: T.sub, accent: T.accent, motif: T.motif,
+      tileBg: T.tileBg, tileFg: T.tileFg, giantColor: T.giant, chipBg: T.chipBg, chipFg: T.chipFg,
+      vChipBg: T.vBg, vChipFg: T.vFg, badgeBg: T.badgeBg, badgeStroke: T.badgeStroke,
+      eyebrow: m.eyebrow || "", showAvatar: !!m.showAvatar, showBadge: !!m.showBadge,
+      giant: m.giant || "", giantUnit: m.giantUnit || "", title: m.title || "", line1: m.line1 || "",
+      chip: m.chip || "", stats: m.stats || [], hasStats: !!(m.stats && m.stats.length),
+      refLine: m.refLine || "", statement: m.statement || "",
+      isDefault: !m.layout, isRecruit: m.layout === "recruit", isUrgent: m.layout === "urgent",
+      isFund: m.layout === "fund", isPct: m.layout === "pct", isFunded: m.layout === "funded",
+      isChapMember: m.layout === "chapmember", isChapMile: m.layout === "chapmile",
+      isLead: m.layout === "lead", isLaunch: m.layout === "launch",
+      isDuo: m.layout === "duo", isDigest: m.layout === "digest", isYear: m.layout === "year",
+      isImpactPub: m.layout === "impactpub", isOutcome: m.layout === "outcome",
+      isEvidence: m.layout === "evidence", isMoney: m.layout === "money",
+      rowsList: (m.rows || []).map((r) => ({ v: r.v, l: r.l, basis: r.basis || "", hasBasis: !!r.basis })),
+      mono: m.mono || "G",
+      stack1: m.stack1 || "", stack2: m.stack2 || "", meta: m.meta || "",
+      rolesList: m.roles || [], hasRoles: !!(m.roles && m.roles.length),
+      band1: m.band1 || "", band2: m.band2 || "",
+      money1: m.money1 || "", money2: m.money2 || "",
+      expectedList: (m.expected || []).map((t) => ({ t })), hasExpected: !!(m.expected && m.expected.length),
+      barPct: (m.pct || 0) + "%", pctLive: (m.pct || 0) + "% secured so far",
+      donutBg: "conic-gradient(#1565C0 " + ((m.pct || 0) * 3.6) + "deg, #E3EBF6 0deg)",
+      noteShown: card && card.allowNote ? s.note : "", allowNote: !!(card && card.allowNote),
+      note: s.note, setNote: (e) => this.setState({ note: e.target.value }),
+      verifyLine: m.verifyLine || "",
+      caption: s.caption, setCaption: (e) => this.setState({ caption: e.target.value, copied: false }),
+      copyLabel: s.copied ? "Copied \u2713" : "Copy caption",
+      copyCaption: () => { try { navigator.clipboard.writeText(s.caption); } catch (e) {} this.setState({ copied: true }); },
+      dlLabel: s.dl ? "Preparing\u2026" : "Download PNG",
+      download: () => this.download(),
+    };
+  }
+}
+</script>
+</body>
+</html>

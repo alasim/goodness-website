@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+  body { margin: 0; background: #fafafa; font-family: 'Plus Jakarta Sans', system-ui, sans-serif; }
+  a { color: #1B7A34; } a:hover { color: #4DC86A; }
+</style>
+<script src="https://unpkg.com/html-to-image@1.11.11/dist/html-to-image.js"></script>
+</helmet>
+<div style="min-height: 100vh; display: flex; flex-direction: column;">
+  <header style="background: #ffffff; border-bottom: 1px solid rgba(0,0,0,0.07); padding: 16px 32px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;">
+    <div style="display: flex; align-items: center; gap: 16px;">
+      <img src="assets/gs-logo.png" alt="Goodness Society" style="height: 42px; width: auto;">
+      <div>
+        <div style="font-size: 17px; color: #0D0D0D; letter-spacing: -0.01em;"><span style="font-weight: 300;">Social</span> <span style="font-weight: 800;">share cards</span></div>
+        <div style="font-size: 11px; color: #6B7280;">Fill in your details, then download a high-res PNG to share</div>
+      </div>
+    </div>
+    <nav style="display: flex; gap: 8px;">
+      <a href="Printables.dc.html" style="text-decoration: none; background: linear-gradient(135deg, #4DC86A 0%, #1B7A34 100%); color: #ffffff; border: none; border-radius: 999px; padding: 8px 14px; font-size: 12px; font-weight: 700;">← Website</a>
+      <a href="Volunteer Certificate.dc.html" style="text-decoration: none; border: 1px solid rgba(0,0,0,0.1); border-radius: 999px; padding: 7px 14px; font-size: 12px; font-weight: 700;">Certificate</a>
+      <a href="Member Registration Form.dc.html" style="text-decoration: none; border: 1px solid rgba(0,0,0,0.1); border-radius: 999px; padding: 7px 14px; font-size: 12px; font-weight: 700;">Member Form</a>
+      <a href="Money Receipt.dc.html" style="text-decoration: none; border: 1px solid rgba(0,0,0,0.1); border-radius: 999px; padding: 7px 14px; font-size: 12px; font-weight: 700;">Money Receipt</a>
+    </nav>
+  </header>
+  <main style="max-width: 1160px; width: 100%; margin: 0 auto; padding: 36px 32px 72px; box-sizing: border-box; display: flex; flex-direction: column; gap: 64px;">
+
+    <section data-screen-label="Volunteer Card">
+      <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 18px;">
+        <div style="width: 40px; height: 40px; border-radius: 28%; background: #f0faf3; display: flex; align-items: center; justify-content: center; color: #1B7A34; font-weight: 800; font-size: 15px;">01</div>
+        <div>
+          <h2 style="margin: 0; font-size: 20px; color: #0D0D0D;"><span style="font-weight: 300;">Volunteer</span> <span style="font-weight: 800;">card</span></h2>
+          <p style="margin: 2px 0 0; font-size: 12.5px; color: #6B7280;">Celebrate your role as a Goodness Society volunteer &#8212; for LinkedIn, Instagram, and WhatsApp.</p>
+        </div>
+      </div>
+      <div style="display: flex; gap: 36px; flex-wrap: wrap; align-items: flex-start;">
+        <div style="display: flex; flex-direction: column; gap: 14px; align-items: center;">
+          <div id="card-volunteer" style="width: 540px; height: 540px; background: #0D0D0D; border-radius: 24px; overflow: hidden; position: relative; display: flex; flex-direction: column; font-family: 'Plus Jakarta Sans', system-ui, sans-serif; flex-shrink: 0;">
+            <svg style="position: absolute; top: -24px; right: -24px; opacity: 0.12;" width="200" height="200" viewBox="0 0 200 200">
+              <rect x="20" y="20" width="160" height="160" rx="36" fill="none" stroke="#4DC86A" stroke-width="3" transform="rotate(18 100 100)"></rect>
+              <rect x="44" y="44" width="112" height="112" rx="24" fill="#4DC86A" transform="rotate(32 100 100)"></rect>
+            </svg>
+            <svg style="position: absolute; bottom: -20px; left: -20px; opacity: 0.08;" width="160" height="160" viewBox="0 0 160 160">
+              <rect x="10" y="10" width="140" height="140" rx="32" fill="none" stroke="#1565C0" stroke-width="3" transform="rotate(-14 80 80)"></rect>
+              <rect x="28" y="28" width="104" height="104" rx="22" fill="#1565C0" transform="rotate(-28 80 80)"></rect>
+            </svg>
+            <div style="display: flex; align-items: center; justify-content: space-between; padding: 20px 24px 0; position: relative;">
+              <img src="assets/gs-logo.png" alt="Goodness Society" style="height: 28px; width: auto; filter: brightness(0) invert(1);">
+              <div style="padding: 4px 12px; border-radius: 20px; background: linear-gradient(135deg, #4DC86A 0%, #1B7A34 100%); font-size: 9.5px; font-weight: 700; color: #ffffff; text-transform: uppercase; letter-spacing: 0.1em;">Volunteer</div>
+            </div>
+            <div style="flex: 1; display: flex; flex-direction: column; justify-content: flex-end; padding: 0 24px 24px; position: relative;">
+              <div style="display: flex; align-items: flex-end; gap: 16px; margin-bottom: 18px;">
+                <div style="width: 90px; height: 90px; border-radius: 28%; overflow: hidden; flex-shrink: 0; border: 3px solid rgba(77,200,106,0.5); background: #1a1a1a; display: flex; align-items: center; justify-content: center;">
+                  {{ vPhotoImg }}
+                </div>
+                <div style="flex: 1;">
+                  <div style="font-size: 22px; font-weight: 800; color: #ffffff; line-height: 1.1; margin-bottom: 4px; letter-spacing: -0.02em;">{{ vNameVal }}</div>
+                  <div style="font-size: 12px; font-weight: 600; color: #4DC86A; margin-bottom: 5px;">{{ vRoleVal }}</div>
+                  <div style="display: inline-flex; align-items: center; gap: 5px; background: rgba(255,255,255,0.07); border-radius: 8px; padding: 3px 8px;">
+                    <div style="width: 5px; height: 5px; border-radius: 50%; background: #4DC86A;"></div>
+                    <span style="font-size: 10px; color: rgba(255,255,255,0.6); font-weight: 500;">{{ vProgramVal }}</span>
+                  </div>
+                </div>
+              </div>
+              <div style="background: rgba(255,255,255,0.06); border-left: 3px solid #4DC86A; border-radius: 0 10px 10px 0; padding: 10px 14px; margin-bottom: 18px;">
+                <p style="margin: 0; font-size: 12px; color: rgba(255,255,255,0.75); line-height: 1.6; font-style: italic; font-weight: 300;">&#8220;{{ vQuoteVal }}&#8221;</p>
+              </div>
+              <div style="display: flex; align-items: center; justify-content: space-between;">
+                <div>
+                  <div style="font-size: 9px; color: rgba(255,255,255,0.35); text-transform: uppercase; letter-spacing: 0.1em;">Together for a Better Tomorrow</div>
+                  <div style="font-size: 9px; color: rgba(255,255,255,0.25); margin-top: 1px;">goodnesssociety.org</div>
+                </div>
+                <div style="width: 32px; height: 32px; border-radius: 28%; background: linear-gradient(135deg, #4DC86A 0%, #1B7A34 100%); display: flex; align-items: center; justify-content: center;"><span style="color: #ffffff; font-weight: 800; font-size: 16px;">G</span></div>
+              </div>
+            </div>
+          </div>
+          <button onClick="{{ dlVolunteer }}" style="display: flex; align-items: center; gap: 8px; padding: 11px 26px; border-radius: 999px; border: none; color: #ffffff; font-size: 13px; font-weight: 700; font-family: inherit; cursor: pointer; background: linear-gradient(135deg, #4DC86A 0%, #1B7A34 100%);">&#8681; Download PNG (1080&#215;1080)</button>
+        </div>
+        <div style="flex: 1; min-width: 300px; max-width: 420px; background: #ffffff; border: 1px solid rgba(0,0,0,0.08); border-radius: 18px; padding: 24px; display: flex; flex-direction: column; gap: 14px;">
+          <div style="font-size: 10.5px; font-weight: 800; color: #6B7280; text-transform: uppercase; letter-spacing: 0.14em;">Fill in your details</div>
+          <div>
+            <label style="display: block; font-size: 10px; font-weight: 700; color: #6B7280; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 5px;">Your photo</label>
+            <input id="vfile" type="file" accept="image/*" onChange="{{ vUpload }}" style="display: none;">
+            <label for="vfile" style="display: inline-flex; align-items: center; gap: 8px; padding: 9px 16px; border-radius: 10px; border: 1.5px dashed rgba(77,200,106,0.6); background: #f0faf3; color: #1B7A34; font-size: 12px; font-weight: 700; cursor: pointer;">&#8679; Upload photo</label>
+          </div>
+          <div>
+            <label style="display: block; font-size: 10px; font-weight: 700; color: #6B7280; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 5px;">Full name</label>
+            <input value="{{ vName }}" onInput="{{ setVName }}" placeholder="e.g. Nusrat Jahan" style="width: 100%; box-sizing: border-box; padding: 9px 12px; border-radius: 10px; border: 1px solid rgba(0,0,0,0.12); background: #fafafa; font-size: 13px; font-family: inherit; outline: none;" style-focus="border-color: #1B7A34; background: #ffffff;">
+          </div>
+          <div>
+            <label style="display: block; font-size: 10px; font-weight: 700; color: #6B7280; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 5px;">Volunteer role / title</label>
+            <input value="{{ vRole }}" onInput="{{ setVRole }}" placeholder="e.g. AI Skills Trainer" style="width: 100%; box-sizing: border-box; padding: 9px 12px; border-radius: 10px; border: 1px solid rgba(0,0,0,0.12); background: #fafafa; font-size: 13px; font-family: inherit; outline: none;" style-focus="border-color: #1B7A34; background: #ffffff;">
+          </div>
+          <div>
+            <label style="display: block; font-size: 10px; font-weight: 700; color: #6B7280; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 5px;">Program area</label>
+            <select value="{{ vProgram }}" onChange="{{ setVProgram }}" style="width: 100%; box-sizing: border-box; padding: 9px 12px; border-radius: 10px; border: 1px solid rgba(0,0,0,0.12); background: #ffffff; font-size: 13px; font-family: inherit; outline: none;">
+              <option value="">Select a program&#8230;</option>
+              <option value="Education &amp; Career Readiness">Education &amp; Career Readiness</option>
+              <option value="AI &amp; Digital Skills Development">AI &amp; Digital Skills Development</option>
+              <option value="Youth Empowerment">Youth Empowerment</option>
+              <option value="Community Development">Community Development</option>
+              <option value="Innovation for Social Good">Innovation for Social Good</option>
+            </select>
+          </div>
+          <div>
+            <label style="display: block; font-size: 10px; font-weight: 700; color: #6B7280; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 5px;">Personal quote (optional)</label>
+            <textarea value="{{ vQuote }}" onInput="{{ setVQuote }}" rows="3" maxLength="120" placeholder="Share what volunteering means to you&#8230;" style="width: 100%; box-sizing: border-box; padding: 9px 12px; border-radius: 10px; border: 1px solid rgba(0,0,0,0.12); background: #fafafa; font-size: 13px; font-family: inherit; outline: none; resize: none;" style-focus="border-color: #1B7A34; background: #ffffff;"></textarea>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section data-screen-label="Member Card">
+      <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 18px;">
+        <div style="width: 40px; height: 40px; border-radius: 28%; background: #f0faf3; display: flex; align-items: center; justify-content: center; color: #1B7A34; font-weight: 800; font-size: 15px;">02</div>
+        <div>
+          <h2 style="margin: 0; font-size: 20px; color: #0D0D0D;"><span style="font-weight: 300;">Member</span> <span style="font-weight: 800;">card</span></h2>
+          <p style="margin: 2px 0 0; font-size: 12.5px; color: #6B7280;">Show your Goodness Society membership with pride.</p>
+        </div>
+      </div>
+      <div style="display: flex; gap: 36px; flex-wrap: wrap; align-items: flex-start;">
+        <div style="display: flex; flex-direction: column; gap: 14px; align-items: center;">
+          <div id="card-member" style="width: 540px; height: 540px; background: #ffffff; border-radius: 24px; overflow: hidden; position: relative; display: flex; flex-direction: column; font-family: 'Plus Jakarta Sans', system-ui, sans-serif; border: 1.5px solid rgba(0,0,0,0.06); flex-shrink: 0;">
+            <div style="height: 180px; background: linear-gradient(135deg, #4DC86A 0%, #1B7A34 100%); position: relative; overflow: visible; flex-shrink: 0;">
+              <svg style="position: absolute; top: -20px; right: -20px; opacity: 0.15;" width="160" height="160" viewBox="0 0 160 160"><rect x="10" y="10" width="140" height="140" rx="32" fill="#ffffff" transform="rotate(16 80 80)"></rect></svg>
+              <svg style="position: absolute; bottom: -30px; left: 20px; opacity: 0.1;" width="120" height="120" viewBox="0 0 120 120"><rect x="10" y="10" width="100" height="100" rx="22" fill="#ffffff" transform="rotate(-12 60 60)"></rect></svg>
+              <div style="position: absolute; top: 18px; left: 22px;"><img src="assets/gs-logo.png" alt="Goodness Society" style="height: 26px; width: auto; filter: brightness(0) invert(1);"></div>
+              <div style="position: absolute; top: 18px; right: 22px; background: rgba(255,255,255,0.2); border: 1.5px solid rgba(255,255,255,0.4); padding: 3px 10px; border-radius: 16px; font-size: 9px; font-weight: 700; color: #ffffff; text-transform: uppercase; letter-spacing: 0.1em;">Member</div>
+              <div style="position: absolute; bottom: -44px; left: 50%; transform: translateX(-50%); width: 88px; height: 88px; border-radius: 28%; overflow: hidden; border: 4px solid #ffffff; background: #e8f5e9; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 20px rgba(0,0,0,0.15); z-index: 2;">
+                {{ mPhotoImg }}
+              </div>
+            </div>
+            <div style="flex: 1; display: flex; flex-direction: column; align-items: center; padding: 54px 28px 22px;">
+              <div style="font-size: 24px; font-weight: 800; color: #0D0D0D; text-align: center; line-height: 1.1; margin-bottom: 8px; letter-spacing: -0.02em;">{{ mNameVal }}</div>
+              <div style="display: inline-flex; align-items: center; gap: 6px; background: #f0faf3; border: 1.5px solid rgba(27,122,52,0.2); padding: 5px 14px; border-radius: 20px; font-size: 11px; font-weight: 600; color: #1B7A34; margin-bottom: 8px;">
+                <div style="width: 5px; height: 5px; border-radius: 50%; background: #4DC86A;"></div>{{ mRoleVal }}
+              </div>
+              <sc-if value="{{ mCity }}" hint-placeholder-val="{{ false }}"><div style="font-size: 10.5px; color: #9CA3AF; margin-bottom: 10px;">{{ mCity }}</div></sc-if>
+              <div style="width: 40px; height: 2px; background: linear-gradient(135deg, #4DC86A 0%, #1B7A34 100%); border-radius: 1px; margin: 6px 0 14px;"></div>
+              <p style="margin: 0 auto auto; font-size: 11.5px; color: #6B7280; text-align: center; line-height: 1.6; max-width: 340px; font-style: italic; font-weight: 300;">&#8220;{{ mTaglineVal }}&#8221;</p>
+              <div style="width: 100%; display: flex; align-items: center; justify-content: space-between; padding-top: 14px; border-top: 1px solid rgba(0,0,0,0.06);">
+                <div>
+                  <div style="font-size: 8.5px; color: #9CA3AF; text-transform: uppercase; letter-spacing: 0.08em;">Together for a Better Tomorrow</div>
+                  <div style="font-size: 8.5px; color: #C4C4C4; margin-top: 1px;">goodnesssociety.org</div>
+                </div>
+                <div style="width: 30px; height: 30px; border-radius: 28%; background: linear-gradient(135deg, #4DC86A 0%, #1B7A34 100%); display: flex; align-items: center; justify-content: center;"><span style="color: #ffffff; font-weight: 800; font-size: 15px;">G</span></div>
+              </div>
+            </div>
+          </div>
+          <button onClick="{{ dlMember }}" style="display: flex; align-items: center; gap: 8px; padding: 11px 26px; border-radius: 999px; border: none; color: #ffffff; font-size: 13px; font-weight: 700; font-family: inherit; cursor: pointer; background: linear-gradient(135deg, #4DC86A 0%, #1B7A34 100%);">&#8681; Download PNG (1080&#215;1080)</button>
+        </div>
+        <div style="flex: 1; min-width: 300px; max-width: 420px; background: #ffffff; border: 1px solid rgba(0,0,0,0.08); border-radius: 18px; padding: 24px; display: flex; flex-direction: column; gap: 14px;">
+          <div style="font-size: 10.5px; font-weight: 800; color: #6B7280; text-transform: uppercase; letter-spacing: 0.14em;">Fill in your details</div>
+          <div>
+            <label style="display: block; font-size: 10px; font-weight: 700; color: #6B7280; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 5px;">Your photo</label>
+            <input id="mfile" type="file" accept="image/*" onChange="{{ mUpload }}" style="display: none;">
+            <label for="mfile" style="display: inline-flex; align-items: center; gap: 8px; padding: 9px 16px; border-radius: 10px; border: 1.5px dashed rgba(77,200,106,0.6); background: #f0faf3; color: #1B7A34; font-size: 12px; font-weight: 700; cursor: pointer;">&#8679; Upload photo</label>
+          </div>
+          <div>
+            <label style="display: block; font-size: 10px; font-weight: 700; color: #6B7280; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 5px;">Full name</label>
+            <input value="{{ mName }}" onInput="{{ setMName }}" placeholder="e.g. Arif Chowdhury" style="width: 100%; box-sizing: border-box; padding: 9px 12px; border-radius: 10px; border: 1px solid rgba(0,0,0,0.12); background: #fafafa; font-size: 13px; font-family: inherit; outline: none;" style-focus="border-color: #1B7A34; background: #ffffff;">
+          </div>
+          <div>
+            <label style="display: block; font-size: 10px; font-weight: 700; color: #6B7280; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 5px;">Member role</label>
+            <select value="{{ mRole }}" onChange="{{ setMRole }}" style="width: 100%; box-sizing: border-box; padding: 9px 12px; border-radius: 10px; border: 1px solid rgba(0,0,0,0.12); background: #ffffff; font-size: 13px; font-family: inherit; outline: none;">
+              <option value="">Select a role&#8230;</option>
+              <option value="General Member">General Member</option>
+              <option value="Community Champion">Community Champion</option>
+              <option value="Youth Ambassador">Youth Ambassador</option>
+              <option value="Education Advocate">Education Advocate</option>
+              <option value="Digital Skills Fellow">Digital Skills Fellow</option>
+              <option value="Innovation Fellow">Innovation Fellow</option>
+              <option value="Community Leader">Community Leader</option>
+              <option value="Strategic Partner">Strategic Partner</option>
+            </select>
+          </div>
+          <div>
+            <label style="display: block; font-size: 10px; font-weight: 700; color: #6B7280; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 5px;">City / location (optional)</label>
+            <input value="{{ mCity }}" onInput="{{ setMCity }}" placeholder="e.g. Dhaka, Bangladesh" style="width: 100%; box-sizing: border-box; padding: 9px 12px; border-radius: 10px; border: 1px solid rgba(0,0,0,0.12); background: #fafafa; font-size: 13px; font-family: inherit; outline: none;" style-focus="border-color: #1B7A34; background: #ffffff;">
+          </div>
+          <div>
+            <label style="display: block; font-size: 10px; font-weight: 700; color: #6B7280; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 5px;">Personal tagline (optional)</label>
+            <textarea value="{{ mTagline }}" onInput="{{ setMTagline }}" rows="3" maxLength="120" placeholder="What does being part of Goodness Society mean to you?" style="width: 100%; box-sizing: border-box; padding: 9px 12px; border-radius: 10px; border: 1px solid rgba(0,0,0,0.12); background: #fafafa; font-size: 13px; font-family: inherit; outline: none; resize: none;" style-focus="border-color: #1B7A34; background: #ffffff;"></textarea>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section data-screen-label="Supporter Card">
+      <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 18px;">
+        <div style="width: 40px; height: 40px; border-radius: 28%; background: #eaf2fb; display: flex; align-items: center; justify-content: center; color: #1565C0; font-weight: 800; font-size: 15px;">03</div>
+        <div>
+          <h2 style="margin: 0; font-size: 20px; color: #0D0D0D;"><span style="font-weight: 300;">Supporter</span> <span style="font-weight: 800;">card</span></h2>
+          <p style="margin: 2px 0 0; font-size: 12.5px; color: #6B7280;">For donors and friends of the mission &#8212; tell your network you stand with us.</p>
+        </div>
+      </div>
+      <div style="display: flex; gap: 36px; flex-wrap: wrap; align-items: flex-start;">
+        <div style="display: flex; flex-direction: column; gap: 14px; align-items: center;">
+          <div id="card-supporter" style="width: 540px; height: 540px; background: linear-gradient(160deg, #0B3E7A 0%, #1565C0 60%, #1976D2 100%); border-radius: 24px; overflow: hidden; position: relative; display: flex; flex-direction: column; font-family: 'Plus Jakarta Sans', system-ui, sans-serif; flex-shrink: 0;">
+            <svg style="position: absolute; top: -24px; right: -24px; opacity: 0.1;" width="200" height="200" viewBox="0 0 200 200">
+              <rect x="20" y="20" width="160" height="160" rx="36" fill="none" stroke="#ffffff" stroke-width="3" transform="rotate(18 100 100)"></rect>
+              <rect x="44" y="44" width="112" height="112" rx="24" fill="#ffffff" transform="rotate(32 100 100)"></rect>
+            </svg>
+            <svg style="position: absolute; bottom: -20px; left: -20px; opacity: 0.08;" width="160" height="160" viewBox="0 0 160 160">
+              <rect x="10" y="10" width="140" height="140" rx="32" fill="none" stroke="#4DC86A" stroke-width="3" transform="rotate(-14 80 80)"></rect>
+              <rect x="28" y="28" width="104" height="104" rx="22" fill="#4DC86A" transform="rotate(-28 80 80)"></rect>
+            </svg>
+            <div style="display: flex; align-items: center; justify-content: space-between; padding: 20px 24px 0; position: relative;">
+              <img src="assets/gs-logo.png" alt="Goodness Society" style="height: 28px; width: auto; filter: brightness(0) invert(1);">
+              <div style="padding: 4px 12px; border-radius: 20px; background: rgba(255,255,255,0.15); border: 1.5px solid rgba(255,255,255,0.4); font-size: 9.5px; font-weight: 700; color: #ffffff; text-transform: uppercase; letter-spacing: 0.1em;">Supporter</div>
+            </div>
+            <div style="flex: 1; display: flex; flex-direction: column; justify-content: flex-end; padding: 0 24px 24px; position: relative;">
+              <div style="font-size: 30px; font-weight: 800; color: #ffffff; line-height: 1.15; letter-spacing: -0.02em; max-width: 420px; margin-bottom: 20px;">{{ sHeadlineVal }}</div>
+              <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 18px;">
+                <div style="width: 68px; height: 68px; border-radius: 28%; overflow: hidden; flex-shrink: 0; border: 3px solid rgba(255,255,255,0.5); background: rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: center;">
+                  {{ sPhotoImg }}
+                </div>
+                <div>
+                  <div style="font-size: 20px; font-weight: 800; color: #ffffff; letter-spacing: -0.02em;">{{ sNameVal }}</div>
+                  <sc-if value="{{ sCity }}" hint-placeholder-val="{{ false }}"><div style="font-size: 11px; color: rgba(255,255,255,0.6); margin-top: 2px;">{{ sCity }}</div></sc-if>
+                </div>
+              </div>
+              <div style="background: rgba(255,255,255,0.08); border-left: 3px solid #4DC86A; border-radius: 0 10px 10px 0; padding: 10px 14px; margin-bottom: 18px;">
+                <p style="margin: 0; font-size: 12px; color: rgba(255,255,255,0.8); line-height: 1.6; font-style: italic; font-weight: 300;">&#8220;{{ sMessageVal }}&#8221;</p>
+              </div>
+              <div style="display: flex; align-items: center; justify-content: space-between;">
+                <div>
+                  <div style="font-size: 9px; color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 0.1em;">Together for a Better Tomorrow</div>
+                  <div style="font-size: 9px; color: rgba(255,255,255,0.3); margin-top: 1px;">goodnesssociety.org/donate</div>
+                </div>
+                <div style="width: 32px; height: 32px; border-radius: 28%; background: #ffffff; display: flex; align-items: center; justify-content: center;"><span style="color: #1565C0; font-weight: 800; font-size: 16px;">G</span></div>
+              </div>
+            </div>
+          </div>
+          <button onClick="{{ dlSupporter }}" style="display: flex; align-items: center; gap: 8px; padding: 11px 26px; border-radius: 999px; border: none; color: #ffffff; font-size: 13px; font-weight: 700; font-family: inherit; cursor: pointer; background: linear-gradient(135deg, #1976D2 0%, #1565C0 100%);">&#8681; Download PNG (1080&#215;1080)</button>
+        </div>
+        <div style="flex: 1; min-width: 300px; max-width: 420px; background: #ffffff; border: 1px solid rgba(0,0,0,0.08); border-radius: 18px; padding: 24px; display: flex; flex-direction: column; gap: 14px;">
+          <div style="font-size: 10.5px; font-weight: 800; color: #6B7280; text-transform: uppercase; letter-spacing: 0.14em;">Fill in your details</div>
+          <div>
+            <label style="display: block; font-size: 10px; font-weight: 700; color: #6B7280; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 5px;">Your photo (optional)</label>
+            <input id="sfile" type="file" accept="image/*" onChange="{{ sUpload }}" style="display: none;">
+            <label for="sfile" style="display: inline-flex; align-items: center; gap: 8px; padding: 9px 16px; border-radius: 10px; border: 1.5px dashed rgba(21,101,192,0.5); background: #eaf2fb; color: #1565C0; font-size: 12px; font-weight: 700; cursor: pointer;">&#8679; Upload photo</label>
+          </div>
+          <div>
+            <label style="display: block; font-size: 10px; font-weight: 700; color: #6B7280; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 5px;">Headline</label>
+            <input value="{{ sHeadline }}" onInput="{{ setSHeadline }}" placeholder="I stand with Goodness Society" style="width: 100%; box-sizing: border-box; padding: 9px 12px; border-radius: 10px; border: 1px solid rgba(0,0,0,0.12); background: #fafafa; font-size: 13px; font-family: inherit; outline: none;" style-focus="border-color: #1565C0; background: #ffffff;">
+          </div>
+          <div>
+            <label style="display: block; font-size: 10px; font-weight: 700; color: #6B7280; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 5px;">Full name</label>
+            <input value="{{ sName }}" onInput="{{ setSName }}" placeholder="e.g. Tasnim Haque" style="width: 100%; box-sizing: border-box; padding: 9px 12px; border-radius: 10px; border: 1px solid rgba(0,0,0,0.12); background: #fafafa; font-size: 13px; font-family: inherit; outline: none;" style-focus="border-color: #1565C0; background: #ffffff;">
+          </div>
+          <div>
+            <label style="display: block; font-size: 10px; font-weight: 700; color: #6B7280; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 5px;">City / location (optional)</label>
+            <input value="{{ sCity }}" onInput="{{ setSCity }}" placeholder="e.g. Chattogram, Bangladesh" style="width: 100%; box-sizing: border-box; padding: 9px 12px; border-radius: 10px; border: 1px solid rgba(0,0,0,0.12); background: #fafafa; font-size: 13px; font-family: inherit; outline: none;" style-focus="border-color: #1565C0; background: #ffffff;">
+          </div>
+          <div>
+            <label style="display: block; font-size: 10px; font-weight: 700; color: #6B7280; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 5px;">Your message (optional)</label>
+            <textarea value="{{ sMessage }}" onInput="{{ setSMessage }}" rows="3" maxLength="140" placeholder="Why do you support the mission?" style="width: 100%; box-sizing: border-box; padding: 9px 12px; border-radius: 10px; border: 1px solid rgba(0,0,0,0.12); background: #fafafa; font-size: 13px; font-family: inherit; outline: none; resize: none;" style-focus="border-color: #1565C0; background: #ffffff;"></textarea>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section data-screen-label="Join Us Card">
+      <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 18px;">
+        <div style="width: 40px; height: 40px; border-radius: 28%; background: #f0faf3; display: flex; align-items: center; justify-content: center; color: #1B7A34; font-weight: 800; font-size: 15px;">04</div>
+        <div>
+          <h2 style="margin: 0; font-size: 20px; color: #0D0D0D;"><span style="font-weight: 300;">Join us</span> <span style="font-weight: 800;">campaign card</span></h2>
+          <p style="margin: 2px 0 0; font-size: 12.5px; color: #6B7280;">For the team and members to post when recruiting volunteers or announcing a drive.</p>
+        </div>
+      </div>
+      <div style="display: flex; gap: 36px; flex-wrap: wrap; align-items: flex-start;">
+        <div style="display: flex; flex-direction: column; gap: 14px; align-items: center;">
+          <div id="card-joinus" style="width: 540px; height: 540px; background: linear-gradient(150deg, #4DC86A 0%, #1B7A34 75%); border-radius: 24px; overflow: hidden; position: relative; display: flex; flex-direction: column; font-family: 'Plus Jakarta Sans', system-ui, sans-serif; flex-shrink: 0;">
+            <svg style="position: absolute; top: -30px; right: -30px; opacity: 0.12;" width="220" height="220" viewBox="0 0 220 220">
+              <rect x="20" y="20" width="180" height="180" rx="40" fill="none" stroke="#ffffff" stroke-width="3" transform="rotate(18 110 110)"></rect>
+              <rect x="50" y="50" width="120" height="120" rx="26" fill="#ffffff" transform="rotate(32 110 110)"></rect>
+            </svg>
+            <svg style="position: absolute; bottom: -24px; left: -24px; opacity: 0.1;" width="170" height="170" viewBox="0 0 170 170">
+              <rect x="10" y="10" width="150" height="150" rx="34" fill="none" stroke="#ffffff" stroke-width="3" transform="rotate(-14 85 85)"></rect>
+            </svg>
+            <div style="display: flex; align-items: center; justify-content: space-between; padding: 20px 24px 0; position: relative;">
+              <img src="assets/gs-logo.png" alt="Goodness Society" style="height: 28px; width: auto; filter: brightness(0) invert(1);">
+              <div style="padding: 4px 12px; border-radius: 20px; background: rgba(255,255,255,0.18); border: 1.5px solid rgba(255,255,255,0.45); font-size: 9.5px; font-weight: 700; color: #ffffff; text-transform: uppercase; letter-spacing: 0.1em;">Join Us</div>
+            </div>
+            <div style="flex: 1; display: flex; flex-direction: column; justify-content: flex-end; padding: 0 24px 24px; position: relative;">
+              <div style="font-size: 36px; font-weight: 800; color: #ffffff; line-height: 1.12; letter-spacing: -0.02em; max-width: 440px; margin-bottom: 14px;">{{ jHeadlineVal }}</div>
+              <p style="margin: 0 0 16px; font-size: 13.5px; color: rgba(255,255,255,0.85); line-height: 1.6; max-width: 420px; font-weight: 400;">{{ jSubVal }}</p>
+              <div style="display: inline-flex; align-self: flex-start; align-items: center; gap: 6px; background: rgba(255,255,255,0.14); border: 1.5px solid rgba(255,255,255,0.35); border-radius: 20px; padding: 5px 14px; margin-bottom: 22px;">
+                <div style="width: 5px; height: 5px; border-radius: 50%; background: #ffffff;"></div>
+                <span style="font-size: 11px; font-weight: 600; color: #ffffff;">{{ jProgramVal }}</span>
+              </div>
+              <div style="display: flex; align-items: center; justify-content: space-between;">
+                <div style="background: #ffffff; border-radius: 999px; padding: 10px 20px; font-size: 13px; font-weight: 800; color: #1B7A34;">goodnesssociety.org/volunteer</div>
+                <div style="width: 32px; height: 32px; border-radius: 28%; background: #ffffff; display: flex; align-items: center; justify-content: center;"><span style="color: #1B7A34; font-weight: 800; font-size: 16px;">G</span></div>
+              </div>
+            </div>
+          </div>
+          <button onClick="{{ dlJoinus }}" style="display: flex; align-items: center; gap: 8px; padding: 11px 26px; border-radius: 999px; border: none; color: #ffffff; font-size: 13px; font-weight: 700; font-family: inherit; cursor: pointer; background: linear-gradient(135deg, #4DC86A 0%, #1B7A34 100%);">&#8681; Download PNG (1080&#215;1080)</button>
+        </div>
+        <div style="flex: 1; min-width: 300px; max-width: 420px; background: #ffffff; border: 1px solid rgba(0,0,0,0.08); border-radius: 18px; padding: 24px; display: flex; flex-direction: column; gap: 14px;">
+          <div style="font-size: 10.5px; font-weight: 800; color: #6B7280; text-transform: uppercase; letter-spacing: 0.14em;">Customise the campaign</div>
+          <div>
+            <label style="display: block; font-size: 10px; font-weight: 700; color: #6B7280; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 5px;">Headline</label>
+            <input value="{{ jHeadline }}" onInput="{{ setJHeadline }}" placeholder="Become a volunteer with Goodness Society" style="width: 100%; box-sizing: border-box; padding: 9px 12px; border-radius: 10px; border: 1px solid rgba(0,0,0,0.12); background: #fafafa; font-size: 13px; font-family: inherit; outline: none;" style-focus="border-color: #1B7A34; background: #ffffff;">
+          </div>
+          <div>
+            <label style="display: block; font-size: 10px; font-weight: 700; color: #6B7280; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 5px;">Supporting line</label>
+            <textarea value="{{ jSub }}" onInput="{{ setJSub }}" rows="3" maxLength="160" placeholder="Give your time and skills to programs in education, digital skills, and community development." style="width: 100%; box-sizing: border-box; padding: 9px 12px; border-radius: 10px; border: 1px solid rgba(0,0,0,0.12); background: #fafafa; font-size: 13px; font-family: inherit; outline: none; resize: none;" style-focus="border-color: #1B7A34; background: #ffffff;"></textarea>
+          </div>
+          <div>
+            <label style="display: block; font-size: 10px; font-weight: 700; color: #6B7280; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 5px;">Program</label>
+            <select value="{{ jProgram }}" onChange="{{ setJProgram }}" style="width: 100%; box-sizing: border-box; padding: 9px 12px; border-radius: 10px; border: 1px solid rgba(0,0,0,0.12); background: #ffffff; font-size: 13px; font-family: inherit; outline: none;">
+              <option value="">All programs</option>
+              <option value="Education &amp; Career Readiness">Education &amp; Career Readiness</option>
+              <option value="AI &amp; Digital Skills Development">AI &amp; Digital Skills Development</option>
+              <option value="Youth Empowerment">Youth Empowerment</option>
+              <option value="Community Development">Community Development</option>
+              <option value="Innovation for Social Good">Innovation for Social Good</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer style="background: #ffffff; border-top: 1px solid rgba(0,0,0,0.07); padding: 16px 32px; display: flex; align-items: center; justify-content: space-between;">
+    <div style="font-size: 10px; color: #9CA3AF; text-transform: uppercase; letter-spacing: 0.08em;">Goodness Society &#8212; Society for Initiatives of Goodness</div>
+    <div style="display: flex; align-items: center; gap: 8px;">
+      <div style="width: 14px; height: 14px; border-radius: 30%; background: linear-gradient(135deg, #4DC86A 0%, #1B7A34 100%);"></div>
+      <div style="font-size: 10px; color: #9CA3AF;">Together for a Better Tomorrow</div>
+    </div>
+  </footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    let saved = {};
+    try { saved = JSON.parse(localStorage.getItem("gs-social-cards") || "{}"); } catch (e) {}
+    this.state = Object.assign({
+      vName: "", vRole: "", vProgram: "", vQuote: "", vPhoto: null,
+      mName: "", mRole: "", mCity: "", mTagline: "", mPhoto: null,
+      sHeadline: "", sName: "", sCity: "", sMessage: "", sPhoto: null,
+      jHeadline: "", jSub: "", jProgram: "",
+    }, saved, { vPhoto: null, mPhoto: null, sPhoto: null });
+  }
+  save(patch) {
+    this.setState(patch, () => {
+      try {
+        const persist = {};
+        for (const k in this.state) if (!k.endsWith("Photo")) persist[k] = this.state[k];
+        localStorage.setItem("gs-social-cards", JSON.stringify(persist));
+      } catch (e) {}
+    });
+  }
+  set(k) { return (e) => this.save({ [k]: e.target.value }); }
+  upload(k) {
+    return (e) => {
+      const f = e.target.files && e.target.files[0];
+      if (f) this.setState({ [k]: URL.createObjectURL(f) });
+    };
+  }
+  dl(id, filename) {
+    return async () => {
+      const el = document.getElementById(id);
+      if (!el || !window.htmlToImage) return;
+      const url = await window.htmlToImage.toPng(el, { pixelRatio: 2 });
+      const a = document.createElement("a");
+      a.download = filename;
+      a.href = url;
+      a.click();
+    };
+  }
+  photoImg(url, alt) {
+    return React.createElement("img", { src: url, alt, crossOrigin: "anonymous", style: { width: "100%", height: "100%", objectFit: "cover" } });
+  }
+  renderVals() {
+    const s = this.state;
+    return {
+      vName: s.vName, vRole: s.vRole, vProgram: s.vProgram, vQuote: s.vQuote,
+      vPhoto: s.vPhoto || "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&auto=format&fit=crop&q=80", vNoPhoto: false,
+      vPhotoImg: this.photoImg(s.vPhoto || "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&auto=format&fit=crop&q=80", "volunteer"),
+      vNameVal: s.vName || "Your Name",
+      vRoleVal: s.vRole || "Volunteer Role",
+      vProgramVal: s.vProgram || "Program Area",
+      vQuoteVal: s.vQuote || "Volunteering with Goodness Society has been a life-changing experience.",
+      setVName: this.set("vName"), setVRole: this.set("vRole"), setVProgram: this.set("vProgram"), setVQuote: this.set("vQuote"),
+      vUpload: this.upload("vPhoto"), dlVolunteer: this.dl("card-volunteer", "gs-volunteer-card.png"),
+      mName: s.mName, mRole: s.mRole, mCity: s.mCity, mTagline: s.mTagline,
+      mPhoto: s.mPhoto || "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=400&auto=format&fit=crop&q=80", mNoPhoto: false,
+      mPhotoImg: this.photoImg(s.mPhoto || "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=400&auto=format&fit=crop&q=80", "member"),
+      mNameVal: s.mName || "Your Name",
+      mRoleVal: s.mRole || "Member Role",
+      mTaglineVal: s.mTagline || "Proud member of Goodness Society \u2014 building a better tomorrow, together.",
+      setMName: this.set("mName"), setMRole: this.set("mRole"), setMCity: this.set("mCity"), setMTagline: this.set("mTagline"),
+      mUpload: this.upload("mPhoto"), dlMember: this.dl("card-member", "gs-member-card.png"),
+      sHeadline: s.sHeadline, sName: s.sName, sCity: s.sCity, sMessage: s.sMessage,
+      sPhoto: s.sPhoto || "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400&auto=format&fit=crop&q=80", sNoPhoto: false,
+      sPhotoImg: this.photoImg(s.sPhoto || "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400&auto=format&fit=crop&q=80", "supporter"),
+      sHeadlineVal: s.sHeadline || "I stand with Goodness Society",
+      sNameVal: s.sName || "Your Name",
+      sMessageVal: s.sMessage || "Every act of goodness counts. Proud to support this mission.",
+      setSHeadline: this.set("sHeadline"), setSName: this.set("sName"), setSCity: this.set("sCity"), setSMessage: this.set("sMessage"),
+      sUpload: this.upload("sPhoto"), dlSupporter: this.dl("card-supporter", "gs-supporter-card.png"),
+      jHeadline: s.jHeadline, jSub: s.jSub, jProgram: s.jProgram,
+      jHeadlineVal: s.jHeadline || "Become a volunteer with Goodness Society",
+      jSubVal: s.jSub || "Give your time and skills to programs in education, digital skills, and community development.",
+      jProgramVal: s.jProgram || "All programs \u2014 find your fit",
+      setJHeadline: this.set("jHeadline"), setJSub: this.set("jSub"), setJProgram: this.set("jProgram"),
+      dlJoinus: this.dl("card-joinus", "gs-joinus-card.png"),
+    };
+  }
+}
+</script>
+</body>
+</html>

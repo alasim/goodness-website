@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+  body { margin: 0; font-family: 'Plus Jakarta Sans', system-ui, sans-serif; }
+  a { color: #1B7A34; } a:hover { color: #4DC86A; }
+  doc-page:not(:defined) { visibility: hidden; }
+  @media print { [data-print-hide] { display: none !important; } }
+  @media (max-width: 1300px) { [data-fill-panel] { position: static !important; width: auto !important; max-width: 720px; margin: 18px auto !important; } }
+</style>
+<script src="./doc-page.js"></script>
+</helmet>
+<doc-page size="a4">
+<section class="page" data-screen-label="Official Money Receipt" style="position: relative; background: #ffffff; font-family: 'Plus Jakarta Sans', system-ui, sans-serif; overflow: hidden; display: flex; flex-direction: column;">
+  <div style="height: 6px; background: linear-gradient(90deg, #4DC86A 0%, #1B7A34 55%, #1565C0 100%); flex-shrink: 0;"></div>
+  <div style="display: flex; align-items: center; justify-content: space-between; padding: 12px 30px 9px; border-bottom: 2px solid #1B7A34;">
+    <img src="assets/gs-logo.png" alt="Goodness Society" style="height: 42px; width: auto;">
+    <div style="text-align: right;">
+      <div style="font-size: 15px; font-weight: 800; color: #0D0D0D; letter-spacing: -0.01em;">Official Money Receipt</div>
+      <div style="font-size: 9.5px; color: #6B7280; margin-top: 2px; text-transform: uppercase; letter-spacing: 0.1em;">Issued by Goodness Society</div>
+    </div>
+  </div>
+  <div style="flex: 1; display: flex; flex-direction: column;">
+    <sc-for list="{{ copies }}" as="copy" hint-placeholder-count="2">
+      <div style="flex: 1; display: flex; flex-direction: column;">
+        <div style="padding: 8px 30px 2px; flex: 1;">
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 9px; padding-bottom: 7px; border-bottom: 1px solid rgba(0,0,0,0.07);">
+            <div>
+              <div style="font-size: 8.5px; font-weight: 700; color: #6B7280; text-transform: uppercase; letter-spacing: 0.07em;">Receipt No.</div>
+              <div style="border-bottom: 1.5px solid #D1D5DB; width: 110px; height: 17px; margin-top: 4px; font-size: 10.5px; font-weight: 600; color: #0D0D0D; display: flex; align-items: flex-end; padding-bottom: 2px;">{{ receiptNoVal }}</div>
+            </div>
+            <div>
+              <div style="font-size: 8.5px; font-weight: 700; color: #6B7280; text-transform: uppercase; letter-spacing: 0.07em;">Date</div>
+              <div style="border-bottom: 1.5px solid #D1D5DB; width: 130px; height: 17px; margin-top: 4px; font-size: 10.5px; font-weight: 600; color: #0D0D0D; display: flex; align-items: flex-end; padding-bottom: 2px;">{{ dateVal }}</div>
+            </div>
+            <div style="padding: 4px 12px; border-radius: 20px; background: {{ copy.badgeBg }}; color: {{ copy.badgeColor }}; font-size: 9px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase;">{{ copy.name }}</div>
+          </div>
+          <div>
+            <div style="margin-bottom: 7px;">
+              <div style="font-size: 8.5px; font-weight: 700; color: #6B7280; text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 4px;">Received From (Full Name)</div>
+              <div style="border-bottom: 1.5px solid #D1D5DB; height: 17px; font-size: 10.5px; font-weight: 600; color: #0D0D0D; display: flex; align-items: flex-end; padding-bottom: 2px;">{{ fromVal }}</div>
+            </div>
+            <div style="margin-bottom: 7px;">
+              <div style="font-size: 8.5px; font-weight: 700; color: #6B7280; text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 4px;">Organisation / Company (if applicable)</div>
+              <div style="border-bottom: 1.5px solid #D1D5DB; height: 17px; font-size: 10.5px; font-weight: 600; color: #0D0D0D; display: flex; align-items: flex-end; padding-bottom: 2px;">{{ orgVal }}</div>
+            </div>
+            <div style="margin-bottom: 7px;">
+              <div style="font-size: 8.5px; font-weight: 700; color: #6B7280; text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 4px;">Amount</div>
+              <div style="display: grid; grid-template-columns: auto 1fr auto; gap: 10px; align-items: stretch;">
+                <div style="background: linear-gradient(135deg, #4DC86A 0%, #1B7A34 100%); border-radius: 8px; padding: 6px 14px; display: flex; align-items: center;">
+                  <span style="font-size: 18px; font-weight: 800; color: #ffffff;">&#2547;</span>
+                </div>
+                <div style="border: 2px solid #1B7A34; border-radius: 8px; min-height: 30px; display: flex; align-items: center; padding: 0 12px; font-size: 15px; font-weight: 800; color: #0D0D0D; letter-spacing: 0.06em;">{{ amountVal }}</div>
+                <div style="border: 1px solid #D1D5DB; border-radius: 8px; min-height: 30px; padding: 0 12px; display: flex; align-items: center; font-size: 9px; color: #9CA3AF; text-transform: uppercase; letter-spacing: 0.06em;">Kobo</div>
+              </div>
+            </div>
+            <div style="margin-bottom: 7px;">
+              <div style="font-size: 8.5px; font-weight: 700; color: #6B7280; text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 4px;">Amount in Words</div>
+              <div style="border-bottom: 1.5px solid #D1D5DB; height: 17px; font-size: 10.5px; font-weight: 600; color: #0D0D0D; display: flex; align-items: flex-end; padding-bottom: 2px;">{{ wordsVal }}</div>
+            </div>
+            <div style="margin-bottom: 8px;">
+              <div style="font-size: 8.5px; font-weight: 700; color: #6B7280; text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 4px;">Purpose / Description of Payment</div>
+              <div style="border-bottom: 1.5px solid #D1D5DB; height: 17px; font-size: 10.5px; font-weight: 600; color: #0D0D0D; display: flex; align-items: flex-end; padding-bottom: 2px;">{{ purposeVal }}</div>
+            </div>
+          </div>
+          <div style="margin-bottom: 8px;">
+            <div style="font-size: 8.5px; font-weight: 700; color: #6B7280; text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 5px;">Payment Method <span data-print-hide="true" style="color: #9CA3AF; text-transform: none; letter-spacing: 0; font-weight: 600;">&#8212; click to select</span></div>
+            <div style="display: flex; gap: 20px; flex-wrap: wrap;">
+              <sc-for list="{{ methods }}" as="m" hint-placeholder-count="5">
+                <div onClick="{{ m.toggle }}" style="display: flex; align-items: center; gap: 6px; cursor: pointer;">
+                  <div style="width: 13px; height: 13px; border-radius: 50%; border: 1.5px solid #C9CED6; flex-shrink: 0; display: flex; align-items: center; justify-content: center;">
+                    <div style="width: 7px; height: 7px; border-radius: 50%; background: #1B7A34; opacity: {{ m.on }};"></div>
+                  </div>
+                  <span style="font-size: 10px; color: #374151;">{{ m.label }}</span>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+          <div style="background: #f0faf3; border-radius: 6px; padding: 6px 12px; margin-bottom: 8px; border-left: 3px solid #4DC86A;">
+            <div style="font-size: 8.5px; font-weight: 800; color: #1B7A34; text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 4px;">Bank Account Details</div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 6px;">
+              <div>
+                <div style="font-size: 8.5px; color: #6B7280;">Account Name</div>
+                <div style="font-size: 10px; font-weight: 700; color: #0D0D0D;">Goodness Society</div>
+              </div>
+              <div>
+                <div style="font-size: 8.5px; color: #6B7280;">Account Number</div>
+                <div style="font-size: 10px; font-weight: 700; color: #0D0D0D;">0000000000</div>
+              </div>
+              <div>
+                <div style="font-size: 8.5px; color: #6B7280;">Bank</div>
+                <div style="font-size: 10px; font-weight: 700; color: #0D0D0D;">Dutch-Bangla Bank</div>
+              </div>
+            </div>
+          </div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 22px;">
+            <div>
+              <div style="font-size: 8.5px; font-weight: 700; color: #6B7280; text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 4px;">Received by (Name)</div>
+              <div style="border-bottom: 1.5px solid #D1D5DB; height: 18px; font-size: 10.5px; font-weight: 600; color: #0D0D0D; display: flex; align-items: flex-end; padding-bottom: 2px;">{{ byVal }}</div>
+            </div>
+            <div>
+              <div style="font-size: 8.5px; font-weight: 700; color: #6B7280; text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 4px;">Signature</div>
+              <div style="border-bottom: 1.5px solid #D1D5DB; height: 18px;"></div>
+            </div>
+            <div>
+              <div style="font-size: 8.5px; font-weight: 700; color: #6B7280; text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 4px;">Date</div>
+              <div style="border-bottom: 1.5px solid #D1D5DB; height: 18px; font-size: 10.5px; font-weight: 600; color: #0D0D0D; display: flex; align-items: flex-end; padding-bottom: 2px;">{{ dateVal }}</div>
+            </div>
+          </div>
+          <div style="margin-top: 6px; font-size: 8.5px; color: #9CA3AF; text-align: center; font-style: italic;">This receipt is issued by Goodness Society (Society for Initiatives of Goodness) &#8212; a registered non-profit organisation. Please retain for your records. For queries: hello@goodnesssociety.org</div>
+        </div>
+        <div style="margin: 4px 24px; border-top: 1.5px dashed #C9CED6; display: {{ copy.cutDisplay }}; align-items: center; justify-content: center; position: relative; height: 10px;">
+          <span style="background: #ffffff; padding: 0 10px; font-size: 8.5px; color: #9CA3AF; text-transform: uppercase; letter-spacing: 0.12em; position: absolute; top: -6px;">&#9986; Cut here &#8212; Duplicate copy below</span>
+        </div>
+      </div>
+    </sc-for>
+  </div>
+  <div style="flex-shrink: 0; padding: 7px 30px 10px; border-top: 1px solid rgba(0,0,0,0.08); display: flex; align-items: center; justify-content: space-between;">
+    <div style="font-size: 8.5px; color: #9CA3AF; text-transform: uppercase; letter-spacing: 0.08em;">Goodness Society &#8212; Society for Initiatives of Goodness</div>
+    <div style="display: flex; align-items: center; gap: 8px;">
+      <div style="width: 14px; height: 14px; border-radius: 30%; background: linear-gradient(135deg, #4DC86A 0%, #1B7A34 100%);"></div>
+      <div style="font-size: 8.5px; color: #9CA3AF;">Together for a Better Tomorrow</div>
+    </div>
+  </div>
+</section>
+</doc-page>
+<nav data-print-hide="true" style="position: fixed; top: 14px; left: 14px; z-index: 50; display: flex; gap: 8px; font-family: 'Plus Jakarta Sans', system-ui, sans-serif;">
+  <a href="Volunteer Certificate.dc.html" style="text-decoration: none; background: #ffffff; border: 1px solid rgba(0,0,0,0.1); border-radius: 999px; padding: 7px 14px; font-size: 12px; font-weight: 700; box-shadow: 0 2px 10px rgba(0,0,0,0.08);">Certificate</a>
+  <a href="Member Registration Form.dc.html" style="text-decoration: none; background: #ffffff; border: 1px solid rgba(0,0,0,0.1); border-radius: 999px; padding: 7px 14px; font-size: 12px; font-weight: 700; box-shadow: 0 2px 10px rgba(0,0,0,0.08);">Member Form</a>
+  <a href="Social Cards.dc.html" style="text-decoration: none; background: #ffffff; border: 1px solid rgba(0,0,0,0.1); border-radius: 999px; padding: 7px 14px; font-size: 12px; font-weight: 700; box-shadow: 0 2px 10px rgba(0,0,0,0.08);">Social Cards</a>
+</nav>
+<aside data-print-hide="true" data-fill-panel="true" style="position: fixed; top: 14px; right: 14px; bottom: 14px; width: 312px; background: #ffffff; border: 1px solid rgba(0,0,0,0.09); border-radius: 18px; box-shadow: 0 12px 40px rgba(0,0,0,0.14); overflow: auto; padding: 22px 22px 18px; box-sizing: border-box; z-index: 50; font-family: 'Plus Jakarta Sans', system-ui, sans-serif;">
+  <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 4px;">
+    <div style="width: 26px; height: 26px; border-radius: 30%; background: linear-gradient(135deg, #4DC86A 0%, #1B7A34 100%); display: flex; align-items: center; justify-content: center; color: #ffffff; font-weight: 800; font-size: 14px;">G</div>
+    <div style="font-size: 14px; font-weight: 800; color: #0D0D0D;">Fill in the receipt</div>
+  </div>
+  <p style="margin: 0 0 12px; font-size: 11.5px; color: #6B7280; line-height: 1.5;">Entries appear on both the original and duplicate. Click a payment method on the sheet to select it. This panel is not printed.</p>
+  <a href="Printables.dc.html" style="text-decoration: none; background: linear-gradient(135deg, #4DC86A 0%, #1B7A34 100%); color: #ffffff; border-radius: 999px; padding: 8px 14px; font-size: 12px; font-weight: 700; box-shadow: 0 2px 10px rgba(0,0,0,0.12);">&#8592; Website</a>
+  <button onClick="{{ printDoc }}" style="width: 100%; padding: 11px 0; border-radius: 999px; border: none; background: linear-gradient(135deg, #4DC86A 0%, #1B7A34 100%); color: #ffffff; font-size: 13px; font-weight: 800; font-family: inherit; cursor: pointer; margin-bottom: 16px;">Print / Save as PDF</button>
+  <div style="display: flex; flex-direction: column; gap: 11px;">
+    <sc-for list="{{ panelFields }}" as="f" hint-placeholder-count="8">
+      <div>
+        <label style="display: block; font-size: 10px; font-weight: 700; color: #6B7280; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 5px;">{{ f.label }}</label>
+        <input value="{{ f.value }}" onInput="{{ f.set }}" placeholder="{{ f.placeholder }}" style="width: 100%; box-sizing: border-box; padding: 9px 12px; border-radius: 10px; border: 1px solid rgba(0,0,0,0.12); background: #fafafa; font-size: 13px; font-family: inherit; color: #0D0D0D; outline: none;" style-focus="border-color: #1B7A34; background: #ffffff;">
+      </div>
+    </sc-for>
+    <div style="display: flex; gap: 8px; margin-top: 2px;">
+      <button onClick="{{ loadSample }}" style="flex: 1; padding: 9px 0; border-radius: 999px; border: 1px solid rgba(27,122,52,0.3); background: #f0faf3; color: #1B7A34; font-size: 12px; font-weight: 700; font-family: inherit; cursor: pointer;">Load sample</button>
+      <button onClick="{{ clearAll }}" style="flex: 1; padding: 9px 0; border-radius: 999px; border: 1px solid rgba(0,0,0,0.12); background: #ffffff; color: #6B7280; font-size: 12px; font-weight: 700; font-family: inherit; cursor: pointer;">Clear</button>
+    </div>
+  </div>
+</aside>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    let saved = {};
+    try { saved = JSON.parse(localStorage.getItem("gs-receipt") || "{}"); } catch (e) {}
+    this.state = Object.assign({ receiptNo: "", date: "", from: "", org: "", amount: "", words: "", purpose: "", by: "", method: "" }, saved);
+  }
+  save(patch) {
+    this.setState(patch, () => {
+      try { localStorage.setItem("gs-receipt", JSON.stringify(this.state)); } catch (e) {}
+    });
+  }
+  set(k) { return (e) => this.save({ [k]: e.target.value }); }
+  renderVals() {
+    const s = this.state, blank = "\u00A0";
+    const v = (x) => x || blank;
+    const fld = (key, label, ph) => ({ label, placeholder: ph, value: s[key], set: this.set(key) });
+    return {
+      copies: [
+        { name: "Original", badgeBg: "linear-gradient(135deg, #4DC86A 0%, #1B7A34 100%)", badgeColor: "#ffffff", cutDisplay: "flex" },
+        { name: "Duplicate", badgeBg: "#F3F4F6", badgeColor: "#6B7280", cutDisplay: "none" },
+      ],
+      methods: ["Cash", "Bank Transfer", "Cheque", "POS / Card", "Online"].map((label) => ({
+        label, on: s.method === label ? 1 : 0,
+        toggle: () => this.save({ method: s.method === label ? "" : label }),
+      })),
+      receiptNoVal: v(s.receiptNo), dateVal: v(s.date), fromVal: v(s.from), orgVal: v(s.org),
+      amountVal: s.amount || "", wordsVal: v(s.words), purposeVal: v(s.purpose), byVal: v(s.by),
+      panelFields: [
+        fld("receiptNo", "Receipt No.", "GS-2026-0031"),
+        fld("date", "Date", "19 / 08 / 2026"),
+        fld("from", "Received from (full name)", "e.g. Tasnim Haque"),
+        fld("org", "Organisation / company", "optional"),
+        fld("amount", "Amount (৳)", "50,000"),
+        fld("words", "Amount in words", "Fifty thousand taka only"),
+        fld("purpose", "Purpose / description", "e.g. Donation \u2014 Youth Empowerment"),
+        fld("by", "Received by (name)", "e.g. Nusrat Jahan"),
+      ],
+      printDoc: () => window.print(),
+      loadSample: () => this.save({ receiptNo: "GS-2026-0031", date: "19 / 08 / 2026", from: "Tasnim Haque", org: "BrightWorks Ltd", amount: "50,000", words: "Fifty thousand taka only", purpose: "Donation \u2014 Youth Empowerment Program", by: "Nusrat Jahan", method: "Bank Transfer" }),
+      clearAll: () => this.save({ receiptNo: "", date: "", from: "", org: "", amount: "", words: "", purpose: "", by: "", method: "" }),
+    };
+  }
+}
+</script>
+</body>
+</html>

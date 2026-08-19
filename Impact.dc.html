@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400&amp;display=swap" rel="stylesheet">
+<style>
+  body { margin: 0; background: #ffffff; font-family: 'Plus Jakarta Sans', system-ui, sans-serif; }
+  a { color: #1B7A34; } a:hover { color: #4DC86A; }
+</style>
+</helmet>
+<div data-screen-label="Impact" style="color: #0D0D0D; padding-top: 72px;">
+  <dc-import name="SiteNav" active="impact" hint-size="100%,72px"></dc-import>
+  <section style="position: relative; background: #0D0D0D; padding: 64px 0 56px; overflow: hidden;">
+    <svg style="position: absolute; top: -30px; right: -20px; opacity: 0.07; pointer-events: none;" width="560" height="380" viewBox="0 0 600 400" fill="none">
+      <circle cx="220" cy="180" r="160" stroke="#4DC86A" stroke-width="44" fill="none"></circle>
+      <path d="M370 180 C390 180 420 200 430 240 C445 295 420 350 370 370 C310 395 240 370 210 320" stroke="#4DC86A" stroke-width="44" fill="none" stroke-linecap="round"></path>
+      <line x1="220" y1="180" x2="380" y2="180" stroke="#4DC86A" stroke-width="44" stroke-linecap="round"></line>
+    </svg>
+    <div style="position: relative; max-width: 1280px; margin: 0 auto; padding: 0 24px;">
+      <span style="display: inline-flex; align-items: center; padding: 6px 16px; border-radius: 999px; color: #ffffff; font-size: 12px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; background: linear-gradient(135deg, #4DC86A 0%, #1B7A34 100%); margin-bottom: 24px;">Impact</span>
+      <h1 style="margin: 0 0 32px; font-size: clamp(30px, 4vw, 50px); line-height: 1.15; letter-spacing: -0.02em; max-width: 860px; color: #ffffff;"><span style="font-weight: 300;">We don't stop at what we delivered.</span> <span style="font-weight: 800;">We measure what changed.</span></h1>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: end;">
+        <div>
+          <div style="font-size: clamp(50px, 7vw, 92px); font-weight: 800; color: #ffffff; line-height: 0.95; letter-spacing: -0.03em;">{{ totalPeople }}</div>
+          <div style="font-size: 16px; color: rgba(255,255,255,0.6); margin-top: 12px; max-width: 460px; line-height: 1.6;">people supported through published impact records. Counted once per record — someone who joins two programmes appears in both records.</div>
+        </div>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+          <div style="border-left: 3px solid rgba(255,255,255,0.25); padding-left: 16px;">
+            <div style="font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.16em; color: rgba(255,255,255,0.5); margin-bottom: 6px;">Outputs</div>
+            <div style="font-size: 14px; color: rgba(255,255,255,0.75); line-height: 1.6;">What we delivered — sessions run, people trained, packs distributed.</div>
+          </div>
+          <div style="border-left: 3px solid #4DC86A; padding-left: 16px;">
+            <div style="font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.16em; color: #4DC86A; margin-bottom: 6px;">Outcomes</div>
+            <div style="font-size: 14px; color: rgba(255,255,255,0.75); line-height: 1.6;">What changed because of it — jobs secured, accounts opened, commitments won.</div>
+          </div>
+        </div>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.12); border-radius: 16px; overflow: hidden; margin-top: 40px;">
+        <div style="background: rgba(255,255,255,0.05); padding: 18px 22px;"><div style="font-size: 24px; font-weight: 800; color: #ffffff;">{{ recordCount }}</div><div style="font-size: 11.5px; color: rgba(255,255,255,0.45); margin-top: 3px;">Published records</div></div>
+        <div style="background: rgba(255,255,255,0.05); padding: 18px 22px;"><div style="font-size: 24px; font-weight: 800; color: #4DC86A;">{{ fullyVerified }}</div><div style="font-size: 11.5px; color: rgba(255,255,255,0.45); margin-top: 3px;">Fully verified evidence</div></div>
+        <div style="background: rgba(255,255,255,0.05); padding: 18px 22px;"><div style="font-size: 24px; font-weight: 800; color: #ffffff;">{{ targetsLabel }}</div><div style="font-size: 11.5px; color: rgba(255,255,255,0.45); margin-top: 3px;">Output targets met</div></div>
+        <div style="background: rgba(255,255,255,0.05); padding: 18px 22px;"><div style="font-size: 24px; font-weight: 800; color: #ffffff;">{{ pendingLabel }}</div><div style="font-size: 11.5px; color: rgba(255,255,255,0.45); margin-top: 3px;">Outcomes awaiting measurement</div></div>
+      </div>
+    </div>
+  </section>
+  <section style="padding: 56px 0 40px; background: #ffffff;">
+    <div style="max-width: 1280px; margin: 0 auto; padding: 0 24px;">
+      <p style="margin: 0 0 10px; font-size: 12px; text-transform: uppercase; letter-spacing: 0.2em; color: #6B7280; font-weight: 700;">Where the work happened</p>
+      <h2 style="margin: 0 0 8px; font-size: clamp(28px, 3.4vw, 42px); line-height: 1.15;"><span style="font-weight: 300;">Break it down by</span> <span style="font-weight: 800;">program</span></h2>
+      <p style="margin: 0 0 28px; font-size: 14px; color: #6B7280;">Click a program to see the records, targets, outcomes, and the evidence behind each claim.</p>
+      <div style="display: flex; flex-direction: column; gap: 10px;">
+        <sc-for list="{{ programs }}" as="p" hint-placeholder-count="5">
+          <button onClick="{{ p.pick }}" style="display: flex; align-items: center; gap: 18px; width: 100%; text-align: left; padding: 18px 22px; border-radius: 16px; cursor: pointer; font-family: inherit; border: 1px solid {{ p.border }}; background: {{ p.rowBg }};" style-hover="border-color: rgba(27,122,52,0.35);">
+            <div style="width: 10px; height: 34px; border-radius: 999px; flex-shrink: 0; background: {{ p.color }};"></div>
+            <div style="flex: 1; min-width: 0;">
+              <div style="font-size: 15px; font-weight: 800;">{{ p.program }}</div>
+              <div style="font-size: 12px; color: #6B7280; margin-top: 2px;">{{ p.note }}</div>
+            </div>
+            <div style="width: 220px; flex-shrink: 0;">
+              <div style="height: 10px; border-radius: 999px; background: #f0f1f3; overflow: hidden;"><div style="height: 100%; border-radius: 999px; background: {{ p.color }}; width: {{ p.w }};"></div></div>
+            </div>
+            <div style="width: 96px; text-align: right; flex-shrink: 0;">
+              <div style="font-size: 19px; font-weight: 800; color: {{ p.color }};">{{ p.people }}</div>
+              <div style="font-size: 10.5px; color: #9CA3AF;">people</div>
+            </div>
+            <div style="font-size: 13px; font-weight: 700; color: {{ p.color }}; flex-shrink: 0;">{{ p.arrow }}</div>
+          </button>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+  <section style="padding: 8px 0 80px; background: #ffffff;">
+    <div style="max-width: 1280px; margin: 0 auto; padding: 0 24px;">
+      <div style="display: flex; flex-direction: column; gap: 20px;">
+        <div style="display: flex; align-items: center; gap: 12px; padding-top: 12px; flex-wrap: wrap;">
+          <h3 style="margin: 0; font-size: 13px; text-transform: uppercase; letter-spacing: 0.2em; color: #9CA3AF; font-weight: 800;">{{ detailTitle }}</h3>
+          <button onClick="{{ clearPick }}" style="display: {{ clearDisp }}; padding: 5px 12px; border-radius: 999px; border: 1px solid rgba(0,0,0,0.12); background: #ffffff; font-size: 11px; font-weight: 700; font-family: inherit; cursor: pointer; color: #6B7280;">Show all programs</button>
+        </div>
+        <sc-for list="{{ records }}" as="r" hint-placeholder-count="3">
+          <article style="border: 1px solid rgba(0,0,0,0.08); border-radius: 20px; overflow: hidden;">
+            <div style="padding: 24px 26px; border-bottom: 1px solid rgba(0,0,0,0.06); display: flex; align-items: flex-start; gap: 18px; flex-wrap: wrap;">
+              <div style="flex: 1; min-width: 260px;">
+                <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-bottom: 8px;">
+                  <span style="display: inline-flex; align-items: center; gap: 6px; padding: 3px 10px; border-radius: 999px; font-size: 10px; font-weight: 700; background: {{ r.bg }}; color: {{ r.color }};"><span style="width: 6px; height: 6px; border-radius: 50%; background: {{ r.light }};"></span>{{ r.program }}</span>
+                  <span style="padding: 3px 10px; border-radius: 999px; font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; background: #eef0f3; color: #4B5563;">Published</span>
+                  <span style="padding: 3px 10px; border-radius: 999px; font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; background: {{ r.vBg }}; color: {{ r.vColor }};">{{ r.vLabel }}</span>
+                </div>
+                <h4 style="margin: 0 0 4px; font-size: 19px; font-weight: 800; letter-spacing: -0.01em;">{{ r.title }}</h4>
+                <div style="font-size: 12.5px; color: #6B7280;">{{ r.project }} · {{ r.chapter }} · {{ r.date }}</div>
+              </div>
+              <div style="text-align: right; flex-shrink: 0;">
+                <div style="font-size: 26px; font-weight: 800; color: {{ r.color }};">{{ r.primaryValue }}</div>
+                <div style="font-size: 11px; color: #9CA3AF;">{{ r.unitLabel }}</div>
+              </div>
+            </div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: rgba(0,0,0,0.06);">
+              <div style="background: #ffffff; padding: 22px 26px;">
+                <div style="font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.14em; color: #9CA3AF; margin-bottom: 4px;">Outputs · what we delivered</div>
+                <div style="font-size: 11.5px; color: #9CA3AF; margin-bottom: 14px;">{{ r.targetNote }}</div>
+                <div style="display: flex; flex-direction: column; gap: 12px;">
+                  <sc-for list="{{ r.outputRows }}" as="o" hint-placeholder-count="3">
+                    <div>
+                      <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 10px; margin-bottom: 5px;">
+                        <span style="font-size: 13px; font-weight: 600;">{{ o.label }}</span>
+                        <span style="font-size: 13px; font-weight: 800; color: {{ o.color }}; white-space: nowrap;">{{ o.valueLabel }}</span>
+                      </div>
+                      <div style="height: 6px; border-radius: 999px; background: #f0f1f3; overflow: hidden;"><div style="height: 100%; border-radius: 999px; background: {{ o.color }}; width: {{ o.w }};"></div></div>
+                    </div>
+                  </sc-for>
+                </div>
+              </div>
+              <div style="background: #f8fdf9; padding: 22px 26px;">
+                <div style="font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.14em; color: #1B7A34; margin-bottom: 4px;">Outcomes · what changed</div>
+                <div style="font-size: 11.5px; color: #6B7280; margin-bottom: 14px;">Each claim shows how we know it.</div>
+                <div style="display: flex; flex-direction: column; gap: 16px;">
+                  <sc-for list="{{ r.outcomes }}" as="oc" hint-placeholder-count="2">
+                    <div style="display: flex; align-items: flex-start; gap: 12px;">
+                      <div style="font-size: 22px; font-weight: 800; color: {{ oc.valueColor }}; line-height: 1.1; min-width: 46px;">{{ oc.value }}</div>
+                      <div style="flex: 1; min-width: 0;">
+                        <div style="font-size: 13px; font-weight: 700; line-height: 1.35;">{{ oc.label }}</div>
+                        <div style="display: flex; align-items: center; gap: 6px; margin: 5px 0 3px; flex-wrap: wrap;">
+                          <span style="padding: 2px 8px; border-radius: 999px; font-size: 9.5px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.06em; background: {{ oc.basisBg }}; color: {{ oc.basisColor }};">{{ oc.basisLabel }}</span>
+                          <span style="font-size: 11px; color: #6B7280;">{{ oc.evidenceNote }}</span>
+                        </div>
+                        <div style="font-size: 11.5px; color: #6B7280; line-height: 1.5;">{{ oc.note }}</div>
+                      </div>
+                    </div>
+                  </sc-for>
+                </div>
+              </div>
+            </div>
+            <div style="padding: 20px 26px; border-top: 1px solid rgba(0,0,0,0.06); background: #fafafa;">
+              <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 12px; flex-wrap: wrap;">
+                <div style="font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.14em; color: #9CA3AF;">Evidence</div>
+                <div style="font-size: 11.5px; color: #6B7280;">{{ r.evidenceNote }}</div>
+              </div>
+              <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+                <sc-for list="{{ r.evidenceRows }}" as="e" hint-placeholder-count="3">
+                  <div style="display: flex; align-items: center; gap: 8px; padding: 8px 14px; border-radius: 999px; border: 1px solid {{ e.border }}; background: {{ e.chipBg }};">
+                    <span style="font-size: 11px; font-weight: 800; color: {{ e.color }};">{{ e.mark }}</span>
+                    <span style="font-size: 12px; font-weight: 600; color: #0D0D0D;">{{ e.label }}</span>
+                    <span style="font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: {{ e.color }};">{{ e.state }}</span>
+                  </div>
+                </sc-for>
+              </div>
+            </div>
+          </article>
+        </sc-for>
+      </div>
+      <div style="margin-top: 28px; padding: 20px 24px; border: 1px dashed rgba(0,0,0,0.14); border-radius: 16px; background: #fafafa; display: flex; gap: 22px; flex-wrap: wrap;">
+        <div style="font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.14em; color: #9CA3AF; padding-top: 2px;">How to read this</div>
+        <div style="flex: 1; min-width: 260px; display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 14px;">
+          <div><div style="font-size: 12px; font-weight: 800; color: #1B7A34;">Verified</div><div style="font-size: 11.5px; color: #6B7280; line-height: 1.5;">Confirmed against a document or third-party record.</div></div>
+          <div><div style="font-size: 12px; font-weight: 800; color: #1565C0;">Self-reported</div><div style="font-size: 11.5px; color: #6B7280; line-height: 1.5;">Told to us by participants, usually via survey.</div></div>
+          <div><div style="font-size: 12px; font-weight: 800; color: #6B21A8;">Observed</div><div style="font-size: 11.5px; color: #6B7280; line-height: 1.5;">Recorded by our team in the field.</div></div>
+          <div><div style="font-size: 12px; font-weight: 800; color: #E65100;">Awaiting measurement</div><div style="font-size: 11.5px; color: #6B7280; line-height: 1.5;">Too early to know. We publish the date, not a guess.</div></div>
+        </div>
+      </div>
+      <p style="margin: 18px 0 0; font-size: 11.5px; color: #9CA3AF; line-height: 1.6; max-width: 720px;">Draft records stay internal until published. Publishing a record does not verify it — verification depends on the evidence, shown separately on every record.</p>
+    </div>
+  </section>
+  <section style="padding: 72px 0; background: #fafafa; border-top: 1px solid rgba(0,0,0,0.05);">
+    <div style="max-width: 880px; margin: 0 auto; padding: 0 24px; text-align: center;">
+      <h2 style="margin: 0 0 14px; font-size: clamp(26px, 3.2vw, 38px); line-height: 1.2;"><span style="font-weight: 300;">This is what goodness looks like</span> <span style="font-weight: 800;">when we organize it.</span></h2>
+      <p style="margin: 0 auto 28px; font-size: 15px; color: #6B7280; max-width: 520px; line-height: 1.7;">Every number on this page traces back to a mission, a verified volunteer, and a document you can ask to see.</p>
+      <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
+        <a href="Missions.dc.html" style="padding: 14px 26px; border-radius: 999px; font-size: 14px; font-weight: 700; color: #ffffff; text-decoration: none; background: linear-gradient(135deg, #4DC86A 0%, #1B7A34 100%);" style-hover="opacity: 0.9;">Join a mission</a>
+        <a href="Partner.dc.html" style="padding: 14px 26px; border-radius: 999px; font-size: 14px; font-weight: 700; color: #0D0D0D; text-decoration: none; background: rgba(0,0,0,0.05);" style-hover="background: rgba(0,0,0,0.1);">Fund this work</a>
+      </div>
+    </div>
+  </section>
+  <dc-import name="SiteFooter" hint-size="100%,420px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { impact: null, colors: null, pick: null };
+  componentDidMount() {
+    import("./gs-os.js").then((m) => Promise.all([m.loadImpact(), m.loadOS()]))
+      .then(([impact, os]) => this.setState({ impact, colors: os.programColors }));
+  }
+  renderVals() {
+    const s = this.state;
+    const idle = { totalPeople: "\u2014", recordCount: "\u2014", fullyVerified: "\u2014", targetsLabel: "\u2014", pendingLabel: "\u2014", programs: [], records: [], detailTitle: "All published records", clearDisp: "none", clearPick: () => {} };
+    if (!s.impact) return idle;
+    const colors = s.colors;
+    const all = s.impact.filter((r) => r.published);
+    const totalPeople = all.reduce((n, r) => n + (r.beneficiaries || 0), 0);
+    const bySlug = {};
+    all.forEach((r) => {
+      bySlug[r.programSlug] = bySlug[r.programSlug] || { program: r.program, slug: r.programSlug, people: 0, records: 0, outcomes: 0 };
+      bySlug[r.programSlug].people += r.beneficiaries || 0;
+      bySlug[r.programSlug].records += 1;
+      bySlug[r.programSlug].outcomes += r.outcomes.length;
+    });
+    const groups = Object.values(bySlug).sort((a, b) => b.people - a.people);
+    const groupMax = Math.max(...groups.map((g) => g.people), 1);
+    const tTotal = all.reduce((n, r) => n + r.targetsTotal, 0);
+    const tHit = all.reduce((n, r) => n + r.targetsHit, 0);
+    const pending = all.reduce((n, r) => n + r.pendingOutcomes, 0);
+    const shown = s.pick ? all.filter((r) => r.programSlug === s.pick) : all;
+    const basisMeta = {
+      verified: { label: "Verified", bg: "#e6f4ea", color: "#1B7A34" },
+      "self-reported": { label: "Self-reported", bg: "#e8f0fc", color: "#1565C0" },
+      observed: { label: "Observed", bg: "#f5f0ff", color: "#6B21A8" },
+      pending: { label: "Awaiting measurement", bg: "#fff3e0", color: "#E65100" },
+    };
+    const deco = (r) => {
+      const c = colors[r.programSlug] || colors["education-career-readiness"];
+      const vMeta = r.verification === "verified" ? { label: "Evidence verified", bg: "#e6f4ea", color: "#1B7A34" }
+        : r.verification === "partial" ? { label: "Evidence " + r.evidenceVerified + "/" + r.evidenceTotal + " verified", bg: "#fff3e0", color: "#E65100" }
+        : { label: "Evidence pending", bg: "#eef0f3", color: "#6B7280" };
+      return { ...r, color: c.color, bg: c.bg, light: c.light,
+        primaryValue: (r.primaryValue != null ? r.primaryValue : r.beneficiaries || 0).toLocaleString(),
+        unitLabel: r.unitLabel || "people supported",
+        vLabel: vMeta.label, vBg: vMeta.bg, vColor: vMeta.color,
+        targetNote: r.targetsTotal ? r.targetsHit + " of " + r.targetsTotal + " targets met" : "No numeric targets set",
+        evidenceNote: r.evidenceVerified + " of " + r.evidenceTotal + " items verified by our team",
+        outputRows: r.outputs.map((o) => {
+          const truePct = o.target ? Math.round((o.value / o.target) * 100) : 100;
+          const hit = o.target ? o.value >= o.target : true;
+          return { label: o.label,
+            valueLabel: o.target ? o.value.toLocaleString() + " / " + o.target.toLocaleString() + " \u00B7 " + truePct + "%" : o.value.toLocaleString(),
+            color: hit ? "#1B7A34" : "#E65100",
+            w: Math.min(100, truePct) + "%" };
+        }),
+        outcomes: r.outcomes.map((oc) => {
+          const b = basisMeta[oc.basis] || basisMeta.observed;
+          const isPending = oc.basis === "pending";
+          return { label: oc.label,
+            value: isPending || oc.value == null ? "\u2014" : oc.value.toLocaleString(),
+            valueColor: isPending ? "#E65100" : "#1B7A34",
+            basisLabel: b.label, basisBg: b.bg, basisColor: b.color,
+            evidenceNote: oc.evidence ? (isPending ? oc.evidence : "Source: " + oc.evidence) : "",
+            note: oc.note };
+        }),
+        evidenceRows: r.evidence.map((e) => ({ label: e.label,
+          mark: e.verified ? "\u2713" : "\u25CB",
+          state: e.verified ? "Verified" : "Pending",
+          color: e.verified ? "#1B7A34" : "#9CA3AF",
+          chipBg: e.verified ? "#f0faf3" : "#ffffff",
+          border: e.verified ? "rgba(27,122,52,0.25)" : "rgba(0,0,0,0.12)" })),
+      };
+    };
+    return {
+      totalPeople: totalPeople.toLocaleString(),
+      recordCount: String(all.length),
+      fullyVerified: all.filter((r) => r.verification === "verified").length + " / " + all.length,
+      targetsLabel: tHit + " / " + tTotal,
+      pendingLabel: String(pending),
+      programs: groups.map((g) => {
+        const c = colors[g.slug] || colors["education-career-readiness"];
+        const on = s.pick === g.slug;
+        return { program: g.program, color: c.color,
+          people: g.people.toLocaleString(),
+          note: g.records + (g.records === 1 ? " record" : " records") + " \u00B7 " + g.outcomes + " outcomes recorded",
+          w: Math.round((g.people / groupMax) * 100) + "%",
+          border: on ? "rgba(27,122,52,0.4)" : "rgba(0,0,0,0.08)",
+          rowBg: on ? "#f8fdf9" : "#ffffff",
+          arrow: on ? "\u2713" : "\u2192",
+          pick: () => this.setState({ pick: on ? null : g.slug }) };
+      }),
+      records: shown.map(deco),
+      detailTitle: s.pick && bySlug[s.pick] ? bySlug[s.pick].program + " \u2014 published records" : "All published records",
+      clearDisp: s.pick ? "block" : "none",
+      clearPick: () => this.setState({ pick: null }),
+    };
+  }
+}
+</script>
+</body>
+</html>

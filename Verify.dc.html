@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+  body { margin: 0; background: #fafafa; font-family: 'Plus Jakarta Sans', system-ui, sans-serif; }
+  a { color: #1B7A34; } a:hover { color: #4DC86A; }
+</style>
+</helmet>
+<div data-screen-label="Verify Credential" style="color: #0D0D0D; padding-top: 72px; min-height: 100vh; display: flex; flex-direction: column;">
+  <dc-import name="SiteNav" hint-size="100%,72px"></dc-import>
+  <main style="flex: 1; max-width: 720px; width: 100%; margin: 0 auto; padding: 56px 24px 80px; box-sizing: border-box;">
+    <div style="text-align: center; margin-bottom: 36px;">
+      <div style="width: 52px; height: 52px; border-radius: 28%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; background: linear-gradient(135deg, #4DC86A 0%, #1B7A34 100%);"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"></path><path d="m9 12 2 2 4-4"></path></svg></div>
+      <h1 style="margin: 0 0 12px; font-size: clamp(32px, 4.5vw, 46px); line-height: 1.1; letter-spacing: -0.02em;"><span style="font-weight: 300;">Credential</span> <span style="font-weight: 800;">verification</span></h1>
+      <p style="margin: 0 auto; font-size: 16px; color: #6B7280; line-height: 1.6; max-width: 440px;">Every certificate issued by Goodness Society carries a reference number. Enter it below &#8212; or scan the QR code on the document &#8212; to confirm it is genuine.</p>
+    </div>
+    <div style="background: #ffffff; border: 1px solid rgba(0,0,0,0.08); border-radius: 20px; padding: 28px; display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 24px;">
+      <input value="{{ q }}" onInput="{{ setQ }}" placeholder="e.g. GS-VOL-2024-0100" style="flex: 1; min-width: 220px; box-sizing: border-box; padding: 14px 20px; border-radius: 999px; border: 1px solid rgba(0,0,0,0.12); background: #fafafa; font-size: 15px; font-family: inherit; font-variant-numeric: tabular-nums; outline: none;" style-focus="border-color: #1B7A34; background: #ffffff;">
+      <button onClick="{{ check }}" style="padding: 14px 30px; border-radius: 999px; border: none; color: #ffffff; font-size: 15px; font-weight: 700; font-family: inherit; cursor: pointer; background: linear-gradient(135deg, #4DC86A 0%, #1B7A34 100%);" style-hover="opacity: 0.9;">Verify</button>
+    </div>
+    <div style="display: {{ validDisp }}; background: #ffffff; border: 2px solid rgba(27,122,52,0.3); border-radius: 20px; overflow: hidden; flex-direction: column;">
+      <div style="background: linear-gradient(135deg, #4DC86A 0%, #1B7A34 100%); padding: 20px 28px; display: flex; align-items: center; gap: 12px;">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg>
+        <div style="font-size: 18px; font-weight: 800; color: #ffffff;">Credential Verified</div>
+        <div style="margin-left: auto; font-size: 11px; font-weight: 700; color: rgba(255,255,255,0.75); text-transform: uppercase; letter-spacing: 0.15em;">Goodness Society</div>
+      </div>
+      <div style="padding: 28px;">
+        <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 24px;">
+          <div style="width: 56px; height: 56px; border-radius: 28%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 19px; font-weight: 800; color: #ffffff; background: {{ r.grad }};">{{ r.initials }}</div>
+          <div>
+            <div style="font-size: 20px; font-weight: 800;">{{ r.name }}</div>
+            <div style="font-size: 13px; color: #6B7280;">{{ r.role }} &#183; {{ r.chapter }}</div>
+          </div>
+        </div>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: rgba(0,0,0,0.07); border: 1px solid rgba(0,0,0,0.07); border-radius: 14px; overflow: hidden;">
+          <sc-for list="{{ rows }}" as="row" hint-placeholder-count="6">
+            <div style="background: #ffffff; padding: 14px 18px;">
+              <div style="font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.12em; color: #9CA3AF;">{{ row.k }}</div>
+              <div style="font-size: 14px; font-weight: 700; margin-top: 3px; color: {{ row.color }};">{{ row.v }}</div>
+            </div>
+          </sc-for>
+        </div>
+        <a href="{{ r.href }}" style="display: inline-flex; align-items: center; gap: 8px; margin-top: 20px; font-size: 14px; font-weight: 700; text-decoration: none;">View public Goodness Passport &#8594;</a>
+      </div>
+    </div>
+    <div style="display: {{ revokedDisp }}; background: #ffffff; border: 2px solid rgba(212,24,61,0.3); border-radius: 20px; overflow: hidden; flex-direction: column;">
+      <div style="background: #d4183d; padding: 20px 28px; display: flex; align-items: center; gap: 12px;">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg>
+        <div style="font-size: 18px; font-weight: 800; color: #ffffff;">Credential Revoked</div>
+      </div>
+      <div style="padding: 28px;">
+        <p style="margin: 0 0 8px; font-size: 15px; font-weight: 700;">{{ r.title }} &#183; {{ r.ref }}</p>
+        <p style="margin: 0; font-size: 14px; color: #6B7280; line-height: 1.6;">This reference was issued to {{ r.name }} but has since been revoked by Goodness Society and is no longer valid. Contact <a href="mailto:hello@goodnesssociety.org">hello@goodnesssociety.org</a> if you believe this is an error.</p>
+      </div>
+    </div>
+    <div style="display: {{ notFoundDisp }}; background: #ffffff; border: 1px solid rgba(0,0,0,0.1); border-radius: 20px; padding: 28px; text-align: center; flex-direction: column;">
+      <p style="margin: 0 0 6px; font-size: 16px; font-weight: 800;">No credential found</p>
+      <p style="margin: 0; font-size: 14px; color: #6B7280;">We could not find a credential with that reference. Check the number on the document and try again.</p>
+    </div>
+    <div style="display: {{ idleDisp }}; flex-direction: column; gap: 12px; background: #ffffff; border: 1px dashed rgba(0,0,0,0.12); border-radius: 20px; padding: 24px 28px;">
+      <div style="font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.15em; color: #9CA3AF;">Try a live reference</div>
+      <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+        <sc-for list="{{ samples }}" as="sm" hint-placeholder-count="3">
+          <button onClick="{{ sm.pick }}" style="padding: 8px 14px; border-radius: 999px; border: 1px solid rgba(0,0,0,0.12); background: #ffffff; font-size: 12px; font-weight: 700; font-family: inherit; cursor: pointer; font-variant-numeric: tabular-nums;" style-hover="border-color: #1B7A34; color: #1B7A34;">{{ sm.ref }}</button>
+        </sc-for>
+      </div>
+    </div>
+  </main>
+  <dc-import name="SiteFooter" hint-size="100%,420px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { os: null, q: "", result: undefined };
+  componentDidMount() {
+    import("./gs-os.js").then((m) => { this.gs = m; return m.loadOS(); }).then((os) => {
+      const ref = new URLSearchParams(location.search).get("ref") || "";
+      this.setState({ os, q: ref }, () => { if (ref) this.run(ref, os); });
+    });
+  }
+  run(ref, os) {
+    const found = this.gs.findCredential(ref, (os || this.state.os).volunteers);
+    this.setState({ result: found || null });
+  }
+  renderVals() {
+    const s = this.state, os = s.os;
+    const blank = { name: "", role: "", chapter: "", initials: "", grad: "", href: "#", title: "", ref: "" };
+    const res = s.result;
+    let r = blank, rows = [];
+    if (res) {
+      const v = res.volunteer, c = res.credential;
+      r = { name: v.name, role: v.role, chapter: v.chapter, initials: v.initials,
+        grad: os.avatarGradients[v.avatarColor], href: "Volunteer Profile.dc.html?id=" + v.id,
+        title: c.title, ref: c.ref };
+      rows = [
+        { k: "Issued to", v: v.name, color: "#0D0D0D" },
+        { k: "Credential", v: c.title, color: "#0D0D0D" },
+        { k: "Program", v: v.program, color: "#0D0D0D" },
+        { k: "Verified service", v: v.hours + " hours \u00B7 " + v.missions + " missions", color: "#0D0D0D" },
+        { k: "Issued", v: c.issued, color: "#0D0D0D" },
+        { k: "Status", v: c.status === "valid" ? "Valid" : "Revoked", color: c.status === "valid" ? "#1B7A34" : "#d4183d" },
+      ];
+    }
+    const valid = !!res && res.credential.status === "valid";
+    const revoked = !!res && res.credential.status !== "valid";
+    return {
+      q: s.q,
+      setQ: (e) => this.setState({ q: e.target.value, result: undefined }),
+      check: () => this.run(s.q),
+      r, rows,
+      validDisp: valid ? "flex" : "none",
+      revokedDisp: revoked ? "flex" : "none",
+      notFoundDisp: s.result === null ? "flex" : "none",
+      idleDisp: s.result === undefined ? "flex" : "none",
+      samples: os ? os.volunteers.filter((v) => v.credentials.length).slice(0, 3).map((v) => ({
+        ref: v.credentials[0].ref,
+        pick: () => this.setState({ q: v.credentials[0].ref }, () => this.run(v.credentials[0].ref)),
+      })) : [],
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+  body { margin: 0; font-family: 'Plus Jakarta Sans', system-ui, sans-serif; }
+  a { color: #1B7A34; } a:hover { color: #4DC86A; }
+  doc-page:not(:defined) { visibility: hidden; }
+</style>
+<script src="./doc-page.js"></script>
+</helmet>
+<doc-page size="a4" orientation="landscape">
+<section class="page" data-screen-label="Volunteer Certificate" style="position: relative; background: #ffffff; font-family: 'Plus Jakarta Sans', system-ui, sans-serif; overflow: hidden; display: flex; flex-direction: column;">
+  <div style="height: 7px; background: linear-gradient(90deg, #4DC86A 0%, #1B7A34 55%, #1565C0 100%); flex-shrink: 0;"></div>
+  <div style="position: absolute; top: 26px; left: 26px; right: 26px; bottom: 26px; border: 1.5px solid rgba(27,122,52,0.45); border-radius: 3px; pointer-events: none;"></div>
+  <div style="position: absolute; top: 33px; left: 33px; right: 33px; bottom: 33px; border: 1px solid rgba(27,122,52,0.15); border-radius: 2px; pointer-events: none;"></div>
+  <svg style="position: absolute; top: 14px; left: 14px; pointer-events: none;" width="70" height="70" viewBox="0 0 70 70">
+    <rect x="8" y="8" width="40" height="40" rx="11" fill="none" stroke="#1B7A34" stroke-width="2" opacity="0.5" transform="rotate(14 28 28)"></rect>
+    <rect x="16" y="16" width="30" height="30" rx="9" fill="#4DC86A" opacity="0.14" transform="rotate(26 31 31)"></rect>
+  </svg>
+  <svg style="position: absolute; top: 14px; right: 14px; pointer-events: none;" width="70" height="70" viewBox="0 0 70 70">
+    <rect x="22" y="8" width="40" height="40" rx="11" fill="none" stroke="#1565C0" stroke-width="2" opacity="0.35" transform="rotate(-14 42 28)"></rect>
+    <rect x="24" y="16" width="30" height="30" rx="9" fill="#1565C0" opacity="0.09" transform="rotate(-26 39 31)"></rect>
+  </svg>
+  <svg style="position: absolute; bottom: 14px; left: 14px; pointer-events: none;" width="70" height="70" viewBox="0 0 70 70">
+    <rect x="8" y="22" width="40" height="40" rx="11" fill="none" stroke="#1565C0" stroke-width="2" opacity="0.35" transform="rotate(-14 28 42)"></rect>
+    <rect x="16" y="24" width="30" height="30" rx="9" fill="#1565C0" opacity="0.09" transform="rotate(-26 31 39)"></rect>
+  </svg>
+  <svg style="position: absolute; bottom: 14px; right: 14px; pointer-events: none;" width="70" height="70" viewBox="0 0 70 70">
+    <rect x="22" y="22" width="40" height="40" rx="11" fill="none" stroke="#1B7A34" stroke-width="2" opacity="0.5" transform="rotate(14 42 42)"></rect>
+    <rect x="24" y="24" width="30" height="30" rx="9" fill="#4DC86A" opacity="0.14" transform="rotate(26 39 39)"></rect>
+  </svg>
+  <sc-if value="{{ watermark }}" hint-placeholder-val="{{ true }}">
+    <div style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; pointer-events: none;">
+      <span style="font-size: 340px; font-weight: 800; color: rgba(27,122,52,0.03); line-height: 1; user-select: none; font-family: 'Plus Jakarta Sans', sans-serif;">G</span>
+    </div>
+  </sc-if>
+  <div style="position: relative; flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 44px 90px 40px; gap: 0;">
+    <img src="assets/gs-logo.png" alt="Goodness Society" style="height: 62px; width: auto; margin-bottom: 16px;">
+    <div style="display: flex; align-items: center; justify-content: center; gap: 14px; margin-bottom: 14px;">
+      <div style="width: 54px; height: 1.5px; background: linear-gradient(90deg, transparent, #1B7A34);"></div>
+      <span style="font-size: 11px; font-weight: 700; color: #1B7A34; text-transform: uppercase; letter-spacing: 0.28em; white-space: nowrap;">Official Recognition of Service</span>
+      <div style="width: 54px; height: 1.5px; background: linear-gradient(90deg, #1B7A34, transparent);"></div>
+    </div>
+    <h1 style="margin: 0 0 16px; font-size: 44px; line-height: 1.08; letter-spacing: -0.015em; color: #0D0D0D;">
+      <span style="font-weight: 300;">Certificate of</span> <span style="font-weight: 800;">Volunteer Service</span>
+    </h1>
+    <p style="margin: 0 0 18px; font-size: 13.5px; color: #6B7280; letter-spacing: 0.04em;">This certificate is proudly presented to</p>
+    <div style="margin-bottom: 20px;">
+      <div style="font-size: 38px; font-weight: 300; font-style: italic; color: #0D0D0D; line-height: 1.15; min-width: 480px; min-height: 46px; padding: 0 24px 6px; display: inline-block;">{{ nameVal }}</div>
+      <div style="width: 480px; height: 2px; background: linear-gradient(90deg, transparent, #1B7A34 18%, #1B7A34 82%, transparent); margin: 0 auto;"></div>
+      <div style="font-size: 10px; color: #9CA3AF; margin-top: 6px; text-transform: uppercase; letter-spacing: 0.12em;">Full name of volunteer</div>
+    </div>
+    <p style="margin: 0 auto 26px; font-size: 13.5px; color: #374151; line-height: 1.75; max-width: 620px;">
+      in grateful recognition of the time, skill, and dedication given as a volunteer with
+      <strong style="font-weight: 800; color: #0D0D0D;">Goodness Society</strong>, advancing our mission of
+      sustainable social impact through education, skills development, and community empowerment.
+    </p>
+    <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 36px; width: 640px; margin-bottom: 30px;">
+      <div style="text-align: center;">
+        <div style="font-size: 14px; font-weight: 600; color: #0D0D0D; height: 26px; line-height: 26px; border-bottom: 1.5px solid #C9CED6;">{{ programVal }}</div>
+        <div style="font-size: 9.5px; color: #9CA3AF; text-transform: uppercase; letter-spacing: 0.1em; margin-top: 6px;">Program / Area</div>
+      </div>
+      <div style="text-align: center;">
+        <div style="font-size: 14px; font-weight: 600; color: #0D0D0D; height: 26px; line-height: 26px; border-bottom: 1.5px solid #C9CED6;">{{ periodVal }}</div>
+        <div style="font-size: 9.5px; color: #9CA3AF; text-transform: uppercase; letter-spacing: 0.1em; margin-top: 6px;">Period of Service</div>
+      </div>
+      <div style="text-align: center;">
+        <div style="font-size: 14px; font-weight: 600; color: #0D0D0D; height: 26px; line-height: 26px; border-bottom: 1.5px solid #C9CED6;">{{ hoursVal }}</div>
+        <div style="font-size: 9.5px; color: #9CA3AF; text-transform: uppercase; letter-spacing: 0.1em; margin-top: 6px;">Hours Contributed</div>
+      </div>
+    </div>
+    <div style="display: grid; grid-template-columns: 1fr auto 1fr; align-items: end; gap: 48px; width: 720px;">
+      <div style="text-align: center;">
+        <div style="border-bottom: 1.5px solid #0D0D0D; height: 44px;"></div>
+        <div style="font-size: 12px; font-weight: 700; color: #0D0D0D; margin-top: 7px;">Executive Director</div>
+        <div style="font-size: 10.5px; color: #6B7280; margin-top: 1px;">Goodness Society</div>
+      </div>
+      <svg width="118" height="118" viewBox="0 0 118 118" style="display: block;">
+        <defs>
+          <linearGradient id="gsSealGrad" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#4DC86A"></stop>
+            <stop offset="100%" stop-color="#1B7A34"></stop>
+          </linearGradient>
+          <path id="gsSealArc" d="M59,59 m-42,0 a42,42 0 1,1 84,0 a42,42 0 1,1 -84,0"></path>
+        </defs>
+        <circle cx="59" cy="59" r="56" fill="none" stroke="#1B7A34" stroke-width="1.5" opacity="0.4"></circle>
+        <circle cx="59" cy="59" r="52.5" fill="none" stroke="#1B7A34" stroke-width="0.75" opacity="0.25"></circle>
+        <circle cx="59" cy="59" r="33" fill="none" stroke="#1B7A34" stroke-width="0.75" opacity="0.25"></circle>
+        <circle cx="59" cy="59" r="49" fill="rgba(77,200,106,0.05)"></circle>
+        <text font-size="8" letter-spacing="2.6" fill="#1B7A34" font-weight="700" font-family="'Plus Jakarta Sans', sans-serif">
+          <textPath href="#gsSealArc" startOffset="0">GOODNESS SOCIETY &#8226; OFFICIAL SEAL &#8226;</textPath>
+        </text>
+        <rect x="46" y="42" width="26" height="26" rx="8" fill="url(#gsSealGrad)"></rect>
+        <text x="59" y="60" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="800" font-family="'Plus Jakarta Sans', sans-serif">G</text>
+        <text x="59" y="82" text-anchor="middle" fill="#1B7A34" font-size="6.5" font-weight="700" letter-spacing="1.4" font-family="'Plus Jakarta Sans', sans-serif">OFFICIAL</text>
+      </svg>
+      <div style="text-align: center;">
+        <div style="border-bottom: 1.5px solid #0D0D0D; height: 44px; display: flex; align-items: flex-end; justify-content: center; font-size: 14px; font-weight: 600; color: #0D0D0D; padding-bottom: 6px;">{{ dateVal }}</div>
+        <div style="font-size: 12px; font-weight: 700; color: #0D0D0D; margin-top: 7px;">Date Issued</div>
+        <div style="font-size: 10.5px; color: #6B7280; margin-top: 1px;">DD / MM / YYYY</div>
+      </div>
+    </div>
+  </div>
+  <div style="position: relative; flex-shrink: 0; margin: 0 26px; padding: 0 26px 0; display: flex; align-items: center; justify-content: space-between; height: 44px; border-top: 1px solid rgba(27,122,52,0.15); margin-left: 26px; margin-right: 26px; margin-bottom: 26px; background: rgba(77,200,106,0.04);">
+    <div style="font-size: 9.5px; color: #6B7280; text-transform: uppercase; letter-spacing: 0.1em;">Certificate Ref: GS-VOL-{{ refVal }} &nbsp;&#183;&nbsp; Verify at goodnesssociety.org/verify</div>
+    <div style="display: flex; align-items: center; gap: 8px;">
+      <div style="width: 14px; height: 14px; border-radius: 30%; background: linear-gradient(135deg, #4DC86A 0%, #1B7A34 100%);"></div>
+      <div style="font-size: 9.5px; color: #6B7280; letter-spacing: 0.02em;">Together for a Better Tomorrow</div>
+    </div>
+  </div>
+</section>
+</doc-page>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{
+  &quot;sampleFilled&quot;: {&quot;editor&quot;: &quot;boolean&quot;, &quot;default&quot;: false, &quot;tsType&quot;: &quot;boolean&quot;, &quot;section&quot;: &quot;Content&quot;},
+  &quot;watermark&quot;: {&quot;editor&quot;: &quot;boolean&quot;, &quot;default&quot;: true, &quot;tsType&quot;: &quot;boolean&quot;, &quot;section&quot;: &quot;Decoration&quot;}
+}">
+class Component extends DCLogic {
+  renderVals() {
+    const filled = this.props.sampleFilled ?? false;
+    const blank = "\u00A0";
+    return {
+      watermark: this.props.watermark ?? true,
+      nameVal: filled ? "Ayesha Rahman" : blank,
+      programVal: filled ? "Youth Skills Development" : blank,
+      periodVal: filled ? "Jan \u2013 Jun 2026" : blank,
+      hoursVal: filled ? "120 hours" : blank,
+      dateVal: filled ? "15 / 06 / 2026" : blank,
+      refVal: filled ? "2026-0148" : "__________",
+    };
+  }
+}
+</script>
+</body>
+</html>

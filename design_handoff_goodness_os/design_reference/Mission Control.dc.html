@@ -1,0 +1,1304 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+  body { margin: 0; background: #f4f5f7; font-family: 'Plus Jakarta Sans', system-ui, sans-serif; }
+  a { color: #1B7A34; } a:hover { color: #4DC86A; }
+</style>
+</helmet>
+<div data-screen-label="Mission Control" style="color: #0D0D0D; display: grid; grid-template-columns: 248px 1fr; min-height: 100vh;">
+  <aside style="background: #0D0D0D; color: #ffffff; padding: 24px 16px; display: flex; flex-direction: column; gap: 24px; position: sticky; top: 0; height: 100vh; box-sizing: border-box; overflow-y: auto;">
+    <a href="Home.dc.html" style="display: flex; align-items: center; gap: 10px; text-decoration: none; padding: 0 8px;">
+      <div style="width: 34px; height: 34px; border-radius: 30%; background: linear-gradient(135deg, #4DC86A 0%, #1B7A34 100%); display: flex; align-items: center; justify-content: center; color: #ffffff; font-weight: 800; font-size: 17px;">G</div>
+      <div>
+        <div style="font-size: 14px; font-weight: 800; color: #ffffff; letter-spacing: -0.01em;">Mission Control</div>
+        <div style="font-size: 9px; color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 0.18em;">Goodness OS</div>
+      </div>
+    </a>
+    <nav style="display: flex; flex-direction: column; gap: 20px;">
+      <div>
+        <div style="font-size: 9px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.2em; color: rgba(255,255,255,0.3); padding: 0 12px; margin-bottom: 8px;">Command</div>
+        <button onClick="{{ goOverview }}" style="width: 100%; display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: 10px; border: none; font-family: inherit; font-size: 13px; font-weight: 700; cursor: pointer; text-align: left; background: {{ overviewBg }}; color: {{ overviewColor }};">Overview</button>
+      </div>
+      <div>
+        <div style="font-size: 9px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.2em; color: rgba(255,255,255,0.3); padding: 0 12px; margin-bottom: 8px;">People</div>
+        <button onClick="{{ goVolunteers }}" style="width: 100%; display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: 10px; border: none; font-family: inherit; font-size: 13px; font-weight: 700; cursor: pointer; text-align: left; background: {{ volBg }}; color: {{ volColor }};">Volunteers <span style="margin-left: auto; padding: 1px 8px; border-radius: 999px; font-size: 10px; background: rgba(77,200,106,0.2); color: #4DC86A;">{{ volCount }}</span></button>
+        <button onClick="{{ goApps }}" style="width: 100%; display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: 10px; border: none; font-family: inherit; font-size: 13px; font-weight: 700; cursor: pointer; text-align: left; background: {{ appsBg }}; color: {{ appsColor }};">Applications <span style="margin-left: auto; padding: 1px 8px; border-radius: 999px; font-size: 10px; background: {{ pendingChipBg }}; color: {{ pendingChipColor }};">{{ pendingCount }}</span></button>
+      </div>
+      <div>
+        <div style="font-size: 9px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.2em; color: rgba(255,255,255,0.3); padding: 0 12px; margin-bottom: 8px;">Operations</div>
+        <button onClick="{{ goMissions }}" style="width: 100%; display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: 10px; border: none; font-family: inherit; font-size: 13px; font-weight: 700; cursor: pointer; text-align: left; background: {{ msnBg }}; color: {{ msnColor }};">Missions <span style="margin-left: auto; padding: 1px 8px; border-radius: 999px; font-size: 10px; background: rgba(77,200,106,0.2); color: #4DC86A;">{{ msnCount }}</span></button>
+        <button onClick="{{ goVerify }}" style="width: 100%; display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: 10px; border: none; font-family: inherit; font-size: 13px; font-weight: 700; cursor: pointer; text-align: left; background: {{ verBg }}; color: {{ verColor }};">Attendance <span style="margin-left: auto; padding: 1px 8px; border-radius: 999px; font-size: 10px; background: {{ verChipBg }}; color: {{ verChipColor }};">{{ pendingVerify }}</span></button>
+        <button onClick="{{ goImpact }}" style="width: 100%; display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: 10px; border: none; font-family: inherit; font-size: 13px; font-weight: 700; cursor: pointer; text-align: left; background: {{ impBg }}; color: {{ impColor }};">Impact <span style="margin-left: auto; padding: 1px 8px; border-radius: 999px; font-size: 10px; background: {{ impChipBg }}; color: {{ impChipColor }};">{{ impChip }}</span></button>
+      </div>
+      <div>
+        <div style="font-size: 9px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.2em; color: rgba(255,255,255,0.3); padding: 0 12px; margin-bottom: 8px;">Finance</div>
+        <button onClick="{{ goFinance }}" style="width: 100%; display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: 10px; border: none; font-family: inherit; font-size: 13px; font-weight: 700; cursor: pointer; text-align: left; background: {{ finBg }}; color: {{ finColor }};">Money &amp; approvals <span style="margin-left: auto; padding: 1px 8px; border-radius: 999px; font-size: 10px; background: {{ finChipBg }}; color: {{ finChipColor }};">{{ finChip }}</span></button>
+        <a href="Trust Ledger.dc.html" style="display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: 10px; font-size: 13px; font-weight: 700; color: rgba(255,255,255,0.7); text-decoration: none;" style-hover="background: rgba(255,255,255,0.06); color: #ffffff;">Public Trust Ledger <span style="margin-left: auto; font-size: 12px;">&#8599;</span></a>
+      </div>
+      <div>
+        <div style="font-size: 9px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.2em; color: rgba(255,255,255,0.3); padding: 0 12px; margin-bottom: 8px;">Growth</div>
+        <button onClick="{{ goPartners }}" style="width: 100%; display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: 10px; border: none; font-family: inherit; font-size: 13px; font-weight: 700; cursor: pointer; text-align: left; background: {{ ptrBg }}; color: {{ ptrColor }};">Partners <span style="margin-left: auto; padding: 1px 8px; border-radius: 999px; font-size: 10px; background: rgba(77,200,106,0.2); color: #4DC86A;">{{ ptrCount }}</span></button>
+        <button onClick="{{ goNetwork }}" style="width: 100%; display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: 10px; border: none; font-family: inherit; font-size: 13px; font-weight: 700; cursor: pointer; text-align: left; background: {{ netBg }}; color: {{ netColor }};">Network <span style="margin-left: auto; padding: 1px 8px; border-radius: 999px; font-size: 10px; background: {{ netChipBg }}; color: {{ netChipColor }};">{{ netChip }}</span></button>
+      </div>
+      <div>
+        <div style="font-size: 9px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.2em; color: rgba(255,255,255,0.3); padding: 0 12px; margin-bottom: 8px;">Trust</div>
+        <a href="Verify.dc.html" style="display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: 10px; font-size: 13px; font-weight: 700; color: rgba(255,255,255,0.7); text-decoration: none;" style-hover="background: rgba(255,255,255,0.06); color: #ffffff;">Verify a credential <span style="margin-left: auto; font-size: 12px;">&#8599;</span></a>
+        <button onClick="{{ goOverview }}" style="width: 100%; display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: 10px; border: none; font-family: inherit; font-size: 13px; font-weight: 700; cursor: pointer; text-align: left; background: transparent; color: rgba(255,255,255,0.7);">Audit Log <span style="margin-left: auto; font-size: 9px; color: rgba(255,255,255,0.35);">Live</span></button>
+      </div>
+      <div>
+        <div style="font-size: 9px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.2em; color: rgba(255,255,255,0.3); padding: 0 12px; margin-bottom: 8px;">Intelligence</div>
+        <button onClick="{{ goIntel }}" style="width: 100%; display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: 10px; border: none; font-family: inherit; font-size: 13px; font-weight: 700; cursor: pointer; text-align: left; background: {{ intelBg }}; color: {{ intelColor }};">Goodness Intelligence <span style="margin-left: auto; padding: 1px 8px; border-radius: 999px; font-size: 10px; background: rgba(21,101,192,0.35); color: #90CAF9;">Beta</span></button>
+      </div>
+    </nav>
+    <div style="margin-top: auto; padding: 12px; border-radius: 12px; background: rgba(255,255,255,0.05); display: flex; align-items: center; gap: 10px;">
+      <div style="width: 30px; height: 30px; border-radius: 30%; background: linear-gradient(135deg, #1976D2 0%, #1565C0 100%); display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 800; color: #ffffff;">AD</div>
+      <div>
+        <div style="font-size: 12px; font-weight: 700; color: #ffffff;">Admin</div>
+        <div style="font-size: 10px; color: rgba(255,255,255,0.4);">Executive access</div>
+      </div>
+    </div>
+  </aside>
+  <main style="padding: 32px 36px; min-width: 0;">
+    <div style="display: {{ overviewDisp }}; flex-direction: column; gap: 24px;">
+      <div style="display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; flex-wrap: wrap;">
+        <div>
+          <h1 style="margin: 0 0 4px; font-size: 26px; font-weight: 800; letter-spacing: -0.01em;">What's happening in Goodness right now</h1>
+          <p style="margin: 0; font-size: 13px; color: #6B7280;">One view across people, operations, money, impact, partners, and the network &#183; updates as you act</p>
+        </div>
+        <a href="Volunteers.dc.html" style="font-size: 13px; font-weight: 700; text-decoration: none;">View public site &#8594;</a>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(6, 1fr); gap: 14px;">
+        <div style="background: #ffffff; border: 1px solid rgba(0,0,0,0.07); border-radius: 16px; padding: 18px;"><div style="font-size: 26px; font-weight: 800; color: #1B7A34;">{{ statActive }}</div><div style="font-size: 11px; color: #6B7280; margin-top: 4px;">Active volunteers</div></div>
+        <div style="background: #ffffff; border: 1px solid rgba(0,0,0,0.07); border-radius: 16px; padding: 18px;"><div style="font-size: 26px; font-weight: 800; color: #1B7A34;">{{ statOpenMsn }}</div><div style="font-size: 11px; color: #6B7280; margin-top: 4px;">Live missions</div></div>
+        <div style="background: #ffffff; border: 1px solid rgba(0,0,0,0.07); border-radius: 16px; padding: 18px;"><div style="font-size: 26px; font-weight: 800; color: #E65100;">{{ pendingVerify }}</div><div style="font-size: 11px; color: #6B7280; margin-top: 4px;">Hours to verify</div></div>
+        <div style="background: #ffffff; border: 1px solid rgba(0,0,0,0.07); border-radius: 16px; padding: 18px;"><div style="font-size: 26px; font-weight: 800;">{{ statVerifiedHours }}</div><div style="font-size: 11px; color: #6B7280; margin-top: 4px;">Verified hours</div></div>
+        <div style="background: #ffffff; border: 1px solid rgba(0,0,0,0.07); border-radius: 16px; padding: 18px;"><div style="font-size: 26px; font-weight: 800; color: #1B7A34;">{{ statImpPeople }}</div><div style="font-size: 11px; color: #6B7280; margin-top: 4px;">People supported</div></div>
+        <div style="background: #ffffff; border: 1px solid rgba(0,0,0,0.07); border-radius: 16px; padding: 18px;"><div style="font-size: 26px; font-weight: 800;">{{ statSpent }}</div><div style="font-size: 11px; color: #6B7280; margin-top: 4px;">Accepted spending</div></div>
+      </div>
+      <div style="background: #ffffff; border: 1px solid rgba(0,0,0,0.07); border-radius: 16px; padding: 24px;">
+        <div style="display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 4px;">
+          <div style="font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.15em; color: #9CA3AF;">Decision inbox</div>
+          <span style="padding: 3px 12px; border-radius: 999px; font-size: 11px; font-weight: 800; background: {{ inboxChipBg }}; color: {{ inboxChipColor }};">{{ inboxCount }}</span>
+        </div>
+        <p style="margin: 0 0 14px; font-size: 11.5px; color: #9CA3AF;">Everything across the OS waiting on HQ &#8212; one queue, newest first. Acting on an item happens in its domain; this inbox takes you straight there.</p>
+        <div style="display: {{ inboxZeroDisp }}; padding: 22px; border: 1px dashed rgba(27,122,52,0.35); border-radius: 12px; text-align: center; font-size: 13px; font-weight: 700; color: #1B7A34;">Inbox zero &#8212; nothing in Goodness is waiting on HQ right now.</div>
+        <div style="display: flex; flex-direction: column; gap: 8px;">
+          <sc-for list="{{ inboxRows }}" as="ib" hint-placeholder-count="3">
+            <div style="display: flex; align-items: center; gap: 12px; padding: 11px 14px; border: 1px solid rgba(0,0,0,0.07); border-left: 4px solid {{ ib.accent }}; border-radius: 12px; flex-wrap: wrap;">
+              <span style="padding: 2px 10px; border-radius: 999px; font-size: 9.5px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.06em; background: {{ ib.chipBg }}; color: {{ ib.chipColor }}; flex-shrink: 0;">{{ ib.domain }}</span>
+              <div style="flex: 1; min-width: 220px;">
+                <div style="font-size: 13px; font-weight: 700;">{{ ib.title }}</div>
+                <div style="font-size: 11px; color: #9CA3AF;">{{ ib.meta }}</div>
+              </div>
+              <button onClick="{{ ib.go }}" style="padding: 7px 16px; border-radius: 999px; border: 1px solid rgba(0,0,0,0.12); background: #ffffff; font-size: 11px; font-weight: 800; font-family: inherit; cursor: pointer; color: #1B7A34; flex-shrink: 0;" style-hover="border-color: #1B7A34;">Review &#8594;</button>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+      <div style="display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 16px; align-items: start;">
+        <div style="background: #ffffff; border: 1px solid rgba(0,0,0,0.07); border-radius: 16px; padding: 24px;">
+          <div style="font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.15em; color: #9CA3AF; margin-bottom: 16px;">Live operations by city</div>
+          <div style="display: flex; flex-direction: column; gap: 12px;">
+            <sc-for list="{{ cities }}" as="ct" hint-placeholder-count="5">
+              <div style="display: flex; align-items: center; gap: 12px;">
+                <div style="width: 96px; font-size: 13px; font-weight: 700; flex-shrink: 0;">{{ ct.name }}</div>
+                <div style="flex: 1; height: 10px; border-radius: 999px; background: #f0f1f3; overflow: hidden;"><div style="height: 100%; border-radius: 999px; background: linear-gradient(90deg, #4DC86A, #1B7A34); width: {{ ct.w }};"></div></div>
+                <div style="width: 96px; font-size: 12px; color: #6B7280; text-align: right; flex-shrink: 0;">{{ ct.count }}</div>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+        <div style="background: #ffffff; border: 1px solid rgba(0,0,0,0.07); border-radius: 16px; padding: 24px;">
+          <div style="font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.15em; color: #9CA3AF; margin-bottom: 16px;">Audit log</div>
+          <div style="display: {{ auditEmptyDisp }}; font-size: 13px; color: #9CA3AF;">No admin actions yet. Every change you make is recorded here &#8212; nothing is silently rewritten.</div>
+          <div style="display: flex; flex-direction: column; gap: 10px; max-height: 260px; overflow-y: auto;">
+            <sc-for list="{{ audit }}" as="a" hint-placeholder-count="0">
+              <div style="display: flex; align-items: flex-start; gap: 10px;">
+                <div style="width: 8px; height: 8px; border-radius: 50%; background: #4DC86A; margin-top: 5px; flex-shrink: 0;"></div>
+                <div style="flex: 1;">
+                  <div style="font-size: 13px; font-weight: 600; line-height: 1.4;">{{ a.action }}</div>
+                  <div style="font-size: 11px; color: #9CA3AF;">{{ a.when }} &#183; Admin</div>
+                </div>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="display: {{ missionsDisp }}; flex-direction: column; gap: 20px;">
+      <div style="display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; flex-wrap: wrap;">
+        <div>
+          <h1 style="margin: 0 0 4px; font-size: 26px; font-weight: 800; letter-spacing: -0.01em;">Missions</h1>
+          <p style="margin: 0; font-size: 13px; color: #6B7280;">{{ msnCountLabel }} &#183; capacity and rosters update live on the public Missions page</p>
+        </div>
+        <div style="display: flex; gap: 8px;">
+          <a href="Missions.dc.html" style="padding: 10px 18px; border-radius: 999px; border: 1px solid rgba(0,0,0,0.12); background: #ffffff; font-size: 13px; font-weight: 700; text-decoration: none; color: #0D0D0D;">Public view &#8599;</a>
+          <button onClick="{{ toggleForm }}" style="padding: 10px 20px; border-radius: 999px; border: none; color: #ffffff; font-size: 13px; font-weight: 700; font-family: inherit; cursor: pointer; background: linear-gradient(135deg, #4DC86A 0%, #1B7A34 100%);" style-hover="opacity: 0.9;">{{ formToggleLabel }}</button>
+        </div>
+      </div>
+      <div style="display: {{ formDisp }}; background: #ffffff; border: 1px solid rgba(0,0,0,0.07); border-radius: 16px; padding: 24px; flex-direction: column; gap: 16px;">
+        <div style="font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.15em; color: #9CA3AF;">New mission</div>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
+          <div style="grid-column: 1 / -1;">
+            <label style="display: block; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: #6B7280; margin-bottom: 5px;">Mission title</label>
+            <input value="{{ fTitle }}" onInput="{{ setTitle }}" placeholder="e.g. Teach Digital Skills to 30 Students" style="width: 100%; box-sizing: border-box; padding: 10px 14px; border-radius: 10px; border: 1px solid rgba(0,0,0,0.12); background: #fafafa; font-size: 13px; font-family: inherit; outline: none;" style-focus="border-color: #1B7A34; background: #ffffff;">
+          </div>
+          <div>
+            <label style="display: block; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: #6B7280; margin-bottom: 5px;">Program</label>
+            <select value="{{ fProgram }}" onChange="{{ setProgram }}" style="width: 100%; box-sizing: border-box; padding: 10px 14px; border-radius: 10px; border: 1px solid rgba(0,0,0,0.12); background: #fafafa; font-size: 13px; font-family: inherit; outline: none;">
+              <option value="education-career-readiness">Education &amp; Career Readiness</option>
+              <option value="ai-digital-skills">AI &amp; Digital Skills Development</option>
+              <option value="youth-empowerment">Youth Empowerment</option>
+              <option value="community-development">Community Development</option>
+              <option value="innovation-social-good">Innovation for Social Good</option>
+            </select>
+          </div>
+          <div>
+            <label style="display: block; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: #6B7280; margin-bottom: 5px;">Chapter</label>
+            <input value="{{ fChapter }}" onInput="{{ setChapter }}" placeholder="Dhaka" style="width: 100%; box-sizing: border-box; padding: 10px 14px; border-radius: 10px; border: 1px solid rgba(0,0,0,0.12); background: #fafafa; font-size: 13px; font-family: inherit; outline: none;" style-focus="border-color: #1B7A34; background: #ffffff;">
+          </div>
+          <div style="grid-column: 1 / -1;">
+            <label style="display: block; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: #6B7280; margin-bottom: 5px;">Venue</label>
+            <input value="{{ fVenue }}" onInput="{{ setVenue }}" placeholder="e.g. Mirpur Community Centre, Dhaka" style="width: 100%; box-sizing: border-box; padding: 10px 14px; border-radius: 10px; border: 1px solid rgba(0,0,0,0.12); background: #fafafa; font-size: 13px; font-family: inherit; outline: none;" style-focus="border-color: #1B7A34; background: #ffffff;">
+          </div>
+          <div>
+            <label style="display: block; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: #6B7280; margin-bottom: 5px;">Date</label>
+            <input value="{{ fDate }}" onInput="{{ setDate }}" placeholder="Sat 12 Sep 2026" style="width: 100%; box-sizing: border-box; padding: 10px 14px; border-radius: 10px; border: 1px solid rgba(0,0,0,0.12); background: #fafafa; font-size: 13px; font-family: inherit; outline: none;" style-focus="border-color: #1B7A34; background: #ffffff;">
+          </div>
+          <div>
+            <label style="display: block; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: #6B7280; margin-bottom: 5px;">Time</label>
+            <input value="{{ fTime }}" onInput="{{ setTime }}" placeholder="10:00 AM &#8211; 3:00 PM" style="width: 100%; box-sizing: border-box; padding: 10px 14px; border-radius: 10px; border: 1px solid rgba(0,0,0,0.12); background: #fafafa; font-size: 13px; font-family: inherit; outline: none;" style-focus="border-color: #1B7A34; background: #ffffff;">
+          </div>
+          <div>
+            <label style="display: block; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: #6B7280; margin-bottom: 5px;">Service hours</label>
+            <input value="{{ fHours }}" onInput="{{ setHours }}" placeholder="5" style="width: 100%; box-sizing: border-box; padding: 10px 14px; border-radius: 10px; border: 1px solid rgba(0,0,0,0.12); background: #fafafa; font-size: 13px; font-family: inherit; outline: none;" style-focus="border-color: #1B7A34; background: #ffffff;">
+          </div>
+          <div>
+            <label style="display: block; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: #6B7280; margin-bottom: 5px;">Participation</label>
+            <select value="{{ fMode }}" onChange="{{ setMode }}" style="width: 100%; box-sizing: border-box; padding: 10px 14px; border-radius: 10px; border: 1px solid rgba(0,0,0,0.12); background: #fafafa; font-size: 13px; font-family: inherit; outline: none;">
+              <option value="onsite">On-site &#8212; QR check-in</option>
+              <option value="remote">Remote &#8212; start contribution</option>
+            </select>
+          </div>
+          <div>
+            <label style="display: block; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: #6B7280; margin-bottom: 5px;">Priority</label>
+            <select value="{{ fPriority }}" onChange="{{ setPriority }}" style="width: 100%; box-sizing: border-box; padding: 10px 14px; border-radius: 10px; border: 1px solid rgba(0,0,0,0.12); background: #fafafa; font-size: 13px; font-family: inherit; outline: none;">
+              <option value="normal">Normal</option>
+              <option value="urgent">Urgent</option>
+            </select>
+          </div>
+          <div>
+            <label style="display: block; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: #6B7280; margin-bottom: 5px;">Mission lead</label>
+            <input value="{{ fLead }}" onInput="{{ setLead }}" placeholder="e.g. Nusrat Jahan" style="width: 100%; box-sizing: border-box; padding: 10px 14px; border-radius: 10px; border: 1px solid rgba(0,0,0,0.12); background: #fafafa; font-size: 13px; font-family: inherit; outline: none;" style-focus="border-color: #1B7A34; background: #ffffff;">
+          </div>
+          <div style="grid-column: 1 / -1;">
+            <label style="display: block; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: #6B7280; margin-bottom: 5px;">Impact target</label>
+            <input value="{{ fTarget }}" onInput="{{ setTarget }}" placeholder="e.g. 30 students complete foundational training" style="width: 100%; box-sizing: border-box; padding: 10px 14px; border-radius: 10px; border: 1px solid rgba(0,0,0,0.12); background: #fafafa; font-size: 13px; font-family: inherit; outline: none;" style-focus="border-color: #1B7A34; background: #ffffff;">
+          </div>
+          <div style="grid-column: 1 / -1;">
+            <label style="display: block; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: #6B7280; margin-bottom: 5px;">Summary</label>
+            <textarea value="{{ fSummary }}" onInput="{{ setSummary }}" rows="2" placeholder="What happens on this mission?" style="width: 100%; box-sizing: border-box; padding: 10px 14px; border-radius: 10px; border: 1px solid rgba(0,0,0,0.12); background: #fafafa; font-size: 13px; font-family: inherit; outline: none; resize: none;" style-focus="border-color: #1B7A34; background: #ffffff;"></textarea>
+          </div>
+          <div style="grid-column: 1 / -1;">
+            <label style="display: block; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: #6B7280; margin-bottom: 5px;">Roles needed</label>
+            <input value="{{ fRoles }}" onInput="{{ setRoles }}" placeholder="Trainer x2, Photographer x1, Support Volunteer x3" style="width: 100%; box-sizing: border-box; padding: 10px 14px; border-radius: 10px; border: 1px solid rgba(0,0,0,0.12); background: #fafafa; font-size: 13px; font-family: inherit; outline: none;" style-focus="border-color: #1B7A34; background: #ffffff;">
+            <div style="font-size: 11px; color: #9CA3AF; margin-top: 4px;">Format: Role name x count, separated by commas</div>
+          </div>
+        </div>
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <button onClick="{{ saveMission }}" style="padding: 11px 24px; border-radius: 999px; border: none; color: #ffffff; font-size: 13px; font-weight: 700; font-family: inherit; cursor: pointer; background: linear-gradient(135deg, #4DC86A 0%, #1B7A34 100%);" style-hover="opacity: 0.9;">Publish mission</button>
+          <span style="display: {{ formErrDisp }}; font-size: 12px; color: #d4183d; font-weight: 600;">Title, chapter and date are required.</span>
+        </div>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 12px;">
+        <sc-for list="{{ missionRows }}" as="m" hint-placeholder-count="6">
+          <div style="background: #ffffff; border: 1px solid rgba(0,0,0,0.07); border-left: 4px solid {{ m.accent }}; border-radius: 14px; padding: 20px 24px;">
+            <div style="display: flex; align-items: flex-start; gap: 20px; flex-wrap: wrap;">
+              <div style="flex: 1; min-width: 260px;">
+                <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+                  <span style="font-size: 16px; font-weight: 800;">{{ m.title }}</span>
+                  <span style="display: {{ m.urgentDisp }}; align-items: center; padding: 2px 10px; border-radius: 999px; font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; background: #E65100; color: #ffffff;">Urgent</span>
+                  <span style="padding: 2px 10px; border-radius: 999px; font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; background: {{ m.statusBg }}; color: {{ m.statusColor }};">{{ m.statusLabel }}</span>
+                  <span style="display: {{ m.remoteDisp }}; align-items: center; padding: 2px 10px; border-radius: 999px; font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; background: #e8f0fc; color: #1565C0;">Remote</span>
+                </div>
+                <div style="font-size: 13px; color: #374151; margin-top: 4px;">{{ m.program }} &#183; {{ m.chapter }}</div>
+                <div style="font-size: 12px; color: #6B7280; margin-top: 2px;">{{ m.date }} &#183; {{ m.time }} &#183; {{ m.venue }}</div>
+              </div>
+              <div style="width: 190px; flex-shrink: 0;">
+                <div style="display: flex; align-items: center; justify-content: space-between; font-size: 12px; font-weight: 700; margin-bottom: 5px;"><span>{{ m.fillLabel }}</span><span style="color: {{ m.spotsColor }};">{{ m.spotsLabel }}</span></div>
+                <div style="height: 8px; border-radius: 999px; background: #f0f1f3; overflow: hidden;"><div style="height: 100%; border-radius: 999px; background: linear-gradient(90deg, #4DC86A, #1B7A34); width: {{ m.pctW }};"></div></div>
+                <div style="font-size: 11px; color: #9CA3AF; margin-top: 6px;">{{ m.rosterNote }}</div>
+              </div>
+              <div style="display: flex; gap: 8px; flex-shrink: 0;">
+                <button onClick="{{ m.flipStatus }}" style="padding: 9px 16px; border-radius: 999px; border: 1px solid rgba(0,0,0,0.12); background: #ffffff; font-size: 12px; font-weight: 700; font-family: inherit; cursor: pointer; color: {{ m.flipColor }};">{{ m.flipLabel }}</button>
+                <a href="{{ m.href }}" style="padding: 9px 16px; border-radius: 999px; border: 1px solid rgba(0,0,0,0.12); background: #ffffff; font-size: 12px; font-weight: 700; text-decoration: none; color: #0D0D0D;">Open &#8599;</a>
+              </div>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+    <div style="display: {{ intelDisp }}; flex-direction: column; gap: 18px;">
+      <div style="display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; flex-wrap: wrap;">
+        <div>
+          <h1 style="margin: 0 0 4px; font-size: 26px; font-weight: 800; letter-spacing: -0.01em;">Goodness Intelligence</h1>
+          <p style="margin: 0; font-size: 13px; color: #6B7280;">The OS reading itself: signals, forecasts, and recommended moves &#183; <span style="color: #1565C0; font-weight: 700;">UI prototype &#8212; analysis engine wires in later</span></p>
+        </div>
+      </div>
+      <div style="background: #0D0D0D; border-radius: 18px; padding: 22px 26px;">
+        <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 12px;">
+          <div style="width: 30px; height: 30px; border-radius: 30%; background: linear-gradient(135deg, #1976D2 0%, #1565C0 100%); display: flex; align-items: center; justify-content: center; color: #ffffff; font-weight: 800; font-size: 14px;">G</div>
+          <div style="font-size: 13px; font-weight: 800; color: #ffffff;">Ask Goodness</div>
+          <span style="padding: 2px 10px; border-radius: 999px; font-size: 9.5px; font-weight: 800; text-transform: uppercase; background: rgba(21,101,192,0.35); color: #90CAF9;">Prototype</span>
+        </div>
+        <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+          <input placeholder="Ask anything about the organisation&#8230; e.g. Which chapter needs help this month?" style="flex: 1; min-width: 260px; box-sizing: border-box; padding: 13px 18px; border-radius: 999px; border: 1px solid rgba(255,255,255,0.18); background: rgba(255,255,255,0.06); color: #ffffff; font-size: 13px; font-family: inherit; outline: none;">
+          <button style="padding: 13px 24px; border-radius: 999px; border: none; color: #ffffff; font-size: 13px; font-weight: 800; font-family: inherit; cursor: pointer; background: linear-gradient(135deg, #4DC86A 0%, #1B7A34 100%);">Ask</button>
+        </div>
+        <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-top: 12px;">
+          <span style="padding: 6px 14px; border-radius: 999px; font-size: 11px; font-weight: 600; color: rgba(255,255,255,0.6); border: 1px solid rgba(255,255,255,0.15); cursor: pointer;">Which missions are short on volunteers?</span>
+          <span style="padding: 6px 14px; border-radius: 999px; font-size: 11px; font-weight: 600; color: rgba(255,255,255,0.6); border: 1px solid rgba(255,255,255,0.15); cursor: pointer;">Draft the Q3 board brief</span>
+          <span style="padding: 6px 14px; border-radius: 999px; font-size: 11px; font-weight: 600; color: rgba(255,255,255,0.6); border: 1px solid rgba(255,255,255,0.15); cursor: pointer;">Where is funding at risk?</span>
+        </div>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px;">
+        <sc-for list="{{ intelSignals }}" as="ig" hint-placeholder-count="6">
+          <div style="background: #ffffff; border: 1px solid rgba(0,0,0,0.07); border-top: 4px solid {{ ig.accent }}; border-radius: 14px; padding: 18px 20px;">
+            <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 8px;">
+              <span style="padding: 2px 10px; border-radius: 999px; font-size: 9.5px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.06em; background: {{ ig.chipBg }}; color: {{ ig.chipColor }};">{{ ig.kind }}</span>
+              <span style="font-size: 10px; color: #9CA3AF;">{{ ig.domain }}</span>
+            </div>
+            <div style="font-size: 13.5px; font-weight: 800; line-height: 1.4;">{{ ig.headline }}</div>
+            <div style="font-size: 12px; color: #6B7280; line-height: 1.55; margin-top: 6px;">{{ ig.why }}</div>
+            <div style="margin-top: 12px; display: flex; align-items: center; gap: 8px;">
+              <span style="padding: 7px 14px; border-radius: 999px; font-size: 11px; font-weight: 800; color: #1B7A34; border: 1px solid rgba(27,122,52,0.35); cursor: pointer;">{{ ig.action }}</span>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+      <div style="display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 16px; align-items: start;">
+        <div style="background: #ffffff; border: 1px solid rgba(0,0,0,0.07); border-radius: 16px; padding: 24px;">
+          <div style="font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.15em; color: #9CA3AF; margin-bottom: 4px;">Forecast &#183; next 30 days</div>
+          <p style="margin: 0 0 16px; font-size: 11.5px; color: #9CA3AF;">Projected from current rhythms and trailing activity &#8212; directional, not promised.</p>
+          <div style="display: flex; flex-direction: column; gap: 14px;">
+            <sc-for list="{{ intelForecast }}" as="f" hint-placeholder-count="4">
+              <div>
+                <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 10px;">
+                  <span style="font-size: 12.5px; font-weight: 700;">{{ f.label }}</span>
+                  <span style="font-size: 13px; font-weight: 800; color: {{ f.color }};">{{ f.value }}</span>
+                </div>
+                <div style="height: 8px; border-radius: 999px; background: #f0f1f3; overflow: hidden; margin-top: 5px;"><div style="height: 100%; border-radius: 999px; background: {{ f.barBg }}; width: {{ f.w }};"></div></div>
+                <div style="font-size: 10.5px; color: #9CA3AF; margin-top: 3px;">{{ f.note }}</div>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 16px;">
+          <div style="background: #ffffff; border: 1px solid rgba(0,0,0,0.07); border-radius: 16px; padding: 24px;">
+            <div style="font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.15em; color: #9CA3AF; margin-bottom: 12px;">Recommended moves</div>
+            <div style="display: flex; flex-direction: column; gap: 10px;">
+              <sc-for list="{{ intelMoves }}" as="mv" hint-placeholder-count="4">
+                <div style="display: flex; align-items: flex-start; gap: 10px;">
+                  <span style="width: 22px; height: 22px; border-radius: 50%; background: #f0faf3; color: #1B7A34; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 800; flex-shrink: 0; margin-top: 1px;">{{ mv.n }}</span>
+                  <div style="flex: 1;">
+                    <div style="font-size: 12.5px; font-weight: 700; line-height: 1.4;">{{ mv.title }}</div>
+                    <div style="font-size: 11px; color: #9CA3AF; margin-top: 1px;">{{ mv.why }}</div>
+                  </div>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+          <div style="background: #ffffff; border: 1px solid rgba(0,0,0,0.07); border-radius: 16px; padding: 24px;">
+            <div style="font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.15em; color: #9CA3AF; margin-bottom: 4px;">Auto-reporting</div>
+            <p style="margin: 0 0 12px; font-size: 11.5px; color: #9CA3AF;">One-click briefs assembled from the Trust Ledger, impact records, and network data.</p>
+            <div style="display: flex; flex-direction: column; gap: 8px;">
+              <div style="display: flex; align-items: center; gap: 10px; padding: 11px 14px; border: 1px solid rgba(0,0,0,0.07); border-radius: 12px;"><span style="flex: 1; font-size: 12.5px; font-weight: 700;">Q3 board brief</span><span style="font-size: 10.5px; color: #9CA3AF;">finance &#183; impact &#183; network</span><span style="padding: 6px 14px; border-radius: 999px; font-size: 11px; font-weight: 800; color: #1B7A34; border: 1px solid rgba(27,122,52,0.35); cursor: pointer;">Generate</span></div>
+              <div style="display: flex; align-items: center; gap: 10px; padding: 11px 14px; border: 1px solid rgba(0,0,0,0.07); border-radius: 12px;"><span style="flex: 1; font-size: 12.5px; font-weight: 700;">Partner quarterly reports</span><span style="font-size: 10.5px; color: #9CA3AF;">6 partners</span><span style="padding: 6px 14px; border-radius: 999px; font-size: 11px; font-weight: 800; color: #1B7A34; border: 1px solid rgba(27,122,52,0.35); cursor: pointer;">Generate</span></div>
+              <div style="display: flex; align-items: center; gap: 10px; padding: 11px 14px; border: 1px solid rgba(0,0,0,0.07); border-radius: 12px;"><span style="flex: 1; font-size: 12.5px; font-weight: 700;">Chapter health digest</span><span style="font-size: 10.5px; color: #9CA3AF;">weekly &#183; to chapter leads</span><span style="padding: 6px 14px; border-radius: 999px; font-size: 11px; font-weight: 800; color: #1B7A34; border: 1px solid rgba(27,122,52,0.35); cursor: pointer;">Generate</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="display: {{ networkDisp }}; flex-direction: column; gap: 20px;">
+      <div style="display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; flex-wrap: wrap;">
+        <div>
+          <h1 style="margin: 0 0 4px; font-size: 26px; font-weight: 800; letter-spacing: -0.01em;">Network command</h1>
+          <p style="margin: 0; font-size: 13px; color: #6B7280;">{{ netSummary }} &#183; comparison stays HQ-private, never a public leaderboard</p>
+        </div>
+        <a href="Chapters.dc.html" style="padding: 10px 18px; border-radius: 999px; border: 1px solid rgba(0,0,0,0.12); background: #ffffff; font-size: 13px; font-weight: 700; text-decoration: none; color: #0D0D0D;">Public network &#8599;</a>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 10px;">
+        <sc-for list="{{ netRows }}" as="n" hint-placeholder-count="6">
+          <div style="background: #ffffff; border: 1px solid rgba(0,0,0,0.07); border-left: 4px solid {{ n.accent }}; border-radius: 14px; padding: 16px 20px; display: flex; align-items: center; gap: 16px; flex-wrap: wrap;">
+            <div style="flex: 1; min-width: 200px;">
+              <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+                <span style="font-size: 14px; font-weight: 800;">{{ n.name }}</span>
+                <span style="padding: 2px 10px; border-radius: 999px; font-size: 10px; font-weight: 800; text-transform: uppercase; background: {{ n.hBg }}; color: {{ n.hColor }};">{{ n.health }}</span>
+              </div>
+              <div style="font-size: 11.5px; color: #9CA3AF; margin-top: 3px;">{{ n.signalLine }}</div>
+            </div>
+            <div style="display: flex; gap: 18px; flex-shrink: 0; font-size: 12px; color: #6B7280;">
+              <span><strong style="color: #0D0D0D;">{{ n.members }}</strong> members</span>
+              <span><strong style="color: #1B7A34;">{{ n.hours }}</strong> hours</span>
+              <span><strong style="color: #0D0D0D;">{{ n.live }}</strong> live</span>
+              <span><strong style="color: #E65100;">{{ n.pending }}</strong> pending</span>
+            </div>
+            <a href="{{ n.href }}" style="padding: 7px 14px; border-radius: 999px; border: 1px solid rgba(0,0,0,0.12); background: #ffffff; font-size: 11px; font-weight: 700; text-decoration: none; color: #0D0D0D; flex-shrink: 0;">Open &#8599;</a>
+          </div>
+        </sc-for>
+      </div>
+      <div style="background: #ffffff; border: 1px solid rgba(0,0,0,0.07); border-radius: 16px; padding: 20px 22px;">
+        <div style="font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.14em; color: #9CA3AF; margin-bottom: 12px;">Chapter proposals &#183; approval queue</div>
+        <div style="display: {{ noPropsDisp }}; font-size: 12.5px; color: #9CA3AF;">Nothing awaiting approval. Chapter Control submissions land here.</div>
+        <div style="display: flex; flex-direction: column; gap: 8px;">
+          <sc-for list="{{ propRows }}" as="p" hint-placeholder-count="0">
+            <div style="display: flex; align-items: center; gap: 12px; padding: 12px 14px; border: 1px solid rgba(0,0,0,0.07); border-radius: 12px; flex-wrap: wrap;">
+              <div style="flex: 1; min-width: 200px;">
+                <div style="font-size: 13px; font-weight: 700;">{{ p.title }}</div>
+                <div style="font-size: 11px; color: #9CA3AF;">{{ p.meta }}</div>
+              </div>
+              <span style="padding: 2px 10px; border-radius: 999px; font-size: 10px; font-weight: 800; text-transform: uppercase; background: {{ p.bg }}; color: {{ p.color }};">{{ p.stageLabel }}</span>
+              <div style="display: {{ p.actionsDisp }}; gap: 8px;">
+                <button onClick="{{ p.approve }}" style="padding: 7px 16px; border-radius: 999px; border: none; color: #ffffff; font-size: 11px; font-weight: 800; font-family: inherit; cursor: pointer; background: linear-gradient(135deg, #4DC86A 0%, #1B7A34 100%);">Approve</button>
+                <button onClick="{{ p.reject }}" style="padding: 7px 14px; border-radius: 999px; border: 1px solid rgba(0,0,0,0.12); background: #ffffff; color: #d4183d; font-size: 11px; font-weight: 700; font-family: inherit; cursor: pointer;">Return</button>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+      <div style="background: #ffffff; border: 1px solid rgba(0,0,0,0.07); border-radius: 16px; padding: 20px 22px;">
+        <div style="font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.14em; color: #9CA3AF; margin-bottom: 12px;">Chapter requests &#183; Start-a-Chapter</div>
+        <div style="display: {{ noReqsDisp }}; font-size: 12.5px; color: #9CA3AF;">No requests yet &#8212; public submissions from the Chapters page land here.</div>
+        <div style="display: flex; flex-direction: column; gap: 8px;">
+          <sc-for list="{{ reqRows }}" as="q" hint-placeholder-count="0">
+            <div style="display: flex; align-items: center; gap: 12px; padding: 12px 14px; border: 1px solid rgba(0,0,0,0.07); border-radius: 12px; flex-wrap: wrap;">
+              <div style="flex: 1; min-width: 200px;">
+                <div style="font-size: 13px; font-weight: 700;">Goodness {{ q.city }} <span style="font-weight: 500; color: #9CA3AF;">proposed by {{ q.contact }}</span></div>
+                <div style="font-size: 11px; color: #9CA3AF;">{{ q.why }}</div>
+              </div>
+              <span style="padding: 2px 10px; border-radius: 999px; font-size: 10px; font-weight: 800; text-transform: uppercase; background: {{ q.bg }}; color: {{ q.color }};">{{ q.stageLabel }}</span>
+              <div style="display: {{ q.actionsDisp }}; gap: 8px;">
+                <button onClick="{{ q.approve }}" style="padding: 7px 16px; border-radius: 999px; border: none; color: #ffffff; font-size: 11px; font-weight: 800; font-family: inherit; cursor: pointer; background: linear-gradient(135deg, #4DC86A 0%, #1B7A34 100%);">Approve forming</button>
+                <button onClick="{{ q.reject }}" style="padding: 7px 14px; border-radius: 999px; border: 1px solid rgba(0,0,0,0.12); background: #ffffff; color: #d4183d; font-size: 11px; font-weight: 700; font-family: inherit; cursor: pointer;">Return</button>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </div>
+    <div style="display: {{ partnersDisp }}; flex-direction: column; gap: 20px;">
+      <div style="display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; flex-wrap: wrap;">
+        <div>
+          <h1 style="margin: 0 0 4px; font-size: 26px; font-weight: 800; letter-spacing: -0.01em;">Partners</h1>
+          <p style="margin: 0; font-size: 13px; color: #6B7280;">{{ ptrSummary }} &#183; each partner has a live Partner Room and public profile</p>
+        </div>
+        <a href="Fund Impact.dc.html" style="padding: 10px 18px; border-radius: 999px; border: 1px solid rgba(0,0,0,0.12); background: #ffffff; font-size: 13px; font-weight: 700; text-decoration: none; color: #0D0D0D;">Funding opportunities &#8599;</a>
+      </div>
+      <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+        <sc-for list="{{ pipeline }}" as="st" hint-placeholder-count="4">
+          <div style="display: flex; align-items: center; gap: 8px; padding: 8px 14px; border-radius: 999px; border: 1px solid rgba(0,0,0,0.08); background: #ffffff; font-size: 12px; font-weight: 700;">{{ st.label }} <span style="padding: 1px 8px; border-radius: 999px; font-size: 10px; background: {{ st.bg }}; color: {{ st.color }};">{{ st.count }}</span></div>
+        </sc-for>
+      </div>
+      <div style="display: {{ enqEmptyDisp }}; padding: 14px 18px; border: 1px dashed rgba(0,0,0,0.14); border-radius: 12px; background: #fafafa; font-size: 12.5px; color: #6B7280;">No new enquiries — submissions from the Partnership Builder land here instantly.</div>
+      <div style="display: flex; flex-direction: column; gap: 12px;">
+        <sc-for list="{{ enquiryRows }}" as="q" hint-placeholder-count="0">
+          <div style="background: #ffffff; border: 1px solid rgba(0,0,0,0.07); border-left: 4px solid {{ q.accent }}; border-radius: 14px; padding: 18px 22px;">
+            <div style="display: flex; align-items: center; gap: 16px; flex-wrap: wrap;">
+              <div style="flex: 1; min-width: 220px;">
+                <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+                  <span style="font-size: 14px; font-weight: 800;">{{ q.company }}</span>
+                  <span style="padding: 2px 10px; border-radius: 999px; font-size: 10px; font-weight: 800; text-transform: uppercase; background: {{ q.chipBg }}; color: {{ q.chipColor }};">{{ q.chipLabel }}</span>
+                  <span style="font-size: 11px; color: #9CA3AF;">{{ q.when }}</span>
+                </div>
+                <div style="font-size: 12px; color: #6B7280; margin-top: 3px;">{{ q.contact }} &#183; {{ q.rangeLabel }}</div>
+                <div style="font-size: 11.5px; color: #9CA3AF; margin-top: 2px;">{{ q.interestLine }}</div>
+              </div>
+              <button onClick="{{ q.toProposal }}" style="display: {{ q.toProposalDisp }}; padding: 8px 16px; border-radius: 999px; border: none; color: #ffffff; font-size: 12px; font-weight: 800; font-family: inherit; cursor: pointer; background: linear-gradient(135deg, #4DC86A 0%, #1B7A34 100%);">Move to proposal</button>
+              <button onClick="{{ q.openCommit }}" style="display: {{ q.toCommitDisp }}; padding: 8px 16px; border-radius: 999px; border: none; color: #ffffff; font-size: 12px; font-weight: 800; font-family: inherit; cursor: pointer; background: linear-gradient(135deg, #4DC86A 0%, #1B7A34 100%);">Mark committed</button>
+            </div>
+            <div style="display: {{ q.committingDisp }}; align-items: center; gap: 10px; flex-wrap: wrap; width: 100%; margin-top: 14px; padding-top: 14px; border-top: 1px solid rgba(0,0,0,0.06);">
+              <div style="font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em; color: #6B7280;">Capture the commitment</div>
+              <input value="{{ cAmount }}" onInput="{{ setCAmount }}" placeholder="Amount, e.g. 1200000" style="width: 170px; box-sizing: border-box; padding: 9px 12px; border-radius: 10px; border: 1px solid rgba(0,0,0,0.12); background: #fafafa; font-size: 13px; font-family: inherit; outline: none;" style-focus="border-color: #1B7A34; background: #ffffff;">
+              <select value="{{ cKind }}" onChange="{{ setCKind }}" style="box-sizing: border-box; padding: 9px 12px; border-radius: 10px; border: 1px solid rgba(0,0,0,0.12); background: #fafafa; font-size: 13px; font-family: inherit; outline: none;">
+                <option value="Cash">Cash</option>
+                <option value="In-kind">In-kind</option>
+                <option value="Mixed">Mixed</option>
+              </select>
+              <button onClick="{{ q.confirmCommit }}" style="padding: 9px 18px; border-radius: 999px; border: none; color: #ffffff; font-size: 12px; font-weight: 800; font-family: inherit; cursor: pointer; background: linear-gradient(135deg, #4DC86A 0%, #1B7A34 100%);">Confirm commitment</button>
+              <button onClick="{{ cancelCommit }}" style="padding: 9px 14px; border-radius: 999px; border: 1px solid rgba(0,0,0,0.12); background: #ffffff; color: #6B7280; font-size: 12px; font-weight: 700; font-family: inherit; cursor: pointer;">Cancel</button>
+            </div>
+          </div>
+        </sc-for>
+        <sc-for list="{{ partnerRows }}" as="pr" hint-placeholder-count="5">
+          <div style="background: #ffffff; border: 1px solid rgba(0,0,0,0.07); border-left: 4px solid {{ pr.accent }}; border-radius: 14px; padding: 18px 22px; display: flex; align-items: center; gap: 16px; flex-wrap: wrap;">
+            <div style="width: 40px; height: 40px; border-radius: 28%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 13px; font-weight: 800; color: #ffffff; background: linear-gradient(135deg, #1976D2 0%, #1565C0 100%);">{{ pr.initials }}</div>
+            <div style="flex: 1; min-width: 220px;">
+              <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+                <span style="font-size: 14px; font-weight: 800;">{{ pr.name }}</span>
+                <span style="padding: 2px 10px; border-radius: 999px; font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.06em; background: {{ pr.stBg }}; color: {{ pr.stColor }};">{{ pr.stageLabel }}</span>
+              </div>
+              <div style="font-size: 12px; color: #6B7280; margin-top: 3px;">{{ pr.kind }} &#183; {{ pr.contact }}</div>
+              <div style="font-size: 11.5px; color: #9CA3AF; margin-top: 2px;">{{ pr.moneyLine }}</div>
+            </div>
+            <div style="width: 120px; text-align: center; flex-shrink: 0;">
+              <div style="font-size: 13px; font-weight: 800;">{{ pr.renewal }}</div>
+              <div style="font-size: 10px; color: #9CA3AF;">renewal</div>
+            </div>
+            <div style="display: flex; gap: 8px; flex-shrink: 0;">
+              <button onClick="{{ pr.advance }}" style="display: {{ pr.advanceDisp }}; padding: 8px 16px; border-radius: 999px; border: none; color: #ffffff; font-size: 12px; font-weight: 800; font-family: inherit; cursor: pointer; background: linear-gradient(135deg, #4DC86A 0%, #1B7A34 100%);">{{ pr.advanceLabel }}</button>
+              <a href="{{ pr.profileHref }}" style="padding: 8px 14px; border-radius: 999px; border: 1px solid rgba(0,0,0,0.12); background: #ffffff; font-size: 12px; font-weight: 700; text-decoration: none; color: #0D0D0D;">Profile &#8599;</a>
+            </div>
+            <div style="display: {{ pr.committingDisp }}; align-items: center; gap: 10px; flex-wrap: wrap; width: 100%; margin-top: 14px; padding-top: 14px; border-top: 1px solid rgba(0,0,0,0.06);">
+              <div style="font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em; color: #6B7280;">Capture the commitment</div>
+              <input value="{{ cAmount }}" onInput="{{ setCAmount }}" placeholder="Amount, e.g. 1200000" style="width: 170px; box-sizing: border-box; padding: 9px 12px; border-radius: 10px; border: 1px solid rgba(0,0,0,0.12); background: #fafafa; font-size: 13px; font-family: inherit; outline: none;" style-focus="border-color: #1B7A34; background: #ffffff;">
+              <select value="{{ cKind }}" onChange="{{ setCKind }}" style="box-sizing: border-box; padding: 9px 12px; border-radius: 10px; border: 1px solid rgba(0,0,0,0.12); background: #fafafa; font-size: 13px; font-family: inherit; outline: none;">
+                <option value="Cash">Cash</option>
+                <option value="In-kind">In-kind</option>
+                <option value="Mixed">Mixed</option>
+              </select>
+              <button onClick="{{ pr.confirmCommit }}" style="padding: 9px 18px; border-radius: 999px; border: none; color: #ffffff; font-size: 12px; font-weight: 800; font-family: inherit; cursor: pointer; background: linear-gradient(135deg, #4DC86A 0%, #1B7A34 100%);">Confirm commitment</button>
+              <button onClick="{{ cancelCommit }}" style="padding: 9px 14px; border-radius: 999px; border: 1px solid rgba(0,0,0,0.12); background: #ffffff; color: #6B7280; font-size: 12px; font-weight: 700; font-family: inherit; cursor: pointer;">Cancel</button>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+    <div style="display: {{ financeDisp }}; flex-direction: column; gap: 20px;">
+      <div style="display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; flex-wrap: wrap;">
+        <div>
+          <h1 style="margin: 0 0 4px; font-size: 26px; font-weight: 800; letter-spacing: -0.01em;">Money &amp; approvals</h1>
+          <p style="margin: 0; font-size: 13px; color: #6B7280;">{{ finSummary }} &#183; these expenses have already been incurred; accepting one adds it to accepted spending on the public ledger</p>
+        </div>
+        <a href="Trust Ledger.dc.html" style="padding: 10px 18px; border-radius: 999px; border: 1px solid rgba(0,0,0,0.12); background: #ffffff; font-size: 13px; font-weight: 700; text-decoration: none; color: #0D0D0D;">Public ledger &#8599;</a>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px;">
+        <div style="background: #ffffff; border: 1px solid rgba(0,0,0,0.07); border-radius: 16px; padding: 18px;"><div style="font-size: 22px; font-weight: 800;">{{ finReceived }}</div><div style="font-size: 11px; color: #6B7280; margin-top: 4px;">Received</div></div>
+        <div style="background: #ffffff; border: 1px solid rgba(0,0,0,0.07); border-radius: 16px; padding: 18px;"><div style="font-size: 22px; font-weight: 800;">{{ finAllocated }}</div><div style="font-size: 11px; color: #6B7280; margin-top: 4px;">Allocated</div></div>
+        <div style="background: #ffffff; border: 1px solid rgba(0,0,0,0.07); border-radius: 16px; padding: 18px;"><div style="font-size: 22px; font-weight: 800; color: #1B7A34;">{{ finSpent }}</div><div style="font-size: 11px; color: #6B7280; margin-top: 4px;">Accepted into ledger</div></div>
+        <div style="background: #ffffff; border: 1px solid rgba(0,0,0,0.07); border-radius: 16px; padding: 18px;"><div style="font-size: 22px; font-weight: 800; color: #E65100;">{{ finPending }}</div><div style="font-size: 11px; color: #6B7280; margin-top: 4px;">Recorded, awaiting review</div></div>
+        <div style="background: #ffffff; border: 1px solid rgba(0,0,0,0.07); border-radius: 16px; padding: 18px;"><div style="font-size: 22px; font-weight: 800;">{{ finOverhead }}</div><div style="font-size: 11px; color: #6B7280; margin-top: 4px;">Ops share of spending</div></div>
+      </div>
+      <div style="background: #f8fdf9; border: 1px solid rgba(27,122,52,0.22); border-radius: 16px; padding: 18px 22px; display: flex; gap: 24px; flex-wrap: wrap; align-items: center;">
+        <div style="font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.14em; color: #1B7A34;">Goodness Commitments</div>
+        <div style="font-size: 12.5px; color: #374151;"><strong>{{ cmActive }}</strong> active</div>
+        <div style="font-size: 12.5px; color: #374151;"><strong>{{ cmExpected }}</strong> expected next 30 days</div>
+        <div style="font-size: 12.5px; color: #374151;"><strong>{{ cmReceived }}</strong> received via commitments</div>
+        <div style="font-size: 12.5px; color: #374151;"><strong>{{ cmPaused }}</strong> paused</div>
+        <div style="font-size: 11px; color: #6B7280;">Members sustain Goodness. Partners accelerate it. Volunteers bring it to life.</div>
+      </div>
+      <div style="background: #ffffff; border: 1px solid rgba(0,0,0,0.07); border-radius: 16px; overflow: hidden;">
+        <div style="padding: 16px 22px; border-bottom: 1px solid rgba(0,0,0,0.06); font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.14em; color: #9CA3AF;">Expenses</div>
+        <sc-for list="{{ expenseRows }}" as="e" hint-placeholder-count="6">
+          <div style="display: flex; align-items: center; gap: 16px; padding: 16px 22px; border-bottom: 1px solid rgba(0,0,0,0.04); flex-wrap: wrap; background: {{ e.rowBg }};">
+            <div style="flex: 1; min-width: 240px;">
+              <div style="font-size: 13.5px; font-weight: 700;">{{ e.item }}</div>
+              <div style="font-size: 11.5px; color: #6B7280; margin-top: 2px;">{{ e.fund }} &#183; {{ e.payee }} &#183; {{ e.date }}</div>
+              <div style="display: flex; gap: 5px; flex-wrap: wrap; margin-top: 6px;">
+                <sc-for list="{{ e.docs }}" as="d" hint-placeholder-count="1">
+                  <span style="display: inline-flex; align-items: center; gap: 4px; padding: 2px 8px; border-radius: 999px; font-size: 10px; font-weight: 600; background: {{ d.bg }}; color: #0D0D0D; border: 1px solid {{ d.border }};"><span style="color: {{ d.color }}; font-weight: 800;">{{ d.mark }}</span>{{ d.label }}</span>
+                </sc-for>
+                <span style="display: {{ e.noDocsDisp }}; padding: 2px 8px; border-radius: 999px; font-size: 10px; font-weight: 700; background: #fdecec; color: #d4183d;">No document attached</span>
+              </div>
+            </div>
+            <div style="width: 118px; text-align: right; flex-shrink: 0; font-size: 14px; font-weight: 800;">{{ e.amount }}</div>
+            <span style="padding: 4px 12px; border-radius: 999px; font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.06em; background: {{ e.stBg }}; color: {{ e.stColor }}; flex-shrink: 0;">{{ e.stLabel }}</span>
+            <div style="display: flex; gap: 8px; flex-shrink: 0;">
+              <button onClick="{{ e.approve }}" style="display: {{ e.approveDisp }}; padding: 9px 18px; border-radius: 999px; border: none; color: #ffffff; font-size: 12px; font-weight: 800; font-family: inherit; cursor: pointer; background: linear-gradient(135deg, #4DC86A 0%, #1B7A34 100%);" style-hover="opacity: 0.9;">Accept into ledger</button>
+              <button onClick="{{ e.unapprove }}" style="display: {{ e.unapproveDisp }}; padding: 9px 16px; border-radius: 999px; border: 1px solid rgba(0,0,0,0.12); background: #ffffff; color: #d4183d; font-size: 12px; font-weight: 700; font-family: inherit; cursor: pointer;">Reverse</button>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+      <div style="background: #ffffff; border: 1px solid rgba(0,0,0,0.07); border-radius: 16px; overflow: hidden;">
+        <div style="padding: 16px 22px; border-bottom: 1px solid rgba(0,0,0,0.06); display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap;">
+          <div style="font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.14em; color: #9CA3AF;">Donations received</div>
+          <a href="Money Receipt.dc.html" style="font-size: 12px; font-weight: 700; text-decoration: none;">Issue a receipt &#8599;</a>
+        </div>
+        <sc-for list="{{ donationRows }}" as="d" hint-placeholder-count="6">
+          <div style="display: flex; align-items: center; gap: 16px; padding: 14px 22px; border-bottom: 1px solid rgba(0,0,0,0.04); flex-wrap: wrap;">
+            <div style="flex: 1; min-width: 200px;">
+              <div style="font-size: 13px; font-weight: 700;">{{ d.donor }}</div>
+              <div style="font-size: 11.5px; color: #6B7280;">{{ d.type }} &#183; {{ d.method }} &#183; {{ d.date }}</div>
+            </div>
+            <div style="width: 130px; text-align: right; flex-shrink: 0; font-size: 14px; font-weight: 800;">{{ d.amount }}</div>
+            <div style="width: 190px; font-size: 11.5px; color: #374151; flex-shrink: 0;">{{ d.restrictedLabel }}</div>
+            <div style="width: 108px; font-size: 11.5px; color: #6B7280; font-variant-numeric: tabular-nums; flex-shrink: 0;">{{ d.receipt }}</div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+    <div style="display: {{ impactDisp }}; flex-direction: column; gap: 20px;">
+      <div style="display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; flex-wrap: wrap;">
+        <div>
+          <h1 style="margin: 0 0 4px; font-size: 26px; font-weight: 800; letter-spacing: -0.01em;">Impact records</h1>
+          <p style="margin: 0; font-size: 13px; color: #6B7280;">{{ impSummary }} &#183; publishing a record makes it public on the Impact page</p>
+        </div>
+        <a href="Impact.dc.html" style="padding: 10px 18px; border-radius: 999px; border: 1px solid rgba(0,0,0,0.12); background: #ffffff; font-size: 13px; font-weight: 700; text-decoration: none; color: #0D0D0D;">Public impact page &#8599;</a>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px;">
+        <div style="background: #ffffff; border: 1px solid rgba(0,0,0,0.07); border-radius: 16px; padding: 18px;"><div style="font-size: 26px; font-weight: 800; color: #1B7A34;">{{ impPeople }}</div><div style="font-size: 11px; color: #6B7280; margin-top: 4px;">People supported</div></div>
+        <div style="background: #ffffff; border: 1px solid rgba(0,0,0,0.07); border-radius: 16px; padding: 18px;"><div style="font-size: 26px; font-weight: 800;">{{ impTargets }}</div><div style="font-size: 11px; color: #6B7280; margin-top: 4px;">Output targets met</div></div>
+        <div style="background: #ffffff; border: 1px solid rgba(0,0,0,0.07); border-radius: 16px; padding: 18px;"><div style="font-size: 26px; font-weight: 800; color: #1B7A34;">{{ impEvidence }}</div><div style="font-size: 11px; color: #6B7280; margin-top: 4px;">Evidence verified</div></div>
+        <div style="background: #ffffff; border: 1px solid rgba(0,0,0,0.07); border-radius: 16px; padding: 18px;"><div style="font-size: 26px; font-weight: 800; color: #E65100;">{{ impReview }}</div><div style="font-size: 11px; color: #6B7280; margin-top: 4px;">Drafts (internal only)</div></div>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 12px;">
+        <sc-for list="{{ impactRows }}" as="r" hint-placeholder-count="5">
+          <div style="background: #ffffff; border: 1px solid rgba(0,0,0,0.07); border-left: 4px solid {{ r.accent }}; border-radius: 14px; padding: 20px 24px;">
+            <div style="display: flex; align-items: flex-start; gap: 18px; flex-wrap: wrap;">
+              <div style="flex: 1; min-width: 240px;">
+                <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+                  <span style="font-size: 15px; font-weight: 800;">{{ r.title }}</span>
+                  <span style="padding: 2px 10px; border-radius: 999px; font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; background: {{ r.vBg }}; color: {{ r.vColor }};">{{ r.vLabel }}</span>
+                  <span style="padding: 2px 10px; border-radius: 999px; font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; background: {{ r.verBg }}; color: {{ r.verColor }};">{{ r.verLabel }}</span>
+                </div>
+                <div style="font-size: 12.5px; color: #374151; margin-top: 4px;">{{ r.program }} &#183; {{ r.project }}</div>
+                <div style="font-size: 11.5px; color: #9CA3AF; margin-top: 2px;">{{ r.chapter }} &#183; {{ r.date }} &#183; {{ r.outcomeNote }}</div>
+              </div>
+              <div style="width: 110px; flex-shrink: 0; text-align: center;">
+                <div style="font-size: 20px; font-weight: 800; color: #1B7A34;">{{ r.people }}</div>
+                <div style="font-size: 10.5px; color: #9CA3AF;">people</div>
+              </div>
+              <div style="width: 150px; flex-shrink: 0;">
+                <div style="font-size: 11px; color: #6B7280; margin-bottom: 5px;">Evidence {{ r.evLabel }}</div>
+                <div style="height: 8px; border-radius: 999px; background: #f0f1f3; overflow: hidden;"><div style="height: 100%; border-radius: 999px; background: linear-gradient(90deg, #4DC86A, #1B7A34); width: {{ r.evW }};"></div></div>
+                <div style="font-size: 11px; color: #6B7280; margin-top: 6px;">Targets {{ r.tLabel }}</div>
+              </div>
+              <div style="display: flex; gap: 8px; flex-shrink: 0;">
+                <button onClick="{{ r.togglePublish }}" style="padding: 9px 16px; border-radius: 999px; border: none; color: #ffffff; font-size: 12px; font-weight: 800; font-family: inherit; cursor: pointer; background: {{ r.pubBg }};">{{ r.pubLabel }}</button>
+                <button onClick="{{ r.expand }}" style="padding: 9px 16px; border-radius: 999px; border: 1px solid rgba(0,0,0,0.12); background: #ffffff; font-size: 12px; font-weight: 700; font-family: inherit; cursor: pointer; color: #0D0D0D;">{{ r.expandLabel }}</button>
+              </div>
+            </div>
+            <div style="display: {{ r.openDisp }}; margin-top: 18px; padding-top: 18px; border-top: 1px solid rgba(0,0,0,0.06); grid-template-columns: 1fr 1fr; gap: 24px;">
+              <div>
+                <div style="font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.14em; color: #9CA3AF; margin-bottom: 10px;">Outputs vs target</div>
+                <div style="display: flex; flex-direction: column; gap: 8px;">
+                  <sc-for list="{{ r.outputRows }}" as="o" hint-placeholder-count="3">
+                    <div style="display: flex; align-items: center; justify-content: space-between; gap: 10px; font-size: 12.5px;">
+                      <span style="color: #374151;">{{ o.label }}</span>
+                      <span style="font-weight: 800; color: {{ o.color }}; white-space: nowrap;">{{ o.valueLabel }}</span>
+                    </div>
+                  </sc-for>
+                </div>
+                <div style="font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.14em; color: #1B7A34; margin: 16px 0 10px;">Outcomes</div>
+                <div style="display: flex; flex-direction: column; gap: 8px;">
+                  <sc-for list="{{ r.outcomeRows }}" as="oc" hint-placeholder-count="2">
+                    <div style="display: flex; align-items: flex-start; gap: 10px; font-size: 12.5px;">
+                      <span style="font-weight: 800; color: #1B7A34; min-width: 40px;">{{ oc.value }}</span>
+                      <span style="color: #374151;">{{ oc.label }}</span>
+                    </div>
+                  </sc-for>
+                </div>
+              </div>
+              <div>
+                <div style="font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.14em; color: #9CA3AF; margin-bottom: 10px;">Evidence &#8212; click to verify</div>
+                <div style="display: flex; flex-direction: column; gap: 8px;">
+                  <sc-for list="{{ r.evidenceRows }}" as="e" hint-placeholder-count="3">
+                    <button onClick="{{ e.flip }}" style="display: flex; align-items: center; gap: 10px; padding: 10px 14px; border-radius: 12px; cursor: pointer; font-family: inherit; text-align: left; border: 1px solid {{ e.border }}; background: {{ e.chipBg }};">
+                      <span style="font-size: 12px; font-weight: 800; color: {{ e.color }}; width: 14px;">{{ e.mark }}</span>
+                      <span style="flex: 1; font-size: 12.5px; font-weight: 600; color: #0D0D0D;">{{ e.label }}</span>
+                      <span style="font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.06em; color: {{ e.color }};">{{ e.state }}</span>
+                    </button>
+                  </sc-for>
+                </div>
+              </div>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+    <div style="display: {{ verifyDisp }}; flex-direction: column; gap: 20px;">
+      <div>
+        <h1 style="margin: 0 0 4px; font-size: 26px; font-weight: 800; letter-spacing: -0.01em;">Attendance &amp; verification</h1>
+        <p style="margin: 0; font-size: 13px; color: #6B7280;">Team-lead verification is the moment service hours become real. Verified hours post to the volunteer's Goodness Passport immediately.</p>
+      </div>
+      <div style="display: {{ noAsgDisp }}; background: #ffffff; border: 1px dashed rgba(0,0,0,0.14); border-radius: 16px; padding: 40px; text-align: center; flex-direction: column; align-items: center; gap: 8px;">
+        <p style="margin: 0; font-size: 15px; font-weight: 700;">No mission sign-ups yet</p>
+        <p style="margin: 0; font-size: 13px; color: #6B7280; max-width: 400px;">Sign in via My Goodness, claim a role on a mission, check in and mark it complete &#8212; it will appear here for verification.</p>
+        <a href="Missions.dc.html" style="margin-top: 8px; padding: 10px 22px; border-radius: 999px; color: #ffffff; font-size: 13px; font-weight: 700; text-decoration: none; background: linear-gradient(135deg, #4DC86A 0%, #1B7A34 100%);">Open missions &#8599;</a>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 12px;">
+        <sc-for list="{{ asgRows }}" as="a" hint-placeholder-count="0">
+          <div style="background: #ffffff; border: 1px solid rgba(0,0,0,0.07); border-left: 4px solid {{ a.accent }}; border-radius: 14px; padding: 18px 22px; display: flex; align-items: center; gap: 16px; flex-wrap: wrap;">
+            <div style="width: 40px; height: 40px; border-radius: 28%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 13px; font-weight: 800; color: #ffffff; background: {{ a.grad }};">{{ a.initials }}</div>
+            <div style="flex: 1; min-width: 220px;">
+              <div style="font-size: 14px; font-weight: 800;">{{ a.name }}</div>
+              <div style="font-size: 12px; color: #6B7280; margin-top: 2px;">{{ a.role }} &#183; {{ a.missionTitle }}</div>
+              <div style="font-size: 11px; color: #9CA3AF; margin-top: 2px;">{{ a.missionDate }} &#183; {{ a.chapter }}</div>
+            </div>
+            <div style="text-align: center; flex-shrink: 0; width: 96px;">
+              <div style="font-size: 18px; font-weight: 800; color: {{ a.hoursColor }};">{{ a.hoursLabel }}</div>
+              <div style="font-size: 10px; color: #9CA3AF;">service hours</div>
+            </div>
+            <span style="padding: 4px 12px; border-radius: 999px; font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; background: {{ a.chipBg }}; color: {{ a.chipColor }}; flex-shrink: 0;">{{ a.stateLabel }}</span>
+            <div style="display: flex; gap: 8px; flex-shrink: 0;">
+              <button onClick="{{ a.verify }}" style="display: {{ a.verifyDisp }}; padding: 9px 18px; border-radius: 999px; border: none; color: #ffffff; font-size: 12px; font-weight: 800; font-family: inherit; cursor: pointer; background: linear-gradient(135deg, #4DC86A 0%, #1B7A34 100%);" style-hover="opacity: 0.9;">Verify hours</button>
+              <button onClick="{{ a.unverify }}" style="display: {{ a.unverifyDisp }}; padding: 9px 16px; border-radius: 999px; border: 1px solid rgba(0,0,0,0.12); background: #ffffff; color: #d4183d; font-size: 12px; font-weight: 700; font-family: inherit; cursor: pointer;">Reverse</button>
+              <button onClick="{{ a.markComplete }}" style="display: {{ a.completeDisp }}; padding: 9px 16px; border-radius: 999px; border: 1px solid rgba(0,0,0,0.12); background: #ffffff; color: #0D0D0D; font-size: 12px; font-weight: 700; font-family: inherit; cursor: pointer;">Mark submitted</button>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+    <div style="display: {{ appsDisp }}; flex-direction: column; gap: 20px;">
+      <div>
+        <h1 style="margin: 0 0 4px; font-size: 26px; font-weight: 800; letter-spacing: -0.01em;">Applications</h1>
+        <p style="margin: 0; font-size: 13px; color: #6B7280;">Submissions from the public "Volunteer with Us" form. Approving one creates a Goodness Passport and lists the person in the public directory.</p>
+      </div>
+      <div style="display: {{ noAppsDisp }}; background: #ffffff; border: 1px dashed rgba(0,0,0,0.14); border-radius: 16px; padding: 40px; text-align: center; flex-direction: column; align-items: center; gap: 8px;">
+        <p style="margin: 0; font-size: 15px; font-weight: 700;">No applications yet</p>
+        <p style="margin: 0; font-size: 13px; color: #6B7280; max-width: 380px;">Open the public volunteer form, submit an application, and it will appear here for review.</p>
+        <a href="Volunteer.dc.html" style="margin-top: 8px; padding: 10px 22px; border-radius: 999px; color: #ffffff; font-size: 13px; font-weight: 700; text-decoration: none; background: linear-gradient(135deg, #4DC86A 0%, #1B7A34 100%);">Open volunteer form &#8599;</a>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 12px;">
+        <sc-for list="{{ apps }}" as="a" hint-placeholder-count="0">
+          <div style="background: #ffffff; border: 1px solid rgba(0,0,0,0.07); border-left: 4px solid {{ a.accent }}; border-radius: 14px; padding: 20px 24px;">
+            <div style="display: flex; align-items: flex-start; gap: 16px; flex-wrap: wrap;">
+              <div style="flex: 1; min-width: 240px;">
+                <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+                  <span style="font-size: 16px; font-weight: 800;">{{ a.name }}</span>
+                  <span style="padding: 2px 10px; border-radius: 999px; font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; background: {{ a.chipBg }}; color: {{ a.chipColor }};">{{ a.statusLabel }}</span>
+                  <span style="font-size: 11px; color: #9CA3AF;">{{ a.when }}</span>
+                </div>
+                <div style="font-size: 13px; color: #374151; margin-top: 4px;">{{ a.program }} &#183; {{ a.city }} &#183; {{ a.availability }}</div>
+                <div style="font-size: 12px; color: #6B7280; margin-top: 2px;">{{ a.email }} {{ a.phoneNote }}</div>
+                <p style="margin: 10px 0 0; font-size: 13px; color: #374151; line-height: 1.6; font-style: italic;">&#8220;{{ a.why }}&#8221;</p>
+                <div style="display: {{ a.expDisp }}; font-size: 12px; color: #6B7280; margin-top: 8px;">Background: {{ a.experience }}</div>
+              </div>
+              <div style="display: {{ a.actionsDisp }}; gap: 8px; flex-shrink: 0;">
+                <button onClick="{{ a.approve }}" style="padding: 10px 20px; border-radius: 999px; border: none; color: #ffffff; font-size: 13px; font-weight: 700; font-family: inherit; cursor: pointer; background: linear-gradient(135deg, #4DC86A 0%, #1B7A34 100%);" style-hover="opacity: 0.9;">Accept into ledger</button>
+                <button onClick="{{ a.reject }}" style="padding: 10px 18px; border-radius: 999px; border: 1px solid rgba(0,0,0,0.12); background: #ffffff; color: #d4183d; font-size: 13px; font-weight: 700; font-family: inherit; cursor: pointer;" style-hover="background: #fdecec;">Reject</button>
+              </div>
+              <a href="{{ a.href }}" style="display: {{ a.viewDisp }}; align-items: center; font-size: 13px; font-weight: 700; text-decoration: none; flex-shrink: 0;">View passport &#8594;</a>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+    <div style="display: {{ volunteersDisp }}; flex-direction: column; gap: 20px;">
+      <div style="display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; flex-wrap: wrap;">
+        <div>
+          <h1 style="margin: 0 0 4px; font-size: 26px; font-weight: 800; letter-spacing: -0.01em;">Volunteers</h1>
+          <p style="margin: 0; font-size: 13px; color: #6B7280;">{{ tableCount }} &#183; toggle a certificate here and it unlocks on the public passport instantly</p>
+        </div>
+        <input value="{{ q }}" onInput="{{ setQ }}" placeholder="Search name, role, city&#8230;" style="width: 260px; box-sizing: border-box; padding: 10px 16px; border-radius: 999px; border: 1px solid rgba(0,0,0,0.1); background: #ffffff; font-size: 13px; font-family: inherit; outline: none;" style-focus="border-color: #1B7A34;">
+      </div>
+      <div style="display: flex; flex-wrap: wrap; gap: 16px; align-items: start;">
+        <div style="flex: 1 1 520px; min-width: 480px; background: #ffffff; border: 1px solid rgba(0,0,0,0.07); border-radius: 16px; overflow: hidden;">
+          <div style="display: grid; grid-template-columns: minmax(150px, 2fr) minmax(110px, 1.4fr) 84px 84px 78px; gap: 12px; padding: 12px 20px; border-bottom: 1px solid rgba(0,0,0,0.06); font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.12em; color: #9CA3AF;">
+            <div>Volunteer</div><div>Program</div><div>Level</div><div>Certificate</div><div>Status</div>
+          </div>
+          <sc-for list="{{ rows }}" as="r" hint-placeholder-count="8">
+            <div onClick="{{ r.select }}" style="display: grid; grid-template-columns: minmax(150px, 2fr) minmax(110px, 1.4fr) 84px 84px 78px; gap: 12px; padding: 12px 20px; border-bottom: 1px solid rgba(0,0,0,0.04); cursor: pointer; align-items: center; background: {{ r.rowBg }};" style-hover="background: #f7f8f9;">
+              <div style="display: flex; align-items: center; gap: 10px; min-width: 0;">
+                <div style="width: 34px; height: 34px; border-radius: 28%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 12px; font-weight: 800; color: #ffffff; background: {{ r.grad }};">{{ r.initials }}</div>
+                <div style="min-width: 0;">
+                  <div style="font-size: 13px; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">{{ r.name }}</div>
+                  <div style="font-size: 11px; color: #9CA3AF; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">{{ r.role }} &#183; {{ r.city }}</div>
+                </div>
+              </div>
+              <div style="min-width: 0; font-size: 12px; color: #374151; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">{{ r.program }}</div>
+              <div style="min-width: 0; font-size: 12px; font-weight: 700; line-height: 1.3; color: {{ r.levelColor }};">{{ r.level }}</div>
+              <div style="min-width: 0;"><span style="padding: 3px 10px; border-radius: 999px; font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.06em; background: {{ r.certBg }}; color: {{ r.certColor }};">{{ r.certLabel }}</span></div>
+              <div style="min-width: 0;"><span style="padding: 3px 10px; border-radius: 999px; font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.06em; background: {{ r.stBg }}; color: {{ r.stColor }};">{{ r.status }}</span></div>
+            </div>
+          </sc-for>
+        </div>
+        <div style="display: {{ panelDisp }}; flex: 0 1 380px; min-width: 340px; background: #ffffff; border: 1px solid rgba(0,0,0,0.07); border-radius: 16px; padding: 24px; flex-direction: column; gap: 18px; box-sizing: border-box;">
+          <div style="display: flex; align-items: center; gap: 14px;">
+            <div style="width: 52px; height: 52px; border-radius: 28%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 18px; font-weight: 800; color: #ffffff; background: {{ sel.grad }};">{{ sel.initials }}</div>
+            <div style="flex: 1; min-width: 0;">
+              <div style="font-size: 16px; font-weight: 800;">{{ sel.name }}</div>
+              <div style="font-size: 12px; color: #6B7280;">{{ sel.role }} &#183; {{ sel.goodnessId }}</div>
+            </div>
+            <button onClick="{{ closePanel }}" style="width: 28px; height: 28px; border-radius: 50%; border: none; background: rgba(0,0,0,0.05); color: #6B7280; font-size: 14px; cursor: pointer; font-family: inherit;">&#215;</button>
+          </div>
+          <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px;">
+            <div style="background: #fafafa; border-radius: 10px; padding: 10px 12px;"><div style="font-size: 16px; font-weight: 800;">{{ sel.missions }}</div><div style="font-size: 10px; color: #9CA3AF;">Missions</div></div>
+            <div style="background: #fafafa; border-radius: 10px; padding: 10px 12px;"><div style="font-size: 16px; font-weight: 800; color: #1B7A34;">{{ sel.hours }}</div><div style="font-size: 10px; color: #9CA3AF;">Hours</div></div>
+            <div style="background: #fafafa; border-radius: 10px; padding: 10px 12px;"><div style="font-size: 16px; font-weight: 800;">{{ sel.credCount }}</div><div style="font-size: 10px; color: #9CA3AF;">Credentials</div></div>
+          </div>
+          <div style="border: 1px solid rgba(0,0,0,0.07); border-radius: 12px; padding: 14px 16px; display: flex; align-items: center; gap: 12px;">
+            <div style="flex: 1;">
+              <div style="font-size: 13px; font-weight: 700;">Certificate download</div>
+              <div style="font-size: 11px; color: #9CA3AF; margin-top: 1px;">Controls the Downloads section on the public passport</div>
+            </div>
+            <button onClick="{{ toggleCert }}" style="position: relative; width: 46px; height: 26px; border-radius: 999px; border: none; cursor: pointer; transition: background 0.2s; background: {{ certTrackBg }};"><span style="position: absolute; top: 3px; width: 20px; height: 20px; border-radius: 50%; background: #ffffff; box-shadow: 0 1px 4px rgba(0,0,0,0.25); transition: left 0.2s; left: {{ certKnobLeft }};"></span></button>
+          </div>
+          <div>
+            <div style="font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.12em; color: #9CA3AF; margin-bottom: 8px;">Journey level</div>
+            <div style="display: flex; gap: 6px; flex-wrap: wrap;">
+              <sc-for list="{{ levelBtns }}" as="lb" hint-placeholder-count="4">
+                <button onClick="{{ lb.pick }}" style="padding: 7px 12px; border-radius: 999px; font-size: 11px; font-weight: 700; cursor: pointer; font-family: inherit; border: {{ lb.border }}; background: {{ lb.bg }}; color: {{ lb.color }};">{{ lb.label }}</button>
+              </sc-for>
+            </div>
+          </div>
+          <div>
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px;">
+              <div style="font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.12em; color: #9CA3AF;">Credentials</div>
+              <button onClick="{{ issueCert }}" style="padding: 5px 12px; border-radius: 999px; border: 1px solid rgba(27,122,52,0.3); background: #f0faf3; color: #1B7A34; font-size: 10px; font-weight: 800; cursor: pointer; font-family: inherit; text-transform: uppercase; letter-spacing: 0.06em;">+ Issue certificate</button>
+            </div>
+            <div style="display: {{ noCredsDisp }}; font-size: 12px; color: #9CA3AF; padding: 10px 0;">No credentials issued yet.</div>
+            <div style="display: flex; flex-direction: column; gap: 8px;">
+              <sc-for list="{{ selCreds }}" as="c" hint-placeholder-count="2">
+                <div style="display: flex; align-items: center; gap: 10px; padding: 10px 12px; border: 1px solid rgba(0,0,0,0.07); border-radius: 10px;">
+                  <div style="flex: 1; min-width: 0;">
+                    <div style="font-size: 12px; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">{{ c.title }}</div>
+                    <div style="font-size: 10px; color: #9CA3AF; font-variant-numeric: tabular-nums;">{{ c.ref }}</div>
+                  </div>
+                  <span style="padding: 2px 8px; border-radius: 999px; font-size: 9px; font-weight: 800; text-transform: uppercase; background: {{ c.chipBg }}; color: {{ c.chipColor }};">{{ c.statusLabel }}</span>
+                  <button onClick="{{ c.flip }}" style="padding: 5px 10px; border-radius: 999px; border: 1px solid rgba(0,0,0,0.12); background: #ffffff; font-size: 10px; font-weight: 700; cursor: pointer; font-family: inherit; color: {{ c.actionColor }};">{{ c.actionLabel }}</button>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+          <div style="border: 1px solid rgba(0,0,0,0.07); border-radius: 12px; padding: 14px 16px; display: flex; align-items: center; gap: 12px;">
+            <div style="flex: 1;">
+              <div style="font-size: 13px; font-weight: 700;">Volunteer status</div>
+              <div style="font-size: 11px; color: #9CA3AF; margin-top: 1px;">Suspended volunteers stay listed internally only</div>
+            </div>
+            <button onClick="{{ toggleStatus }}" style="padding: 8px 14px; border-radius: 999px; border: 1px solid rgba(0,0,0,0.12); background: #ffffff; font-size: 11px; font-weight: 800; cursor: pointer; font-family: inherit; color: {{ statusBtnColor }};">{{ statusBtnLabel }}</button>
+          </div>
+          <a href="{{ sel.profileHref }}" style="text-align: center; padding: 12px 0; border-radius: 999px; color: #ffffff; font-size: 13px; font-weight: 700; text-decoration: none; background: linear-gradient(135deg, #4DC86A 0%, #1B7A34 100%);" style-hover="opacity: 0.9;">View public passport &#8594;</a>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { os: null, missions: null, impact: null, openImpact: null, tab: "overview", q: "", selected: null, showForm: false, formErr: false, committing: null, cAmount: "", cKind: "Cash",
+    f: { title: "", programSlug: "education-career-readiness", chapter: "", venue: "", date: "", time: "", hours: "", lead: "", target: "", summary: "", roles: "", participation: "onsite", priority: "normal" } };
+  refresh() {
+    import("./gs-os.js").then((m) => { this.gs = m; return Promise.all([m.loadOS(), m.loadMissions(), m.loadImpact(), m.loadFinance(), m.loadPartners(), m.loadNetwork()]); })
+      .then(([os, missions, impact, fin, pc, net]) => this.setState({ os, missions, impact, fin, pc, net }));
+  }
+  money(n) { return "\u09F3" + Number(n || 0).toLocaleString(); }
+  short(n) {
+    const v = Number(n || 0);
+    if (v >= 10000000) return "\u09F3" + (v / 10000000).toFixed(2) + "Cr";
+    if (v >= 100000) return "\u09F3" + (v / 100000).toFixed(1) + "L";
+    return "\u09F3" + v.toLocaleString();
+  }
+  componentDidMount() { this.refresh(); }
+  act(id, patch, msg) {
+    this.gs.patchVolunteer(id, patch);
+    this.gs.logAudit(msg);
+    this.refresh();
+  }
+  renderVals() {
+    const s = this.state, os = s.os;
+    const blankSel = { name: "", role: "", initials: "", goodnessId: "", missions: "", hours: "", credCount: "", grad: "", profileHref: "#" };
+    const navBtn = (on) => ({ bg: on ? "linear-gradient(135deg, #4DC86A 0%, #1B7A34 100%)" : "transparent", color: on ? "#ffffff" : "rgba(255,255,255,0.7)" });
+    const allApps = this.gs ? this.gs.readApplications() : [];
+    const pending = allApps.filter((a) => a.status === "pending");
+    const missions = s.missions || [];
+    const setF = (k) => (e) => this.setState({ f: { ...s.f, [k]: e.target.value } });
+    const programName = {
+      "education-career-readiness": "Education & Career Readiness",
+      "ai-digital-skills": "AI & Digital Skills Development",
+      "youth-empowerment": "Youth Empowerment",
+      "community-development": "Community Development",
+      "innovation-social-good": "Innovation for Social Good",
+    };
+    const allAsg = [];
+    missions.forEach((m) => (m.assignments || []).forEach((a) => allAsg.push({ ...a, mission: m })));
+    const needVerify = allAsg.filter((a) => a.state === "completed").length;
+    const fin = s.fin, pc = s.pc, net = s.net;
+    const enquiries = this.gs ? this.gs.readPartnerEnquiries() : [];
+    const allProps = this.gs ? this.gs.readProposals() : [];
+    const allReqs = this.gs ? this.gs.readChapterRequests() : [];
+    const netPendingCount = allProps.filter((p) => p.stage === "pending").length + allReqs.filter((q) => q.stage === "proposed").length;
+    const finPendingList = fin ? fin.expenses.filter((e) => e.status === "pending") : [];
+    const impact = s.impact || [];
+    const impUnderReview = impact.filter((r) => !r.published).length;
+    const impFullyVerified = impact.filter((r) => r.verification === "verified").length;
+    const impEvTotal = impact.reduce((n, r) => n + r.evidenceTotal, 0);
+    const impEvOk = impact.reduce((n, r) => n + r.evidenceVerified, 0);
+    const impTHit = impact.reduce((n, r) => n + r.targetsHit, 0);
+    const impTTotal = impact.reduce((n, r) => n + r.targetsTotal, 0);
+    const base = {
+      goOverview: () => this.setState({ tab: "overview" }),
+      goVolunteers: () => this.setState({ tab: "volunteers" }),
+      goApps: () => this.setState({ tab: "apps" }),
+      goMissions: () => this.setState({ tab: "missions" }),
+      goVerify: () => this.setState({ tab: "verify" }),
+      goImpact: () => this.setState({ tab: "impact" }),
+      goFinance: () => this.setState({ tab: "finance" }),
+      finBg: navBtn(s.tab === "finance").bg, finColor: navBtn(s.tab === "finance").color,
+      financeDisp: s.tab === "finance" ? "flex" : "none",
+      goPartners: () => this.setState({ tab: "partners" }),
+      goNetwork: () => this.setState({ tab: "network" }),
+      goIntel: () => this.setState({ tab: "intel" }),
+      intelBg: navBtn(s.tab === "intel").bg, intelColor: navBtn(s.tab === "intel").color,
+      intelDisp: s.tab === "intel" ? "flex" : "none",
+      netBg: navBtn(s.tab === "network").bg, netColor: navBtn(s.tab === "network").color,
+      networkDisp: s.tab === "network" ? "flex" : "none",
+      netChip: net ? String(net.active.length + net.forming.length) : "\u2026",
+      netChipBg: netPendingCount ? "rgba(230,81,0,0.25)" : "rgba(77,200,106,0.2)",
+      netChipColor: netPendingCount ? "#FFB74D" : "#4DC86A",
+      netSummary: net ? net.active.length + " active \u00B7 " + net.forming.length + " forming \u00B7 " + netPendingCount + (netPendingCount === 1 ? " item needs HQ" : " items need HQ") : "Loading\u2026",
+      netRows: net ? net.chapters.map((c) => {
+        const pend = allProps.filter((p) => p.chapterId === c.id && p.stage === "pending").length;
+        const forming = c.status === "forming";
+        const attention = !forming && c.missionsLive === 0;
+        const needsSupport = forming || c.standards.done < c.standards.total || pend > 0;
+        const health = forming ? "Forming" : needsSupport ? "Needs support" : attention ? "Attention" : "Healthy";
+        const signals = [];
+        if (forming) signals.push("standards " + c.standards.done + "/" + c.standards.total);
+        else {
+          if (c.standards.done < c.standards.total) signals.push("standards " + c.standards.done + "/" + c.standards.total);
+          if (c.missionsLive === 0) signals.push("no live mission");
+          if (pend) signals.push(pend + " proposal" + (pend === 1 ? "" : "s") + " pending");
+          if (!signals.length) signals.push("active volunteers, recent missions, nothing overdue");
+        }
+        return { name: c.name,
+          health,
+          hBg: health === "Healthy" ? "#f0faf3" : health === "Attention" ? "#fff3e0" : health === "Forming" ? "#f5f0ff" : "#fdecec",
+          hColor: health === "Healthy" ? "#1B7A34" : health === "Attention" ? "#E65100" : health === "Forming" ? "#6B21A8" : "#d4183d",
+          accent: health === "Healthy" ? "#4DC86A" : health === "Attention" ? "#E65100" : health === "Forming" ? "#6B21A8" : "#d4183d",
+          signalLine: signals.join(" \u00B7 "),
+          members: c.type === "university" ? "26" : String(c.memberCount),
+          hours: c.hours.toLocaleString(), live: String(c.missionsLive), pending: String(pend),
+          href: "Chapter.dc.html?id=" + c.id };
+      }) : [],
+      propRows: allProps.map((p) => ({ title: p.title,
+        meta: p.chapterName + " \u00B7 " + p.kind + (p.amount ? " \u00B7 " + this.short(p.amount) : "") + " \u00B7 by " + (p.by || "chapter lead"),
+        stageLabel: p.stage === "pending" ? "Awaiting HQ" : p.stage === "approved" ? "Approved" : "Returned",
+        bg: p.stage === "pending" ? "#fff3e0" : p.stage === "approved" ? "#f0faf3" : "#fdecec",
+        color: p.stage === "pending" ? "#E65100" : p.stage === "approved" ? "#1B7A34" : "#d4183d",
+        actionsDisp: p.stage === "pending" ? "flex" : "none",
+        approve: () => { this.gs.decideProposal(p.id, "approved"); this.refresh(); },
+        reject: () => { this.gs.decideProposal(p.id, "returned"); this.refresh(); } })),
+      noPropsDisp: allProps.length ? "none" : "block",
+      reqRows: allReqs.map((q) => ({ city: q.city, contact: q.contact, why: q.why || "No details given",
+        stageLabel: q.stage === "proposed" ? "Proposed" : q.stage === "forming" ? "Forming approved" : "Returned",
+        bg: q.stage === "proposed" ? "#f5f0ff" : q.stage === "forming" ? "#f0faf3" : "#fdecec",
+        color: q.stage === "proposed" ? "#6B21A8" : q.stage === "forming" ? "#1B7A34" : "#d4183d",
+        actionsDisp: q.stage === "proposed" ? "flex" : "none",
+        approve: () => { this.gs.decideChapterRequest(q.id, true); this.refresh(); },
+        reject: () => { this.gs.decideChapterRequest(q.id, false); this.refresh(); } })),
+      noReqsDisp: allReqs.length ? "none" : "block",
+      ptrBg: navBtn(s.tab === "partners").bg, ptrColor: navBtn(s.tab === "partners").color,
+      partnersDisp: s.tab === "partners" ? "flex" : "none",
+      ptrCount: pc ? String(pc.partners.length) : "\u2026",
+      ptrSummary: pc ? pc.partners.filter((x) => x.stage === "active").length + " active \u00B7 " + pc.partners.filter((x) => x.stage === "renewal").length + " in renewal \u00B7 " + pc.partners.filter((x) => x.stage === "proposal").length + " in pipeline" : "Loading\u2026",
+      pipeline: pc ? ["new", "proposal", "active", "renewal"].map((st) => {
+        const count = st === "new" ? enquiries.filter((q) => q.stage === "new").length
+          : st === "proposal" ? pc.partners.filter((x) => x.stage === "proposal").length + enquiries.filter((q) => q.stage === "proposal").length
+          : pc.partners.filter((x) => x.stage === st).length;
+        return { label: st === "new" ? "New enquiries" : st === "proposal" ? "Proposal" : st === "active" ? "Active" : "Renewal due",
+          count: String(count),
+          bg: st === "active" ? "#f0faf3" : st === "renewal" ? "#fff3e0" : st === "new" ? "#f5f0ff" : "#e8f0fc",
+          color: st === "active" ? "#1B7A34" : st === "renewal" ? "#E65100" : st === "new" ? "#6B21A8" : "#1565C0" };
+      }) : [],
+      cAmount: s.cAmount, cKind: s.cKind,
+      setCAmount: (e) => this.setState({ cAmount: e.target.value }),
+      setCKind: (e) => this.setState({ cKind: e.target.value }),
+      cancelCommit: () => this.setState({ committing: null }),
+      enqEmptyDisp: s.tab === "partners" && enquiries.filter((q) => q.stage === "new").length === 0 ? "block" : "none",
+      enquiryRows: enquiries.filter((q) => q.stage === "new" || q.stage === "proposal").map((q) => ({
+        company: q.company, contact: q.contact,
+        rangeLabel: q.range || "Commitment range not stated",
+        when: new Date(q.t).toLocaleString([], { month: "short", day: "numeric", hour: "2-digit", minute: "2-digit" }),
+        interestLine: (q.opportunity ? "Interested in: " + q.opportunity : "General interest") + (q.message ? " \u00B7 \u201C" + q.message + "\u201D" : ""),
+        accent: q.stage === "new" ? "#6B21A8" : "#1565C0",
+        chipLabel: q.stage === "new" ? "New enquiry" : "Proposal",
+        chipBg: q.stage === "new" ? "#f5f0ff" : "#e8f0fc",
+        chipColor: q.stage === "new" ? "#6B21A8" : "#1565C0",
+        toProposalDisp: q.stage === "new" ? "block" : "none",
+        toCommitDisp: q.stage === "proposal" ? "block" : "none",
+        committingDisp: s.committing === q.id ? "flex" : "none",
+        toProposal: () => {
+          this.gs.patchEnquiry(q.id, { stage: "proposal" });
+          this.gs.logAudit("Enquiry moved to proposal \u2014 " + q.company);
+          this.refresh();
+        },
+        openCommit: () => this.setState({ committing: q.id, cAmount: "", cKind: "Cash" }),
+        confirmCommit: () => {
+          const amt = parseInt(String(s.cAmount).replace(/[^0-9]/g, ""), 10) || 0;
+          this.gs.commitEnquiry(q.id, amt, s.cKind);
+          this.setState({ committing: null });
+          this.refresh();
+        },
+      })),
+      partnerRows: pc ? pc.partners.map((p) => {
+        const initials = p.name.split(" ").filter((w) => /^[A-Z]/.test(w)).map((w) => w[0]).join("").slice(0, 2).toUpperCase();
+        return { ...p, initials,
+          accent: p.stage === "active" ? "#4DC86A" : p.stage === "renewal" ? "#E65100" : "#1565C0",
+          stageLabel: p.stage === "proposal" ? "Proposal" : p.stage === "renewal" ? "Renewal due" : "Active",
+          stBg: p.stage === "active" ? "#f0faf3" : p.stage === "renewal" ? "#fff3e0" : "#e8f0fc",
+          stColor: p.stage === "active" ? "#1B7A34" : p.stage === "renewal" ? "#E65100" : "#1565C0",
+          moneyLine: p.committed ? this.short(p.committed) + " committed \u00B7 " + this.short(p.received) + " received \u00B7 " + this.short(Math.max(0, p.committed - p.received)) + " outstanding" : "No commitment yet",
+          advanceDisp: p.stage === "proposal" || p.stage === "renewal" ? "block" : "none",
+          advanceLabel: p.stage === "proposal" ? "Mark committed" : "Mark renewed",
+          profileHref: "Partner Profile.dc.html?id=" + p.id,
+          confirmCommit: () => {
+            const amt = parseInt(String(s.cAmount).replace(/[^0-9]/g, ""), 10) || 0;
+            this.gs.patchPartner(p.id, { stage: "active", committed: amt || p.committed,
+              kind: s.cKind === "Cash" ? p.kind.replace("Prospect \u2014 ", "") : s.cKind + " partnership",
+              timeline: [{ date: new Date().toLocaleDateString([], { day: "2-digit", month: "short", year: "numeric" }), type: "start", text: "Commitment confirmed \u2014 " + (amt ? this.short(amt) + " " : "") + s.cKind.toLowerCase() }].concat(p.timeline) });
+            this.gs.logAudit("Partnership committed \u2014 " + p.name + (amt ? " \u00B7 " + this.short(amt) + " " + s.cKind.toLowerCase() : " \u00B7 " + s.cKind.toLowerCase()));
+            this.setState({ committing: null });
+            this.refresh();
+          },
+          advance: () => {
+            if (p.stage === "proposal") { this.setState({ committing: p.id, cAmount: "", cKind: "Cash" }); return; }
+            const yr = new Date().getFullYear();
+            this.gs.patchPartner(p.id, { stage: "active", renewal: p.renewal.replace(/\d{4}/, String(yr + 1)),
+              timeline: [{ date: new Date().toLocaleDateString([], { day: "2-digit", month: "short", year: "numeric" }), type: "start", text: yr + " partnership complete \u2014 " + (yr + 1) + " chapter now active" }].concat(p.timeline) });
+            this.gs.logAudit("Partnership renewed \u2014 " + p.name + " (" + yr + " chapter complete, " + (yr + 1) + " active)");
+            this.refresh();
+          },
+          committingDisp: s.committing === p.id ? "flex" : "none" };
+      }) : [],
+      impBg: navBtn(s.tab === "impact").bg, impColor: navBtn(s.tab === "impact").color,
+      impactDisp: s.tab === "impact" ? "flex" : "none",
+      impChip: String(impact.length),
+      impChipBg: impUnderReview ? "rgba(230,81,0,0.25)" : "rgba(77,200,106,0.2)",
+      impChipColor: impUnderReview ? "#FFB74D" : "#4DC86A",
+      impSummary: impact.length + (impact.length === 1 ? " record" : " records") + " \u00B7 " + impUnderReview + " draft, " + impFullyVerified + " fully verified",
+      impPeople: impact.filter((r) => r.published).reduce((n, r) => n + (r.beneficiaries || 0), 0).toLocaleString(),
+      impTargets: impTHit + " / " + impTTotal,
+      impEvidence: (impEvTotal ? Math.round((impEvOk / impEvTotal) * 100) : 0) + "%",
+      impReview: String(impUnderReview),
+      finChip: String(finPendingList.length),
+      finChipBg: finPendingList.length ? "rgba(230,81,0,0.25)" : "rgba(77,200,106,0.2)",
+      finChipColor: finPendingList.length ? "#FFB74D" : "#4DC86A",
+      finSummary: fin ? (fin.expenses.length + " expenses \u00B7 " + finPendingList.length + " awaiting review \u00B7 " + fin.documentedPct + "% of accepted spending documented, " + fin.checkedPct + "% checked") : "Loading\u2026",
+      cmActive: (() => { const a = this.gs ? Object.values(this.gs.allCommitments()) : []; return String(a.filter((x) => x.status === "active").length); })(),
+      cmPaused: (() => { const a = this.gs ? Object.values(this.gs.allCommitments()) : []; return String(a.filter((x) => x.status === "paused").length); })(),
+      cmExpected: (() => { if (!this.gs) return "\u2014"; const a = Object.values(this.gs.allCommitments()).filter((x) => x.status === "active"); return this.short(a.reduce((n, x) => n + x.amount * this.gs.rhythmPer30(x.rhythm), 0)); })(),
+      cmReceived: (() => { if (!this.gs) return "\u2014"; const a = Object.values(this.gs.allCommitments()); return this.short(a.reduce((n, x) => n + ((x.contributions || []).reduce((m, c2) => m + c2.a, 0)), 0)); })(),
+      finReceived: fin ? this.short(fin.received) : "\u2014",
+      finAllocated: fin ? this.short(fin.allocated) : "\u2014",
+      finSpent: fin ? this.short(fin.spent) : "\u2014",
+      finPending: fin ? this.short(fin.pending) : "\u2014",
+      finOverhead: fin ? fin.overheadPct + "%" : "\u2014",
+      expenseRows: fin ? fin.expenses.slice().sort((a, b) => (a.status === "pending" ? -1 : 1) - (b.status === "pending" ? -1 : 1)).map((e) => {
+        const fund = fin.funds.find((f) => f.id === e.fundId) || { program: "\u2014" };
+        return { item: e.item, fund: fund.program, payee: e.payee, date: e.date,
+          amount: this.money(e.amount), docs: (e.evidence || []).map((d) => ({ label: d.label, mark: d.checked ? "\u2713" : "\u25CB", bg: d.checked ? "#f0faf3" : "#ffffff", border: d.checked ? "rgba(27,122,52,0.2)" : "rgba(0,0,0,0.14)", color: d.checked ? "#1B7A34" : "#6B7280" })),
+          noDocsDisp: (e.evidence || []).length ? "none" : "inline",
+          rowBg: e.status === "pending" ? "#fffdf7" : "#ffffff",
+          stLabel: e.status === "approved" ? "Accepted" : "Awaiting review",
+          stBg: e.status === "approved" ? "#f0faf3" : "#fff3e0",
+          stColor: e.status === "approved" ? "#1B7A34" : "#E65100",
+          approveDisp: e.status === "pending" ? "block" : "none",
+          unapproveDisp: e.status === "approved" ? "block" : "none",
+          approve: () => {
+            this.gs.patchExpense(e.id, { status: "approved", approvedBy: "Executive Director" });
+            this.gs.logAudit("Accepted expense \u201C" + e.item + "\u201D into the ledger \u2014 " + this.money(e.amount) + " (was: awaiting review)");
+            this.refresh();
+          },
+          unapprove: () => {
+            this.gs.patchExpense(e.id, { status: "pending", approvedBy: null });
+            this.gs.logAudit("Returned expense \u201C" + e.item + "\u201D to review \u2014 " + this.money(e.amount) + " (was: accepted)");
+            this.refresh();
+          } };
+      }) : [],
+      donationRows: fin ? fin.donations.map((d) => ({ donor: d.donor, type: d.type, method: d.method, date: d.date,
+        amount: this.money(d.amount), receipt: d.receipt || "\u2014",
+        restrictedLabel: d.restricted ? "Restricted \u00B7 " + ((fin.funds.find((f) => f.programSlug === d.restricted) || {}).program || d.restricted) : "Unrestricted" })) : [],
+      impactRows: impact.map((r) => {
+        const open = s.openImpact === r.id;
+        return {
+          title: r.title, program: r.program, project: r.project, chapter: r.chapter, date: r.date,
+          people: (r.beneficiaries || 0).toLocaleString(),
+          outcomeNote2: "",
+          accent: r.published ? (r.verification === "verified" ? "#4DC86A" : "#E65100") : "#9CA3AF",
+          vLabel: r.published ? "Published" : "Draft · internal",
+          vBg: r.published ? "#eef0f3" : "#fff3e0",
+          vColor: r.published ? "#4B5563" : "#E65100",
+          verLabel: r.verification === "verified" ? "Evidence verified" : r.verification === "partial" ? "Evidence " + r.evidenceVerified + "/" + r.evidenceTotal : "Evidence pending",
+          verBg: r.verification === "verified" ? "#e6f4ea" : r.verification === "partial" ? "#fff3e0" : "#eef0f3",
+          verColor: r.verification === "verified" ? "#1B7A34" : r.verification === "partial" ? "#E65100" : "#6B7280",
+          outcomeNote: r.outcomes.length + (r.outcomes.length === 1 ? " outcome" : " outcomes") + " recorded",
+          evLabel: r.evidenceVerified + " / " + r.evidenceTotal,
+          evW: r.evidencePct + "%",
+          tLabel: r.targetsHit + " / " + r.targetsTotal,
+          pubLabel: r.published ? "Unpublish" : "Publish record",
+          pubBg: r.published ? "#9CA3AF" : "linear-gradient(135deg, #4DC86A 0%, #1B7A34 100%)",
+          expandLabel: open ? "Hide detail" : "Open detail",
+          openDisp: open ? "grid" : "none",
+          togglePublish: () => {
+            this.gs.patchImpact(r.id, { published: !r.published });
+            this.gs.logAudit((r.published ? "Unpublished" : "Published") + " impact record \u201C" + r.title + "\u201D");
+            this.refresh();
+          },
+          expand: () => this.setState({ openImpact: open ? null : r.id }),
+          outputRows: r.outputs.map((o) => ({ label: o.label,
+            valueLabel: o.target ? o.value.toLocaleString() + " / " + o.target.toLocaleString() : o.value.toLocaleString(),
+            color: !o.target || o.value >= o.target ? "#1B7A34" : "#E65100" })),
+          outcomeRows: r.outcomes.map((oc) => ({ label: oc.label + (oc.basis ? " \u00B7 " + oc.basis : ""), value: oc.value == null ? "\u2014" : oc.value.toLocaleString() })),
+          evidenceRows: r.evidence.map((e, i) => ({ label: e.label,
+            mark: e.verified ? "\u2713" : "\u25CB",
+            state: e.verified ? "Verified" : "Pending",
+            color: e.verified ? "#1B7A34" : "#9CA3AF",
+            chipBg: e.verified ? "#f0faf3" : "#ffffff",
+            border: e.verified ? "rgba(27,122,52,0.25)" : "rgba(0,0,0,0.12)",
+            flip: () => {
+              const ev = r.evidence.map((x, xi) => xi === i ? { ...x, verified: !x.verified } : x);
+              this.gs.patchImpact(r.id, { evidence: ev });
+              this.gs.logAudit((e.verified ? "Un-verified" : "Verified") + " evidence \u201C" + e.label + "\u201D on " + r.title);
+              this.refresh();
+            } })),
+        };
+      }),
+      msnBg: navBtn(s.tab === "missions").bg, msnColor: navBtn(s.tab === "missions").color,
+      verBg: navBtn(s.tab === "verify").bg, verColor: navBtn(s.tab === "verify").color,
+      msnCount: String(missions.length),
+      msnCountLabel: missions.length + " mission" + (missions.length !== 1 ? "s" : ""),
+      pendingVerify: s.missions ? String(needVerify) : "\u2026",
+      verChipBg: needVerify ? "rgba(230,81,0,0.25)" : "rgba(255,255,255,0.1)",
+      verChipColor: needVerify ? "#FFB74D" : "rgba(255,255,255,0.45)",
+      missionsDisp: s.tab === "missions" ? "flex" : "none",
+      verifyDisp: s.tab === "verify" ? "flex" : "none",
+      noAsgDisp: allAsg.length === 0 ? "flex" : "none",
+      showFormState: s.showForm,
+      formDisp: s.showForm ? "flex" : "none",
+      formToggleLabel: s.showForm ? "Close form" : "+ New mission",
+      formErrDisp: s.formErr ? "inline" : "none",
+      toggleForm: () => this.setState({ showForm: !s.showForm, formErr: false }),
+      fTitle: s.f.title, fProgram: s.f.programSlug, fChapter: s.f.chapter, fVenue: s.f.venue, fDate: s.f.date,
+      fTime: s.f.time, fHours: s.f.hours, fLead: s.f.lead, fTarget: s.f.target, fSummary: s.f.summary, fRoles: s.f.roles,
+      setTitle: setF("title"), setProgram: setF("programSlug"), setChapter: setF("chapter"), setVenue: setF("venue"),
+      setDate: setF("date"), setTime: setF("time"), setHours: setF("hours"), setLead: setF("lead"),
+      setTarget: setF("target"), setSummary: setF("summary"), setRoles: setF("roles"),
+      saveMission: () => {
+        const f = s.f;
+        if (!f.title || !f.chapter || !f.date) { this.setState({ formErr: true }); return; }
+        const roles = (f.roles || "").split(",").map((chunk) => {
+          const mt = chunk.trim().match(/^(.*?)\s*[x\u00D7]\s*(\d+)$/i);
+          if (mt) return { role: mt[1].trim(), need: parseInt(mt[2], 10), skills: [] };
+          return chunk.trim() ? { role: chunk.trim(), need: 1, skills: [] } : null;
+        }).filter(Boolean);
+        this.gs.createMission({
+          title: f.title, programSlug: f.programSlug, program: programName[f.programSlug],
+          chapter: f.chapter, venue: f.venue || f.chapter, date: f.date, time: f.time || "To be confirmed",
+          hours: parseInt(f.hours, 10) || 4, lead: f.lead || "Unassigned",
+          participation: f.participation, priority: f.priority,
+          impactTarget: f.target || "To be defined", summary: f.summary || "Mission details to follow.",
+          roles: roles.length ? roles : [{ role: "Volunteer", need: 5, skills: [] }],
+        });
+        this.setState({ showForm: false, formErr: false, f: { title: "", programSlug: "education-career-readiness", chapter: "", venue: "", date: "", time: "", hours: "", lead: "", target: "", summary: "", roles: "", participation: "onsite", priority: "normal" } });
+        this.refresh();
+      },
+      missionRows: missions.map((m) => {
+        const done = m.state === "completed", full = m.state === "full";
+        return { ...m,
+          accent: done ? "#D1D5DB" : m.urgent ? "#E65100" : "#4DC86A",
+          statusLabel: done ? "Completed" : full ? "Full" : "Open",
+          statusBg: done ? "#f0f1f3" : full ? "#e8f0fc" : "#f0faf3",
+          statusColor: done ? "#6B7280" : full ? "#1565C0" : "#1B7A34",
+          urgentDisp: m.urgent ? "inline-flex" : "none",
+          remoteDisp: m.remote ? "inline-flex" : "none",
+          fillLabel: m.filled + " / " + m.need,
+          spotsLabel: done ? "Closed" : m.spotsLeft === 0 ? "Full" : m.spotsLeft + " left",
+          spotsColor: done || m.spotsLeft === 0 ? "#9CA3AF" : "#1B7A34",
+          pctW: m.pct + "%",
+          rosterNote: (m.assignments || []).length + " signed up via platform",
+          flipLabel: done ? "Reopen" : "Mark completed",
+          flipColor: done ? "#1B7A34" : "#6B7280",
+          href: "Mission Detail.dc.html?id=" + m.id,
+          flipStatus: () => {
+            this.gs.patchMission(m.id, { status: done ? "open" : "completed" });
+            this.gs.logAudit((done ? "Reopened" : "Completed") + " mission \u201C" + m.title + "\u201D");
+            this.refresh();
+          } };
+      }),
+      asgRows: allAsg.sort((a, b) => (a.state === "completed" ? -1 : 1) - (b.state === "completed" ? -1 : 1)).map((a) => {
+        const v = os ? os.volunteers.find((x) => x.id === a.volunteerId) : null;
+        return {
+          name: v ? v.name : "Volunteer", initials: v ? v.initials : "GS",
+          grad: v && os ? os.avatarGradients[v.avatarColor] : "linear-gradient(135deg, #4DC86A 0%, #1B7A34 100%)",
+          role: a.role, missionTitle: a.mission.title, missionDate: a.mission.date, chapter: a.mission.chapter,
+          hoursLabel: a.state === "verified" ? "+" + (a.hours || a.mission.hours) : String(a.mission.hours),
+          hoursColor: a.state === "verified" ? "#1B7A34" : "#0D0D0D",
+          accent: a.state === "verified" ? "#4DC86A" : a.state === "completed" ? "#E65100" : "#D1D5DB",
+          stateLabel: a.state === "verified" ? "Hours verified" : a.state === "completed" ? "Needs verification" : a.state === "checkedin" ? (a.mission.remote ? "In progress" : "Checked in") : "Joined",
+          chipBg: a.state === "verified" ? "#f0faf3" : a.state === "completed" ? "#fff3e0" : "#e8f0fc",
+          chipColor: a.state === "verified" ? "#1B7A34" : a.state === "completed" ? "#E65100" : "#1565C0",
+          verifyDisp: a.state === "completed" ? "block" : "none",
+          unverifyDisp: a.state === "verified" ? "block" : "none",
+          completeDisp: a.state === "checkedin" ? "block" : "none",
+          verify: () => {
+            this.gs.setAssignmentState(a.missionId, a.volunteerId, "verified", a.hours || a.mission.hours);
+            this.gs.logAudit("Verified " + (a.mission.hours) + "h for " + (v ? v.name : "volunteer") + " on \u201C" + a.mission.title + "\u201D");
+            this.refresh();
+          },
+          unverify: () => {
+            this.gs.setAssignmentState(a.missionId, a.volunteerId, "completed", a.mission.hours);
+            this.gs.logAudit("Reversed verification for " + (v ? v.name : "volunteer") + " on \u201C" + a.mission.title + "\u201D");
+            this.refresh();
+          },
+          markComplete: () => {
+            this.gs.setAssignmentState(a.missionId, a.volunteerId, "completed", a.mission.hours);
+            this.refresh();
+          },
+        };
+      }),
+      overviewBg: navBtn(s.tab === "overview").bg, overviewColor: navBtn(s.tab === "overview").color,
+      volBg: navBtn(s.tab === "volunteers").bg, volColor: navBtn(s.tab === "volunteers").color,
+      appsBg: navBtn(s.tab === "apps").bg, appsColor: navBtn(s.tab === "apps").color,
+      overviewDisp: s.tab === "overview" ? "flex" : "none",
+      volunteersDisp: s.tab === "volunteers" ? "flex" : "none",
+      appsDisp: s.tab === "apps" ? "flex" : "none",
+      noAppsDisp: allApps.length === 0 ? "flex" : "none",
+      pendingCount: String(pending.length),
+      pendingChipBg: pending.length ? "rgba(230,81,0,0.25)" : "rgba(255,255,255,0.1)",
+      pendingChipColor: pending.length ? "#FFB74D" : "rgba(255,255,255,0.45)",
+      apps: allApps.map((a) => ({
+        ...a,
+        statusLabel: a.status === "pending" ? "Needs review" : a.status === "approved" ? "Approved" : "Rejected",
+        chipBg: a.status === "pending" ? "#fff3e0" : a.status === "approved" ? "#f0faf3" : "#fdecec",
+        chipColor: a.status === "pending" ? "#E65100" : a.status === "approved" ? "#1B7A34" : "#d4183d",
+        accent: a.status === "pending" ? "#E65100" : a.status === "approved" ? "#1B7A34" : "#d4183d",
+        when: new Date(a.t).toLocaleString([], { month: "short", day: "numeric", hour: "2-digit", minute: "2-digit" }),
+        phoneNote: a.phone ? "\u00B7 " + a.phone : "",
+        expDisp: a.experience ? "block" : "none",
+        actionsDisp: a.status === "pending" ? "flex" : "none",
+        viewDisp: a.status === "approved" ? "flex" : "none",
+        href: "Volunteer Profile.dc.html?id=new-" + a.id,
+        approve: () => { this.gs.decideApplication(a.id, "approved"); this.refresh(); },
+        reject: () => { this.gs.decideApplication(a.id, "rejected"); this.refresh(); },
+      })),
+      q: s.q, setQ: (e) => this.setState({ q: e.target.value }),
+      closePanel: () => this.setState({ selected: null }),
+    };
+    if (!os) return { ...base, inboxRows: [], inboxCount: "\u2026", inboxChipBg: "#f0faf3", inboxChipColor: "#1B7A34", inboxZeroDisp: "none", intelSignals: [], intelForecast: [], intelMoves: [], volCount: "", statActive: "\u2026", statLeads: "\u2026", statCreds: "\u2026", statCertOn: "\u2026", statLocked: "\u2026", statOpenMsn: "\u2026", statVerifiedHours: "\u2026", statImpPeople: "\u2026", statSpent: "\u2026", cities: [], audit: [], auditEmptyDisp: "none", rows: [], tableCount: "Loading\u2026", panelDisp: "none", sel: blankSel, selCreds: [], levelBtns: [], toggleCert: () => {}, toggleStatus: () => {}, issueCert: () => {}, noCredsDisp: "none", certTrackBg: "#D1D5DB", certKnobLeft: "3px", statusBtnLabel: "", statusBtnColor: "#6B7280" };
+    const vols = os.volunteers;
+    const active = vols.filter((v) => v.status !== "suspended");
+    const cityMap = {};
+    vols.forEach((v) => { cityMap[v.city] = (cityMap[v.city] || 0) + 1; });
+    const cityMax = Math.max(...Object.values(cityMap));
+    const cities = Object.entries(cityMap).sort((a, b) => b[1] - a[1]).slice(0, 6)
+      .map(([name, count]) => ({ name, count: count + (count === 1 ? " volunteer" : " volunteers"), w: Math.round((count / cityMax) * 100) + "%" }));
+    const audit = (this.gs ? this.gs.readAudit() : []).map((a) => ({ action: a.action, when: new Date(a.t).toLocaleString([], { month: "short", day: "numeric", hour: "2-digit", minute: "2-digit" }) }));
+    const q = s.q.toLowerCase();
+    const rows = vols.filter((v) => !q || v.name.toLowerCase().includes(q) || v.role.toLowerCase().includes(q) || v.city.toLowerCase().includes(q) || v.program.toLowerCase().includes(q))
+      .map((v) => ({
+        ...v, grad: os.avatarGradients[v.avatarColor],
+        rowBg: s.selected === v.id ? "#f0faf3" : "#ffffff",
+        levelColor: v.levelIndex >= 2 ? "#1B7A34" : "#374151",
+        certLabel: v.certEnabled ? "Enabled" : "Locked",
+        certBg: v.certEnabled ? "#f0faf3" : "#fff3e0", certColor: v.certEnabled ? "#1B7A34" : "#E65100",
+        status: v.status === "suspended" ? "Suspended" : "Active",
+        stBg: v.status === "suspended" ? "#fdecec" : "#f0faf3", stColor: v.status === "suspended" ? "#d4183d" : "#1B7A34",
+        select: () => this.setState({ selected: v.id }),
+      }));
+    const raw = s.selected ? vols.find((v) => v.id === s.selected) : null;
+    const sel = raw ? { ...raw, grad: os.avatarGradients[raw.avatarColor], credCount: raw.credentials.length, profileHref: "Volunteer Profile.dc.html?id=" + raw.id } : blankSel;
+    return {
+      ...base,
+      ...(() => {
+        const rows = [];
+        const jump = (tab) => () => this.setState({ tab });
+        const mk = (domain, accent, chipBg, chipColor, title, meta, tab) => rows.push({ domain, accent, chipBg, chipColor, title, meta, go: jump(tab) });
+        pending.forEach((a) => mk("People", "#E65100", "#fff3e0", "#E65100", a.name + " applied to volunteer", (a.city || "") + " \u00B7 " + (a.program || "General") , "apps"));
+        if (needVerify) mk("Operations", "#E65100", "#fff3e0", "#E65100", needVerify + (needVerify === 1 ? " attendance submission" : " attendance submissions") + " awaiting verification", "Hours only count once verified", "verify");
+        finPendingList.forEach((e) => mk("Finance", "#1565C0", "#e8f0fc", "#1565C0", "Expense awaiting review \u2014 " + e.item, this.money(e.amount) + " \u00B7 " + e.payee, "finance"));
+        (s.impact || []).filter((r) => !r.published).forEach((r) => mk("Impact", "#6B21A8", "#f5f0ff", "#6B21A8", "Impact record in draft \u2014 " + r.title, "Publish only with evidence attached", "impact"));
+        enquiries.filter((q) => q.stage === "new").forEach((q) => mk("Growth", "#6B21A8", "#f5f0ff", "#6B21A8", "New partner enquiry \u2014 " + q.company, (q.range || "range not stated") + " \u00B7 " + (q.opportunity || "general interest"), "partners"));
+        (pc ? pc.partners.filter((x) => x.stage === "renewal") : []).forEach((x) => mk("Growth", "#E65100", "#fff3e0", "#E65100", "Renewal due \u2014 " + x.name, "Continuation conversation, not a reset", "partners"));
+        allProps.filter((p) => p.stage === "pending").forEach((p) => mk("Network", "#1565C0", "#e8f0fc", "#1565C0", p.chapterName + " \u2014 " + p.title, p.kind + (p.amount ? " \u00B7 " + this.short(p.amount) : ""), "network"));
+        allReqs.filter((q) => q.stage === "proposed").forEach((q) => mk("Network", "#6B21A8", "#f5f0ff", "#6B21A8", "New chapter proposed \u2014 Goodness " + q.city, "by " + q.contact, "network"));
+        return { inboxRows: rows,
+          inboxCount: rows.length + (rows.length === 1 ? " decision waiting" : " decisions waiting"),
+          inboxChipBg: rows.length ? "#fff3e0" : "#f0faf3",
+          inboxChipColor: rows.length ? "#E65100" : "#1B7A34",
+          inboxZeroDisp: rows.length ? "none" : "block" };
+      })(),
+      ...(() => {
+        const chip = { risk: ["#d4183d", "#fdecec", "#d4183d"], opp: ["#1B7A34", "#f0faf3", "#1B7A34"], fct: ["#1565C0", "#e8f0fc", "#1565C0"] };
+        const sig = (kind, key, domain, headline, why, action) => ({ kind, domain, headline, why, action,
+          accent: chip[key][0], chipBg: chip[key][1], chipColor: chip[key][2] });
+        const activeCommits = this.gs ? Object.values(this.gs.allCommitments()).filter((x) => x.status === "active") : [];
+        const expect30 = activeCommits.reduce((n, x) => n + x.amount * (this.gs ? this.gs.rhythmPer30(x.rhythm) : 1), 0);
+        const openSpots = missions.filter((m) => m.state === "open").reduce((n, m) => n + (m.roles || []).reduce((k, r) => k + Math.max(0, r.need - (r.filled || 0)), 0), 0);
+        return {
+          intelSignals: [
+            sig("Risk", "risk", "Network", "Goodness Dhaka has no live mission", "Its seeded mission is fully staffed and no new one is scheduled. Chapters with no public mission recruit 60% fewer volunteers.", "Nudge the chapter lead"),
+            sig("Risk", "risk", "Finance", (finPendingList.length || "No") + (finPendingList.length === 1 ? " expense" : " expenses") + " awaiting review", "Undocumented spending blocks the Trust Ledger's documented-percentage from reaching 100%.", "Open Money & approvals"),
+            sig("Opportunity", "opp", "Growth", "TechHub Dhaka renewal is due", "Two-year partner, employees engaged this quarter. Renewal conversations started early close 3\u00D7 more often.", "Open the Partner Room"),
+            sig("Opportunity", "opp", "People", openSpots + " open mission spots this month", "Directory volunteers whose skills match unfilled roles haven't been invited yet.", "See suggested matches"),
+            sig("Forecast", "fct", "Finance", this.short(expect30) + " expected from commitments", activeCommits.length + (activeCommits.length === 1 ? " active commitment" : " active commitments") + " at current rhythms \u2014 community capital, before any partner funding.", "View community funding"),
+            sig("Forecast", "fct", "Impact", "566 of 1,000 young people by year-end", "Current cohort pace reaches ~840 by December. One more bootcamp cohort closes the gap.", "Model the extra cohort"),
+          ],
+          intelForecast: [
+            { label: "Community funding (commitments)", value: this.short(expect30), color: "#1B7A34", barBg: "linear-gradient(90deg, #4DC86A, #1B7A34)", w: "62%", note: "Rhythm-normalised across daily, weekly, bi-weekly, and monthly sustainers" },
+            { label: "Volunteer applications", value: "+9 expected", color: "#1565C0", barBg: "linear-gradient(90deg, #64B5F6, #1565C0)", w: "45%", note: "Trailing 60-day application rate, seasonally adjusted for semester start" },
+            { label: "Verified service hours", value: "+310 hours", color: "#1B7A34", barBg: "linear-gradient(90deg, #4DC86A, #1B7A34)", w: "74%", note: "From missions already scheduled and their typical verification rates" },
+            { label: "People supported (2026 goal)", value: "840 / 1,000", color: "#E65100", barBg: "linear-gradient(90deg, #FFB74D, #E65100)", w: "84%", note: "On pace to land short \u2014 see the recommended extra cohort" },
+          ],
+          intelMoves: [
+            { n: "1", title: "Schedule a Dhaka public mission", why: "Largest chapter, zero live missions \u2014 visibility gap" },
+            { n: "2", title: "Invite 6 matched volunteers to open roles", why: openSpots + " spots \u00B7 skills already on file" },
+            { n: "3", title: "Open the TechHub renewal conversation", why: "2027 chapter \u00B7 employees already engaged" },
+            { n: "4", title: "Publish the Khulna survey follow-up", why: "Evidence collected, record still in draft" },
+          ],
+        };
+      })(),
+      volCount: String(vols.length),
+      statActive: String(active.length),
+      statLeads: String(vols.filter((v) => v.levelIndex >= 2).length),
+      statCreds: String(vols.reduce((n, v) => n + v.credentials.length, 0)),
+      statCertOn: String(vols.filter((v) => v.certEnabled).length),
+      statLocked: String(vols.filter((v) => !v.certEnabled).length),
+      statOpenMsn: String(missions.filter((m) => m.state !== "completed").length),
+      statImpPeople: impact.filter((r) => r.published).reduce((n, r) => n + (r.beneficiaries || 0), 0).toLocaleString(),
+      statSpent: fin ? this.short(fin.spent) : "\u2014",
+      statVerifiedHours: String(allAsg.filter((a) => a.state === "verified").reduce((n, a) => n + (a.hours || a.mission.hours), 0)),
+      cities, audit,
+      auditEmptyDisp: audit.length === 0 ? "block" : "none",
+      rows,
+      tableCount: rows.length + " of " + vols.length + " volunteers",
+      panelDisp: raw ? "flex" : "none",
+      noCredsDisp: raw && raw.credentials.length === 0 ? "block" : "none",
+      issueCert: () => {
+        if (!raw) return;
+        const ref = "GS-VOL-" + new Date().getFullYear() + "-" + String(1000 + Math.floor(Math.random() * 8999));
+        const creds = [{ ref, title: "Certificate of Volunteer Service", issued: new Date().toLocaleString([], { month: "short", year: "numeric" }), status: "valid" }].concat(raw.credentials);
+        this.act(raw.id, { credentials: creds, certRef: ref, certEnabled: true }, "Issued certificate " + ref + " to " + raw.name);
+      },
+      sel,
+      selCreds: raw ? raw.credentials.map((c, i) => ({
+        ...c,
+        statusLabel: c.status === "valid" ? "Valid" : "Revoked",
+        chipBg: c.status === "valid" ? "#f0faf3" : "#fdecec", chipColor: c.status === "valid" ? "#1B7A34" : "#d4183d",
+        actionLabel: c.status === "valid" ? "Revoke" : "Reissue",
+        actionColor: c.status === "valid" ? "#d4183d" : "#1B7A34",
+        flip: () => {
+          const creds = raw.credentials.map((x, xi) => xi === i ? { ...x, status: x.status === "valid" ? "revoked" : "valid" } : x);
+          this.act(raw.id, { credentials: creds }, (c.status === "valid" ? "Revoked" : "Reissued") + " \u201C" + c.title + "\u201D for " + raw.name);
+        },
+      })) : [],
+      levelBtns: raw ? os.levels.map((label, i) => ({
+        label,
+        border: i === raw.levelIndex ? "1px solid transparent" : "1px solid rgba(0,0,0,0.12)",
+        bg: i === raw.levelIndex ? "linear-gradient(135deg, #4DC86A 0%, #1B7A34 100%)" : "#ffffff",
+        color: i === raw.levelIndex ? "#ffffff" : "#6B7280",
+        pick: () => this.act(raw.id, { levelIndex: i }, "Set " + raw.name + " journey level to " + label),
+      })) : [],
+      toggleCert: () => raw && this.act(raw.id, { certEnabled: !raw.certEnabled }, (raw.certEnabled ? "Locked" : "Enabled") + " certificate download for " + raw.name),
+      certTrackBg: raw && raw.certEnabled ? "#1B7A34" : "#D1D5DB",
+      certKnobLeft: raw && raw.certEnabled ? "23px" : "3px",
+      toggleStatus: () => raw && this.act(raw.id, { status: raw.status === "suspended" ? "active" : "suspended" }, (raw.status === "suspended" ? "Reactivated " : "Suspended ") + raw.name),
+      statusBtnLabel: raw ? (raw.status === "suspended" ? "Reactivate" : "Suspend") : "",
+      statusBtnColor: raw && raw.status !== "suspended" ? "#d4183d" : "#1B7A34",
+    };
+  }
+}
+</script>
+</body>
+</html>
