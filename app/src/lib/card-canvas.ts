@@ -93,7 +93,7 @@ const PALETTES: Record<CardTheme, Palette> = {
   },
 }
 
-const FONT = "'Plus Jakarta Sans', system-ui, sans-serif"
+const FONT = "'Plus Jakarta Sans', 'Noto Sans Bengali', system-ui, sans-serif"
 
 function wrap(
   ctx: CanvasRenderingContext2D,
@@ -194,7 +194,7 @@ export function renderCard(
   ctx.fillStyle = palette.accent
   ctx.font = `800 26px ${FONT}`
   ctx.fillText(spec.eyebrow.toUpperCase(), pad, y)
-  y += 62
+  y += 78
 
   // Headline
   ctx.fillStyle = palette.ink

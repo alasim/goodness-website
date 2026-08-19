@@ -38,3 +38,16 @@ from ever disagreeing.
   *hours verified*; only a team lead or HQ can do that.
 - Approving or reversing an expense goes through an audited database function.
 - Impact records separate publication from evidence verification, and say which is which.
+
+## End-to-end check
+`e2e/flow.mjs` walks the contribution loop in a real browser — claim a passport, join a mission,
+check in, submit, verify the hours in Mission Control, and confirm they reach the passport, the
+audit trail, the Share Studio card and the ledger drill-down.
+
+```bash
+npm run build
+npm start &                        # serves the built app on :3000
+npm run test:e2e                   # add CHROMIUM_PATH=... if Playwright's browser is elsewhere
+```
+It needs `playwright` available (`npm i -D playwright`); it is kept out of the default install so
+the everyday `npm ci` stays small.

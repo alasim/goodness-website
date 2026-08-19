@@ -18,7 +18,8 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "gen:seed": "node ../scripts/generate-seed.mjs",
-    "gen:types": "supabase gen types typescript --local > src/lib/database.types.ts"
+    "gen:types": "supabase gen types typescript --local > src/lib/database.types.ts",
+    "test:e2e": "node e2e/flow.mjs"
   },
   "dependencies": {
     "@tanstack/react-router": "latest",

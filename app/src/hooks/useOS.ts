@@ -31,8 +31,11 @@ export function useOS(): {
     queryFn: async () => buildOS(await loadDataset({ withOverlay: tick > 0 })),
     staleTime: Infinity,
     // On the local driver the seed is already in the bundle, so the server can render the real
-    // page instead of a spinner — public pages have to be indexable and shareable.
-    initialData: hasSupabase ? undefined : () => buildOS(baseDataset()),
+    // page instead of a spinner — public pages have to be indexable and shareable. Only the
+    // first render gets it: later ticks must actually rebuild, or a change made in the browser
+    // would never reach the screen.
+    initialData:
+      !hasSupabase && tick === 0 ? () => buildOS(baseDataset()) : undefined,
   })
 
   return {
