@@ -1,0 +1,21 @@
+{
+  "name": "goodness-society",
+  "private": true,
+  "type": "module",
+  "description": "Goodness Society \u2014 GOODNESS OS: prototype design source, TanStack Start app and Supabase backend.",
+  "scripts": {
+    "gen:seed": "node scripts/generate-seed.mjs",
+    "db:verify": "node scripts/verify-schema.mjs",
+    "app:dev": "npm --prefix app run dev",
+    "app:build": "npm --prefix app run build",
+    "app:test": "npm --prefix app run test",
+    "stack:keys": "node scripts/stack-keys.mjs",
+    "stack:up": "docker compose -f docker/docker-compose.yml --env-file docker/.env up -d",
+    "stack:down": "docker compose -f docker/docker-compose.yml --env-file docker/.env down",
+    "stack:reset": "docker compose -f docker/docker-compose.yml --env-file docker/.env down -v && docker compose -f docker/docker-compose.yml --env-file docker/.env up -d",
+    "stack:logs": "docker compose -f docker/docker-compose.yml --env-file docker/.env logs -f"
+  },
+  "devDependencies": {
+    "@electric-sql/pglite": "^0.3.0"
+  }
+}

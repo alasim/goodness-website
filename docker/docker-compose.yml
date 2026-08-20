@@ -1,0 +1,209 @@
+# GOODNESS OS — local Supabase stack.
+#
+# A lean, project-shaped equivalent of `supabase start`: exactly the services this product uses,
+# with our migrations and seed applied automatically on first boot.
+#
+#   docker compose up -d          # start (first run applies supabase/migrations + supabase/seed.sql)
+#   docker compose logs -f db-init
+#   docker compose down           # stop, keep data
+#   docker compose down -v        # stop and wipe the database
+#
+# Ports (chosen to match the Supabase CLI so nothing else has to change):
+#   54321  API gateway  -> VITE_SUPABASE_URL=http://localhost:54321
+#   54322  Postgres     -> psql postgres://postgres:<password>@localhost:54322/postgres
+#   54323  Studio       -> table editor and SQL editor
+#   54324  Mailpit      -> every magic-link email lands here, nothing leaves your machine
+#
+# Run `npm run stack:keys` in the repository root first: it writes docker/.env with a fresh
+# password, JWT secret and the matching anon / service-role keys.
+
+name: goodness-os
+
+services:
+  db:
+    container_name: goodness-db
+    image: supabase/postgres:17.6.1.136
+    restart: unless-stopped
+    ports:
+      - '${POSTGRES_PORT_EXTERNAL:-54322}:5432'
+    environment:
+      POSTGRES_HOST: /var/run/postgresql
+      POSTGRES_DB: ${POSTGRES_DB:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?run npm run stack:keys first}
+      PGPASSWORD: ${POSTGRES_PASSWORD}
+      PGPORT: 5432
+      JWT_SECRET: ${JWT_SECRET:?run npm run stack:keys first}
+      JWT_EXP: ${JWT_EXPIRY:-3600}
+    volumes:
+      # Give the platform roles the password the other services will use, and publish the JWT
+      # secret to the database so RLS helpers and PostgREST agree on it.
+      - ./db/init/00-roles.sql:/docker-entrypoint-initdb.d/init-scripts/00-goodness-roles.sql:ro
+      - ./db/init/01-jwt.sql:/docker-entrypoint-initdb.d/init-scripts/01-goodness-jwt.sql:ro
+      - db-data:/var/lib/postgresql/data
+      - db-config:/etc/postgresql-custom
+    healthcheck:
+      test: ['CMD', 'pg_isready', '-U', 'postgres', '-h', 'localhost']
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+  # One-shot: applies supabase/migrations in order, then supabase/seed.sql. Safe to re-run —
+  # it stops early if the schema is already there, and the seed inserts are conflict-tolerant.
+  db-init:
+    container_name: goodness-db-init
+    image: postgres:17-alpine
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      PGPASSWORD: ${POSTGRES_PASSWORD}
+      PGHOST: db
+      PGPORT: 5432
+      PGUSER: postgres
+      PGDATABASE: ${POSTGRES_DB:-postgres}
+      APPLY_SEED: ${APPLY_SEED:-true}
+    volumes:
+      - ../supabase:/supabase:ro
+      - ./db/apply.sh:/apply.sh:ro
+    entrypoint: ['/bin/sh', '/apply.sh']
+    restart: 'no'
+
+  auth:
+    container_name: goodness-auth
+    image: supabase/gotrue:v2.189.0
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+      db-init:
+        condition: service_completed_successfully
+    environment:
+      GOTRUE_API_HOST: 0.0.0.0
+      GOTRUE_API_PORT: 9999
+      API_EXTERNAL_URL: ${SUPABASE_PUBLIC_URL:-http://localhost:54321}
+      GOTRUE_DB_DRIVER: postgres
+      GOTRUE_DB_DATABASE_URL: postgres://supabase_auth_admin:${POSTGRES_PASSWORD}@db:5432/${POSTGRES_DB:-postgres}
+      GOTRUE_SITE_URL: ${SITE_URL:-http://localhost:3000}
+      GOTRUE_URI_ALLOW_LIST: ${ADDITIONAL_REDIRECT_URLS:-http://localhost:3000,http://localhost:3000/**}
+      GOTRUE_DISABLE_SIGNUP: 'false'
+      GOTRUE_JWT_SECRET: ${JWT_SECRET}
+      GOTRUE_JWT_EXP: ${JWT_EXPIRY:-3600}
+      GOTRUE_JWT_AUD: authenticated
+      GOTRUE_JWT_DEFAULT_GROUP_NAME: authenticated
+      GOTRUE_JWT_ADMIN_ROLES: service_role
+      GOTRUE_EXTERNAL_EMAIL_ENABLED: 'true'
+      GOTRUE_EXTERNAL_PHONE_ENABLED: 'false'
+      # Local mail goes to Mailpit, so the magic link is one click away and never leaves the machine.
+      GOTRUE_MAILER_AUTOCONFIRM: ${MAILER_AUTOCONFIRM:-false}
+      GOTRUE_SMTP_HOST: mail
+      GOTRUE_SMTP_PORT: 1025
+      GOTRUE_SMTP_USER: goodness
+      GOTRUE_SMTP_PASS: goodness
+      GOTRUE_SMTP_ADMIN_EMAIL: hello@goodnesssociety.local
+      GOTRUE_SMTP_SENDER_NAME: Goodness Society
+      GOTRUE_MAILER_URLPATHS_INVITE: /auth/v1/verify
+      GOTRUE_MAILER_URLPATHS_CONFIRMATION: /auth/v1/verify
+      GOTRUE_MAILER_URLPATHS_RECOVERY: /auth/v1/verify
+      GOTRUE_MAILER_URLPATHS_EMAIL_CHANGE: /auth/v1/verify
+    healthcheck:
+      test: ['CMD', 'wget', '--no-verbose', '--tries=1', '--spider', 'http://localhost:9999/health']
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  rest:
+    container_name: goodness-rest
+    image: postgrest/postgrest:v14.12
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+      # PostgREST caches the schema at boot, so it waits for the migrations to be in place.
+      db-init:
+        condition: service_completed_successfully
+    environment:
+      PGRST_DB_URI: postgres://authenticator:${POSTGRES_PASSWORD}@db:5432/${POSTGRES_DB:-postgres}
+      PGRST_DB_SCHEMAS: ${PGRST_DB_SCHEMAS:-public}
+      PGRST_DB_ANON_ROLE: anon
+      PGRST_DB_MAX_ROWS: 1000
+      PGRST_DB_EXTRA_SEARCH_PATH: public,extensions
+      PGRST_JWT_SECRET: ${JWT_SECRET}
+      PGRST_DB_USE_LEGACY_GUCS: 'false'
+      PGRST_APP_SETTINGS_JWT_SECRET: ${JWT_SECRET}
+      PGRST_APP_SETTINGS_JWT_EXP: ${JWT_EXPIRY:-3600}
+    healthcheck:
+      test: ['CMD', 'postgrest', '--ready']
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  meta:
+    container_name: goodness-meta
+    image: supabase/postgres-meta:v0.96.6
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      PG_META_PORT: 8080
+      PG_META_DB_HOST: db
+      PG_META_DB_PORT: 5432
+      PG_META_DB_NAME: ${POSTGRES_DB:-postgres}
+      PG_META_DB_USER: postgres
+      PG_META_DB_PASSWORD: ${POSTGRES_PASSWORD}
+
+  studio:
+    container_name: goodness-studio
+    image: supabase/studio:2026.08.03-sha-022b374
+    restart: unless-stopped
+    depends_on:
+      - meta
+    ports:
+      - '${STUDIO_PORT:-54323}:3000'
+    environment:
+      HOSTNAME: '0.0.0.0'
+      STUDIO_PG_META_URL: http://meta:8080
+      POSTGRES_HOST: db
+      POSTGRES_PORT: 5432
+      POSTGRES_DB: ${POSTGRES_DB:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      DEFAULT_ORGANIZATION_NAME: ${STUDIO_DEFAULT_ORGANIZATION:-Goodness Society}
+      DEFAULT_PROJECT_NAME: ${STUDIO_DEFAULT_PROJECT:-GOODNESS OS}
+      SUPABASE_URL: http://gateway:8000
+      SUPABASE_PUBLIC_URL: ${SUPABASE_PUBLIC_URL:-http://localhost:54321}
+      SUPABASE_ANON_KEY: ${ANON_KEY:?run npm run stack:keys first}
+      SUPABASE_SERVICE_KEY: ${SERVICE_ROLE_KEY:?run npm run stack:keys first}
+      AUTH_JWT_SECRET: ${JWT_SECRET}
+
+  mail:
+    container_name: goodness-mail
+    image: axllent/mailpit:v1.21
+    restart: unless-stopped
+    ports:
+      - '${MAIL_PORT:-54324}:8025'
+    environment:
+      MP_SMTP_AUTH_ACCEPT_ANY: 1
+      MP_SMTP_AUTH_ALLOW_INSECURE: 1
+
+  # The single origin the app talks to. PostgREST and GoTrue authenticate the JWT themselves and
+  # emit their own CORS headers, so the gateway only routes and answers preflight.
+  gateway:
+    container_name: goodness-gateway
+    image: nginx:1.27-alpine
+    restart: unless-stopped
+    depends_on:
+      - rest
+      - auth
+    ports:
+      - '${API_PORT:-54321}:8000'
+    volumes:
+      - ./gateway/nginx.conf:/etc/nginx/conf.d/default.conf:ro
+    healthcheck:
+      test: ['CMD', 'wget', '--no-verbose', '--tries=1', '--spider', 'http://localhost:8000/health']
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  db-data:
+  db-config:

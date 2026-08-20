@@ -77,3 +77,35 @@ File map: Home / About / Programs / Transparency / Volunteers (directory) / Volu
 ## Implementation notes (prototype layer)
 - Shared client store: gs-os.js (localStorage "gs-os-store" merged over volunteers-data.js seed). All pages read/write it. Real backend later.
 - Existing pages = Public Experience layer; generators = Identity & Credential layer; forms = People Ops; transparency page = Trust Ledger seed; directory = Passport seed.
+
+## PRODUCT BUILD — React + Supabase implementation [STATUS: built, phases P0–P11]
+The confirmed prototype above is now implemented as a real product. Design source stays at the
+repository root; the product lives in `app/` (TanStack Start — React 19 + TypeScript, server
+rendered) and `supabase/` (Postgres schema, row level security and seed, all as code). The phase
+plan and what each phase delivered are in BUILD-PLAN.md.
+
+Mapping from the waves above to the built surfaces:
+- WAVE 01 IDENTITY → `/people`, `/people/$volunteerId` (Goodness Passport), `/verify`, `/join`,
+  `/me`, and Mission Control's People and Applications tabs.
+- WAVE 02 MISSION ENGINE → `/missions`, `/missions/$missionId` with the full state language
+  (Joined → Checked in → Contribution submitted → Hours verified), one primary role per volunteer,
+  withdrawal locked after check-in, remote vs on-site participation; Mission Control's Missions and
+  Attendance tabs.
+- WAVE 03 IMPACT → `/impact` (published records only, publication and verification kept separate,
+  outcome basis chips, % shown on missed targets) and Mission Control's Impact tab.
+- WAVE 04 TRUST → `/trust` (received → allocated → spent, expense-level drill-down with document
+  checked-vs-attached, what each fund supported) and Mission Control's Money & approvals tab, where
+  approval and reversal go through an audited database function.
+- WAVE 05 PARTNERS & CAPITAL → `/fund`, `/partner`, `/partner-room`, `/partners/$partnerId`.
+- WAVE 06 NETWORK → `/chapters`, `/chapters/$chapterId` (with Chapter Control for chapter leads),
+  `/chapters/start`, and Mission Control's Network tab with internal health signals and the HQ
+  request/proposal queues.
+- WAVE 06.x GOODNESS COMMITMENT → the commitment panel in `/me`, contributions entering the Trust
+  Ledger with receipts, and the commitments strip in Mission Control's Money tab.
+- WAVE SS SHARE STUDIO → `/studio`, a canvas card engine with locked numbers across seven card
+  families, square/story/A4 formats, captions and verification references.
+- WAVE 07 INTELLIGENCE → still UI-only by owner decision; not rebuilt in the product yet.
+
+Governance carried into the database, not just the interface: RLS on every table, public views as
+the only window onto personal data, hours that cannot be self-verified, and an audit trail with old
+value → new value → who → when → why.
