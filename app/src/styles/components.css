@@ -3107,3 +3107,49 @@ a.gs-tile--plain:hover {
   border: 3px solid rgba(77, 200, 106, 0.35);
   box-sizing: border-box;
 }
+
+/* ── Programs (`Programs.dc.html`) ─────────────────────────────────────── */
+.gs-programrow {
+  border: 1px solid var(--gs-line);
+  border-radius: 16px;
+  overflow: hidden;
+  background: #fff;
+}
+.gs-programrow:hover {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.07);
+}
+.gs-programrow__head {
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  gap: 24px;
+  padding: 32px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font: inherit;
+  color: inherit;
+  text-align: left;
+}
+.gs-programrow__body {
+  padding: 24px 32px 32px;
+  border-top: 1px solid var(--gs-line-soft);
+}
+.gs-goallist {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.gs-goallist li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+.gs-goallist svg {
+  margin-top: 2px;
+  flex-shrink: 0;
+  fill: none;
+}
