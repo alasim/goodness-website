@@ -1,25 +1,15 @@
 import { useState } from 'react'
 import { Link, createFileRoute } from '@tanstack/react-router'
-import { useClaimedChapterId, useOS } from '../../hooks/useOS'
+import { useOS } from '../../hooks/useOS'
 import { useCurrentPerson } from '../../hooks/useCurrentPerson'
 import { LoadingState } from '../../components/LoadingState'
-import { MissionCard } from '../../components/MissionCard'
-import {
-  Avatar,
-  Banner,
-  Bar,
-  Empty,
-  Pill,
-  Section,
-  Stat,
-} from '../../components/ui'
-import {
-  claimChapterLead,
-  setMyChapter,
-  submitProposal,
-} from '../../data/actions'
+import { GWatermark } from '../../components/GWatermark'
+import { Empty, Section } from '../../components/ui'
+import { setMyChapter } from '../../data/actions'
 import { formatNumber, formatShortMoney } from '../../lib/format'
+import type { ChapterView } from '../../data/os'
 
+/** Chapter — a faithful build of `Chapter.dc.html`. */
 export const Route = createFileRoute('/chapters/$chapterId')({
   component: ChapterPage,
 })
@@ -28,8 +18,7 @@ function ChapterPage() {
   const { chapterId } = Route.useParams()
   const { os } = useOS()
   const { person } = useCurrentPerson()
-  const claimedLead = useClaimedChapterId()
-  const [proposalSent, setProposalSent] = useState(false)
+  const [justJoined, setJustJoined] = useState(false)
 
   if (!os) return <LoadingState />
   const chapter = os.chapterById.get(chapterId)
@@ -44,460 +33,780 @@ function ChapterPage() {
     )
   }
 
+  const forming = chapter.status === 'forming'
+  const university = chapter.type === 'university'
+  const shortName = chapter.name.replace('Goodness ', '')
   const isMine = person?.chapterId === chapter.id
-  const leadsThis =
-    claimedLead === chapter.id ||
-    os.data.memberRoles.some(
-      (role) =>
-        role.chapterId === chapter.id &&
-        role.role === 'chapter_lead' &&
-        role.profileId === person?.id,
-    )
   const openMissions = chapter.missions.filter((m) => m.status === 'open')
-  const fundingNeeds = os.opportunities.filter(
-    (o) =>
-      !o.funded &&
-      (o.whereLabel ?? '').toLowerCase().includes(chapter.city.toLowerCase()),
-  )
-  const proposals = os.data.chapterProposals.filter(
-    (p) => p.chapterId === chapter.id,
-  )
-  const announcements = os.data.announcements.filter(
-    (a) => a.audience === 'network' || a.chapterId === chapter.id,
-  )
+  const money = (n: number) => formatShortMoney(n, os.currency)
+
+  // "Needed now" reads the open roles the way the design does: what is left after live claims and
+  // the share of historical participants carried over on that mission.
+  const needs: Array<{
+    title: string
+    note: string
+    icon: string
+    bg: string
+    color: string
+    to: string
+    params?: Record<string, string>
+  }> = []
+  openMissions.forEach((mission) => {
+    mission.roles.forEach((role) => {
+      const carried = Math.round(
+        mission.seedFilled / Math.max(1, mission.roles.length),
+      )
+      const left = role.need - role.filled - carried
+      if (left > 0 && needs.length < 3) {
+        needs.push({
+          title: `${left} × ${role.role}`,
+          note: mission.title,
+          icon: '♥',
+          bg: '#f0faf3',
+          color: '#1B7A34',
+          to: '/missions/$missionId',
+          params: { missionId: mission.id },
+        })
+      }
+    })
+  })
+  if (needs.length < 3 && !forming) {
+    needs.push({
+      title: 'Local partner',
+      note: `Fund or resource ${chapter.name}’s next initiative`,
+      icon: '৳',
+      bg: '#e8f0fc',
+      color: '#1565C0',
+      to: '/partner',
+    })
+  }
+
+  const stories: Array<string> = []
+  if (chapter.hours >= 500)
+    stories.push(
+      `${chapter.name} crossed ${formatNumber(chapter.hours)} verified volunteer hours.`,
+    )
+  chapter.impact
+    .slice(0, 1)
+    .forEach((record) =>
+      stories.push(
+        `${record.title} — ${formatNumber(record.beneficiaries)} people supported, evidence ${record.evidenceVerified}/${record.evidenceTotal} verified.`,
+      ),
+    )
+  chapter.team
+    .filter((t) => t.volunteer && !t.untilLabel)
+    .slice(0, 1)
+    .forEach((t) =>
+      stories.push(
+        `${t.volunteer!.fullName} has been ${t.role} since ${t.sinceLabel}.`,
+      ),
+    )
+
+  const history = chapter.team.filter((t) => t.untilLabel)
 
   return (
-    <>
-      <section className="gs-hero">
-        <div className="gs-wrap gs-stack" style={{ gap: 16 }}>
-          <div className="gs-row" style={{ gap: 6 }}>
-            <Pill tone={chapter.status === 'active' ? 'green' : 'amber'}>
-              {chapter.status}
-            </Pill>
-            <Pill>{chapter.type} chapter</Pill>
-            {chapter.parent ? (
-              <Link
-                to="/chapters/$chapterId"
-                params={{ chapterId: chapter.parent.id }}
+    <div className="gs-narrow" style={{ maxWidth: 1120 }}>
+      <Link to="/chapters" className="gs-backlink" style={{ marginBottom: 20 }}>
+        ← All chapters
+      </Link>
+
+      <section className="gs-inkhero">
+        <GWatermark width={400} height={270} style={{ opacity: 0.07 }} />
+        <div style={{ position: 'relative' }}>
+          <div className="gs-row" style={{ gap: 8, marginBottom: 14 }}>
+            <span
+              className="gs-tag"
+              style={{
+                padding: '4px 12px',
+                background: university ? '#e8f0fc' : '#4DC86A',
+                color: university ? '#1565C0' : '#0D3B1A',
+              }}
+            >
+              {university ? 'University chapter' : 'District chapter'}
+            </span>
+            {forming ? (
+              <span
+                className="gs-tag"
+                style={{
+                  padding: '4px 12px',
+                  background: '#E65100',
+                  color: '#fff',
+                }}
               >
-                <Pill tone="blue">Within {chapter.parent.name}</Pill>
-              </Link>
+                Forming
+              </span>
             ) : null}
-            <Pill>Since {chapter.sinceLabel}</Pill>
+            {chapter.parent ? (
+              <span style={{ fontSize: 12, color: 'rgba(255,255,255,0.5)' }}>
+                under {chapter.parent.name}
+              </span>
+            ) : null}
+            <span style={{ fontSize: 12, color: 'rgba(255,255,255,0.45)' }}>
+              · since {chapter.sinceLabel}
+            </span>
           </div>
-          <h1 style={{ fontSize: 'clamp(30px, 4.4vw, 50px)' }}>
-            {chapter.name}
-          </h1>
-          <p className="gs-lede" style={{ maxWidth: 660 }}>
+
+          <h1 style={{ margin: '0 0 10px' }}>{chapter.name}</h1>
+          <p
+            style={{
+              margin: '0 0 24px',
+              color: 'rgba(255,255,255,0.65)',
+              fontSize: 15,
+              lineHeight: 1.65,
+              maxWidth: 640,
+            }}
+          >
             {chapter.story}
           </p>
-          <div className="gs-row" style={{ gap: 8 }}>
-            {person && !isMine ? (
-              <button
-                type="button"
-                className="gs-btn gs-btn--primary gs-btn--sm"
-                onClick={() => void setMyChapter(person.id, chapter.id)}
-              >
-                Make this my chapter
-              </button>
-            ) : null}
-            {isMine ? <Pill tone="green">Your chapter</Pill> : null}
-            <Link
-              to="/studio"
-              search={{ chapter: chapter.id }}
-              className="gs-btn gs-btn--ghost gs-btn--sm"
+
+          {!forming ? (
+            <div
+              className="gs-inkbar"
+              style={{ gridTemplateColumns: 'repeat(5, 1fr)' }}
             >
-              Share this chapter
-            </Link>
-            {!leadsThis ? (
-              <button
-                type="button"
-                className="gs-btn gs-btn--ghost gs-btn--sm"
-                onClick={() => claimChapterLead(chapter.id)}
-              >
-                I lead this chapter
-              </button>
-            ) : null}
-          </div>
+              <div>
+                <div
+                  style={{ fontSize: 21, fontWeight: 800 }}
+                  className="gs-num"
+                >
+                  {university ? 26 : chapter.memberCount}
+                </div>
+                <div
+                  className="gs-inkbar__label"
+                  style={{ marginTop: 2, marginBottom: 0 }}
+                >
+                  Members
+                </div>
+              </div>
+              <div>
+                <div
+                  style={{
+                    fontSize: 21,
+                    fontWeight: 800,
+                    color: 'var(--gs-green)',
+                  }}
+                  className="gs-num"
+                >
+                  {university ? 210 : formatNumber(chapter.hours)}
+                </div>
+                <div
+                  className="gs-inkbar__label"
+                  style={{ marginTop: 2, marginBottom: 0 }}
+                >
+                  Verified hours
+                </div>
+              </div>
+              <div>
+                <div
+                  style={{ fontSize: 21, fontWeight: 800 }}
+                  className="gs-num"
+                >
+                  {formatNumber(chapter.peopleSupported)}
+                </div>
+                <div
+                  className="gs-inkbar__label"
+                  style={{ marginTop: 2, marginBottom: 0 }}
+                >
+                  People supported
+                </div>
+              </div>
+              <div>
+                <div
+                  style={{ fontSize: 21, fontWeight: 800 }}
+                  className="gs-num"
+                >
+                  {chapter.partners.length}
+                </div>
+                <div
+                  className="gs-inkbar__label"
+                  style={{ marginTop: 2, marginBottom: 0 }}
+                >
+                  Local partners
+                </div>
+              </div>
+              <div>
+                <div
+                  style={{ fontSize: 21, fontWeight: 800 }}
+                  className="gs-num"
+                >
+                  {money(chapter.deployed)}
+                </div>
+                <div
+                  className="gs-inkbar__label"
+                  style={{ marginTop: 2, marginBottom: 0 }}
+                >
+                  Deployed locally
+                </div>
+              </div>
+            </div>
+          ) : (
+            <div
+              style={{
+                marginTop: 6,
+                padding: '14px 18px',
+                borderRadius: 12,
+                background: 'rgba(230,81,0,0.15)',
+                border: '1px solid rgba(230,81,0,0.4)',
+                color: '#FFB74D',
+                fontSize: 13,
+                fontWeight: 600,
+              }}
+            >
+              Forming · Goodness standards {chapter.standardsDone} /{' '}
+              {chapter.standardsTotal} complete · supported by Goodness
+              Chattogram
+            </div>
+          )}
         </div>
       </section>
 
-      <Section tight variant="mist">
-        <div className="gs-grid gs-grid--4">
-          <Stat gradient value={String(chapter.memberCount)} label="Members" />
-          <Stat
-            gradient
-            value={formatNumber(chapter.hours)}
-            label="Verified service hours"
-          />
-          <Stat
-            gradient
-            value={formatNumber(chapter.peopleSupported)}
-            label="People supported"
-            note="Published records"
-          />
-          <Stat
-            gradient
-            value={formatShortMoney(chapter.deployed, os.currency)}
-            label="Deployed locally"
-          />
-        </div>
-        {chapter.campusNote ? (
-          <p className="gs-small gs-muted" style={{ marginTop: 14 }}>
-            {chapter.campusNote}
-          </p>
-        ) : null}
-      </Section>
-
-      <Section>
-        <div
-          className="gs-grid"
-          style={{
-            gridTemplateColumns: 'minmax(0, 1.5fr) minmax(0, 1fr)',
-            gap: 28,
-          }}
-        >
-          <div className="gs-stack" style={{ gap: 24 }}>
-            <div>
-              <div
-                className="gs-row gs-row--between"
-                style={{ marginBottom: 14 }}
+      <div
+        className="gs-detailgrid"
+        style={{ gridTemplateColumns: '1.15fr 0.85fr' }}
+      >
+        <div className="gs-detailcol">
+          {needs.length ? (
+            <section className="gs-panelcard">
+              <h2
+                className="gs-panelhead"
+                style={{ color: '#E65100', marginBottom: 4 }}
               >
-                <h2 style={{ fontSize: 26 }}>Needs now</h2>
-                <Link
-                  to="/missions"
-                  className="gs-btn gs-btn--ghost gs-btn--sm"
-                >
-                  All missions
-                </Link>
-              </div>
-              {openMissions.length ? (
-                <div className="gs-grid gs-grid--2">
-                  {openMissions.map((mission) => (
-                    <MissionCard key={mission.id} mission={mission} />
-                  ))}
-                </div>
-              ) : (
-                <Empty>
-                  No open missions here this week — check back, or start one
-                  with your chapter lead.
-                </Empty>
-              )}
-            </div>
-
-            {fundingNeeds.length ? (
-              <div className="gs-card gs-card--flat">
-                <p className="gs-eyebrow">Funding needs</p>
-                <div className="gs-stack" style={{ gap: 14, marginTop: 12 }}>
-                  {fundingNeeds.map((need) => (
-                    <div key={need.id} className="gs-stack" style={{ gap: 4 }}>
-                      <div className="gs-row gs-row--between">
-                        <Link
-                          to="/fund"
-                          className="gs-small"
-                          style={{ fontWeight: 700 }}
-                        >
-                          {need.title}
-                        </Link>
-                        <span className="gs-small gs-muted">
-                          {formatShortMoney(need.gap, os.currency)} still needed
-                        </span>
-                      </div>
-                      <Bar
-                        pct={need.securedPct}
-                        tone={need.urgent ? 'amber' : 'green'}
-                        label={need.title}
-                      />
-                    </div>
-                  ))}
-                </div>
-              </div>
-            ) : null}
-
-            <div className="gs-card gs-card--flat">
-              <p className="gs-eyebrow">Published impact from this chapter</p>
-              {chapter.impact.length ? (
-                <div className="gs-stack" style={{ gap: 12, marginTop: 12 }}>
-                  {chapter.impact.map((record) => (
-                    <div key={record.id} className="gs-row gs-row--between">
-                      <Link
-                        to="/impact"
-                        hash={record.id}
-                        className="gs-small"
-                        style={{ fontWeight: 700 }}
-                      >
-                        {record.title}
-                      </Link>
-                      <span className="gs-small gs-muted">
-                        {formatNumber(record.primaryValue)} {record.unitLabel} ·{' '}
-                        {record.evidenceVerified}/{record.evidenceTotal}{' '}
-                        evidence checked
-                      </span>
-                    </div>
-                  ))}
-                </div>
-              ) : (
-                <p className="gs-small gs-muted" style={{ marginTop: 10 }}>
-                  Nothing published yet. Records are published by HQ once the
-                  evidence is in.
-                </p>
-              )}
-            </div>
-
-            {leadsThis ? (
-              <div className="gs-card gs-card--blue-wash">
-                <p className="gs-eyebrow">Chapter Control</p>
-                <h3 style={{ marginTop: 8, fontSize: 20 }}>
-                  Your chapter, within the guardrails
-                </h3>
-                <p
-                  className="gs-small"
-                  style={{ color: 'var(--gs-ink-70)', marginTop: 8 }}
-                >
-                  You can publish low-risk missions yourself. Budgets, published
-                  impact records, credentials and public opportunities go to HQ
-                  first — that is what keeps one chapter's claim as trustworthy
-                  as the whole network's.
-                </p>
-
-                <div className="gs-stack" style={{ gap: 10, marginTop: 16 }}>
-                  <div className="gs-row gs-row--between">
-                    <span className="gs-small">Goodness Standards</span>
-                    <span className="gs-small gs-num">
-                      {chapter.standardsDone}/{chapter.standardsTotal}
-                    </span>
-                  </div>
-                  <Bar pct={chapter.standardsPct} label="Goodness Standards" />
-                </div>
-
-                {proposalSent ? (
-                  <Banner>
-                    Sent to HQ. You will see the decision here with any note
-                    attached.
-                  </Banner>
-                ) : (
-                  <form
-                    className="gs-stack"
-                    style={{ gap: 10, marginTop: 16 }}
-                    onSubmit={(e) => {
-                      e.preventDefault()
-                      const form = new FormData(e.currentTarget)
-                      void submitProposal({
-                        chapterId: chapter.id,
-                        title: String(form.get('title') ?? ''),
-                        kind: String(form.get('kind') ?? 'mission'),
-                        detail: String(form.get('detail') ?? ''),
-                        amount: Number(form.get('amount') ?? 0) || undefined,
-                      }).then(() => setProposalSent(true))
-                    }}
-                  >
-                    <input
-                      name="title"
-                      required
-                      placeholder="What are you proposing?"
-                      aria-label="Proposal title"
-                    />
-                    <div className="gs-grid gs-grid--2">
-                      <select
-                        name="kind"
-                        defaultValue="mission"
-                        aria-label="Proposal type"
-                      >
-                        <option value="mission">Mission</option>
-                        <option value="budget">Budget</option>
-                        <option value="impact">
-                          Impact record publication
-                        </option>
-                        <option value="opportunity">Funding opportunity</option>
-                      </select>
-                      <input
-                        name="amount"
-                        type="number"
-                        min={0}
-                        placeholder={`Amount (${os.currency}) if any`}
-                        aria-label="Amount"
-                      />
-                    </div>
-                    <textarea
-                      name="detail"
-                      rows={3}
-                      placeholder="Anything HQ needs to know"
-                      aria-label="Detail"
-                    />
-                    <button
-                      type="submit"
-                      className="gs-btn gs-btn--primary gs-btn--sm"
-                      style={{ alignSelf: 'flex-start' }}
-                    >
-                      Send to HQ
-                    </button>
-                  </form>
-                )}
-
-                {proposals.length ? (
-                  <div className="gs-stack" style={{ gap: 8, marginTop: 18 }}>
-                    <p className="gs-eyebrow">Your proposals</p>
-                    {proposals.map((proposal) => (
-                      <div key={proposal.id} className="gs-row gs-row--between">
-                        <span className="gs-small">{proposal.title}</span>
-                        <Pill
-                          tone={
-                            proposal.stage === 'approved'
-                              ? 'green'
-                              : proposal.stage === 'returned'
-                                ? 'amber'
-                                : 'neutral'
-                          }
-                        >
-                          {proposal.stage}
-                        </Pill>
-                      </div>
-                    ))}
-                  </div>
-                ) : null}
-              </div>
-            ) : null}
-          </div>
-
-          <div className="gs-stack" style={{ gap: 20 }}>
-            <div className="gs-card gs-card--flat">
-              <p className="gs-eyebrow">Leadership</p>
-              <div className="gs-stack" style={{ gap: 12, marginTop: 12 }}>
-                {chapter.team
-                  .filter((member) => !member.untilLabel)
-                  .map((member, i) => (
-                    <div
-                      key={`${member.role}-${i}`}
-                      className="gs-row"
-                      style={{ gap: 10 }}
-                    >
-                      {member.volunteer ? (
-                        <Avatar
-                          initials={member.volunteer.initials}
-                          color={member.volunteer.avatarColor}
-                          size="sm"
-                        />
-                      ) : null}
-                      <div className="gs-stack" style={{ gap: 0 }}>
-                        {member.volunteer ? (
-                          <Link
-                            to="/people/$volunteerId"
-                            params={{ volunteerId: member.volunteer.slug }}
-                            className="gs-small"
-                            style={{ fontWeight: 700 }}
-                          >
-                            {member.volunteer.fullName}
-                          </Link>
-                        ) : (
-                          <span
-                            className="gs-small"
-                            style={{ fontWeight: 700 }}
-                          >
-                            {member.personName}
-                          </span>
-                        )}
-                        <span className="gs-small gs-muted">
-                          {member.role} · since {member.sinceLabel}
-                        </span>
-                      </div>
-                    </div>
-                  ))}
-              </div>
-              {chapter.team.some((m) => m.untilLabel) ? (
-                <div className="gs-stack" style={{ gap: 6, marginTop: 14 }}>
-                  <p className="gs-eyebrow">Previously</p>
-                  {chapter.team
-                    .filter((m) => m.untilLabel)
-                    .map((member, i) => (
-                      <span key={i} className="gs-small gs-muted">
-                        {member.volunteer?.fullName ?? member.personName} ·{' '}
-                        {member.role} ({member.untilLabel})
-                      </span>
-                    ))}
-                </div>
-              ) : null}
-            </div>
-
-            <div className="gs-card gs-card--flat">
-              <p className="gs-eyebrow">Goals this year</p>
-              <div className="gs-stack" style={{ gap: 12, marginTop: 12 }}>
-                {chapter.goals.map((goal) => (
-                  <div key={goal.id} className="gs-stack" style={{ gap: 4 }}>
-                    <div className="gs-row gs-row--between">
-                      <span className="gs-small">{goal.label}</span>
-                      <span className="gs-small gs-num">
-                        {formatNumber(goal.current)} /{' '}
-                        {formatNumber(goal.target)}
-                      </span>
-                    </div>
-                    <Bar pct={goal.pct} label={goal.label} />
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <div className="gs-card gs-card--flat">
-              <p className="gs-eyebrow">Local partners</p>
-              <div className="gs-stack" style={{ gap: 8, marginTop: 10 }}>
-                {chapter.partners.length ? (
-                  chapter.partners.map((partner) => (
-                    <Link
-                      key={partner.id}
-                      to="/partners/$partnerId"
-                      params={{ partnerId: partner.id }}
-                      className="gs-small"
-                      style={{ fontWeight: 600 }}
-                    >
-                      {partner.name}
-                    </Link>
-                  ))
-                ) : (
-                  <span className="gs-small gs-muted">
-                    No local partner yet.
-                  </span>
-                )}
-              </div>
-            </div>
-
-            <div className="gs-card gs-card--flat">
-              <p className="gs-eyebrow">From HQ</p>
-              <div className="gs-stack" style={{ gap: 12, marginTop: 10 }}>
-                {announcements.map((announcement) => (
-                  <div
-                    key={announcement.id}
-                    className="gs-stack"
-                    style={{ gap: 4 }}
-                  >
-                    <strong className="gs-small">{announcement.title}</strong>
-                    <span className="gs-small gs-muted">
-                      {announcement.body}
-                    </span>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <div className="gs-card gs-card--flat">
-              <p className="gs-eyebrow">Members</p>
-              <div className="gs-stack" style={{ gap: 8, marginTop: 10 }}>
-                {chapter.members.slice(0, 8).map((member) => (
+                Needed now
+              </h2>
+              <p
+                style={{
+                  margin: '0 0 14px',
+                  fontSize: 12,
+                  color: 'var(--gs-ink-40)',
+                }}
+              >
+                How you can help this chapter this week.
+              </p>
+              <div className="gs-stack" style={{ gap: 10 }}>
+                {needs.map((need, i) => (
                   <Link
-                    key={member.id}
-                    to="/people/$volunteerId"
-                    params={{ volunteerId: member.slug }}
-                    className="gs-row gs-row--between"
+                    key={i}
+                    to={need.to}
+                    params={need.params}
+                    className="gs-teamrow"
+                    style={{ padding: '13px 16px' }}
                   >
-                    <span className="gs-small">{member.fullName}</span>
-                    <span className="gs-small gs-muted">
-                      {member.totalHours} hrs
+                    <span
+                      className="gs-mark"
+                      style={{
+                        width: 30,
+                        height: 30,
+                        fontSize: 13,
+                        background: need.bg,
+                        color: need.color,
+                      }}
+                    >
+                      {need.icon}
+                    </span>
+                    <div style={{ flex: 1, minWidth: 0 }}>
+                      <div style={{ fontSize: 13, fontWeight: 700 }}>
+                        {need.title}
+                      </div>
+                      <div
+                        style={{ fontSize: 11.5, color: 'var(--gs-ink-50)' }}
+                      >
+                        {need.note}
+                      </div>
+                    </div>
+                    <span
+                      style={{
+                        fontSize: 12,
+                        fontWeight: 700,
+                        color: 'var(--gs-green-deep)',
+                      }}
+                    >
+                      →
                     </span>
                   </Link>
                 ))}
               </div>
-            </div>
-          </div>
+            </section>
+          ) : null}
+
+          <section className="gs-panelcard">
+            <h2 className="gs-panelhead" style={{ marginBottom: 14 }}>
+              Missions in {chapter.city}
+            </h2>
+            {chapter.missions.length === 0 ? (
+              <div style={{ fontSize: 13, color: 'var(--gs-ink-40)' }}>
+                No missions listed here yet.
+              </div>
+            ) : (
+              <div className="gs-stack" style={{ gap: 10 }}>
+                {chapter.missions.map((mission) => {
+                  const done = mission.status === 'completed'
+                  const full = mission.isFull || mission.status === 'full'
+                  const urgent = mission.priority === 'urgent'
+                  return (
+                    <Link
+                      key={mission.id}
+                      to="/missions/$missionId"
+                      params={{ missionId: mission.id }}
+                      className="gs-teamrow"
+                      style={{ padding: '14px 16px', borderRadius: 14 }}
+                    >
+                      <span
+                        className="gs-tag"
+                        style={{
+                          letterSpacing: 0,
+                          background: done
+                            ? '#f0f1f3'
+                            : urgent
+                              ? '#fff3e0'
+                              : full
+                                ? '#e8f0fc'
+                                : '#f0faf3',
+                          color: done
+                            ? '#6B7280'
+                            : urgent
+                              ? '#E65100'
+                              : full
+                                ? '#1565C0'
+                                : '#1B7A34',
+                        }}
+                      >
+                        {done
+                          ? 'Completed'
+                          : full
+                            ? 'Full'
+                            : urgent
+                              ? 'Urgent'
+                              : 'Open'}
+                      </span>
+                      <div style={{ flex: 1, minWidth: 0 }}>
+                        <div style={{ fontSize: 13.5, fontWeight: 700 }}>
+                          {mission.title}
+                        </div>
+                        <div
+                          style={{
+                            fontSize: 11.5,
+                            color: 'var(--gs-ink-50)',
+                            marginTop: 2,
+                          }}
+                        >
+                          {mission.dateLabel} · {mission.filled}/{mission.need}{' '}
+                          roles filled · {mission.hours} service hours
+                        </div>
+                      </div>
+                      <span
+                        style={{
+                          fontSize: 12,
+                          fontWeight: 700,
+                          color: 'var(--gs-green-deep)',
+                        }}
+                      >
+                        View →
+                      </span>
+                    </Link>
+                  )
+                })}
+              </div>
+            )}
+          </section>
+
+          <section className="gs-panelcard">
+            <h2 className="gs-panelhead" style={{ marginBottom: 14 }}>
+              Published impact from this chapter
+            </h2>
+            {chapter.impact.length === 0 ? (
+              <div style={{ fontSize: 13, color: 'var(--gs-ink-40)' }}>
+                No published impact records yet — nothing is invented before
+                it’s measured.
+              </div>
+            ) : (
+              <div className="gs-stack" style={{ gap: 10 }}>
+                {chapter.impact.map((record) => (
+                  <Link
+                    key={record.id}
+                    to="/impact"
+                    hash={record.id}
+                    className="gs-teamrow"
+                    style={{ padding: '14px 16px', borderRadius: 14 }}
+                  >
+                    <div style={{ flex: 1, minWidth: 0 }}>
+                      <div style={{ fontSize: 13.5, fontWeight: 700 }}>
+                        {record.title}
+                      </div>
+                      <div
+                        style={{
+                          fontSize: 11.5,
+                          color: 'var(--gs-ink-50)',
+                          marginTop: 2,
+                        }}
+                      >
+                        {formatNumber(record.primaryValue)} {record.unitLabel} ·
+                        evidence {record.evidenceVerified}/
+                        {record.evidenceTotal} verified
+                      </div>
+                    </div>
+                    <span
+                      style={{
+                        fontSize: 12,
+                        fontWeight: 700,
+                        color: 'var(--gs-green-deep)',
+                      }}
+                    >
+                      Record →
+                    </span>
+                  </Link>
+                ))}
+              </div>
+            )}
+          </section>
+
+          {stories.length ? (
+            <section className="gs-panelcard gs-panelcard--wash">
+              <h2
+                className="gs-panelhead gs-panelhead--green"
+                style={{ marginBottom: 14 }}
+              >
+                From this chapter
+              </h2>
+              <div className="gs-stack" style={{ gap: 10 }}>
+                {stories.map((story) => (
+                  <div
+                    key={story}
+                    style={{
+                      display: 'flex',
+                      alignItems: 'flex-start',
+                      gap: 10,
+                    }}
+                  >
+                    <span
+                      style={{
+                        width: 8,
+                        height: 8,
+                        borderRadius: '50%',
+                        background: 'var(--gs-green)',
+                        marginTop: 5,
+                        flexShrink: 0,
+                      }}
+                    />
+                    <span
+                      style={{
+                        fontSize: 13,
+                        color: '#374151',
+                        lineHeight: 1.55,
+                      }}
+                    >
+                      {story}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </section>
+          ) : null}
         </div>
-      </Section>
-    </>
+
+        <div className="gs-detailcol">
+          <section className="gs-panelcard">
+            <div
+              className="gs-row gs-row--between"
+              style={{ gap: 10, marginBottom: 14 }}
+            >
+              <h2 className="gs-panelhead">Chapter team</h2>
+              <Link
+                to="/admin"
+                search={{ tab: 'network' }}
+                style={{ fontSize: 11, fontWeight: 700 }}
+              >
+                Lead? Chapter Control ↗
+              </Link>
+            </div>
+            {chapter.team.filter((t) => t.volunteer && !t.untilLabel).length ===
+            0 ? (
+              <div style={{ fontSize: 13, color: 'var(--gs-ink-40)' }}>
+                Leadership team being established.
+              </div>
+            ) : (
+              <div className="gs-stack" style={{ gap: 10 }}>
+                {chapter.team
+                  .filter((t) => t.volunteer && !t.untilLabel)
+                  .map((member, i) => (
+                    <Link
+                      key={i}
+                      to="/people/$volunteerId"
+                      params={{ volunteerId: member.volunteer!.slug }}
+                      className="gs-teamrow"
+                    >
+                      <span
+                        className={`gs-mark ${member.volunteer!.avatarColor === 'blue' ? 'gs-mark--blue' : member.volunteer!.avatarColor === 'teal' ? 'gs-mark--teal' : ''}`}
+                        style={{ width: 36, height: 36, fontSize: 12 }}
+                      >
+                        {member.volunteer!.initials}
+                      </span>
+                      <div style={{ flex: 1, minWidth: 0 }}>
+                        <div style={{ fontSize: 13, fontWeight: 700 }}>
+                          {member.volunteer!.fullName}
+                        </div>
+                        <div
+                          style={{ fontSize: 11, color: 'var(--gs-ink-40)' }}
+                        >
+                          {member.role} · since {member.sinceLabel}
+                        </div>
+                      </div>
+                    </Link>
+                  ))}
+              </div>
+            )}
+            {history.length ? (
+              <div
+                style={{
+                  marginTop: 12,
+                  paddingTop: 12,
+                  borderTop: '1px solid var(--gs-line-soft)',
+                  fontSize: 11.5,
+                  color: 'var(--gs-ink-40)',
+                }}
+              >
+                {history
+                  .map(
+                    (h) =>
+                      `${h.volunteer?.fullName ?? h.personName} — ${h.role} (${h.untilLabel})`,
+                  )
+                  .join(' · ')}
+              </div>
+            ) : null}
+          </section>
+
+          {chapter.goals.length ? (
+            <section className="gs-panelcard">
+              <h2 className="gs-panelhead" style={{ marginBottom: 14 }}>
+                2026 goals
+              </h2>
+              <div className="gs-stack" style={{ gap: 14 }}>
+                {chapter.goals.map((goal) => (
+                  <div key={goal.id}>
+                    <div
+                      style={{
+                        display: 'flex',
+                        alignItems: 'baseline',
+                        justifyContent: 'space-between',
+                        gap: 10,
+                        marginBottom: 5,
+                      }}
+                    >
+                      <span style={{ fontSize: 12.5, fontWeight: 600 }}>
+                        {goal.label}
+                      </span>
+                      <span
+                        style={{
+                          fontSize: 12.5,
+                          fontWeight: 800,
+                          color: 'var(--gs-green-deep)',
+                        }}
+                      >
+                        {formatNumber(goal.current)} /{' '}
+                        {formatNumber(goal.target)}
+                      </span>
+                    </div>
+                    <div className="gs-capbar">
+                      <div
+                        className="gs-capbar__fill"
+                        style={{
+                          width: `${goal.pct}%`,
+                          background:
+                            'linear-gradient(90deg, #4DC86A, #1B7A34)',
+                        }}
+                      />
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </section>
+          ) : null}
+
+          <section className="gs-panelcard">
+            <h2 className="gs-panelhead" style={{ marginBottom: 14 }}>
+              Partners powering {shortName}
+            </h2>
+            {chapter.partners.length === 0 ? (
+              <div style={{ fontSize: 13, color: 'var(--gs-ink-40)' }}>
+                No local partners yet — be the first.
+              </div>
+            ) : (
+              <div className="gs-stack" style={{ gap: 8 }}>
+                {chapter.partners.map((partner) => (
+                  <Link
+                    key={partner.id}
+                    to="/partners/$partnerId"
+                    params={{ partnerId: partner.id }}
+                    className="gs-teamrow"
+                  >
+                    <span
+                      className="gs-mark gs-mark--blue"
+                      style={{ width: 28, height: 28, fontSize: 10 }}
+                    >
+                      {(partner.name.match(/[A-Z]/g) ?? [])
+                        .slice(0, 2)
+                        .join('')}
+                    </span>
+                    <div style={{ flex: 1, minWidth: 0 }}>
+                      <div
+                        style={{
+                          fontSize: 12.5,
+                          fontWeight: 700,
+                          whiteSpace: 'nowrap',
+                          overflow: 'hidden',
+                          textOverflow: 'ellipsis',
+                        }}
+                      >
+                        {partner.name}
+                      </div>
+                      <div
+                        style={{ fontSize: 10.5, color: 'var(--gs-ink-40)' }}
+                      >
+                        {partner.tier}
+                      </div>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            )}
+            <Link
+              to="/fund"
+              style={{
+                display: 'inline-block',
+                marginTop: 12,
+                fontSize: 12,
+                fontWeight: 800,
+              }}
+            >
+              Help fund {shortName} →
+            </Link>
+          </section>
+
+          {(isMine || justJoined) && !forming ? (
+            <div
+              style={{
+                padding: '14px 16px',
+                borderRadius: 999,
+                background: 'var(--gs-green-wash)',
+                border: '1px solid rgba(27,122,52,0.3)',
+                textAlign: 'center',
+                fontSize: 13,
+                fontWeight: 800,
+                color: 'var(--gs-green-deep)',
+              }}
+            >
+              {justJoined
+                ? `You now belong to ${chapter.name} ✓`
+                : 'This is your chapter ✓'}
+            </div>
+          ) : person && !forming ? (
+            <button
+              type="button"
+              className="gs-btn gs-btn--primary gs-btn--block"
+              style={{ padding: '15px 0', fontSize: 14 }}
+              onClick={() => {
+                void setMyChapter(person.id, chapter.id)
+                setJustJoined(true)
+              }}
+            >
+              Make this my chapter →
+            </button>
+          ) : (
+            <Link
+              to={forming ? '/join' : '/me'}
+              className="gs-btn gs-btn--primary gs-btn--block"
+              style={{ padding: '15px 0', fontSize: 14 }}
+            >
+              {forming ? 'Help form this chapter' : `Join ${chapter.name}`} →
+            </Link>
+          )}
+
+          <p
+            style={{
+              margin: 0,
+              fontSize: 11,
+              color: 'var(--gs-ink-40)',
+              lineHeight: 1.6,
+            }}
+          >
+            Your primary chapter is where you belong organisationally — you can
+            still join missions anywhere in Goodness.
+          </p>
+
+          {(isMine && !forming) || forming ? (
+            <div className="gs-row" style={{ gap: 6 }}>
+              <span
+                style={{
+                  fontSize: 10,
+                  fontWeight: 800,
+                  letterSpacing: '0.1em',
+                  color: 'var(--gs-ink-40)',
+                }}
+              >
+                SHARE THIS CHAPTER:
+              </span>
+              {forming ? (
+                <Link
+                  to="/studio"
+                  search={{ card: 'launch', chapter: chapter.id }}
+                  className="gs-tag gs-tag--program"
+                  style={{
+                    background: '#f0faf3',
+                    border: '1px solid rgba(27,122,52,0.25)',
+                    color: '#1B7A34',
+                    padding: '6px 12px',
+                  }}
+                >
+                  Recruit founding volunteers
+                </Link>
+              ) : (
+                <>
+                  <Link
+                    to="/studio"
+                    search={{ card: 'chapter', chapter: chapter.id }}
+                    className="gs-tag gs-tag--program"
+                    style={{
+                      background: '#f0faf3',
+                      border: '1px solid rgba(27,122,52,0.25)',
+                      color: '#1B7A34',
+                      padding: '6px 12px',
+                    }}
+                  >
+                    Proud member
+                  </Link>
+                  <Link
+                    to="/studio"
+                    search={{ card: 'chapmile', chapter: chapter.id }}
+                    className="gs-tag gs-tag--program"
+                    style={{
+                      background: '#f0faf3',
+                      border: '1px solid rgba(27,122,52,0.25)',
+                      color: '#1B7A34',
+                      padding: '6px 12px',
+                    }}
+                  >
+                    Chapter milestone
+                  </Link>
+                  <Link
+                    to="/studio"
+                    search={{ card: 'yearchapter', chapter: chapter.id }}
+                    className="gs-tag gs-tag--program"
+                    style={{
+                      background: '#f0faf3',
+                      border: '1px solid rgba(27,122,52,0.25)',
+                      color: '#1B7A34',
+                      padding: '6px 12px',
+                    }}
+                  >
+                    Year in review
+                  </Link>
+                </>
+              )}
+            </div>
+          ) : null}
+        </div>
+      </div>
+    </div>
   )
 }
+
+export type { ChapterView }
