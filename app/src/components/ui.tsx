@@ -178,14 +178,19 @@ export function Display({
   onInk,
   reverse,
   italic,
+  stacked,
+  boldColor,
   as: Tag = 'h2',
 }: {
   light: string
   bold: string
-  variant?: 'hero' | 'minor' | 'cta'
+  variant?: 'hero' | 'page' | 'minor' | 'cta'
   onInk?: boolean
   reverse?: boolean
   italic?: boolean
+  /** Design sometimes breaks the two clauses onto their own lines (e.g. the missions board). */
+  stacked?: boolean
+  boldColor?: string
   as?: 'h1' | 'h2'
 }) {
   const cls = [
@@ -201,16 +206,23 @@ export function Display({
       {light}
     </span>
   )
-  const boldSpan = <span>{bold}</span>
+  const boldSpan = (
+    <span style={boldColor ? { color: boldColor } : undefined}>{bold}</span>
+  )
+  const separator = stacked ? <br /> : ' '
   return (
     <Tag className={cls}>
       {reverse ? (
         <>
-          {boldSpan} {lightSpan}
+          {boldSpan}
+          {separator}
+          {lightSpan}
         </>
       ) : (
         <>
-          {lightSpan} {boldSpan}
+          {lightSpan}
+          {separator}
+          {boldSpan}
         </>
       )}
     </Tag>

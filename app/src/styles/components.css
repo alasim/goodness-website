@@ -1128,3 +1128,209 @@ a.gs-tile--plain:hover {
     grid-template-columns: 1fr;
   }
 }
+
+/* ══ Page heroes and boards (Missions.dc.html and siblings) ══════════════ */
+.gs-pagehero {
+  position: relative;
+  background: #fff;
+  padding: 56px 0 40px;
+  overflow: hidden;
+}
+.gs-livepill {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 16px;
+  border-radius: var(--gs-radius-pill);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  background: var(--gs-gradient);
+}
+.gs-display--page {
+  font-size: clamp(42px, 5.6vw, 74px);
+  line-height: 1.03;
+  letter-spacing: -0.02em;
+}
+.gs-herogrid {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 40px;
+  align-items: end;
+}
+
+/* Hairline-divided stat bar: one grid, 1px gaps showing the border colour through. */
+.gs-statbar {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: var(--gs-line);
+  border-radius: var(--gs-radius);
+  overflow: hidden;
+  border: 1px solid var(--gs-line);
+}
+.gs-statbar > div {
+  background: #fff;
+  padding: 18px 22px;
+}
+.gs-statbar__value {
+  font-weight: 800;
+  font-size: 22px;
+  color: var(--gs-green-deep);
+}
+.gs-statbar__label {
+  font-size: 12px;
+  color: var(--gs-ink-50);
+  margin-top: 2px;
+}
+
+.gs-board {
+  padding: 40px 0 96px;
+  background: var(--gs-mist);
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+}
+.gs-searchpill {
+  flex: 1;
+  min-width: 240px;
+  max-width: 360px;
+  padding: 11px 20px;
+  border-radius: var(--gs-radius-pill);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  background: #fff;
+  font-size: 14px;
+}
+.gs-searchpill:focus {
+  border-color: var(--gs-green-deep);
+  box-shadow: none;
+}
+.gs-filter {
+  padding: 8px 14px;
+  border-radius: var(--gs-radius-pill);
+  font-size: 12px;
+  font-weight: 700;
+  white-space: nowrap;
+  cursor: pointer;
+  background: #fff;
+  color: var(--gs-ink-50);
+  border: 1px solid var(--gs-line);
+}
+.gs-filter:hover {
+  color: var(--gs-green-deep);
+  border-color: var(--gs-green);
+}
+.gs-filter[aria-pressed='true'] {
+  background: var(--gs-gradient);
+  color: #fff;
+  border-color: transparent;
+}
+.gs-resultcount {
+  font-size: 12px;
+  color: var(--gs-ink-40);
+  font-weight: 500;
+}
+
+/* Mission card: accent rail on top, capacity bar, CTA row. */
+.gs-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+  gap: 20px;
+}
+.gs-mcard {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  background: #fff;
+  color: inherit;
+  border: 1px solid var(--gs-line);
+  border-top: 3px solid var(--gs-green);
+  border-radius: var(--gs-radius);
+  padding: 24px;
+  transition:
+    box-shadow 0.15s ease,
+    transform 0.15s ease;
+}
+.gs-mcard:hover {
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.1);
+  transform: translateY(-3px);
+  color: inherit;
+}
+.gs-mcard__title {
+  font-size: 19px;
+  font-weight: 800;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  margin: 0;
+}
+.gs-mcard__meta {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  font-size: 13px;
+  color: var(--gs-ink-50);
+}
+.gs-mcard__summary {
+  font-size: 13px;
+  color: #374151;
+  line-height: 1.6;
+  margin: 0;
+}
+.gs-mcard__foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 12px;
+  border-top: 1px solid var(--gs-line-soft);
+}
+.gs-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 10px;
+  border-radius: var(--gs-radius-pill);
+  font-size: 10px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  white-space: nowrap;
+}
+.gs-tag--program {
+  font-weight: 700;
+  text-transform: none;
+  letter-spacing: 0;
+}
+.gs-tag__dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  display: inline-block;
+}
+.gs-capbar {
+  height: 8px;
+  border-radius: var(--gs-radius-pill);
+  background: #f0f1f3;
+  overflow: hidden;
+}
+.gs-capbar__fill {
+  height: 100%;
+  border-radius: var(--gs-radius-pill);
+}
+
+@media (max-width: 1080px) {
+  .gs-herogrid {
+    grid-template-columns: 1fr;
+    gap: 28px;
+    align-items: start;
+  }
+  .gs-statbar {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 720px) {
+  .gs-statbar {
+    grid-template-columns: 1fr;
+  }
+  .gs-cards {
+    grid-template-columns: 1fr;
+  }
+}
