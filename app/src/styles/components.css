@@ -2904,3 +2904,96 @@ a.gs-tile--plain:hover {
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.07);
   color: inherit;
 }
+
+/* ── Verify (`Verify.dc.html`) ─────────────────────────────────────────── */
+.gs-verify {
+  max-width: 720px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 56px 24px 80px;
+  box-sizing: border-box;
+}
+.gs-verifybox {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  background: #fff;
+  border: 1px solid var(--gs-line);
+  border-radius: var(--gs-radius-xl);
+  padding: 28px;
+  margin-bottom: 24px;
+}
+.gs-verifybox input {
+  flex: 1;
+  min-width: 220px;
+  box-sizing: border-box;
+  padding: 14px 20px;
+  border-radius: var(--gs-radius-pill);
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  background: var(--gs-mist);
+  font-size: 15px;
+}
+.gs-verifybox input:focus {
+  border-color: var(--gs-green-deep);
+  background: #fff;
+  box-shadow: none;
+}
+.gs-verifyresult {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: #fff;
+  border-radius: var(--gs-radius-xl);
+}
+.gs-verifyresult--valid {
+  border: 2px solid rgba(27, 122, 52, 0.3);
+}
+.gs-verifyresult--revoked {
+  border: 2px solid rgba(212, 24, 61, 0.3);
+}
+.gs-verifyresult__head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 20px 28px;
+  background: var(--gs-gradient);
+}
+.gs-verifygrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: rgba(0, 0, 0, 0.07);
+  border: 1px solid rgba(0, 0, 0, 0.07);
+  border-radius: 14px;
+  overflow: hidden;
+}
+.gs-verifygrid > div {
+  background: #fff;
+  padding: 14px 18px;
+}
+.gs-verifygrid__key {
+  font-size: 10px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--gs-ink-40);
+}
+.gs-verifygrid__value {
+  font-size: 14px;
+  font-weight: 700;
+  margin-top: 3px;
+}
+.gs-verifycard {
+  background: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: var(--gs-radius-xl);
+}
+.gs-trybox {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  background: #fff;
+  border: 1px dashed rgba(0, 0, 0, 0.12);
+  border-radius: var(--gs-radius-xl);
+  padding: 24px 28px;
+}
