@@ -2178,3 +2178,103 @@ a.gs-tile--plain:hover {
   height: 1px;
   background: var(--gs-green);
 }
+
+/* ── Goodness Passport (`Volunteer Profile.dc.html`) ───────────────────── */
+/* The verified badge sits on the corner of the passport avatar. */
+.gs-verifiedchip {
+  position: absolute;
+  bottom: -8px;
+  right: -8px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 10px;
+  border-radius: var(--gs-radius-pill);
+  font-size: 10px;
+  font-weight: 800;
+  color: #fff;
+  white-space: nowrap;
+  background: var(--gs-gradient);
+  border: 2px solid var(--gs-ink);
+}
+.gs-sustainchip {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 10px;
+  border-radius: var(--gs-radius-pill);
+  font-size: 10px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  background: rgba(77, 200, 106, 0.18);
+  color: var(--gs-green);
+  border: 1px solid rgba(77, 200, 106, 0.4);
+}
+
+/* Downloads: one row per issuable asset, on / locked / neutral. */
+.gs-assetrow {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 20px;
+  border-radius: 14px;
+  border: 1px solid var(--gs-line);
+  background: #fff;
+}
+.gs-assetrow--on {
+  border-color: rgba(27, 122, 52, 0.25);
+  background: var(--gs-green-wash);
+}
+.gs-assetrow--off {
+  border: 1px dashed rgba(0, 0, 0, 0.15);
+  background: var(--gs-mist);
+}
+.gs-mark--locked {
+  background: #ececf0;
+}
+.gs-mark--ink {
+  background: var(--gs-ink);
+}
+.gs-lockchip {
+  padding: 6px 14px;
+  border-radius: var(--gs-radius-pill);
+  font-size: 11px;
+  font-weight: 800;
+  color: var(--gs-ink-40);
+  background: #ececf0;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+.gs-quickcard {
+  padding: 6px 12px;
+  border-radius: var(--gs-radius-pill);
+  background: var(--gs-green-wash);
+  border: 1px solid rgba(27, 122, 52, 0.25);
+  color: var(--gs-green-deep);
+  font-size: 11px;
+  font-weight: 700;
+  text-decoration: none;
+}
+.gs-quickcard:hover {
+  border-color: var(--gs-green);
+}
+
+/* One issued credential, with its verify chip. */
+.gs-credrow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  border: 1px solid rgba(0, 0, 0, 0.07);
+  border-radius: 12px;
+}
+.gs-credrow__icon {
+  width: 34px;
+  height: 34px;
+  border-radius: 30%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}

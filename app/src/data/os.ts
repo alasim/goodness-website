@@ -47,6 +47,8 @@ export interface VolunteerView extends Profile {
   peopleSupported: number
   programsCount: number
   sustainingMember: boolean
+  /** Month the sustaining commitment started — the badge carries it, as the passport design does. */
+  sustainingSince: string | null
 }
 
 export interface MissionRoleView extends MissionRole {
@@ -217,10 +219,10 @@ export function buildOS(data: Dataset): OSModel {
   const credentialsByProfile = groupBy(data.credentials, (c) => c.profileId)
   const assignmentsByProfile = groupBy(data.assignments, (a) => a.profileId)
   const missionHours = new Map(data.missions.map((m) => [m.id, m.hours]))
-  const activeCommitments = new Set(
+  const activeCommitments = new Map(
     data.commitments
       .filter((c) => c.status === 'active' && c.badgeOptIn)
-      .map((c) => c.profileId),
+      .map((c) => [c.profileId, c.startedOn]),
   )
 
   const people: Array<VolunteerView> = data.profiles
@@ -249,6 +251,7 @@ export function buildOS(data: Dataset): OSModel {
         peopleSupported: profile.baselinePeople,
         programsCount: profile.baselinePrograms,
         sustainingMember: activeCommitments.has(profile.id),
+        sustainingSince: monthLabel(activeCommitments.get(profile.id)),
       }
     })
 
@@ -662,6 +665,15 @@ const MONTHS = [
   'nov',
   'dec',
 ]
+
+/** "2026-03-14" -> "Mar 2026". Commitment start dates are stored as dates but read as months. */
+function monthLabel(iso: string | undefined): string | null {
+  if (!iso) return null
+  const [year, month] = iso.split('-')
+  const name = MONTHS[Number(month) - 1]
+  if (!year || !name) return null
+  return `${name[0]!.toUpperCase()}${name.slice(1)} ${year}`
+}
 
 /** "Jun 2026" -> months elapsed. Used for partnership tenure, never for money. */
 export function monthsSince(
