@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as AdminRouteImport } from './routes/admin'
+import { Route as ChapterControlRouteImport } from './routes/chapter-control'
 import { Route as FundRouteImport } from './routes/fund'
 import { Route as ImpactRouteImport } from './routes/impact'
 import { Route as JoinRouteImport } from './routes/join'
@@ -45,6 +46,11 @@ const AboutRoute = AboutRouteImport.update({
 const AdminRoute = AdminRouteImport.update({
   id: '/admin',
   path: '/admin',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ChapterControlRoute = ChapterControlRouteImport.update({
+  id: '/chapter-control',
+  path: '/chapter-control',
   getParentRoute: () => rootRouteImport,
 } as any)
 const FundRoute = FundRouteImport.update({
@@ -147,6 +153,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/admin': typeof AdminRoute
+  '/chapter-control': typeof ChapterControlRoute
   '/fund': typeof FundRoute
   '/impact': typeof ImpactRoute
   '/join': typeof JoinRoute
@@ -171,6 +178,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/admin': typeof AdminRoute
+  '/chapter-control': typeof ChapterControlRoute
   '/fund': typeof FundRoute
   '/impact': typeof ImpactRoute
   '/join': typeof JoinRoute
@@ -196,6 +204,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/admin': typeof AdminRoute
+  '/chapter-control': typeof ChapterControlRoute
   '/fund': typeof FundRoute
   '/impact': typeof ImpactRoute
   '/join': typeof JoinRoute
@@ -222,6 +231,7 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/admin'
+    | '/chapter-control'
     | '/fund'
     | '/impact'
     | '/join'
@@ -246,6 +256,7 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/admin'
+    | '/chapter-control'
     | '/fund'
     | '/impact'
     | '/join'
@@ -270,6 +281,7 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/admin'
+    | '/chapter-control'
     | '/fund'
     | '/impact'
     | '/join'
@@ -295,6 +307,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
   AdminRoute: typeof AdminRoute
+  ChapterControlRoute: typeof ChapterControlRoute
   FundRoute: typeof FundRoute
   ImpactRoute: typeof ImpactRoute
   JoinRoute: typeof JoinRoute
@@ -337,6 +350,13 @@ declare module '@tanstack/react-router' {
       path: '/admin'
       fullPath: '/admin'
       preLoaderRoute: typeof AdminRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/chapter-control': {
+      id: '/chapter-control'
+      path: '/chapter-control'
+      fullPath: '/chapter-control'
+      preLoaderRoute: typeof ChapterControlRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/fund': {
@@ -479,6 +499,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   AdminRoute: AdminRoute,
+  ChapterControlRoute: ChapterControlRoute,
   FundRoute: FundRoute,
   ImpactRoute: ImpactRoute,
   JoinRoute: JoinRoute,

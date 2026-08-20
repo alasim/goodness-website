@@ -162,7 +162,10 @@ export function SiteFooter() {
               Mission Control
             </Link>{' '}
             ·{' '}
-            <Link to="/chapters" style={{ color: 'rgba(255,255,255,0.35)' }}>
+            <Link
+              to="/chapter-control"
+              style={{ color: 'rgba(255,255,255,0.35)' }}
+            >
               Chapter Control
             </Link>
           </p>

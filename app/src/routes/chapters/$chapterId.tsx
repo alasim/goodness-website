@@ -511,8 +511,7 @@ function ChapterPage() {
             >
               <h2 className="gs-panelhead">Chapter team</h2>
               <Link
-                to="/admin"
-                search={{ tab: 'network' }}
+                to="/chapter-control"
                 style={{ fontSize: 11, fontWeight: 700 }}
               >
                 Lead? Chapter Control ↗
