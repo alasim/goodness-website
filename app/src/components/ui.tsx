@@ -1,4 +1,4 @@
-import type { ComponentProps, ReactNode } from 'react'
+import type { ComponentProps, CSSProperties, ReactNode } from 'react'
 import { Link } from '@tanstack/react-router'
 
 export type Tone = 'green' | 'blue' | 'amber' | 'red' | 'ink' | 'neutral'
@@ -180,6 +180,7 @@ export function Display({
   italic,
   stacked,
   boldColor,
+  style,
   as: Tag = 'h2',
 }: {
   light: string
@@ -191,6 +192,8 @@ export function Display({
   /** Design sometimes breaks the two clauses onto their own lines (e.g. the missions board). */
   stacked?: boolean
   boldColor?: string
+  /** A page whose design sets its own clamp (the scale is not fully shared) passes it here. */
+  style?: CSSProperties
   as?: 'h1' | 'h2'
 }) {
   const cls = [
@@ -211,7 +214,7 @@ export function Display({
   )
   const separator = stacked ? <br /> : ' '
   return (
-    <Tag className={cls}>
+    <Tag className={cls} style={style}>
       {reverse ? (
         <>
           {boldSpan}

@@ -2001,3 +2001,180 @@ a.gs-tile--plain:hover {
   font-size: 13.5px;
   font-weight: 700;
 }
+
+/* ── Volunteers (`Volunteers.dc.html`) ─────────────────────────────────── */
+/* Icon stat strip: four cells divided by hairlines, each an icon tile + figure. */
+.gs-iconbar {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: var(--gs-line);
+  border-radius: var(--gs-radius);
+  overflow: hidden;
+  border: 1px solid var(--gs-line);
+}
+.gs-iconbar > div {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: #fff;
+  padding: 20px 24px;
+}
+.gs-iconbar__tile {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--gs-squircle);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  background: #f0faf3;
+}
+.gs-iconbar__value {
+  font-weight: 800;
+  font-size: 21px;
+  color: var(--gs-green-deep);
+  line-height: 1;
+}
+.gs-iconbar__label {
+  font-size: 12px;
+  color: var(--gs-ink-50);
+  margin-top: 2px;
+}
+
+/* The featured volunteer: one ink card, avatar / story / figure. */
+.gs-vfeature {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  border-radius: 24px;
+  background: var(--gs-ink);
+  color: #fff;
+  min-height: 300px;
+  text-decoration: none;
+}
+.gs-vfeature:hover {
+  color: #fff;
+}
+.gs-vfeature__grid {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 32px;
+  align-items: center;
+  padding: 48px;
+}
+.gs-vfeature__badge {
+  position: absolute;
+  top: -12px;
+  right: -12px;
+  padding: 4px 10px;
+  border-radius: var(--gs-radius-pill);
+  font-size: 9px;
+  font-weight: 700;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  background: var(--gs-gradient);
+}
+.gs-vfeature__aside {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 16px;
+  flex-shrink: 0;
+}
+
+/* Volunteer card: avatar, figure, programme chip, quote, joined-since foot. */
+.gs-vcards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+.gs-vcard {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+  padding: 24px;
+  background: #fff;
+  color: inherit;
+  border: 1px solid var(--gs-line);
+  border-radius: var(--gs-radius);
+  text-decoration: none;
+  transition:
+    box-shadow 0.15s ease,
+    transform 0.15s ease;
+}
+.gs-vcard:hover {
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.1);
+  transform: translateY(-4px);
+  color: inherit;
+}
+.gs-vcard__quote {
+  margin: 16px 0 0;
+  flex: 1;
+  font-size: 14px;
+  font-weight: 300;
+  font-style: italic;
+  line-height: 1.6;
+  color: #374151;
+}
+.gs-vcard__foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid var(--gs-line-soft);
+}
+
+/* The closing band carries one oversized G behind the invitation. */
+.gs-gletter {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  font-size: 420px;
+  font-weight: 800;
+  line-height: 1;
+  color: rgba(27, 122, 52, 0.03);
+}
+@media (max-width: 900px) {
+  .gs-iconbar {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .gs-vcards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .gs-vfeature__grid {
+    grid-template-columns: 1fr;
+    padding: 32px;
+  }
+  .gs-vfeature__aside {
+    align-items: flex-start;
+  }
+}
+@media (max-width: 640px) {
+  .gs-vcards {
+    grid-template-columns: 1fr;
+  }
+}
+/* Rule — text — rule: the centred kicker above a closing invitation. */
+.gs-ruleline {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--gs-green-deep);
+}
+.gs-ruleline::before,
+.gs-ruleline::after {
+  content: '';
+  width: 32px;
+  height: 1px;
+  background: var(--gs-green);
+}
