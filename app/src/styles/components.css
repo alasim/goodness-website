@@ -1334,3 +1334,209 @@ a.gs-tile--plain:hover {
     grid-template-columns: 1fr;
   }
 }
+
+/* ══ Detail pages (Mission Detail.dc.html and siblings) ══════════════════ */
+.gs-narrow {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 28px 24px 96px;
+}
+.gs-backlink {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 700;
+}
+.gs-inkhero {
+  position: relative;
+  background: var(--gs-ink);
+  border-radius: 24px;
+  overflow: hidden;
+  padding: 36px 40px;
+  margin-bottom: 20px;
+  color: #fff;
+}
+.gs-inkhero h1 {
+  color: #fff;
+  font-size: clamp(30px, 4vw, 44px);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+.gs-inkbar {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: var(--gs-radius-xs);
+  overflow: hidden;
+}
+.gs-inkbar > div {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 16px 20px;
+}
+.gs-inkbar__label {
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.45);
+  margin-bottom: 4px;
+}
+.gs-inkbar__value {
+  font-size: 14px;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.35;
+}
+.gs-inkbar__sub {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.gs-detailgrid {
+  display: grid;
+  grid-template-columns: 1.25fr 0.75fr;
+  gap: 20px;
+  align-items: start;
+}
+.gs-detailcol {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.gs-panelcard {
+  background: #fff;
+  border: 1px solid var(--gs-line);
+  border-radius: var(--gs-radius-xl);
+  padding: 26px;
+}
+.gs-panelcard--wash {
+  background: var(--gs-wash);
+  border-color: rgba(27, 122, 52, 0.22);
+}
+/* Section labels inside detail cards are a distinct style: 12px, 0.2em, faint. */
+.gs-panelhead {
+  margin: 0;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--gs-ink-40);
+  font-weight: 800;
+}
+.gs-panelhead--green {
+  color: var(--gs-green-deep);
+}
+
+.gs-rolerow {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  border: 1px solid rgba(0, 0, 0, 0.07);
+  background: #fff;
+  border-radius: var(--gs-radius-xs);
+  padding: 16px 18px;
+}
+.gs-rolerow--mine {
+  border-color: rgba(27, 122, 52, 0.35);
+  background: var(--gs-green-wash);
+}
+.gs-rolebtn {
+  padding: 9px 18px;
+  border-radius: var(--gs-radius-pill);
+  font-size: 12px;
+  font-weight: 700;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  background: #fff;
+  color: var(--gs-ink-40);
+  flex-shrink: 0;
+  cursor: default;
+}
+.gs-rolebtn--active {
+  background: var(--gs-gradient);
+  color: #fff;
+  border-color: transparent;
+  cursor: pointer;
+}
+.gs-rolebtn--active:hover {
+  opacity: 0.9;
+}
+
+.gs-notice {
+  padding: 12px 14px;
+  border-radius: 12px;
+  font-size: 12px;
+  line-height: 1.5;
+}
+.gs-notice--green {
+  background: var(--gs-green-wash);
+  border: 1px solid rgba(27, 122, 52, 0.2);
+  color: var(--gs-green-deep);
+  font-weight: 700;
+}
+.gs-notice--amber {
+  background: var(--gs-orange-wash);
+  border: 1px solid rgba(230, 81, 0, 0.2);
+  color: var(--gs-orange);
+  font-weight: 600;
+}
+.gs-notice--blue {
+  background: var(--gs-blue-wash);
+  border: 1px solid rgba(21, 101, 192, 0.2);
+  color: #374151;
+}
+.gs-notice--danger {
+  background: #fdf3f5;
+  border: 1px solid rgba(212, 24, 61, 0.25);
+  color: var(--gs-ink);
+}
+.gs-btn--leave {
+  background: #d4183d;
+  color: #fff;
+}
+.gs-btn--leave:hover {
+  opacity: 0.9;
+  color: #fff;
+}
+
+.gs-steprow {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+.gs-stepnum {
+  width: 24px;
+  height: 24px;
+  border-radius: 30%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-size: 11px;
+  font-weight: 800;
+  background: #f0f1f3;
+  color: var(--gs-ink-40);
+}
+.gs-stepnum--on {
+  background: var(--gs-gradient);
+  color: #fff;
+}
+
+.gs-teamrow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  border: 1px solid rgba(0, 0, 0, 0.07);
+  border-radius: 12px;
+}
+
+@media (max-width: 940px) {
+  .gs-detailgrid {
+    grid-template-columns: 1fr;
+  }
+  .gs-inkbar {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .gs-inkhero {
+    padding: 28px 24px;
+  }
+}
