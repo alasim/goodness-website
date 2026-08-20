@@ -530,3 +530,601 @@
   border-bottom-color: var(--gs-green);
   font-weight: 700;
 }
+
+/* ══════════════════════════════════════════════════════════════════════════
+   DESIGN-SOURCE LAYER
+   Classes below reproduce the confirmed design (Home.dc.html and friends).
+   Values are taken from the design file, not invented — see DESIGN-SYSTEM.md.
+   ══════════════════════════════════════════════════════════════════════════ */
+
+/* ── Split-weight display type ────────────────────────────────────────────
+   Every heading is a light clause plus an extrabold clause on one line. */
+.gs-display__light {
+  font-weight: 300;
+}
+.gs-display__light--italic {
+  font-weight: 300;
+  font-style: italic;
+}
+.gs-display--hero {
+  font-size: clamp(40px, 5.2vw, 64px);
+  line-height: 1.02;
+  letter-spacing: -0.02em;
+}
+.gs-display--minor {
+  font-size: clamp(24px, 3vw, 34px);
+  letter-spacing: -0.01em;
+}
+.gs-display--cta {
+  font-size: clamp(30px, 4.2vw, 48px);
+  letter-spacing: -0.015em;
+}
+.gs-display--onink {
+  color: #fff;
+}
+
+/* ── Bands ────────────────────────────────────────────────────────────── */
+.gs-band {
+  padding: 72px 0;
+}
+.gs-band--mist {
+  background: var(--gs-mist);
+  border-top: 1px solid var(--gs-line-soft);
+  border-bottom: 1px solid var(--gs-line-soft);
+}
+.gs-band--ink {
+  background: var(--gs-ink);
+  color: #fff;
+}
+.gs-band--gradient {
+  background: var(--gs-gradient);
+  color: #fff;
+  text-align: center;
+  padding: 80px 0;
+}
+.gs-band--strip {
+  padding: 22px 0;
+  background: var(--gs-mist);
+  border-top: 1px solid var(--gs-line-soft);
+  border-bottom: 1px solid var(--gs-line-soft);
+}
+
+/* ── Section headers ──────────────────────────────────────────────────── */
+.gs-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 30px;
+}
+
+/* ── Tiles (the card family) ──────────────────────────────────────────── */
+.gs-tile {
+  display: block;
+  background: #fff;
+  color: inherit;
+  border: 1px solid var(--gs-line);
+  border-radius: var(--gs-radius-lg);
+  padding: 24px;
+  transition:
+    border-color 0.15s ease,
+    box-shadow 0.15s ease,
+    background 0.15s ease;
+}
+a.gs-tile:hover {
+  border-color: var(--gs-green-deep);
+  box-shadow: var(--gs-shadow-hover);
+  color: inherit;
+}
+.gs-tile--lg {
+  border-radius: var(--gs-radius-xl);
+  padding: 26px;
+}
+.gs-tile--sm {
+  border-radius: var(--gs-radius);
+  padding: 20px;
+}
+.gs-tile--xs {
+  border-radius: var(--gs-radius-xs);
+  padding: 16px 14px;
+}
+.gs-tile--ink {
+  background: var(--gs-ink);
+  border-color: transparent;
+  color: #fff;
+}
+a.gs-tile--ink:hover {
+  box-shadow: 0 12px 30px rgba(13, 13, 13, 0.3);
+  border-color: transparent;
+  color: #fff;
+}
+.gs-tile--wash {
+  background: var(--gs-wash);
+  border-color: rgba(27, 122, 52, 0.3);
+}
+.gs-tile--dashed {
+  border: 1.5px dashed rgba(27, 122, 52, 0.4);
+  background: var(--gs-wash);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+a.gs-tile--dashed:hover {
+  border-color: var(--gs-green-deep);
+  box-shadow: none;
+}
+.gs-tile--plain {
+  border-radius: var(--gs-radius-xs);
+  padding: 18px;
+}
+a.gs-tile--plain:hover {
+  background: var(--gs-wash);
+  box-shadow: none;
+}
+
+/* ── Ink surfaces (hero panel and live feed) ──────────────────────────── */
+.gs-panel {
+  background: var(--gs-ink);
+  border-radius: var(--gs-radius-panel);
+  padding: 26px 28px;
+  box-shadow: var(--gs-shadow-panel);
+}
+.gs-inktile {
+  display: block;
+  padding: 14px 16px;
+  border-radius: var(--gs-radius-xs);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: #fff;
+  transition: background 0.15s ease;
+}
+.gs-inktile:hover {
+  background: rgba(255, 255, 255, 0.09);
+  color: #fff;
+}
+.gs-inktile__label {
+  font-size: 10px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  margin-bottom: 4px;
+}
+.gs-inktile__title {
+  font-size: 14px;
+  font-weight: 700;
+  color: #fff;
+}
+.gs-inktile__meta {
+  font-size: 11.5px;
+  color: rgba(255, 255, 255, 0.5);
+  margin-top: 2px;
+}
+.gs-live-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--gs-green);
+  box-shadow: 0 0 0 4px rgba(77, 200, 106, 0.2);
+  display: inline-block;
+}
+.gs-onink-label {
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.24em;
+  color: rgba(255, 255, 255, 0.55);
+}
+.gs-onink-muted {
+  color: rgba(255, 255, 255, 0.55);
+}
+.gs-onink-faint {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+/* ── Feed rows ────────────────────────────────────────────────────────── */
+.gs-feedrow {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 16px 18px;
+  border-radius: var(--gs-radius-xs);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  color: #fff;
+  transition: background 0.15s ease;
+}
+.gs-feedrow:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+}
+.gs-feedchip {
+  padding: 3px 10px;
+  border-radius: var(--gs-radius-pill);
+  font-size: 9px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  flex-shrink: 0;
+  margin-top: 1px;
+  white-space: nowrap;
+}
+.gs-feedrow__text {
+  display: block;
+  font-size: 13.5px;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.45;
+}
+.gs-feedrow__meta {
+  display: block;
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.4);
+  margin-top: 3px;
+}
+
+/* ── Metric strip ─────────────────────────────────────────────────────── */
+.gs-strip {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 12px;
+}
+.gs-strip a {
+  display: block;
+  padding: 4px 0;
+  color: inherit;
+}
+.gs-strip a:hover {
+  opacity: 0.75;
+  color: inherit;
+}
+.gs-strip__value {
+  font-size: 24px;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+}
+.gs-strip__label {
+  font-size: 11.5px;
+  color: var(--gs-ink-50);
+  margin-top: 2px;
+}
+
+/* ── Traceability chain ───────────────────────────────────────────────── */
+.gs-chain {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 0;
+  align-items: stretch;
+}
+.gs-chain__cell {
+  position: relative;
+  padding-right: 14px;
+}
+.gs-chain__cell > .gs-tile {
+  height: 100%;
+  box-sizing: border-box;
+}
+.gs-chain__arrow {
+  position: absolute;
+  right: 1px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--gs-ink-40);
+  font-size: 13px;
+  font-weight: 800;
+}
+.gs-chain__step {
+  font-size: 9.5px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin-bottom: 6px;
+}
+.gs-chain__value {
+  font-size: 14px;
+  font-weight: 800;
+  line-height: 1.3;
+}
+.gs-chain__note {
+  font-size: 10.5px;
+  color: var(--gs-ink-40);
+  margin-top: 4px;
+  line-height: 1.5;
+}
+
+/* ── Money flow ───────────────────────────────────────────────────────── */
+.gs-moneystep {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 18px;
+  background: #fff;
+  border: 1px solid var(--gs-line);
+  border-radius: var(--gs-radius-xs);
+}
+.gs-moneystep__n {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 800;
+  flex-shrink: 0;
+}
+.gs-moneystep__down {
+  display: flex;
+  justify-content: center;
+  padding: 3px 0;
+  color: var(--gs-ink-40);
+  font-size: 13px;
+}
+
+/* ── Squircle mark ────────────────────────────────────────────────────── */
+.gs-mark {
+  border-radius: var(--gs-squircle);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-weight: 800;
+  flex-shrink: 0;
+  background: var(--gs-gradient);
+}
+.gs-mark--34 {
+  width: 34px;
+  height: 34px;
+  font-size: 14px;
+}
+.gs-mark--44 {
+  width: 44px;
+  height: 44px;
+  font-size: 16px;
+}
+.gs-mark--48 {
+  width: 48px;
+  height: 48px;
+  font-size: 16px;
+}
+.gs-mark--blue {
+  background: linear-gradient(135deg, #1976d2 0%, #1565c0 100%);
+}
+.gs-mark--teal {
+  background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%);
+}
+
+/* ── Buttons in design sizes ──────────────────────────────────────────── */
+.gs-btn--lg {
+  padding: 15px 30px;
+  font-size: 14.5px;
+  font-weight: 800;
+}
+.gs-btn--md {
+  padding: 13px 26px;
+  font-size: 13.5px;
+  font-weight: 800;
+}
+.gs-btn--ghost {
+  border-width: 1.5px;
+  border-color: rgba(0, 0, 0, 0.16);
+  font-weight: 800;
+}
+.gs-btn--white {
+  background: #fff;
+  color: var(--gs-green-deep);
+}
+.gs-btn--white:hover {
+  opacity: 0.92;
+  color: var(--gs-green-deep);
+}
+.gs-btn--onink {
+  border: 1.5px solid rgba(255, 255, 255, 0.55);
+  color: #fff;
+  background: transparent;
+}
+.gs-btn--onink:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+}
+
+/* ── Stat clusters used inside cards ──────────────────────────────────── */
+.gs-figures {
+  display: flex;
+  gap: 16px;
+}
+.gs-figure__value {
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+}
+.gs-figure__label {
+  font-size: 10.5px;
+  color: var(--gs-ink-40);
+}
+.gs-figure--green .gs-figure__value {
+  color: var(--gs-green-deep);
+}
+.gs-boxfig {
+  background: var(--gs-mist);
+  border-radius: var(--gs-radius-sm);
+  padding: 10px 12px;
+}
+.gs-boxfig__value {
+  font-size: 16px;
+  font-weight: 800;
+}
+.gs-boxfig__label {
+  font-size: 9.5px;
+  color: var(--gs-ink-40);
+}
+
+/* ── Footer ───────────────────────────────────────────────────────────── */
+.gs-footer {
+  position: relative;
+  background: var(--gs-ink);
+  color: #fff;
+  overflow: hidden;
+  padding: 0;
+  margin-top: 0;
+}
+.gs-footer__mark {
+  position: absolute;
+  top: -30px;
+  right: -40px;
+  opacity: 0.05;
+  pointer-events: none;
+}
+.gs-footer__inner {
+  position: relative;
+  padding: 64px 24px 36px;
+}
+.gs-footer__cols {
+  display: grid;
+  grid-template-columns: minmax(0, 1.6fr) repeat(3, minmax(0, 1fr));
+  gap: 48px;
+  margin-bottom: 52px;
+}
+.gs-footer__logo {
+  display: inline-flex;
+  background: #fff;
+  border-radius: var(--gs-radius-xs);
+  padding: 12px 18px;
+  margin-bottom: 18px;
+}
+.gs-footer__logo img {
+  height: 44px;
+  width: auto;
+  display: block;
+}
+.gs-footer h4 {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  font-weight: 700;
+  margin-bottom: 16px;
+  color: rgba(255, 255, 255, 0.35);
+}
+.gs-footer h4.is-lead {
+  color: var(--gs-green);
+}
+.gs-footer ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+}
+.gs-footer a {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 13.5px;
+}
+.gs-footer a:hover {
+  color: #fff;
+}
+.gs-footer__bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: 28px;
+  margin-top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.3);
+}
+
+/* ── Responsive: the design is a 1280px desktop layout; these are the
+   collapse points that keep it honest on smaller screens. ─────────────── */
+@media (max-width: 1080px) {
+  .gs-strip {
+    grid-template-columns: repeat(3, 1fr);
+    row-gap: 20px;
+  }
+  .gs-chain {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+  .gs-chain__cell {
+    padding-right: 0;
+  }
+  .gs-chain__arrow {
+    display: none !important;
+  }
+  .gs-footer__cols {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 32px;
+  }
+}
+@media (max-width: 720px) {
+  .gs-strip {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .gs-chain {
+    grid-template-columns: 1fr;
+  }
+  .gs-footer__cols {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ── Home grids (design column counts) ────────────────────────────────── */
+.gs-hero-grid {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 48px;
+  align-items: center;
+}
+.gs-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  align-items: center;
+}
+.gs-cols-2 {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+.gs-cols-3 {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+.gs-cols-4 {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+}
+.gs-cols-5 {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 12px;
+}
+
+@media (max-width: 1080px) {
+  .gs-hero-grid,
+  .gs-split {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+  .gs-cols-4 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .gs-cols-5 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .gs-cols-3 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 720px) {
+  .gs-cols-2,
+  .gs-cols-3,
+  .gs-cols-4,
+  .gs-cols-5 {
+    grid-template-columns: 1fr;
+  }
+}

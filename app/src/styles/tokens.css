@@ -15,22 +15,37 @@
   --gs-red: #b3261e;
 
   --gs-paper: #ffffff;
-  --gs-mist: #f7f9f8;
+  /* Band grey and card wash are two different greys in the design — do not merge them. */
+  --gs-mist: #fafafa;
+  --gs-wash: #f8fdf9;
   --gs-green-wash: #f0faf3;
   --gs-blue-wash: #e8f0fc;
-  --gs-line: rgba(0, 0, 0, 0.09);
-  --gs-line-soft: rgba(0, 0, 0, 0.05);
+  --gs-orange-wash: #fff3e0;
+  --gs-orange: #e65100;
+  --gs-blue-soft: #90caf9;
+  --gs-orange-soft: #ffb74d;
+  --gs-purple-soft: #cbb2ff;
+  --gs-line: rgba(0, 0, 0, 0.08);
+  --gs-line-soft: rgba(0, 0, 0, 0.06);
+  --gs-body: #4b5563;
 
-  --gs-radius-sm: 8px;
-  --gs-radius: 14px;
-  --gs-radius-lg: 22px;
+  --gs-radius-sm: 10px;
+  --gs-radius-xs: 14px;
+  --gs-radius: 16px;
+  --gs-radius-lg: 18px;
+  --gs-radius-xl: 20px;
+  --gs-radius-panel: 26px;
   --gs-radius-pill: 999px;
+  /* The rounded-square motif: avatars and marks are squircles, never circles. */
+  --gs-squircle: 28%;
 
   --gs-shadow-sm: 0 2px 10px rgba(0, 0, 0, 0.05);
-  --gs-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  --gs-shadow: 0 10px 26px rgba(27, 122, 52, 0.09);
+  --gs-shadow-hover: 0 12px 30px rgba(27, 122, 52, 0.1);
+  --gs-shadow-panel: 0 30px 60px rgba(13, 13, 13, 0.18);
   --gs-shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.14);
 
   --gs-font: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
-  --gs-max: 1200px;
+  --gs-max: 1280px;
   --gs-nav-h: 72px;
 }

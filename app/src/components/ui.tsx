@@ -165,3 +165,54 @@ export function CardLink({
     </Link>
   )
 }
+
+/**
+ * Split-weight heading — the brand's signature (DESIGN-SYSTEM.md §1).
+ * A light 300 clause and an extrabold 800 clause share one line; the hero reverses the order and
+ * italicises the light clause.
+ */
+export function Display({
+  light,
+  bold,
+  variant,
+  onInk,
+  reverse,
+  italic,
+  as: Tag = 'h2',
+}: {
+  light: string
+  bold: string
+  variant?: 'hero' | 'minor' | 'cta'
+  onInk?: boolean
+  reverse?: boolean
+  italic?: boolean
+  as?: 'h1' | 'h2'
+}) {
+  const cls = [
+    variant ? `gs-display--${variant}` : '',
+    onInk ? 'gs-display--onink' : '',
+  ]
+    .filter(Boolean)
+    .join(' ')
+  const lightSpan = (
+    <span
+      className={italic ? 'gs-display__light--italic' : 'gs-display__light'}
+    >
+      {light}
+    </span>
+  )
+  const boldSpan = <span>{bold}</span>
+  return (
+    <Tag className={cls}>
+      {reverse ? (
+        <>
+          {boldSpan} {lightSpan}
+        </>
+      ) : (
+        <>
+          {lightSpan} {boldSpan}
+        </>
+      )}
+    </Tag>
+  )
+}
