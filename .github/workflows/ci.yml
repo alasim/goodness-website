@@ -49,3 +49,70 @@ jobs:
       - run: npm run gen:seed
       - name: Fail if the generated seed drifted from the data modules
         run: git diff --exit-code supabase/seed.sql app/src/data/seed.json
+
+  local-stack:
+    name: Local stack — compose boots, migrates and serves the API
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Generate local credentials
+        run: node scripts/stack-keys.mjs
+
+      - name: Validate the compose file
+        run: docker compose -f docker/docker-compose.yml --env-file docker/.env config --quiet
+
+      - name: Start Postgres and apply migrations + seed
+        run: |
+          docker compose -f docker/docker-compose.yml --env-file docker/.env up -d db
+          docker compose -f docker/docker-compose.yml --env-file docker/.env up db-init --exit-code-from db-init
+
+      - name: Start the API services
+        run: |
+          docker compose -f docker/docker-compose.yml --env-file docker/.env up -d rest auth gateway
+          for i in $(seq 1 30); do
+            curl -sf http://localhost:54321/health && break
+            sleep 2
+          done
+
+      - name: The gateway answers, and anonymous access sees exactly what it should
+        run: |
+          set -eux
+          ANON_KEY=$(grep '^ANON_KEY=' docker/.env | cut -d= -f2)
+          curl -sf http://localhost:54321/health
+
+          # Public reference data is readable anonymously.
+          programs=$(curl -sf "http://localhost:54321/rest/v1/programs?select=slug" \
+            -H "apikey: $ANON_KEY" -H "Authorization: Bearer $ANON_KEY")
+          echo "$programs" | grep -q 'ai-digital-skills'
+
+          # The public passport view is readable...
+          volunteers=$(curl -sf "http://localhost:54321/rest/v1/public_volunteers?select=slug,full_name" \
+            -H "apikey: $ANON_KEY" -H "Authorization: Bearer $ANON_KEY")
+          echo "$volunteers" | grep -q 'nusrat-j'
+
+          # ...while the table behind it returns nothing to an anonymous caller.
+          profiles=$(curl -sf "http://localhost:54321/rest/v1/profiles?select=id" \
+            -H "apikey: $ANON_KEY" -H "Authorization: Bearer $ANON_KEY")
+          test "$profiles" = "[]"
+
+          # Credential verification is deliberately open.
+          verified=$(curl -sf -X POST "http://localhost:54321/rest/v1/rpc/verify_credential" \
+            -H "apikey: $ANON_KEY" -H "Authorization: Bearer $ANON_KEY" \
+            -H 'Content-Type: application/json' \
+            -d '{"ref_input":"GS-VOL-2024-0100"}')
+          echo "$verified" | grep -q 'Nusrat Jahan'
+
+          # Auth is reachable through the same origin.
+          curl -sf http://localhost:54321/auth/v1/settings -H "apikey: $ANON_KEY" | grep -q 'external'
+
+      - name: Logs on failure
+        if: failure()
+        run: docker compose -f docker/docker-compose.yml --env-file docker/.env logs --tail 200
+
+      - name: Tear down
+        if: always()
+        run: docker compose -f docker/docker-compose.yml --env-file docker/.env down -v

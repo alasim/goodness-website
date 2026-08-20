@@ -270,3 +270,16 @@ grant select on public.public_volunteers, public.public_credentials, public.publ
 grant execute on function public.verify_credential(text) to anon, authenticated;
 grant execute on function public.rhythm_per_30(public.commitment_rhythm) to anon, authenticated;
 grant execute on function public.verified_hours(uuid) to anon, authenticated;
+
+-- ── 9. Table privileges ──────────────────────────────────────────────────────
+-- Row level security decides *which rows*; Postgres privileges decide *whether the role may ask
+-- at all*. Hosted Supabase grants these by default; granting them here means the schema behaves
+-- the same on a plain Postgres, in the local Docker stack, and in the offline schema check.
+grant select on all tables in schema public to anon, authenticated;
+grant insert, update, delete on all tables in schema public to authenticated;
+-- Applying to volunteer, and asking for a chapter in your city, must work before you have an account.
+grant insert on public.applications, public.chapter_requests to anon;
+grant usage, select on all sequences in schema public to anon, authenticated;
+
+alter default privileges in schema public grant select on tables to anon, authenticated;
+alter default privileges in schema public grant insert, update, delete on tables to authenticated;

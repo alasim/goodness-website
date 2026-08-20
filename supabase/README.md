@@ -43,7 +43,10 @@ volunteer's own update policy forbids the `verified` state.
 
 ## Runbook
 ```bash
-# 1. local stack (requires Docker)
+# 1a. local stack via this repository's compose file — see docker/README.md
+npm run stack:keys && npm run stack:up   # applies these migrations + seed.sql on first boot
+
+# 1b. or the Supabase CLI, for the full official topology
 npx supabase start
 npx supabase db reset          # applies migrations + seed.sql
 

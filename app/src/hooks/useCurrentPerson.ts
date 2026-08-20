@@ -20,6 +20,7 @@ export function useCurrentPerson(): {
   const { os } = useOS()
   const claimedSlug = useClaimedProfileSlug()
   const [userId, setUserId] = useState<string | null>(null)
+  const [profileId, setProfileId] = useState<string | null>(null)
   const [loading, setLoading] = useState(hasSupabase)
 
   useEffect(() => {
@@ -42,10 +43,36 @@ export function useCurrentPerson(): {
     }
   }, [])
 
+  // The public passport view deliberately carries no user_id, so the link between an account and
+  // a passport is read from the profile row itself — which row level security only ever returns
+  // to its owner (or to staff).
+  useEffect(() => {
+    if (!hasSupabase || !userId) {
+      setProfileId(null)
+      return
+    }
+    const client = getSupabase()
+    if (!client) return
+    let cancelled = false
+    void client
+      .from('profiles')
+      .select('id')
+      .eq('user_id', userId)
+      .maybeSingle()
+      .then(({ data }) => {
+        if (!cancelled) setProfileId(data?.id ?? null)
+      })
+    return () => {
+      cancelled = true
+    }
+  }, [userId])
+
   if (!os) return { person: null, userId, isSignedIn: false, loading }
 
   const person = hasSupabase
-    ? (os.people.find((p) => p.userId === userId) ?? null)
+    ? profileId
+      ? (os.personById.get(profileId) ?? null)
+      : null
     : claimedSlug
       ? (os.personBySlug.get(claimedSlug) ?? null)
       : null

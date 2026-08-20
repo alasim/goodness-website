@@ -1,43 +1,77 @@
-# Goodness Society — GOODNESS OS
+# GOODNESS OS — application
 
-The operating system for organized goodness: verified volunteers, real missions, measured impact,
-and a public trust ledger. This repository holds three layers.
+TanStack Start (React 19 + TypeScript, server-rendered) frontend for Goodness Society, backed by
+the Supabase project defined in [`../supabase`](../supabase/README.md).
 
-| Layer | Path | What it is |
-|-------|------|------------|
-| Design source | `*.dc.html`, `*-data.js`, `gs-os.js` | The confirmed prototype — the visual and product source of truth |
-| Application | [`app/`](app/README.md) | TanStack Start (React + TypeScript, SSR) product |
-| Backend | [`supabase/`](supabase/README.md) | Postgres schema, row level security, seed — as code |
-
-Start with [`GOODNESS-OS.md`](GOODNESS-OS.md) for the product vision and wave roadmap, and
-[`BUILD-PLAN.md`](BUILD-PLAN.md) for how the prototype was turned into this product, phase by phase.
-
-## Quick start
+## Run it
 
 ```bash
-# the product, with no backend required
-cd app && npm install && npm run dev      # http://localhost:3000
-
-# check the database schema without Docker or a network
-npm install && npm run db:verify
-
-# regenerate the seed after editing the prototype data modules
-npm run gen:seed
+npm install
+npm run dev          # http://localhost:3000
 ```
 
-## Two drivers, one model
-The app runs identically on a seeded local record and on a live Supabase project. `buildOS()` turns
-either into the same model, so capacity, verified hours, fund positions, chapter rollups and partner
-figures are computed the same way in both. That is what keeps a chapter number and a national number
-from ever disagreeing.
+With no environment variables the app runs on the **local driver**: the generated seed
+(`src/data/seed.json`) is the record, and anything you change in the browser is kept as an overlay
+in `localStorage`. Every screen works, including the member area and Mission Control.
 
-## What is enforced, not just displayed
-- Personal contact details, addresses, identity references and administrative notes are absent from
-  the public passport view — the public surface cannot read them.
-- A volunteer can move their own participation forward to *contribution submitted*, never to
-  *hours verified*; only a team lead or HQ can do that.
-- Approving or reversing an expense goes through an audited database function.
-- Impact records separate publication from evidence verification, and say which is which.
+## Connect a real backend
+
+Fastest path — the local stack in [`../docker`](../docker/README.md):
+
+```bash
+cd .. && npm run stack:keys && npm run stack:up   # prints the two lines below
+```
+
+```bash
+# app/.env
+VITE_SUPABASE_URL=http://localhost:54321
+VITE_SUPABASE_ANON_KEY=<anon key>
+```
+
+Or a hosted project:
+
+```bash
+cd ..
+npx supabase link --project-ref <project-ref>
+npx supabase db push
+psql "$DATABASE_URL" -f supabase/seed.sql     # optional demo content
+```
+
+Restart the dev server. The app switches drivers automatically — same screens, now reading through
+the public views and writing under row level security.
+
+## Scripts
+| Command | What it does |
+|---------|--------------|
+| `npm run dev` | SSR dev server |
+| `npm run build` / `npm start` | production build (Nitro output) and run it |
+| `npm run typecheck` | TypeScript, strict, with `noUncheckedIndexedAccess` |
+| `npm run lint` | ESLint (TanStack config, type-aware rules) |
+| `npm run test` | Vitest — derivation, overlay and card-catalogue tests |
+| `npm run test:e2e` | Playwright walk of the contribution loop against a built server |
+| `npm run gen:seed` | regenerate `supabase/seed.sql` **and** `src/data/seed.json` from the prototype data modules |
+| `npm run gen:types` | regenerate `src/lib/database.types.ts` from the local Supabase stack |
+
+## How the code is arranged
+```
+src/routes/           one file per surface (file-based routing, each with its own <head>)
+src/components/       shared UI primitives, page furniture and the Mission Control tabs
+src/data/os.ts        the derivation engine — every computed number in the product
+src/data/local.ts     seeded local driver + browser overlay
+src/data/supabase-driver.ts   reads through the public views
+src/data/actions.ts   every mutation, implemented once per driver
+src/lib/cards.ts      Share Studio catalogue built from the live model
+src/lib/card-canvas.ts        canvas renderer: preview and download are the same pixels
+src/styles/           brand tokens and the component layer
+```
+
+## Rules the code keeps
+- **One truth.** Screens never store a computed number; they read `buildOS(dataset)`.
+- **Private stays private.** The Supabase driver reads people through `public_volunteers`, which
+  has no contact, address, identity or notes columns at all.
+- **Hours cannot be self-verified.** The UI hides it and the database policy forbids it.
+- **Publication ≠ verification.** Impact records carry both states separately, everywhere.
+- **No misleading attribution.** Pooled-funding language on every funding surface and card.
 
 ## End-to-end check
 `e2e/flow.mjs` walks the contribution loop in a real browser — claim a passport, join a mission,
@@ -51,3 +85,9 @@ npm run test:e2e                   # add CHROMIUM_PATH=... if Playwright's brows
 ```
 It needs `playwright` available (`npm i -D playwright`); it is kept out of the default install so
 the everyday `npm ci` stays small.
+
+## Deployment
+The build produces a Nitro server in `.output`. For Vercel, build with `NITRO_PRESET=vercel npm run
+build`; for a Node host, run `npm run build && npm start`. Set `VITE_SUPABASE_URL` and
+`VITE_SUPABASE_ANON_KEY` in the host's environment, and add the deployed origin to the Supabase
+project's allowed redirect URLs so magic-link sign-in returns to `/me`.

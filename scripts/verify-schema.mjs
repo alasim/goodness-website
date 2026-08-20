@@ -67,7 +67,18 @@ await q('rls check   ', `select count(*)::int as tables_without_rls from pg_tabl
    where schemaname='public' and not exists (
      select 1 from pg_class c join pg_namespace n on n.oid=c.relnamespace
      where n.nspname='public' and c.relname=t.tablename and c.relrowsecurity)`)
+// What an anonymous caller actually sees, with the anon role's privileges and policies applied.
+await db.exec('set role anon')
+const anonPrograms = (await db.query('select count(*)::int as n from public.programs')).rows[0].n
+const anonProfiles = (await db.query('select count(*)::int as n from public.profiles')).rows[0].n
+const anonPassports = (await db.query('select count(*)::int as n from public.public_volunteers')).rows[0].n
+const anonPublished = (await db.query('select count(*)::int as n from public.impact_records')).rows[0].n
+await db.exec('reset role')
+
 const assertions = [
+  ['anonymous callers can read public reference data', anonPrograms > 0],
+  ['anonymous callers read people only through the passport view', anonProfiles === 0 && anonPassports > 0],
+  ['anonymous callers see published impact records only', anonPublished === 6],
   ['no private column reaches public_volunteers', (await db.query(
     `select count(*)::int as n from information_schema.columns where table_name = 'public_volunteers'
      and column_name in ('email','phone','address','admin_notes','id_document_ref')`)).rows[0].n === 0],
