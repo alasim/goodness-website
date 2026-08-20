@@ -1910,3 +1910,94 @@ a.gs-tile--plain:hover {
     gap: 6px;
   }
 }
+
+/* ══ Chapters (Chapters.dc.html) ═════════════════════════════════════════ */
+.gs-feedpill {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 16px;
+  background: #fff;
+  border: 1px solid var(--gs-line);
+  border-radius: var(--gs-radius-pill);
+}
+.gs-chaptercards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(370px, 1fr));
+  gap: 20px;
+}
+.gs-chaptercard {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  background: #fff;
+  color: inherit;
+  border: 1px solid var(--gs-line);
+  border-top: 3px solid var(--gs-green);
+  border-radius: var(--gs-radius-lg);
+  padding: 24px;
+  transition:
+    box-shadow 0.15s ease,
+    transform 0.15s ease;
+}
+.gs-chaptercard:hover {
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.1);
+  transform: translateY(-3px);
+  color: inherit;
+}
+.gs-ministats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: var(--gs-line-soft);
+  border: 1px solid var(--gs-line-soft);
+  border-radius: 12px;
+  overflow: hidden;
+}
+.gs-ministats > div {
+  background: var(--gs-mist);
+  padding: 10px 12px;
+}
+.gs-ministats__value {
+  font-size: 16px;
+  font-weight: 800;
+}
+.gs-ministats__label {
+  font-size: 9.5px;
+  color: var(--gs-ink-40);
+}
+.gs-cardfoot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: auto;
+  padding-top: 10px;
+  border-top: 1px solid var(--gs-line-soft);
+}
+.gs-inkform input,
+.gs-inkform textarea {
+  padding: 12px 16px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+  font-size: 13px;
+}
+.gs-inkform input::placeholder,
+.gs-inkform textarea::placeholder {
+  color: rgba(255, 255, 255, 0.45);
+}
+.gs-inkform input:focus,
+.gs-inkform textarea:focus {
+  border-color: var(--gs-green);
+  box-shadow: none;
+}
+.gs-inknote {
+  padding: 16px 20px;
+  border-radius: 14px;
+  background: rgba(77, 200, 106, 0.15);
+  border: 1px solid rgba(77, 200, 106, 0.4);
+  color: #fff;
+  font-size: 13.5px;
+  font-weight: 700;
+}

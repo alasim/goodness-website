@@ -8,7 +8,7 @@ import { Link } from '@tanstack/react-router'
 const COLUMNS: Array<{
   title: string
   lead?: boolean
-  links: Array<{ label: string; to: string }>
+  links: Array<{ label: string; to: string; hash?: string }>
 }> = [
   {
     title: 'Act',
@@ -18,7 +18,7 @@ const COLUMNS: Array<{
       { label: 'Volunteer With Us', to: '/join' },
       { label: 'Fund Impact', to: '/fund' },
       { label: 'Partner with Us', to: '/partner' },
-      { label: 'Start a Chapter', to: '/chapters/start' },
+      { label: 'Start a Chapter', to: '/chapters', hash: 'start' },
       { label: 'My Goodness', to: '/me' },
     ],
   },
@@ -137,8 +137,10 @@ export function SiteFooter() {
               </h4>
               <ul>
                 {column.links.map((link) => (
-                  <li key={link.to}>
-                    <Link to={link.to}>{link.label}</Link>
+                  <li key={link.label}>
+                    <Link to={link.to} hash={link.hash}>
+                      {link.label}
+                    </Link>
                   </li>
                 ))}
               </ul>
@@ -152,7 +154,11 @@ export function SiteFooter() {
             Registered Non-Profit Organisation
           </p>
           <p style={{ margin: 0 }}>
-            <Link to="/admin" search={{ tab: 'overview' }} style={{ color: 'rgba(255,255,255,0.35)' }}>
+            <Link
+              to="/admin"
+              search={{ tab: 'overview' }}
+              style={{ color: 'rgba(255,255,255,0.35)' }}
+            >
               Mission Control
             </Link>{' '}
             ·{' '}
