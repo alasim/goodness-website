@@ -2997,3 +2997,31 @@ a.gs-tile--plain:hover {
   border-radius: var(--gs-radius-xl);
   padding: 24px 28px;
 }
+
+/* ── Volunteer application (`Volunteer.dc.html`) ───────────────────────── */
+.gs-gaincard {
+  background: #fff;
+  border-radius: 16px;
+  border: 1px solid var(--gs-line);
+  padding: 24px;
+}
+.gs-rolecard {
+  background: #fff;
+  border: 1px solid var(--gs-line);
+  border-radius: 16px;
+  padding: 28px;
+}
+.gs-statuschip {
+  padding: 2px 10px;
+  border-radius: var(--gs-radius-pill);
+  font-size: 12px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+.gs-rolechip {
+  padding: 6px 12px;
+  border-radius: var(--gs-radius-pill);
+  font-size: 12px;
+  font-weight: 500;
+  border: 1px solid transparent;
+}
