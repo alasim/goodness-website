@@ -2514,3 +2514,59 @@ a.gs-tile--plain:hover {
   font-size: 11.5px;
   color: var(--gs-ink-50);
 }
+
+/* ── Fund Impact (`Fund Impact.dc.html`) ───────────────────────────────── */
+.gs-oppgrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  gap: 20px;
+}
+.gs-oppcard {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 26px;
+  background: #fff;
+  border: 1px solid var(--gs-line);
+  border-top: 3px solid var(--gs-green);
+  border-radius: 18px;
+}
+.gs-outcomes {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.gs-outcomes li {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 12.5px;
+  color: #374151;
+}
+.gs-seekchip {
+  padding: 4px 11px;
+  border-radius: var(--gs-radius-pill);
+  font-size: 11px;
+  font-weight: 600;
+  background: var(--gs-mist);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  color: #374151;
+}
+/* A quiet button on ink: filled with a translucent white rather than outlined. */
+.gs-btn--onink-soft {
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+  border: none;
+}
+.gs-btn--onink-soft:hover {
+  background: rgba(255, 255, 255, 0.2);
+  color: #fff;
+}
+@media (max-width: 720px) {
+  .gs-oppgrid {
+    grid-template-columns: 1fr;
+  }
+}

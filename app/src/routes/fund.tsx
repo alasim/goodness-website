@@ -1,13 +1,12 @@
-import { useState } from 'react'
 import { Link, createFileRoute } from '@tanstack/react-router'
 import { useOS } from '../hooks/useOS'
 import { LoadingState } from '../components/LoadingState'
-import { PageHero } from '../components/PageHero'
-import { Banner, Bar, Pill, Section, Stat } from '../components/ui'
-import { addDonation } from '../data/actions'
+import { GWatermark } from '../components/GWatermark'
+import { Display } from '../components/ui'
 import { formatShortMoney } from '../lib/format'
 import type { OpportunityView } from '../data/os'
 
+/** Fund Impact — a faithful build of `Fund Impact.dc.html`. */
 export const Route = createFileRoute('/fund')({
   head: () => ({
     meta: [
@@ -15,252 +14,327 @@ export const Route = createFileRoute('/fund')({
       {
         name: 'description',
         content:
-          'Fund an initiative, not a donation shop. Contributions join a pool, and results are reported collectively with evidence.',
+          "Don't just donate. Back measurable impact: every opportunity has a funding target, expected outcomes, and a public trail.",
       },
     ],
   }),
-  component: FundImpact,
+  component: Fund,
 })
 
-function FundImpact() {
+function Fund() {
   const { os } = useOS()
   if (!os) return <LoadingState />
 
-  const open = os.opportunities.filter((o) => !o.funded)
-  const funded = os.opportunities.filter((o) => o.funded)
+  const open = os.opportunities.filter((o) => o.open)
   const totalGap = open.reduce((n, o) => n + o.gap, 0)
+  const money = (value: number) => formatShortMoney(value, os.currency)
 
   return (
     <>
-      <PageHero
-        eyebrow="Impact marketplace"
-        title="Fund an initiative, not a transaction"
-        lede="Each initiative below names what it will do, what it still needs, and what will be measured afterwards. Contributions join a pool, and the results are reported collectively — we never claim a specific amount bought a specific outcome."
-      />
-
-      <Section tight variant="mist">
-        <div className="gs-grid gs-grid--4">
-          <Stat
-            gradient
-            value={String(open.length)}
-            label="Initiatives seeking support"
-          />
-          <Stat
-            gradient
-            value={formatShortMoney(totalGap, os.currency)}
-            label="Still needed across all of them"
-          />
-          <Stat
-            gradient
-            value={String(os.stats.partners)}
-            label="Partners already in"
-          />
-          <Stat
-            gradient
-            value={`${os.finance.programSharePct}%`}
-            label="Of spend goes to programmes"
-          />
-        </div>
-      </Section>
-
-      <Section>
-        <div className="gs-stack" style={{ gap: 20 }}>
-          {open.map((opportunity) => (
-            <OpportunityCard key={opportunity.id} opportunity={opportunity} />
-          ))}
-        </div>
-
-        {funded.length ? (
-          <div style={{ marginTop: 30 }}>
-            <h2 style={{ marginBottom: 14 }}>Fully funded</h2>
-            <div className="gs-grid gs-grid--2">
-              {funded.map((opportunity) => (
-                <div key={opportunity.id} className="gs-card gs-card--wash">
-                  <Pill tone="green">Funded</Pill>
-                  <h3 style={{ marginTop: 10, fontSize: 18 }}>
-                    {opportunity.title}
-                  </h3>
-                  <p className="gs-small gs-muted" style={{ marginTop: 6 }}>
-                    {opportunity.whereLabel} · now in delivery. Results will
-                    appear as published impact records.
-                  </p>
-                </div>
-              ))}
+      {/* ── 01 Hero ── */}
+      <section className="gs-inksection" style={{ padding: '64px 0 52px' }}>
+        <GWatermark
+          width={560}
+          height={380}
+          style={{ top: -30, right: -20, opacity: 0.07 }}
+        />
+        <div className="gs-wrap" style={{ position: 'relative' }}>
+          <span
+            className="gs-livepill"
+            style={{ fontSize: 12, letterSpacing: '0.06em', marginBottom: 24 }}
+          >
+            Fund Impact
+          </span>
+          <div className="gs-hero-grid">
+            <Display
+              as="h1"
+              onInk
+              stacked
+              light="Don't just donate."
+              bold="Back measurable impact."
+              style={{
+                margin: 0,
+                fontSize: 'clamp(32px, 4.4vw, 56px)',
+                lineHeight: 1.1,
+                letterSpacing: '-0.02em',
+              }}
+            />
+            <div>
+              <p
+                style={{
+                  margin: '0 0 18px',
+                  fontSize: 15,
+                  color: 'rgba(255,255,255,0.6)',
+                  lineHeight: 1.7,
+                }}
+              >
+                Every opportunity below has a funding target, expected outcomes,
+                and a public trail — your contribution joins its funding pool,
+                the work is delivered by verified volunteers, and the results
+                land on the Impact page and Trust Ledger with evidence.
+              </p>
+              <div className="gs-row" style={{ gap: 10 }}>
+                <Link to="/trust" className="gs-btn gs-btn--white gs-btn--md">
+                  See where money goes →
+                </Link>
+                <Link
+                  to="/partner-room"
+                  className="gs-btn gs-btn--onink-soft gs-btn--md"
+                >
+                  Partner Room
+                </Link>
+              </div>
             </div>
           </div>
-        ) : null}
-      </Section>
+        </div>
+      </section>
+
+      {/* ── 02 Open initiatives ── */}
+      <section
+        style={{
+          padding: '56px 0 80px',
+          background: 'var(--gs-mist)',
+          borderTop: '1px solid var(--gs-line-soft)',
+        }}
+      >
+        <div className="gs-wrap">
+          <div className="gs-head" style={{ marginBottom: 28 }}>
+            <div>
+              <p className="gs-sectionlabel">Open now</p>
+              <Display
+                light={`${open.length} initiatives`}
+                bold="seeking funding"
+                style={{
+                  margin: 0,
+                  fontSize: 'clamp(26px, 3.2vw, 40px)',
+                  lineHeight: 1.15,
+                }}
+              />
+            </div>
+            <div style={{ fontSize: 13, color: 'var(--gs-ink-50)' }}>
+              {money(totalGap)} still needed across all open initiatives
+            </div>
+          </div>
+
+          <div className="gs-oppgrid">
+            {open.map((opportunity) => (
+              <OpportunityCard
+                key={opportunity.id}
+                opportunity={opportunity}
+                money={money}
+              />
+            ))}
+          </div>
+
+          <p
+            style={{
+              margin: '26px auto 0',
+              fontSize: 12,
+              color: 'var(--gs-ink-40)',
+              lineHeight: 1.65,
+              maxWidth: 760,
+              textAlign: 'center',
+            }}
+          >
+            Your contribution joins the funding pool supporting an initiative —
+            we never claim a fixed {os.currency}-per-life conversion. What the
+            initiative collectively achieves is reported on the Impact page with
+            outputs, outcomes, and evidence, and every taka is traceable on the
+            Trust Ledger. “Secured” means signed commitments; cash actually
+            received is what the Trust Ledger reports — the two are never
+            blurred.
+          </p>
+        </div>
+      </section>
+
+      {/* ── 03 Already a partner ── */}
+      <section
+        style={{
+          padding: '64px 0',
+          background: '#fff',
+          borderTop: '1px solid var(--gs-line-soft)',
+        }}
+      >
+        <div
+          style={{
+            maxWidth: 880,
+            margin: '0 auto',
+            padding: '0 24px',
+            textAlign: 'center',
+          }}
+        >
+          <Display
+            light="Already a partner?"
+            bold="Your Partner Room is live."
+            style={{
+              margin: '0 0 14px',
+              fontSize: 'clamp(24px, 3vw, 34px)',
+              lineHeight: 1.25,
+            }}
+          />
+          <p
+            style={{
+              margin: '0 auto 26px',
+              fontSize: 15,
+              color: 'var(--gs-ink-50)',
+              maxWidth: 520,
+              lineHeight: 1.7,
+            }}
+          >
+            A live window into your partnership — funding deployed, missions
+            underway, the people delivering the work, and the evidence behind
+            every claim.
+          </p>
+          <Link
+            to="/partner-room"
+            className="gs-btn gs-btn--primary gs-btn--lg"
+          >
+            Open Partner Room →
+          </Link>
+        </div>
+      </section>
     </>
   )
 }
 
-function OpportunityCard({ opportunity }: { opportunity: OpportunityView }) {
-  const { os } = useOS()
-  const [open, setOpen] = useState(false)
-  const [done, setDone] = useState(false)
-  const [busy, setBusy] = useState(false)
-  if (!os) return null
-
-  const support = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault()
-    const form = new FormData(event.currentTarget)
-    setBusy(true)
-    try {
-      await addDonation({
-        donorName: String(form.get('donor') ?? 'Anonymous donor'),
-        donorProfileId: null,
-        partnerId: null,
-        kind: String(form.get('kind') ?? 'Individual'),
-        amount: Number(form.get('amount') ?? 0),
-        currency: 'BDT',
-        dateLabel: new Date().toLocaleDateString('en-GB', {
-          day: '2-digit',
-          month: 'short',
-          year: 'numeric',
-        }),
-        method: 'Pledged through Fund Impact',
-        restrictedProgramSlug: opportunity.programSlug,
-        restrictedChapterId: null,
-        receiptRef: `GS-RCP-${new Date().getFullYear()}-F${String(Date.now()).slice(-4)}`,
-        acknowledged: false,
-      })
-      setDone(true)
-    } finally {
-      setBusy(false)
-    }
-  }
+/** One funding opportunity: accent rail, funding bar, expected outcomes, what it seeks. */
+function OpportunityCard({
+  opportunity,
+  money,
+}: {
+  opportunity: OpportunityView
+  money: (value: number) => string
+}) {
+  const color = opportunity.program?.color ?? '#1B7A34'
+  const bg = opportunity.program?.bgColor ?? '#f0faf3'
+  const light = opportunity.program?.lightColor ?? '#4DC86A'
+  const accent = opportunity.urgent ? '#E65100' : light
 
   return (
-    <article className="gs-card gs-card--flat">
-      <div
-        className="gs-row gs-row--between"
-        style={{ alignItems: 'flex-start', gap: 18 }}
+    <article className="gs-oppcard" style={{ borderTopColor: accent }}>
+      <div className="gs-row" style={{ gap: 8 }}>
+        {opportunity.urgent ? (
+          <span
+            className="gs-tag"
+            style={{ background: '#E65100', color: '#fff' }}
+          >
+            Urgent
+          </span>
+        ) : null}
+        <span
+          className="gs-tag gs-tag--program"
+          style={{ background: bg, color }}
+        >
+          <span className="gs-tag__dot" style={{ background: light }} />
+          {opportunity.program?.shortName ?? opportunity.programSlug}
+        </span>
+        <span style={{ fontSize: 11, color: 'var(--gs-ink-40)' }}>
+          {opportunity.whereLabel}
+        </span>
+      </div>
+
+      <h3
+        style={{
+          margin: 0,
+          fontSize: 21,
+          fontWeight: 800,
+          lineHeight: 1.25,
+          letterSpacing: '-0.01em',
+        }}
       >
-        <div className="gs-stack" style={{ gap: 10, flex: 1, minWidth: 260 }}>
-          <div className="gs-row" style={{ gap: 6 }}>
-            {opportunity.urgent ? <Pill tone="amber">Urgent</Pill> : null}
-            <Pill tone="blue">{opportunity.program?.shortName}</Pill>
-            <Pill>{opportunity.whereLabel}</Pill>
-          </div>
-          <h3 style={{ fontSize: 23 }}>{opportunity.title}</h3>
-          <p className="gs-small gs-muted">{opportunity.note}</p>
-        </div>
-        <div className="gs-stack" style={{ gap: 6, minWidth: 200 }}>
-          <Stat
-            value={formatShortMoney(opportunity.gap, os.currency)}
-            label="Still needed"
-          />
-          <Bar
-            pct={opportunity.securedPct}
-            tone={opportunity.urgent ? 'amber' : 'green'}
-            label={opportunity.title}
-          />
-          <span className="gs-small gs-muted">
-            {formatShortMoney(opportunity.secured, os.currency)} of{' '}
-            {formatShortMoney(opportunity.target, os.currency)} secured (
-            {opportunity.securedPct}%)
+        {opportunity.title}
+      </h3>
+
+      <div>
+        <div
+          className="gs-row gs-row--between"
+          style={{ gap: 10, marginBottom: 6, alignItems: 'baseline' }}
+        >
+          <span className="gs-num" style={{ fontSize: 13, fontWeight: 700 }}>
+            {money(opportunity.secured)} secured of {money(opportunity.target)}
+          </span>
+          <span
+            className="gs-num"
+            style={{
+              fontSize: 13,
+              fontWeight: 800,
+              color: opportunity.urgent ? '#E65100' : '#1B7A34',
+            }}
+          >
+            {money(opportunity.gap)} still seeking partners
           </span>
         </div>
-      </div>
-
-      <div className="gs-grid gs-grid--2" style={{ marginTop: 22 }}>
-        <div className="gs-stack" style={{ gap: 8 }}>
-          <p className="gs-eyebrow">What we are seeking</p>
-          {opportunity.seeking.map((item) => (
-            <span key={item} className="gs-small">
-              · {item}
-            </span>
-          ))}
+        <div className="gs-capbar" style={{ height: 10 }}>
+          <div
+            className="gs-capbar__fill"
+            style={{
+              width: `${opportunity.securedPct}%`,
+              background: `linear-gradient(90deg, ${light}, ${color})`,
+            }}
+          />
         </div>
-        <div className="gs-stack" style={{ gap: 8 }}>
-          <p className="gs-eyebrow">What will be measured</p>
-          {opportunity.expected.map((item) => (
-            <span key={item} className="gs-small">
-              · {item}
-            </span>
-          ))}
+        <div style={{ fontSize: 11, color: 'var(--gs-ink-40)', marginTop: 5 }}>
+          {opportunity.securedPct}% funded
         </div>
       </div>
 
-      <div className="gs-row" style={{ gap: 10, marginTop: 20 }}>
-        <button
-          type="button"
-          className="gs-btn gs-btn--primary gs-btn--sm"
-          onClick={() => setOpen((v) => !v)}
+      <div>
+        <div className="gs-nearlabel" style={{ marginBottom: 8 }}>
+          Expected outcomes · measured &amp; published
+        </div>
+        <ul className="gs-outcomes">
+          {opportunity.expected.map((line) => (
+            <li key={line}>
+              <span style={{ color: '#1B7A34', fontWeight: 800 }}>›</span>
+              {line}
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <div className="gs-row" style={{ gap: 6 }}>
+        {opportunity.seeking.map((item) => (
+          <span key={item} className="gs-seekchip">
+            {item}
+          </span>
+        ))}
+      </div>
+
+      <p
+        style={{
+          margin: 0,
+          fontSize: 11.5,
+          color: 'var(--gs-ink-40)',
+          lineHeight: 1.55,
+        }}
+      >
+        {opportunity.note}
+      </p>
+
+      <div
+        className="gs-row"
+        style={{ gap: 10, marginTop: 'auto', paddingTop: 6 }}
+      >
+        <Link
+          to="/partner"
+          hash="build"
+          className="gs-btn"
+          style={{
+            flex: 1,
+            textAlign: 'center',
+            padding: '12px 0',
+            fontSize: 13,
+            fontWeight: 800,
+            color: '#fff',
+            background: `linear-gradient(135deg, ${light} 0%, ${color} 100%)`,
+          }}
         >
-          {open ? 'Close' : 'Support this initiative'}
-        </button>
-        <Link to="/partner" className="gs-btn gs-btn--ghost gs-btn--sm">
-          Talk to the partnerships team
+          Fund this initiative
         </Link>
-        <Link to="/trust" className="gs-btn gs-btn--ghost gs-btn--sm">
-          See how funds are spent
+        <Link to="/impact" className="gs-btn gs-btn--ghost">
+          Past results
         </Link>
       </div>
-
-      {open ? (
-        done ? (
-          <Banner>
-            Recorded. Your contribution appears in the Trust Ledger with its
-            receipt reference, restricted to {opportunity.program?.name}.
-          </Banner>
-        ) : (
-          <form
-            className="gs-stack"
-            style={{ gap: 12, marginTop: 18, maxWidth: 520 }}
-            onSubmit={(e) => void support(e)}
-          >
-            <div className="gs-grid gs-grid--2">
-              <label className="gs-stack" style={{ gap: 6 }}>
-                <span className="gs-small" style={{ fontWeight: 600 }}>
-                  Name to record
-                </span>
-                <input
-                  name="donor"
-                  required
-                  placeholder="Person or organisation"
-                />
-              </label>
-              <label className="gs-stack" style={{ gap: 6 }}>
-                <span className="gs-small" style={{ fontWeight: 600 }}>
-                  Amount ({os.currency})
-                </span>
-                <input
-                  name="amount"
-                  type="number"
-                  min={1}
-                  required
-                  defaultValue={5000}
-                />
-              </label>
-            </div>
-            <label className="gs-stack" style={{ gap: 6 }}>
-              <span className="gs-small" style={{ fontWeight: 600 }}>
-                Type
-              </span>
-              <select name="kind" defaultValue="Individual">
-                <option>Individual</option>
-                <option>Corporate</option>
-                <option>Foundation</option>
-                <option>In-kind (estimated)</option>
-              </select>
-            </label>
-            <Banner variant="info">
-              This records a pledge against the initiative and restricts it to{' '}
-              {opportunity.program?.name}. Restricted money can only be spent
-              there — the ledger enforces it.
-            </Banner>
-            <button
-              type="submit"
-              className="gs-btn gs-btn--primary"
-              disabled={busy}
-              style={{ alignSelf: 'flex-start' }}
-            >
-              {busy ? 'Recording…' : 'Record this pledge'}
-            </button>
-          </form>
-        )
-      ) : null}
     </article>
   )
 }
