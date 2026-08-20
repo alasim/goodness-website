@@ -2570,3 +2570,197 @@ a.gs-tile--plain:hover {
     grid-template-columns: 1fr;
   }
 }
+
+/* ── Partner (`Partner.dc.html`) ───────────────────────────────────────── */
+.gs-minioppgrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 16px;
+}
+.gs-miniopp {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 20px;
+  background: var(--gs-mist);
+  border: 1px solid var(--gs-line);
+  border-top: 3px solid var(--gs-green);
+  border-radius: 16px;
+  text-decoration: none;
+  color: inherit;
+}
+.gs-miniopp:hover {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  color: inherit;
+}
+.gs-partnerpill {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 18px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: var(--gs-radius-pill);
+  text-decoration: none;
+  color: inherit;
+}
+.gs-partnerpill:hover {
+  border-color: var(--gs-green-deep);
+  color: inherit;
+}
+.gs-mark--30 {
+  width: 30px;
+  height: 30px;
+  font-size: 11px;
+}
+
+/* Partnership builder: an ink card carrying selects, live matches and the interest form. */
+.gs-buildercard {
+  background: var(--gs-ink);
+  border-radius: 24px;
+  padding: 34px 36px;
+  color: #fff;
+}
+.gs-buildercard__label {
+  margin: 0 0 8px;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--gs-green);
+  font-weight: 800;
+}
+.gs-inkfieldlabel {
+  display: block;
+  font-size: 10px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: rgba(255, 255, 255, 0.5);
+  margin-bottom: 6px;
+}
+.gs-buildercard select,
+.gs-buildercard input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 11px 14px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+  font-size: 13px;
+}
+.gs-buildercard select option {
+  color: var(--gs-ink);
+}
+.gs-buildercard input::placeholder {
+  color: rgba(255, 255, 255, 0.45);
+}
+.gs-buildercard select:focus,
+.gs-buildercard input:focus {
+  border-color: var(--gs-green);
+  box-shadow: none;
+}
+.gs-matchrow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 13px 16px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.06);
+  text-decoration: none;
+}
+.gs-matchrow:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+.gs-builderform {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 14px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+}
+.gs-builderform__label {
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+/* Five ways in, and the three steps that follow. */
+.gs-kindcard {
+  background: #fff;
+  border-radius: 16px;
+  border: 1px solid var(--gs-line);
+  padding: 28px;
+}
+.gs-kindcard:hover {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.07);
+}
+.gs-kindcard__benefit {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  padding-top: 16px;
+  border-top: 1px solid var(--gs-line-soft);
+  font-size: 12px;
+  font-weight: 500;
+}
+.gs-stepcard {
+  background: var(--gs-mist);
+  border-radius: 16px;
+  border: 1px solid var(--gs-line);
+  padding: 28px;
+}
+
+/* The long-form enquiry and its thank-you. */
+.gs-enquiryform {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  background: #fff;
+  border-radius: 16px;
+  border: 1px solid var(--gs-line);
+  padding: 32px;
+}
+.gs-enquiryform input,
+.gs-enquiryform select,
+.gs-enquiryform textarea {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 12px 16px;
+  border-radius: 12px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  background: var(--gs-mist);
+  font-size: 14px;
+  resize: none;
+}
+.gs-enquiryform input:focus,
+.gs-enquiryform select:focus,
+.gs-enquiryform textarea:focus {
+  border-color: var(--gs-green-deep);
+  background: #fff;
+  box-shadow: none;
+}
+.gs-formlabel {
+  display: block;
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+.gs-thanks {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  background: #fff;
+  border-radius: 16px;
+  border: 1px solid rgba(27, 122, 52, 0.2);
+  padding: 48px;
+}
+@media (max-width: 720px) {
+  .gs-minioppgrid {
+    grid-template-columns: 1fr;
+  }
+}

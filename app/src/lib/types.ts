@@ -28,6 +28,7 @@ export type CommitmentDestination = 'unrestricted' | 'chapter' | 'program'
 export type ApplicationStatus = 'pending' | 'approved' | 'rejected'
 export type ProposalStage = 'pending' | 'approved' | 'returned'
 export type ChapterRequestStage = 'proposed' | 'forming' | 'returned'
+export type PartnerEnquiryStage = 'new' | 'contacted' | 'converted' | 'closed'
 export type AppRole =
   | 'volunteer'
   | 'team_lead'
@@ -430,6 +431,22 @@ export interface ChapterRequest {
   createdAt: string
 }
 
+/** An organisation expressing interest through the public Partner page: a lead, never a partner. */
+export interface PartnerEnquiry {
+  id: string
+  organisation: string
+  contact: string
+  commitmentRange: string | null
+  objective: string | null
+  causeProgramSlug: string | null
+  whereLabel: string | null
+  brings: string | null
+  opportunityId: string | null
+  stage: PartnerEnquiryStage
+  note: string | null
+  createdAt: string
+}
+
 export interface ChapterProposal {
   id: string
   chapterId: string
@@ -496,6 +513,7 @@ export interface Dataset {
   applications: Array<Application>
   chapterRequests: Array<ChapterRequest>
   chapterProposals: Array<ChapterProposal>
+  partnerEnquiries: Array<PartnerEnquiry>
   announcements: Array<Announcement>
   auditEvents: Array<AuditEvent>
 }

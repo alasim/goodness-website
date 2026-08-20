@@ -33,6 +33,7 @@ export const emptyDataset = (): Dataset => ({
   applications: [],
   chapterRequests: [],
   chapterProposals: [],
+  partnerEnquiries: [],
   announcements: [],
   auditEvents: [],
 })

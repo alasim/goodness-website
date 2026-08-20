@@ -20,6 +20,7 @@ import type {
   ExpenseStatus,
   Mission,
   MissionRole,
+  PartnerEnquiry,
   Profile,
 } from '../lib/types'
 
@@ -576,15 +577,13 @@ export async function contributeNow(
   const record = await addDonation(donation)
   if (hasSupabase) {
     const client = await sb()
-    const { error } = await client
-      .from('commitment_contributions')
-      .insert(
-        toRow({
-          commitmentId: commitment.id,
-          donationId: record.id,
-          amount: commitment.amount,
-        }),
-      )
+    const { error } = await client.from('commitment_contributions').insert(
+      toRow({
+        commitmentId: commitment.id,
+        donationId: record.id,
+        amount: commitment.amount,
+      }),
+    )
     if (error) throw new Error(error.message)
     return
   }
@@ -702,6 +701,48 @@ export async function decideChapterRequest(
         reason: note,
       },
     )
+  })
+}
+
+/**
+ * An organisation expressing interest from the public Partner page. It is stored as a lead that
+ * only HQ can read — nothing about an enquiry is ever public, and it never becomes a partner
+ * record until the partnerships team decides it should.
+ */
+export async function submitPartnerEnquiry(enquiry: {
+  organisation: string
+  contact: string
+  commitmentRange?: string | null
+  objective?: string | null
+  causeProgramSlug?: string | null
+  whereLabel?: string | null
+  brings?: string | null
+  opportunityId?: string | null
+}) {
+  const record: PartnerEnquiry = {
+    id: id('enq'),
+    organisation: enquiry.organisation,
+    contact: enquiry.contact,
+    commitmentRange: enquiry.commitmentRange || null,
+    objective: enquiry.objective || null,
+    causeProgramSlug: enquiry.causeProgramSlug || null,
+    whereLabel: enquiry.whereLabel || null,
+    brings: enquiry.brings || null,
+    opportunityId: enquiry.opportunityId || null,
+    stage: 'new',
+    note: null,
+    createdAt: now(),
+  }
+  if (hasSupabase) {
+    const client = await sb()
+    const { id: _unused, ...row } = record
+    const { error } = await client.from('partner_enquiries').insert(toRow(row))
+    if (error) throw new Error(error.message)
+    return
+  }
+  patchOverlay((o) => {
+    o.partnerEnquiries.unshift(record)
+    recordAudit(o, 'partner.enquiry', 'partner_enquiry', record.organisation)
   })
 }
 

@@ -15,6 +15,7 @@ import type {
   Chapter,
   ChapterProposal,
   ChapterRequest,
+  PartnerEnquiry,
   Commitment,
   CommitmentContribution,
   Dataset,
@@ -46,6 +47,7 @@ export interface Overlay {
   chapters: Array<Chapter>
   chapterPatches: Record<string, Partial<Chapter>>
   chapterRequests: Array<ChapterRequest>
+  partnerEnquiries: Array<PartnerEnquiry>
   chapterProposals: Array<ChapterProposal>
   announcements: Array<Announcement>
   memberChapter: Record<string, string>
@@ -72,6 +74,7 @@ export const emptyOverlay = (): Overlay => ({
   chapters: [],
   chapterPatches: {},
   chapterRequests: [],
+  partnerEnquiries: [],
   chapterProposals: [],
   announcements: [],
   memberChapter: {},
@@ -178,6 +181,7 @@ export function applyOverlay(base: Dataset, overlay: Overlay): Dataset {
       overlay.chapterPatches,
     ),
     chapterRequests: overlay.chapterRequests,
+    partnerEnquiries: overlay.partnerEnquiries,
     chapterProposals: overlay.chapterProposals,
     announcements: base.announcements.concat(overlay.announcements),
     commitments: overlay.commitments,

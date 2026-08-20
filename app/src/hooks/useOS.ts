@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { useQuery } from '@tanstack/react-query'
+import { keepPreviousData, useQuery } from '@tanstack/react-query'
 import { buildOS } from '../data/os'
 import { hasSupabase } from '../lib/env'
 import { baseDataset, readOverlay } from '../data/local'
@@ -30,6 +30,10 @@ export function useOS(): {
     queryKey: ['os', tick],
     queryFn: async () => buildOS(await loadDataset({ withOverlay: tick > 0 })),
     staleTime: Infinity,
+    // Each tick is a new query key. Without this the model would blink to undefined while the
+    // next one builds, unmounting whatever is on screen — which silently discards half-filled
+    // forms every time a mutation writes to the overlay.
+    placeholderData: keepPreviousData,
     // On the local driver the seed is already in the bundle, so the server can render the real
     // page instead of a spinner — public pages have to be indexable and shareable. Only the
     // first render gets it: later ticks must actually rebuild, or a change made in the browser
