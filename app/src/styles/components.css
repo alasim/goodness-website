@@ -2871,3 +2871,36 @@ a.gs-tile--plain:hover {
   border-radius: 10px;
   padding: 10px 12px;
 }
+
+/* ── Partner Profile (`Partner Profile.dc.html`) ───────────────────────── */
+.gs-blocklabel {
+  margin: 0 0 18px;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--gs-ink-40);
+  font-weight: 800;
+}
+.gs-programcard {
+  background: #fff;
+  border: 1px solid var(--gs-line);
+  border-top: 3px solid var(--gs-green-deep);
+  border-radius: 16px;
+  padding: 22px;
+}
+.gs-recordrow {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  background: #fff;
+  border: 1px solid var(--gs-line);
+  border-radius: 14px;
+  padding: 18px 22px;
+  text-decoration: none;
+  color: inherit;
+}
+.gs-recordrow:hover {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.07);
+  color: inherit;
+}
