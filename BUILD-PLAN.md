@@ -88,8 +88,12 @@ See `app/README.md` for the full runbook.
 - **Two drivers.** Supabase when configured, a seeded local record otherwise, producing the same
   `Dataset`. The product is fully demonstrable before a backend exists, and switches without any
   screen changing.
-- **Twenty-one surfaces**, from the home page to Mission Control's ten tabs and the Share Studio
-  card engine, each server-rendered with its own metadata.
+- **Twenty-three routes**, and every one of the twenty-two that has a design file was rebuilt from
+  that `.dc.html` rather than from a written spec — from the home page to Mission Control's dark
+  rail, Chapter Control's local console, and the Share Studio's 48-card catalogue across 17 layouts
+  and 8 themes. Each is server-rendered with its own metadata, and each is held to its design by a
+  copy contract in `app/src/routes/page-copy.test.ts` that asserts the page's own words still
+  appear in both the design file and the build.
 - **Verification you can run.** `npm run db:verify` applies the whole schema and seed to in-process
   Postgres and asserts the privacy, RLS, credential and ledger promises; `npm test` locks the
   derivations; CI runs both plus typecheck, lint and build, and fails if the generated seed drifts.
@@ -101,7 +105,6 @@ See `app/README.md` for the full runbook.
 - **File storage for evidence.** Evidence and expense documents carry a `storage_path` column and
   are modelled end to end, but uploading the files themselves needs a storage bucket policy the
   owner should approve.
-- **Goodness Intelligence (Wave 07).** The prototype's UI is intentionally a stub; the owner asked
-  for the analysis engine to be wired later.
-- **Share Studio breadth.** The card engine covers all seven families; the prototype's full
-  catalogue of ~40 variants can be extended card by card in `app/src/lib/cards.ts`.
+- **Goodness Intelligence (Wave 07).** Mission Control's rail carries every domain the design
+  defines except the Intelligence tab, which the owner asked to wire later — a stub is worse than
+  its absence, so nothing claims to analyse anything yet.

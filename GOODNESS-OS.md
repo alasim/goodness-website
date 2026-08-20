@@ -78,7 +78,7 @@ File map: Home / About / Programs / Transparency / Volunteers (directory) / Volu
 - Shared client store: gs-os.js (localStorage "gs-os-store" merged over volunteers-data.js seed). All pages read/write it. Real backend later.
 - Existing pages = Public Experience layer; generators = Identity & Credential layer; forms = People Ops; transparency page = Trust Ledger seed; directory = Passport seed.
 
-## PRODUCT BUILD — React + Supabase implementation [STATUS: built, phases P0–P11]
+## PRODUCT BUILD — React + Supabase implementation [STATUS: built, phases P0–P11; every surface with a design file rebuilt from it]
 The confirmed prototype above is now implemented as a real product. Design source stays at the
 repository root; the product lives in `app/` (TanStack Start — React 19 + TypeScript, server
 rendered) and `supabase/` (Postgres schema, row level security and seed, all as code). The phase
@@ -102,10 +102,36 @@ Mapping from the waves above to the built surfaces:
   request/proposal queues.
 - WAVE 06.x GOODNESS COMMITMENT → the commitment panel in `/me`, contributions entering the Trust
   Ledger with receipts, and the commitments strip in Mission Control's Money tab.
-- WAVE SS SHARE STUDIO → `/studio`, a canvas card engine with locked numbers across seven card
-  families, square/story/A4 formats, captions and verification references.
+- WAVE SS SHARE STUDIO → `/studio`, a card engine with locked numbers across the seven catalogue
+  panels — 48 cards over 17 layouts and 8 themes — in square/story/A4 formats, with captions and
+  verification references. Cards are composed as DOM at 540px and exported through `html-to-image`,
+  so a card is the same markup the studio previews rather than a second drawing of it.
 - WAVE 07 INTELLIGENCE → still UI-only by owner decision; not rebuilt in the product yet.
 
 Governance carried into the database, not just the interface: RLS on every table, public views as
 the only window onto personal data, hours that cannot be self-verified, and an audit trail with old
 value → new value → who → when → why.
+
+### Design-source rebuild [STATUS: built — 22 pages]
+The first pass of the product was built from the written spec above rather than from the prototype
+files, and it drifted. Every page that has a design file has since been rebuilt directly from that
+`.dc.html`, one page at a time and one commit each: home, Missions, Mission Detail, Impact, Trust
+Ledger, Chapters, Chapter, Our Volunteers, Goodness Passport, My Goodness, Fund Impact, Partner
+with Us, Partner Room, Partner Profile, Verify, Volunteer with Us, About Us, Our Programs,
+Transparency, Share Studio, Mission Control, Chapter Control. `/chapters/start` is the one route
+with no design file of its own; it follows the Chapters design system.
+
+What the rebuild holds to:
+- The design's own words. Each page carries a contract in `app/src/routes/page-copy.test.ts` whose
+  quoted lines are asserted to appear in both the design file and the build, so copy cannot drift
+  back out. `app/src/routes/home-design.test.ts` guards the home page's structure the same way.
+- The design's own system: split-weight headings, the 1280px container, the 28% squircle, the mist
+  and wash surfaces, and accent colour used as meaning (blue money, orange attention, purple
+  network, green verified).
+- Derivation over transcription. Where a design hardcoded something the platform can compute —
+  programme roles, mission statuses, participant and partner counts, quarter labels, team and city
+  lists — the build derives it from `buildOS()` instead, and the commit says so. Where a design
+  asserted an audited historical fact, the figure is kept as a constant with a comment explaining
+  why it is not derived.
+- Full-screen control surfaces. Mission Control and Chapter Control render without the public
+  site's header and footer, as their designs do.
