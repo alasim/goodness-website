@@ -2764,3 +2764,110 @@ a.gs-tile--plain:hover {
     grid-template-columns: 1fr;
   }
 }
+
+/* ── Partner Room (`Partner Room.dc.html`) ─────────────────────────────── */
+.gs-tiermark {
+  padding: 3px 12px;
+  border-radius: var(--gs-radius-pill);
+  font-size: 10px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  background: var(--gs-gradient);
+  color: #fff;
+}
+.gs-liverow {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 16px;
+  border: 1px solid rgba(0, 0, 0, 0.07);
+  border-radius: 14px;
+  text-decoration: none;
+  color: inherit;
+}
+.gs-liverow:hover {
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.07);
+  color: inherit;
+}
+.gs-tracedot {
+  width: 30px;
+  height: 30px;
+  border-radius: 30%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-weight: 800;
+  font-size: 13px;
+}
+.gs-sidelabel {
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin-bottom: 8px;
+}
+
+/* An ink panel inside a light column: reports, sharing, anything the partner acts on. */
+.gs-inkpanel {
+  background: var(--gs-ink);
+  border-radius: var(--gs-radius-xl);
+  padding: 26px;
+  color: #fff;
+}
+.gs-inkaction {
+  display: block;
+  text-align: left;
+  padding: 11px 14px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.05);
+  color: #fff;
+  font-size: 12.5px;
+  font-weight: 700;
+  text-decoration: none;
+}
+.gs-inkaction:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+}
+.gs-inkaction--primary {
+  border: none;
+  background: var(--gs-gradient);
+  font-weight: 800;
+}
+.gs-inkaction--primary:hover {
+  opacity: 0.9;
+  background: var(--gs-gradient);
+}
+.gs-inkchip {
+  padding: 6px 12px;
+  border-radius: var(--gs-radius-pill);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  text-decoration: none;
+}
+.gs-inkchip:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+}
+.gs-nextpanel {
+  background: var(--gs-green-wash);
+  border: 1px solid rgba(27, 122, 52, 0.25);
+  border-radius: var(--gs-radius-xl);
+  padding: 26px;
+}
+/* Three loose figure tiles (employee volunteering), as distinct from the hairline strip. */
+.gs-tilestats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+.gs-tilestats > div {
+  background: var(--gs-mist);
+  border-radius: 10px;
+  padding: 10px 12px;
+}
