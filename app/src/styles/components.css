@@ -3153,3 +3153,117 @@ a.gs-tile--plain:hover {
   flex-shrink: 0;
   fill: none;
 }
+
+/* ── Transparency (`Transparency.dc.html`) ─────────────────────────────── */
+.gs-auditcard {
+  background: #fff;
+  border-radius: 16px;
+  border: 1px solid var(--gs-line);
+  padding: 24px;
+}
+.gs-chartcard {
+  background: #fff;
+  border: 1px solid var(--gs-line);
+  border-radius: 16px;
+  padding: 28px;
+}
+.gs-chartcard__kicker {
+  margin: 0 0 4px;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--gs-ink-50);
+  font-weight: 700;
+}
+.gs-chartcard__title {
+  margin: 0 0 24px;
+  font-weight: 700;
+}
+.gs-donut__centre {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+.gs-swatch {
+  width: 12px;
+  height: 12px;
+  border-radius: 3px;
+  flex-shrink: 0;
+  display: inline-block;
+}
+.gs-quarterchart {
+  display: flex;
+  align-items: flex-end;
+  gap: 20px;
+  height: 180px;
+}
+.gs-quarterchart__col {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  height: 100%;
+  justify-content: flex-end;
+}
+.gs-quarterchart__bars {
+  display: flex;
+  align-items: flex-end;
+  gap: 4px;
+  flex: 1;
+  width: 100%;
+  justify-content: center;
+}
+.gs-quarterchart__bars > span {
+  width: 20px;
+  border-radius: 4px 4px 0 0;
+}
+.gs-timeline {
+  position: relative;
+}
+.gs-timeline__rail {
+  position: absolute;
+  left: 16px;
+  top: 8px;
+  bottom: 8px;
+  width: 2px;
+  background: var(--gs-line);
+}
+.gs-timeline__items {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  padding-left: 48px;
+}
+.gs-timeline__dot {
+  position: absolute;
+  left: -40px;
+  top: 18px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 2px solid #fff;
+}
+.gs-timeline__card {
+  background: #fff;
+  border-radius: 12px;
+  border: 1px solid var(--gs-line);
+  padding: 20px;
+}
+.gs-timeline__card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+}
+.gs-pledgecard {
+  text-align: center;
+  padding: 24px;
+  border-radius: 16px;
+  border: 1px solid var(--gs-line);
+  background: #fff;
+}
+.gs-pledgecard:hover {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.07);
+}
