@@ -3,6 +3,7 @@ import {
   Outlet,
   Scripts,
   createRootRoute,
+  useRouterState,
 } from '@tanstack/react-router'
 import { QueryClientProvider } from '@tanstack/react-query'
 import type { ReactNode } from 'react'
@@ -63,6 +64,26 @@ function RootDocument({ children }: { children: ReactNode }) {
 }
 
 function RootLayout() {
+  // Mission Control and Chapter Control are full-screen control surfaces with their own rail, so
+  // they render without the public site's chrome — as their designs do.
+  const isControl = useRouterState({
+    select: (state) =>
+      /^\/(admin|chapter-control)/.test(state.location.pathname),
+  })
+
+  if (isControl) {
+    return (
+      <div className="gs-shell">
+        <a className="gs-skip" href="#main">
+          Skip to content
+        </a>
+        <main id="main">
+          <Outlet />
+        </main>
+      </div>
+    )
+  }
+
   return (
     <div className="gs-shell">
       <a className="gs-skip" href="#main">

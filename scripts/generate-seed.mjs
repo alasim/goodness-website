@@ -629,6 +629,7 @@ json.commitmentContributions = []
 json.applications = []
 json.chapterRequests = []
 json.chapterProposals = []
+json.partnerEnquiries = []
 json.auditEvents = []
 
 const jsonPath = resolve(root, 'app/src/data/seed.json')

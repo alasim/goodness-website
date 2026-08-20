@@ -1,12 +1,13 @@
-import { createFileRoute, useNavigate } from '@tanstack/react-router'
+import { Link, createFileRoute, useNavigate } from '@tanstack/react-router'
 import { useOS } from '../hooks/useOS'
+import type { ReactNode } from 'react'
 import { useCurrentPerson } from '../hooks/useCurrentPerson'
 import { LoadingState } from '../components/LoadingState'
 import { IdentityPicker } from '../components/IdentityPicker'
 import { AuthPanel } from '../components/AuthPanel'
 import { Banner, Section } from '../components/ui'
 import { hasSupabase } from '../lib/env'
-import { AdminOverview } from '../components/admin/AdminOverview'
+import { AdminCommand } from '../components/admin/AdminCommand'
 import { AdminApplications, AdminPeople } from '../components/admin/AdminPeople'
 import {
   AdminAttendance,
@@ -107,46 +108,133 @@ function MissionControl() {
 
   const go = (next: string) => void navigate({ search: { tab: next as TabId } })
 
-  return (
-    <>
-      <section style={{ paddingTop: 34 }}>
-        <div className="gs-wrap gs-stack" style={{ gap: 12 }}>
-          <div className="gs-row gs-row--between">
-            <div className="gs-stack" style={{ gap: 4 }}>
-              <p className="gs-eyebrow">Mission Control</p>
-              <h1 style={{ fontSize: 'clamp(26px, 3.4vw, 38px)' }}>
-                What’s happening right now
-              </h1>
-            </div>
-            {!hasSupabase ? (
-              <span className="gs-pill gs-pill--amber">
-                Prototype mode — no backend, full access
-              </span>
-            ) : (
-              <span className="gs-pill gs-pill--green">
-                {roles.join(', ') || 'operations'}
-              </span>
-            )}
-          </div>
+  const counts = {
+    volunteers: os.stats.volunteers,
+    applications: os.data.applications.filter((a) => a.status === 'pending')
+      .length,
+    missions: os.stats.liveMissions,
+    attendance: os.data.assignments.filter((a) => a.state === 'submitted')
+      .length,
+    impact: os.impact.filter((r) => !r.published).length,
+    money: os.finance.expenses.filter((e) => e.status === 'pending').length,
+    partners: os.activePartners.length,
+    network: os.formingChapters.length,
+  }
 
-          <div className="gs-tabs" role="tablist">
-            {TABS.map((item) => (
-              <button
-                key={item.id}
-                type="button"
-                role="tab"
-                aria-selected={tab === item.id}
-                className={`gs-tab ${tab === item.id ? 'is-active' : ''}`}
-                onClick={() => go(item.id)}
-              >
-                {item.label}
-              </button>
-            ))}
+  return (
+    <div className="gs-mc">
+      <aside className="gs-mc__rail">
+        <Link to="/" className="gs-mc__brand">
+          <span className="gs-mc__mark">G</span>
+          <span>
+            <span className="gs-mc__brandname">Mission Control</span>
+            <span className="gs-mc__brandsub">Goodness OS</span>
+          </span>
+        </Link>
+
+        <nav className="gs-mc__nav">
+          <RailGroup label="Command">
+            <RailButton
+              label="Overview"
+              active={tab === 'overview'}
+              onClick={() => go('overview')}
+            />
+          </RailGroup>
+
+          <RailGroup label="People">
+            <RailButton
+              label="Volunteers"
+              badge={String(counts.volunteers)}
+              active={tab === 'people'}
+              onClick={() => go('people')}
+            />
+            <RailButton
+              label="Applications"
+              badge={String(counts.applications)}
+              warn={counts.applications > 0}
+              active={tab === 'applications'}
+              onClick={() => go('applications')}
+            />
+          </RailGroup>
+
+          <RailGroup label="Operations">
+            <RailButton
+              label="Missions"
+              badge={String(counts.missions)}
+              active={tab === 'missions'}
+              onClick={() => go('missions')}
+            />
+            <RailButton
+              label="Attendance"
+              badge={String(counts.attendance)}
+              warn={counts.attendance > 0}
+              active={tab === 'attendance'}
+              onClick={() => go('attendance')}
+            />
+            <RailButton
+              label="Impact"
+              badge={counts.impact ? `${counts.impact} draft` : 'Clear'}
+              warn={counts.impact > 0}
+              active={tab === 'impact'}
+              onClick={() => go('impact')}
+            />
+          </RailGroup>
+
+          <RailGroup label="Finance">
+            <RailButton
+              label="Money & approvals"
+              badge={counts.money ? String(counts.money) : 'Clear'}
+              warn={counts.money > 0}
+              active={tab === 'money'}
+              onClick={() => go('money')}
+            />
+            <RailLink to="/trust" label="Public Trust Ledger" />
+          </RailGroup>
+
+          <RailGroup label="Growth">
+            <RailButton
+              label="Partners"
+              badge={String(counts.partners)}
+              active={tab === 'partners'}
+              onClick={() => go('partners')}
+            />
+            <RailButton
+              label="Network"
+              badge={counts.network ? `${counts.network} forming` : 'Stable'}
+              active={tab === 'network'}
+              onClick={() => go('network')}
+            />
+          </RailGroup>
+
+          <RailGroup label="Trust">
+            <RailLink to="/verify" label="Verify a credential" />
+            <RailButton
+              label="Audit Log"
+              badge="Live"
+              active={tab === 'audit'}
+              onClick={() => go('audit')}
+            />
+          </RailGroup>
+        </nav>
+
+        <div className="gs-mc__who">
+          <span className="gs-mc__whomark">
+            {person ? person.initials : 'AD'}
+          </span>
+          <div>
+            <div style={{ fontSize: 12, fontWeight: 700, color: '#fff' }}>
+              {person ? person.fullName.split(' ')[0] : 'Admin'}
+            </div>
+            <div style={{ fontSize: 10, color: 'rgba(255,255,255,0.4)' }}>
+              {hasSupabase
+                ? (roles[0] ?? 'operations').replace(/_/g, ' ')
+                : 'Prototype access'}
+            </div>
           </div>
         </div>
-      </section>
+      </aside>
 
-      <Section tight>
+      <main className="gs-mc__main">
         {!person && !hasSupabase ? (
           <div style={{ maxWidth: 620, marginBottom: 24 }}>
             <IdentityPicker
@@ -156,7 +244,7 @@ function MissionControl() {
           </div>
         ) : null}
 
-        {tab === 'overview' ? <AdminOverview os={os} onGo={go} /> : null}
+        {tab === 'overview' ? <AdminCommand os={os} onGo={go} /> : null}
         {tab === 'people' ? <AdminPeople os={os} /> : null}
         {tab === 'applications' ? <AdminApplications os={os} /> : null}
         {tab === 'missions' ? <AdminMissions os={os} /> : null}
@@ -166,7 +254,62 @@ function MissionControl() {
         {tab === 'partners' ? <AdminPartners os={os} /> : null}
         {tab === 'network' ? <AdminNetwork os={os} /> : null}
         {tab === 'audit' ? <AdminAudit os={os} /> : null}
-      </Section>
-    </>
+      </main>
+    </div>
+  )
+}
+
+/** A labelled block of rail buttons, as the design groups them. */
+function RailGroup({
+  label,
+  children,
+}: {
+  label: string
+  children: ReactNode
+}) {
+  return (
+    <div>
+      <div className="gs-mc__grouplabel">{label}</div>
+      {children}
+    </div>
+  )
+}
+
+function RailButton({
+  label,
+  badge,
+  warn,
+  active,
+  onClick,
+}: {
+  label: string
+  badge?: string
+  warn?: boolean
+  active: boolean
+  onClick: () => void
+}) {
+  return (
+    <button
+      type="button"
+      className="gs-mc__navbtn"
+      aria-current={active ? 'page' : undefined}
+      onClick={onClick}
+    >
+      {label}
+      {badge ? (
+        <span className={`gs-mc__badge ${warn ? 'gs-mc__badge--warn' : ''}`}>
+          {badge}
+        </span>
+      ) : null}
+    </button>
+  )
+}
+
+function RailLink({ to, label }: { to: string; label: string }) {
+  return (
+    <Link to={to} className="gs-mc__navlink">
+      {label}
+      <span style={{ marginLeft: 'auto', fontSize: 12 }}>↗</span>
+    </Link>
   )
 }

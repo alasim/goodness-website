@@ -7,6 +7,7 @@
  * the Supabase driver returns — same shape, same derivations, same screens.
  */
 import seed from './seed.json'
+import { emptyDataset } from './empty'
 import type {
   Announcement,
   Application,
@@ -139,8 +140,13 @@ export function recordAudit(
 }
 
 /** The generated seed, untouched. */
+/**
+ * The seed merged over an empty dataset, so a table the seed does not carry reads as an empty
+ * array rather than undefined. Without this a newly added table would be `undefined` at runtime
+ * while still type-checking, and every reader of it would throw.
+ */
 export function baseDataset(): Dataset {
-  return seed as unknown as Dataset
+  return { ...emptyDataset(), ...(seed as unknown as Partial<Dataset>) }
 }
 
 export function applyOverlay(base: Dataset, overlay: Overlay): Dataset {
