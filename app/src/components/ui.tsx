@@ -184,7 +184,7 @@ export function Display({
 }: {
   light: string
   bold: string
-  variant?: 'hero' | 'page' | 'minor' | 'cta'
+  variant?: 'hero' | 'page' | 'section' | 'minor' | 'cta'
   onInk?: boolean
   reverse?: boolean
   italic?: boolean
