@@ -86,11 +86,14 @@ export interface FundView extends Fund {
   spent: number
   pending: number
   restricted: number
+  restrictedRemaining: number
   remaining: number
   fundingGap: number
   documents: number
   documentsChecked: number
   documentedPct: number
+  withDocs: number
+  missingDocs: number
   spentPct: number
 }
 
@@ -112,7 +115,10 @@ export interface FinanceView {
   overheadSpend: number
   programSharePct: number
   overheadPct: number
+  /** Share of accepted spending, by amount, that has at least one document attached. */
   documentedPct: number
+  /** Share of accepted spending, by amount, where every attached document has been checked. */
+  checkedPct: number
   unallocated: number
 }
 
@@ -361,11 +367,14 @@ export function buildOS(data: Dataset): OSModel {
       spent,
       pending: pendingAmount,
       restricted,
+      restrictedRemaining: Math.max(0, restricted - spent),
       remaining: Math.max(0, fund.allocated - spent),
       fundingGap: Math.max(0, fund.budget - fund.allocated),
       documents,
       documentsChecked,
       documentedPct: pct(documentsChecked, documents),
+      withDocs: own.filter((e) => e.evidence.length > 0).length,
+      missingDocs: own.filter((e) => e.evidence.length === 0).length,
       spentPct: pct(spent, fund.allocated),
     }
   })
@@ -380,8 +389,19 @@ export function buildOS(data: Dataset): OSModel {
     (f) => f.spent,
   )
   const overheadSpend = spent - programSpend
-  const documents = sum(funds, (f) => f.documents)
-  const documentsChecked = sum(funds, (f) => f.documentsChecked)
+  // Documented and checked are shares of *money*, not of paperwork: the question a reader asks is
+  // "how much of what you spent can you show me a document for", and "how much of it did you check".
+  const acceptedSpend = expenses.filter((e) => e.status === 'approved')
+  const documentedSpend = sum(
+    acceptedSpend.filter((e) => e.evidence.length > 0),
+    (e) => e.amount,
+  )
+  const checkedSpend = sum(
+    acceptedSpend.filter(
+      (e) => e.evidence.length > 0 && e.evidence.every((d) => d.checked),
+    ),
+    (e) => e.amount,
+  )
 
   const finance: FinanceView = {
     funds,
@@ -396,7 +416,8 @@ export function buildOS(data: Dataset): OSModel {
     overheadSpend,
     programSharePct: pct(programSpend, spent),
     overheadPct: pct(overheadSpend, spent),
-    documentedPct: pct(documentsChecked, documents),
+    documentedPct: pct(documentedSpend, spent),
+    checkedPct: pct(checkedSpend, spent),
     unallocated: Math.max(0, received - allocated),
   }
 
@@ -607,7 +628,10 @@ export function buildOS(data: Dataset): OSModel {
 }
 
 // ── Small helpers ───────────────────────────────────────────────────────────
-function groupBy<T, TKey>(rows: Array<T>, key: (row: T) => TKey): Map<TKey, Array<T>> {
+function groupBy<T, TKey>(
+  rows: Array<T>,
+  key: (row: T) => TKey,
+): Map<TKey, Array<T>> {
   const out = new Map<TKey, Array<T>>()
   for (const row of rows) {
     const k = key(row)

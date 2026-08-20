@@ -1766,3 +1766,147 @@ a.gs-tile--plain:hover {
     order: 3;
   }
 }
+
+/* ══ Trust Ledger (Trust Ledger.dc.html) ═════════════════════════════════ */
+.gs-inkcard {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: var(--gs-radius);
+  padding: 20px;
+}
+.gs-inkcard__label {
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: rgba(255, 255, 255, 0.45);
+  margin-bottom: 8px;
+}
+.gs-inkcard__value {
+  font-size: 27px;
+  font-weight: 800;
+  color: #fff;
+}
+.gs-inkcard__note {
+  font-size: 11.5px;
+  color: rgba(255, 255, 255, 0.5);
+  margin-top: 4px;
+}
+
+.gs-drill {
+  border: 1px solid var(--gs-line);
+  border-radius: var(--gs-radius-xl);
+  overflow: hidden;
+}
+.gs-drill__head {
+  padding: 24px 26px;
+  background: var(--gs-mist);
+  border-bottom: 1px solid var(--gs-line-soft);
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+.gs-drill__figure {
+  font-size: 17px;
+  font-weight: 800;
+}
+.gs-drill__figlabel {
+  font-size: 10.5px;
+  color: var(--gs-ink-40);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+.gs-ledgerrow {
+  display: grid;
+  grid-template-columns: 2.2fr 1fr 1.1fr 1.4fr 0.9fr;
+  gap: 14px;
+  padding: 14px 4px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+  align-items: start;
+}
+.gs-ledgerhead {
+  display: grid;
+  grid-template-columns: 2.2fr 1fr 1.1fr 1.4fr 0.9fr;
+  gap: 14px;
+  padding: 12px 4px;
+  border-bottom: 1px solid var(--gs-line-soft);
+  font-size: 10px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--gs-ink-40);
+}
+.gs-docchip {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 9px;
+  border-radius: var(--gs-radius-pill);
+  font-size: 10.5px;
+  font-weight: 600;
+  background: #fff;
+  color: var(--gs-ink);
+  border: 1px solid rgba(0, 0, 0, 0.14);
+}
+.gs-docchip--checked {
+  background: var(--gs-green-wash);
+  border-color: rgba(27, 122, 52, 0.25);
+}
+.gs-supported {
+  margin: 8px 26px 26px;
+  padding: 20px 22px;
+  border-radius: var(--gs-radius);
+  background: var(--gs-wash);
+  border: 1px solid rgba(27, 122, 52, 0.2);
+}
+.gs-hint {
+  padding: 28px;
+  border: 1px dashed rgba(0, 0, 0, 0.14);
+  border-radius: var(--gs-radius);
+  background: var(--gs-mist);
+  text-align: center;
+  font-size: 13.5px;
+  color: var(--gs-ink-50);
+}
+.gs-donationtable {
+  background: #fff;
+  border: 1px solid var(--gs-line);
+  border-radius: var(--gs-radius-lg);
+  overflow: hidden;
+}
+.gs-donationhead,
+.gs-donationrow {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1.3fr 0.9fr;
+  gap: 14px;
+  padding: 14px 22px;
+  align-items: center;
+}
+.gs-donationhead {
+  padding: 13px 22px;
+  border-bottom: 1px solid var(--gs-line-soft);
+  font-size: 10px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--gs-ink-40);
+}
+.gs-donationrow {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+}
+.gs-donationrow:last-child {
+  border-bottom: none;
+}
+
+@media (max-width: 940px) {
+  .gs-ledgerhead,
+  .gs-donationhead {
+    display: none;
+  }
+  .gs-ledgerrow,
+  .gs-donationrow {
+    grid-template-columns: 1fr;
+    gap: 6px;
+  }
+}
