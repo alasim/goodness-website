@@ -3025,3 +3025,85 @@ a.gs-tile--plain:hover {
   font-weight: 500;
   border: 1px solid transparent;
 }
+
+/* ── About (`About.dc.html`) ───────────────────────────────────────────── */
+/* The design paired the hero with a stock photograph; the build carries the brand instead. */
+.gs-aboutpanel {
+  position: relative;
+  height: 280px;
+  border-radius: 24px;
+  overflow: hidden;
+  background: var(--gs-gradient);
+  display: flex;
+  align-items: flex-end;
+  padding: 32px;
+  box-sizing: border-box;
+}
+.gs-aboutpanel__figures {
+  position: relative;
+  display: flex;
+  gap: 36px;
+}
+.gs-aboutpanel__value {
+  font-size: 34px;
+  font-weight: 800;
+  color: #fff;
+  line-height: 1;
+}
+.gs-aboutpanel__label {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.75);
+  margin-top: 4px;
+}
+.gs-visioncard {
+  position: relative;
+  background: var(--gs-ink);
+  border-radius: 16px;
+  padding: 40px;
+  overflow: hidden;
+}
+.gs-missioncard {
+  position: relative;
+  background: #fff;
+  border: 2px solid rgba(27, 122, 52, 0.15);
+  border-radius: 16px;
+  padding: 40px;
+  overflow: hidden;
+}
+.gs-tinymark {
+  width: 32px;
+  height: 32px;
+  border-radius: 35%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  background: var(--gs-gradient);
+}
+.gs-edgecard {
+  background: #fff;
+  border-radius: 16px;
+  border: 1px solid var(--gs-line);
+  padding: 32px;
+}
+.gs-edgecard:hover {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+.gs-teamcard {
+  display: block;
+  text-align: center;
+  text-decoration: none;
+  color: inherit;
+}
+.gs-teamcard:hover {
+  color: inherit;
+}
+.gs-teamcard__mark {
+  width: 96px;
+  height: 96px;
+  border-radius: 30%;
+  font-size: 30px;
+  margin: 0 auto 16px;
+  border: 3px solid rgba(77, 200, 106, 0.35);
+  box-sizing: border-box;
+}
